@@ -1,4 +1,4 @@
-(defproject brewtility "0.0.1"
+(defproject brewtility "1.0.0"
   :description "Utility functions for all of your brewing needs"
   :url "https://github.com/Wall-Brew-Co/brewtility"
   :license {:name "MIT"
@@ -9,7 +9,8 @@
   :plugins [[lein-cljsbuild "1.1.7"]]
 
   :profiles {:uberjar {:aot :all}
-             :dev     {:dependencies [[doo "0.1.11"]]
+             :dev     {:dependencies [[com.wallbrew/common-beer-format "1.3.0"]
+                                      [doo "0.1.11"]]
                        :plugins      [[lein-doo "0.1.10"]]}}
 
   :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}

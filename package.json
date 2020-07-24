@@ -1,6 +1,6 @@
 {
   "name": "brewtility",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Utility functions for all of your brewing needs",
   "main": "index.js",
   "directories": {
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nnichols/nnichols.git"
+    "url": "git+https://github.com/Wall-Brew-Co/brewtility.git"
   },
   "author": "nnichols",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nnichols/nnichols/issues"
+    "url": "https://github.com/Wall-Brew-Co/brewtility/issues"
   },
-  "homepage": "https://github.com/nnichols/nnichols#readme",
+  "homepage": "https://github.com/Wall-Brew-Co/brewtility#readme",
   "devDependencies": {
     "karma": "^5.1.0",
     "karma-chrome-launcher": "^2.2.0",
