@@ -110,7 +110,7 @@
     (/ (* alpha-acid-units utilization conversion-factor) imperial-volume)))
 
 (defn calculate-recipe-ibus
-  "Given a collection of `common-beer-format` conforming `hops`, `batch-size`, `potential-gravity`, and `boil-duration`, calculate the amount of IBUs generated"
+  "Given a collection of `common-beer-format` conforming `hops`, `batch-size`, and `potential-gravity` calculate the amount of IBUs generated"
   [hops batch-size potential-gravity]
   (let [reducing-fn (fn [acc h] (+ acc (calculate-ibu-per-hop h batch-size potential-gravity)))]
     (reduce reducing-fn 0 hops)))
