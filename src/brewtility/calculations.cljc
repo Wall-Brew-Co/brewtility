@@ -71,12 +71,30 @@
 (def ^:const gravity->abv-multiplier 0.00135)
 (def ^:const default-attenuation 0.75)
 
+(defn calculate-potential-final-gravity
+  "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, estimate the Final Gravity.
+   The primary fermentation yeast's `attenuation` may also be passed, otherwise 75% is assumed."
+  ([fermentables batch-size]
+   (calculate-potential-final-gravity fermentables batch-size default-attenuation))
+
+  ([fermentables batch-size attenuation]
+   (let [gravity (calculate-potential-gravity fermentables batch-size)
+         gravity-points (-> gravity
+                            (* 1000)
+                            (- 1000))
+         attenuated-points (* gravity-points attenuation)]
+
+     (-> gravity-points
+         (- attenuated-points)
+         (+ 1000)
+         (/ 1000.0)))))
+
 (defn calculate-potential-abv
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, estimate the ABV.
    The primary fermentation yeast's `attenuation` may also be passed, otherwise 75% is assumed."
   ([fermentables batch-size]
    (calculate-potential-abv fermentables batch-size default-attenuation))
-  
+
   ([fermentables batch-size attenuation]
    (let [gravity (calculate-potential-gravity fermentables batch-size)]
      (-> gravity
