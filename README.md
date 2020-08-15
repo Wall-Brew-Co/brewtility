@@ -88,6 +88,9 @@ Given a collection of `common-beer-format` conforming `fermentables` and a confo
 (calculate-potential-gravity fermentables batch-size)
 ;; => 1.146
 
+(calculate-potential-final-gravity fermentables batch-size)
+;; => 1.036
+
 ;; Reminder: All percentages are treated as decimals
 (calculate-potential-abv fermentables batch-size)
 ;; => 0.147
