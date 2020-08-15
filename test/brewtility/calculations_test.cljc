@@ -50,6 +50,9 @@
           fermentables [grain-1 grain-2 adjunct-1 adjunct-2]
           batch-size   19]
       (is (= 1.146 (bp/->3dp (sut/calculate-potential-gravity fermentables batch-size))))
+      (is (= 1.036 (bp/->3dp (sut/calculate-potential-final-gravity fermentables batch-size))))
+      (is (= 1.0   (bp/->3dp (sut/calculate-potential-final-gravity fermentables batch-size 1))))
+      (is (= 1.146 (bp/->3dp (sut/calculate-potential-final-gravity fermentables batch-size 0))))
       (is (= 0.147 (bp/->3dp (sut/calculate-potential-abv fermentables batch-size))))
       (is (= 0.197 (bp/->3dp (sut/calculate-potential-abv fermentables batch-size 1))))
       (is (= 0.0   (bp/->3dp (sut/calculate-potential-abv fermentables batch-size 0)))))))
