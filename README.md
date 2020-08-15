@@ -2,6 +2,7 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/brewtility.svg)](https://clojars.org/com.wallbrew/brewtility)
 ![Clojure and ClojureScript CI](https://github.com/Wall-Brew-Co/brewtility/workflows/Clojure%20and%20ClojureScript%20CI/badge.svg)
+[![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/brewtility)](https://cljdoc.org/d/com.wallbrew/brewtility/CURRENT)
 
 A Clojure(Script) utility library for all of your brewing needs.
 
