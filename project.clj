@@ -9,7 +9,7 @@
   :plugins [[lein-cljsbuild "1.1.7"]]
 
   :profiles {:uberjar {:aot :all}
-             :dev     {:dependencies [[com.wallbrew/common-beer-format "1.3.0"]
+             :dev     {:dependencies [[com.wallbrew/common-beer-format "1.3.1"]
                                       [doo "0.1.11"]]
                        :plugins      [[lein-doo "0.1.10"]]}}
 
