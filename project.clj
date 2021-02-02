@@ -3,7 +3,7 @@
   :url "https://github.com/Wall-Brew-Co/brewtility"
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
-  :dependencies [[org.clojure/clojure "1.10.0"]
+  :dependencies [[org.clojure/clojure "1.10.2"]
                  [org.clojure/clojurescript "1.10.773" :scope "provided"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]]
