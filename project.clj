@@ -11,7 +11,7 @@
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[com.wallbrew/common-beer-format "1.3.1"]
                                       [doo "0.1.11"]]
-                       :plugins      [[lein-doo "0.1.10"]]}}
+                       :plugins      [[lein-doo "0.1.11"]]}}
 
   :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 
