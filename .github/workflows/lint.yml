@@ -18,6 +18,7 @@ jobs:
           locale: "US"
           reporter: github-pr-review
           filter_mode: file
+          ignore: litre
 
   clj-kondo:
     runs-on: ubuntu-latest
