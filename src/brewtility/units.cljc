@@ -1,6 +1,7 @@
 (ns brewtility.units
   "Namespace for converting between different units of measure")
 
+
 (def ^:const volume-measurement->litre
   {:teaspoon             0.00492892
    :tablespoon           0.0147868
@@ -22,6 +23,7 @@
   [measurement-name]
   (/ 1.0 (get volume-measurement->litre measurement-name)))
 
+
 (defn convert-volume
   "Given a `volume` in `source-measurement`, convert it to the `target-measurement`."
   [volume source-measurement target-measurement]
@@ -31,6 +33,7 @@
           litre->target-multiplier (liter->volume-measurement target-measurement)]
       (* volume source->litre-multiplier litre->target-multiplier))))
 
+
 (def ^:const weight-measurement->kilogram
   {:ounce     0.02834952
    :pound     0.45359237
@@ -38,9 +41,11 @@
    :gram      0.001
    :kilogram  1.0})
 
+
 (defn kilogram->weight-measurement
   [measurement-name]
   (/ 1.0 (get weight-measurement->kilogram measurement-name)))
+
 
 (defn convert-weight
   "Given a `weight` in `source-measurement`, convert it to the `target-measurement`."
@@ -51,21 +56,26 @@
           kilogram->target-multiplier (kilogram->weight-measurement target-measurement)]
       (* weight source->kilogram-multiplier kilogram->target-multiplier))))
 
+
 (defn celsius->fahrenheit
   [temp]
   (+ 32 (* 1.8 temp)))
+
 
 (defn celsius->kelvin
   [temp]
   (+ temp 273.15))
 
+
 (defn fahrenheit->celsius
   [temp]
   (/ (* (- temp 32) 5) 9.0))
 
+
 (defn kelvin->celsius
   [temp]
   (- temp 273.15))
+
 
 (def ^:const temperature-measurement->celsius
   {:celsius    identity
@@ -76,6 +86,7 @@
    :kelvin     kelvin->celsius
    :k          kelvin->celsius})
 
+
 (def ^:const celsius->temperature-measurement
   {:celsius    identity
    :c          identity
@@ -84,6 +95,7 @@
    :f          celsius->fahrenheit
    :kelvin     celsius->kelvin
    :k          celsius->kelvin})
+
 
 (defn convert-temperature
   "Given a `temp` in `source-measurement`, convert it to the `target-measurement`."

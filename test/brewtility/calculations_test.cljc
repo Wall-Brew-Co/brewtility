@@ -8,6 +8,7 @@
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
+
 (deftest normalize-fermentable-test
   (testing "common-beer-format fermentables can be normalized for Malt Color computation"
     (let [grain              (assoc (:rye-malt grains/grains) :amount 10)
@@ -19,6 +20,7 @@
       (is (= (dissoc normalized-adjunct :amount :color) (dissoc (:grits adjuncts/adjuncts) :amount :color)))
       (is (= 11.023 (bp/->3dp (:amount normalized-adjunct))))
       (is (= 1.299 (bp/->3dp (:color normalized-adjunct)))))))
+
 
 (deftest calculate-malt-color-units-test
   (testing "Colors can be correctly computer for recipes"
@@ -34,12 +36,14 @@
       (is (= 41.907 (bp/->3dp (sut/calculate-lovibond-color fermentables batch-size))))
       (is (= color/srm-21 (sut/calculate-rgba-color fermentables batch-size))))))
 
+
 (deftest gravity-conversion-test
   (testing "Potential gravity and gravity points can be computed correctly"
     (is (= 264.555 (bp/->3dp (sut/potential-gravity->gravity-points 1.04 3))))
     (is (= 0.0 (bp/->3dp (sut/potential-gravity->gravity-points 1.0 5143))))
     (is (= 1.043 (bp/->3dp (sut/gravity-points->potential-gravity 40 3.5))))
     (is (= 1.0 (bp/->3dp (sut/gravity-points->potential-gravity 0 3.5))))))
+
 
 (deftest calculate-potential-gravity-test
   (testing "Gravity/ABV can be correctly computer for recipes"
@@ -57,6 +61,7 @@
       (is (= 0.197 (bp/->3dp (sut/calculate-potential-abv fermentables batch-size 1))))
       (is (= 0.0   (bp/->3dp (sut/calculate-potential-abv fermentables batch-size 0)))))))
 
+
 (deftest calculate-hop-utilization-test
   (testing "The percent hop utilization can be calculated correctly"
     (is (= 0.0   (bp/->3dp (sut/calculate-hop-utilization 1.03 0))))
@@ -72,12 +77,14 @@
     (is (= 0.123 (bp/->3dp (sut/calculate-hop-utilization 1.12 60))))
     (is (= 0.134 (bp/->3dp (sut/calculate-hop-utilization 1.12 120))))))
 
+
 (deftest calculate-alpha-acid-units-test
   (testing "The amount of alpha acids release by a known quantity of hops can be computed"
     (is (= 0.0 (bp/->3dp (sut/calculate-alpha-acid-units 0.0 0.5))))
     (is (= 0.0 (bp/->3dp (sut/calculate-alpha-acid-units 0.05 0.0))))
     (is (= 79.014 (bp/->3dp (sut/calculate-alpha-acid-units 0.14 (:alpha (:el-dorado hops/both))))))
     (is (= 41.976 (bp/->3dp (sut/calculate-alpha-acid-units 0.14 (:alpha (:northdown hops/both))))))))
+
 
 (deftest calculate-ibu-per-hop-test
   (testing "A single hop addition's IBU contribution can be calculated"
@@ -88,6 +95,7 @@
       (is (= 32.12  (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 120) 15 1.03))))
       (is (= 16.06  (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 120) 30 1.03))))
       (is (= 24.529 (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 120) 15 1.06)))))))
+
 
 (deftest calculate-recipe-ibus-test
   (testing "All hop addition IBU contributions can be calculated"
