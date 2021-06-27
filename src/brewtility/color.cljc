@@ -45,6 +45,7 @@
 (def ^:const srm-39 "rgba(58,7,11,1)")
 (def ^:const srm-40 "rgba(3,4,3,1)")
 
+
 (def srm-color-map
   {1	 srm-1
    2	 srm-2
@@ -87,33 +88,40 @@
    39	 srm-39
    40	 srm-40})
 
+
 (defn lovibond->srm
   "Convert the color described in degrees `lovibond` to the equivalent SRM color"
   [lovibond]
   (- (* lovibond 1.3546) 0.76))
+
 
 (defn srm->ebc
   "Convert the color described by the `srm` to the equivalent EBC color"
   [srm]
   (* srm 1.97))
 
+
 (defn ebc->srm
   "Convert the color described by the `ebc` to the equivalent SRM color"
   [ebc]
   (* ebc 0.508))
+
 
 (defn srm->lovibond
   "Convert the color described in 'srm` to the equivalent degrees Lovibond"
   [srm]
   (/ (+ srm 0.76) 1.3546))
 
+
 (def lovibond->ebc
   "Convert the color described in degrees 'lovibond` to the equivalent EBC color"
   (comp srm->ebc lovibond->srm))
-  
+
+
 (def ebc->lovibond
   "Convert the color described in 'ebc` to the equivalent degrees Lovibond"
   (comp srm->lovibond ebc->srm))
+
 
 (defn srm->rgba
   "Given `srm-number`, return the closest, bounded applicable RGBA color string.
@@ -123,9 +131,11 @@
   (let [srm-color (min (max (int srm-number) 1) 40)]
     (get srm-color-map srm-color)))
 
+
 (def lovibond->rgba
   "Given `lovibond-number`, return the closest, bounded applicable RGBA color string."
   (comp srm->rgba lovibond->srm))
+
 
 (def ebc->rgba
   "Given `ebc-number`, return the closest, bounded applicable RGBA color string."

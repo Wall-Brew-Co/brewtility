@@ -4,6 +4,7 @@
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
+
 (deftest srm->rgba-test
   (testing "SRM color lookup behaves as expected"
     (is (= sut/srm-13 (sut/srm->rgba 13)))
@@ -12,6 +13,7 @@
     (is (= sut/srm-6  (sut/srm->rgba 6.2)))
     (is (= sut/srm-6  (sut/srm->rgba 6.8)))
     (is (= sut/srm-40 (sut/srm->rgba 41)))))
+
 
 (deftest lovibond->rgba-test
   (testing "lovibond -> SRM -> rgba lookup behaves as expected"
@@ -22,6 +24,7 @@
     (is (= sut/srm-6  (sut/lovibond->rgba 5.58)))
     (is (= sut/srm-40 (sut/lovibond->rgba 30.83)))))
 
+
 (deftest ebc->rgba-test
   (testing "EBC -> SRM -> rgba lookup behaves as expected"
     (is (= sut/srm-13 (sut/ebc->rgba 25.61)))
@@ -30,6 +33,7 @@
     (is (= sut/srm-6  (sut/ebc->rgba 12.21)))
     (is (= sut/srm-6  (sut/ebc->rgba 13.40)))
     (is (= sut/srm-40 (sut/ebc->rgba 80.77)))))
+
 
 (deftest conversion-test
   (testing "Ensure various color unit conversions behave as expected"

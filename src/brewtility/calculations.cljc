@@ -5,6 +5,7 @@
             [brewtility.units :as units]
             [clojure.string :as cs]))
 
+
 (defn normalize-fermentable
   "Given a `common-beer-format` conforming `fermentable`, normalize it for color computation"
   [fermentable]
@@ -23,23 +24,28 @@
         imperial-volume         (units/convert-volume batch-size :litre :american-gallon)]
     (/ color imperial-volume)))
 
+
 (defn calculate-srm-color
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the SRM color for a recipe"
   [fermentables batch-size]
   (let [mcu-color (calculate-malt-color-units fermentables batch-size)]
     (* mcu-color 1.02349998)))
 
+
 (def calculate-ebc-color
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the EBC color for a recipe"
   (comp color/srm->ebc calculate-srm-color))
+
 
 (def calculate-lovibond-color
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the color in degrees Lovibond for a recipe"
   (comp color/srm->ebc calculate-srm-color))
 
+
 (def calculate-rgba-color
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the RGBA color for a recipe"
   (comp color/srm->rgba calculate-srm-color))
+
 
 (defn potential-gravity->gravity-points
   "Given the `potential-gravity` of a fermentable, and the `weight` of the fermentable, calculate gravity points"
@@ -50,6 +56,7 @@
         (- 1000)
         (* weight-in-pounds))))
 
+
 (defn gravity-points->potential-gravity
   "Given the `gravity-points` of a recipe, and the `volume` of the batch, calculate the potential gravity"
   [gravity-points volume]
@@ -58,6 +65,7 @@
         (/ volume-in-gallons)
         (+ 1000)
         (/ 1000.0))))
+
 
 (defn calculate-potential-gravity
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, calculate the potential original gravity."
@@ -68,8 +76,10 @@
         total-gravity-points (reduce reducing-fn 0 fermentables)]
     (gravity-points->potential-gravity total-gravity-points batch-size)))
 
+
 (def ^:const gravity->abv-multiplier 0.00135)
 (def ^:const default-attenuation 0.75)
+
 
 (defn calculate-potential-final-gravity
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, estimate the Final Gravity.
@@ -89,6 +99,7 @@
          (+ 1000)
          (/ 1000.0)))))
 
+
 (defn calculate-potential-abv
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, estimate the ABV.
    The primary fermentation yeast's `attenuation` may also be passed, otherwise 75% is assumed."
@@ -103,6 +114,7 @@
          (* attenuation)
          (* gravity->abv-multiplier)))))
 
+
 (defn calculate-hop-utilization
   "Calculate the percentage of alpha acid that a hop could release over `boil-duration` in a wort at a specific `gravity`
    Based on: http://howtobrew.com/book/section-1/hops/hop-bittering-calculations"
@@ -111,12 +123,14 @@
         time-factor    (/ (- 1 (Math/pow Math/E (* -0.04 boil-duration))) 4.15)]
     (* gravity-factor time-factor)))
 
+
 (defn calculate-alpha-acid-units
   "Calculate the maximum amount of alpha acid released by `weight` ounce of a hop at `percent` alpha acid"
   [weight alpha]
   (let [weight-in-ounces (units/convert-weight weight :kilogram :ounce)
         aau-normalization-factor 100]
     (* aau-normalization-factor weight-in-ounces alpha)))
+
 
 (defn calculate-ibu-per-hop
   "Given a `common-beer-format` conforming `hop`, `batch-size`, and `potential-gravity`, calculate the amount of IBUs generated"
@@ -126,6 +140,7 @@
         imperial-volume   (units/convert-volume batch-size :litre :american-gallon)
         conversion-factor 74.89]
     (/ (* alpha-acid-units utilization conversion-factor) imperial-volume)))
+
 
 (defn calculate-recipe-ibus
   "Given a collection of `common-beer-format` conforming `hops`, `batch-size`, and `potential-gravity` calculate the amount of IBUs generated"
