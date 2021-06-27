@@ -1,0 +1,17 @@
+dotfiles:
+  - .github/**/*
+  - .gitignore
+  - .editorconfig
+
+restricted:
+  - LICENSE
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - CODEOWNERS
+  - .github/**/*
+  - .cljstyle
+  - SECURITY.md
+
+test-dependencies:
+  - package.json
+  - package-lock.json
