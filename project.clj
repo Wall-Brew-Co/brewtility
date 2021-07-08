@@ -4,7 +4,7 @@
   :license {:name "MIT"
             :url  "https://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.10.3"]
-                 [org.clojure/clojurescript "1.10.844" :scope "provided"]]
+                 [org.clojure/clojurescript "1.10.866" :scope "provided"]]
 
   :plugins [[lein-cljsbuild "1.1.7"]]
 
