@@ -2,9 +2,9 @@
   (:require [brewtility.calculations :as sut]
             [brewtility.color :as color]
             [brewtility.precision :as bp]
-            [common-beer-format.data.fermentables.grains :as grains]
-            [common-beer-format.data.fermentables.adjuncts :as adjuncts]
-            [common-beer-format.data.hops.both :as hops]
+            [common-beer-data.fermentables.grains :as grains]
+            [common-beer-data.fermentables.adjuncts :as adjuncts]
+            [common-beer-data.hops.both :as hops]
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 

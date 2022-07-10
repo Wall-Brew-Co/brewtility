@@ -3,14 +3,14 @@
    This namespace assumes ingredients that conform to the common-beer-format."
   (:require [brewtility.color :as color]
             [brewtility.units :as units]
-            [clojure.string :as cs]))
+            [clojure.string :as str]))
 
 
 (defn normalize-fermentable
   "Given a `common-beer-format` conforming `fermentable`, normalize it for color computation"
   [fermentable]
-  (let [is-not-grain? (not= "grain" (cs/lower-case (:type fermentable)))
-        kg->lbs       (fn [w] (units/convert-weight w :kilogram :pound))] ;; MCU is caluclated against pounds
+  (let [is-not-grain? (not= "grain" (str/lower-case (:type fermentable)))
+        kg->lbs       (fn [w] (units/convert-weight w :kilogram :pound))] ;; MCU is calculated against pounds
     (cond-> fermentable
       true          (update :amount kg->lbs)
       is-not-grain? (update :color color/srm->lovibond)))) ;; Grain color is in Lovibond, all other fermentables use SRM
