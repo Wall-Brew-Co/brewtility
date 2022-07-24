@@ -169,6 +169,7 @@
 (defn calculate-hop-utilization
   "Calculate the percentage of alpha acid that a hop could release over `boil-duration` in a wort at a specific `gravity`.
    Based on: http://howtobrew.com/book/section-1/hops/hop-bittering-calculations"
+  {:added "1.0"}
   [gravity boil-duration]
   (let [gravity-factor (* 1.65 (Math/pow 0.000125 (- gravity 1)))
         time-factor    (/ (- 1 (Math/pow Math/E (* -0.04 boil-duration))) 4.15)]
