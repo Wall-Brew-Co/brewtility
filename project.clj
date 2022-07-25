@@ -10,7 +10,7 @@
 
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[com.wallbrew/common-beer-data "1.1.0"]
-                                      [com.wallbrew/common-beer-format "2.0.0"]
+                                      [com.wallbrew/common-beer-format "2.1.0"]
                                       [doo "0.1.11"]]
                        :plugins      [[lein-doo "0.1.11"]]}}
 
