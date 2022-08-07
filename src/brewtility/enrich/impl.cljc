@@ -6,11 +6,12 @@
 
 ;; TODO: Pluralize strings
 (defn ->displayable-volume
-  {:added "1.3.0"
+  {:added    "1.3.0"
+   :no-doc   true
    :see-also ["->displayable-weight"]}
   ([source-value source-units target-units]
    (->displayable-volume source-value source-units target-units {:precision 3
-                                                                 :suffix :short}))
+                                                                 :suffix    :short}))
   ([source-value source-units target-units {:keys [precision suffix]}]
    (-> source-value
        (units/convert-volume source-units target-units)
@@ -19,6 +20,9 @@
 
 
 (defn ->displayable-weight
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["->displayable-volume"]}
   ([source-value source-units target-units]
    (->displayable-weight source-value source-units target-units {:precision 3
                                                                  :suffix :short}))
@@ -44,6 +48,9 @@
 
 
 (defn target-unit-error
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["systems-of-meaure-error" "precision-error" "suffix-error"]}
   [error-map conversion-type target-units]
   (let [error-msg (format "Invalid unit for %s conversion : %s. Allowed values are: %s"
                           (name conversion-type)
@@ -53,6 +60,9 @@
 
 
 (defn systems-of-meaure-error
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["target-unit-error" "precision-error" "suffix-error"]}
   [error-map conversion-type system-of-measure]
   (let [error-msg (format "Invalid system of measure for %s conversion : %s. Allowed values are: %s"
                           (name conversion-type)
@@ -62,6 +72,9 @@
 
 
 (defn precision-error
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["target-unit-error" "systems-of-meaure-error" "suffix-error"]}
   [error-map conversion-type precision]
   (let [error-msg (format "Invalid precision for %s conversion : %s. Must be an integer."
                           (name conversion-type)
@@ -70,6 +83,9 @@
 
 
 (defn suffix-error
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["target-unit-error" "systems-of-meaure-error" "precision-error"]}
   [error-map conversion-type suffix]
   (let [error-msg (format "Invalid suffix type for %s conversion : %s. Allowed values are: %s"
                           (name conversion-type)
@@ -79,6 +95,9 @@
 
 
 (defn verify-enrich-displayable-volume-opts
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["enrich-displayable-volume"]}
   [{:keys [target-units system-of-measure precision suffix]
     :as   opts}]
   (let [valid-target?    (contains? units/volume-measurements target-units)
@@ -97,6 +116,7 @@
 
 (defn enrich-displayable-volume
   {:added    "1.3.0"
+   :no-doc   true
    :see-also ["enrich-displayable-weight"]}
   [source-data
    {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
@@ -119,6 +139,9 @@
 
 
 (defn verify-enrich-displayable-weight-opts
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["enrich-displayable-weight"]}
   [{:keys [target-units system-of-measure precision suffix]
     :as   opts}]
   (let [valid-target?    (contains? units/weight-measurements target-units)
@@ -137,6 +160,7 @@
 
 (defn enrich-displayable-weight
   {:added    "1.3.0"
+   :no-doc   true
    :see-also ["enrich-displayable-volume"]}
   [source-data
    {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
@@ -149,9 +173,9 @@
           precision                (or fine-grain-precision precision)
           suffix                   (or fine-grain-suffix suffix)
           opts                     (verify-enrich-displayable-weight-opts
-                                     {:target-units      target-units
-                                      :system-of-measure system-of-measure
-                                      :precision         precision
-                                      :suffix            suffix})]
+                                    {:target-units      target-units
+                                     :system-of-measure system-of-measure
+                                     :precision         precision
+                                     :suffix            suffix})]
       (assoc source-data display-key (->displayable-weight source-value :kilogram target-units opts)))
     source-data))
