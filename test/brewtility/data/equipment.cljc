@@ -40,6 +40,7 @@
   (gen/generate (spec/gen ::equipment.format/equipment)))
 
 
+
 (defn generate-equipment-wrapper
   "Generate a random equipment-wrapper object"
   {:added "1.4"

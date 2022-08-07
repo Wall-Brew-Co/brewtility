@@ -64,6 +64,7 @@
   (gen/generate (spec/gen ::yeasts.format/yeast)))
 
 
+
 (defn generate-yeast-wrapper
   "Generate a random yeast-wrapper object"
   {:added "1.4"
@@ -72,12 +73,14 @@
   (gen/generate (spec/gen ::yeasts.format/yeast-wrapper)))
 
 
+
 (defn generate-yeasts
   "Generate a random yeasts object"
   {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::yeasts.format/yeasts)))
+
 
 
 (defn generate-yeasts-wrapper

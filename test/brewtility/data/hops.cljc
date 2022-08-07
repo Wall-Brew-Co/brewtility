@@ -74,6 +74,7 @@
   (gen/generate (spec/gen ::hops.format/hop)))
 
 
+
 (defn generate-hop-wrapper
   "Generate a random hop-wrapper object"
   {:added "1.4"
@@ -82,12 +83,14 @@
   (gen/generate (spec/gen ::hops.format/hop-wrapper)))
 
 
+
 (defn generate-hops
   "Generate a random hops object"
   {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::hops.format/hops)))
+
 
 
 (defn generate-hops-wrapper

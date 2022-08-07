@@ -54,6 +54,7 @@
   (gen/generate (spec/gen ::style.format/style)))
 
 
+
 (defn generate-style-wrapper
   "Generate a random style-wrapper object"
   {:added "1.4"

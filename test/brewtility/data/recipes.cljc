@@ -85,6 +85,7 @@
   (gen/generate (spec/gen ::recipes.format/recipe)))
 
 
+
 (defn generate-recipe-wrapper
   "Generate a random recipe-wrapper object"
   {:added "1.4"
@@ -93,12 +94,14 @@
   (gen/generate (spec/gen ::recipes.format/recipe-wrapper)))
 
 
+
 (defn generate-recipes
   "Generate a random recipes object"
   {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::recipes.format/recipes)))
+
 
 
 (defn generate-recipes-wrapper

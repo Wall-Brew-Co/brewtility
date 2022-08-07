@@ -41,6 +41,7 @@
   (gen/generate (spec/gen ::miscs.format/misc)))
 
 
+
 (defn generate-misc-wrapper
   "Generate a random misc-wrapper object"
   {:added "1.4"
@@ -49,12 +50,14 @@
   (gen/generate (spec/gen ::miscs.format/misc-wrapper)))
 
 
+
 (defn generate-miscs
   "Generate a random miscs object"
   {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::miscs.format/miscs)))
+
 
 
 (defn generate-miscs-wrapper

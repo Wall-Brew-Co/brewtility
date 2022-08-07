@@ -48,12 +48,14 @@
   (gen/generate (spec/gen ::mash.format/mash-step)))
 
 
+
 (defn generate-mash-step-wrapper
   "Generate a random mash-step-wrapper object"
   {:added "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::mash.format/mash-step-wrapper)))
+
 
 
 (defn generate-mash-steps
@@ -64,12 +66,14 @@
   (gen/generate (spec/gen ::mash.format/mash-steps)))
 
 
+
 (defn generate-mash
   "Generate a random mash object"
   {:added "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::mash.format/mash)))
+
 
 
 (defn generate-mash-wrapper

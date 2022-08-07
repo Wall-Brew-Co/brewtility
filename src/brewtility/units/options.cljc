@@ -69,6 +69,10 @@
    Commonly used with `brewtility.units` and in argument/option maps."
   :si)
 
+(def systems-of-measure
+  "The set of supported measurement systems"
+  #{imperial metric us-customary international-system})
+
 
 (def systems-of-measure
   "The set of supported measurement systems"
