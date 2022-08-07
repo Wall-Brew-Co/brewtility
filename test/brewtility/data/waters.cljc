@@ -59,6 +59,7 @@
   (gen/generate (spec/gen ::waters.format/water)))
 
 
+
 (defn generate-water-wrapper
   "Generate a random water-wrapper object"
   {:added "1.4"
@@ -67,12 +68,14 @@
   (gen/generate (spec/gen ::waters.format/water-wrapper)))
 
 
+
 (defn generate-waters
   "Generate a random waters object"
   {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/waters)))
+
 
 
 (defn generate-waters-wrapper
