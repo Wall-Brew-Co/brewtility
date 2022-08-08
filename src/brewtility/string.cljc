@@ -31,7 +31,7 @@
    - `:uppercase?` - If true, `s1` and `s2` will be coerced to upper case. Defaults to false.
    - `:coerce?` - If true, `s1` and `s2` will be cast to a string via `str`. Defaults to false."
   {:added    "1.3"
-   :see-also ["includes?"]}
+   :see-also ["includes?" "prepare-for-compare"]}
   ([s1 s2] (same? s1 s2 {}))
 
   ([s1 s2 opts]
@@ -48,7 +48,7 @@
    - `:uppercase?` - If true, `s1` and `s2` will be coerced to upper case. Defaults to false.
    - `:coerce?` - If true, `s1` and `s2` will be cast to a string via `str`. Defaults to false."
   {:added    "1.3"
-   :see-also ["includes?"]}
+   :see-also ["includes?" "prepare-for-compare"]}
   ([s1 s2] (includes? s1 s2 {}))
 
   ([s1 s2 opts]
