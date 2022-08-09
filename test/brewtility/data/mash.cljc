@@ -27,6 +27,7 @@
   "A hard-coded sample mash-steps for static unit tests"
   [sample-mash-step-wrapper])
 
+
 (def ^:const sample-mash-steps-wrapper
   "A hard-coded sample mash-steps-wrapper for static unit tests"
   {:mash-steps sample-mash-steps})
@@ -69,6 +70,7 @@
    :no-doc true}
   []
   (gen/generate (spec/gen ::mash.format/mash-steps)))
+
 
 
 (defn generate-mash-steps-wrapper
