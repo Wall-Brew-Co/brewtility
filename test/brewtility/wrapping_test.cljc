@@ -22,6 +22,7 @@
             [common-beer-format.yeasts :as yeasts.format]))
 
 
+
 (deftest equipment-tests
   (testing "Wrapped equipment is a valid equipment-wrapper"
     (is (spoon.spec/test-valid? ::equipment.format/equipment-wrapper
@@ -152,6 +153,26 @@
            (-> mash.data/sample-mash-step-wrapper
                sut/unwrap-mash-step
                sut/wrap-mash-step)))))
+
+<<<<<<< HEAD
+=======
+
+(deftest mash-steps-tests
+  (testing "Unwrapped mash-steps is a valid mash-step"
+    (is (s/valid? ::mash.format/mash-steps
+                  (sut/unwrap-mash-steps mash.data/sample-mash-steps-wrapper)))
+    (is (s/valid? ::mash.format/mash-steps
+                  (sut/unwrap-mash-steps (mash.data/generate-mash-steps-wrapper)))))
+  (testing "(Un)wrapping is reversible"
+    (is (= mash.data/sample-mash-steps
+           (-> mash.data/sample-mash-steps
+               sut/wrap-mash-steps
+               sut/unwrap-mash-steps)))
+    (is (= mash.data/sample-mash-steps-wrapper
+           (-> mash.data/sample-mash-steps-wrapper
+               sut/unwrap-mash-steps
+               sut/wrap-mash-steps)))))
+>>>>>>> e98f9f7 (Expand predicates to include recipes, styles, and waters)
 
 
 (deftest mash-tests

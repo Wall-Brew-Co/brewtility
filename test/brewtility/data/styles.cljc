@@ -35,9 +35,11 @@
   "A hard-coded sample style-wrapper for static unit tests"
   {:style sample-style})
 
+
 (def ^:const sample-styles
   "A hard-coded sample styles for static unit tests"
   [sample-style-wrapper])
+
 
 (def ^:const sample-styles-wrapper
   "A hard-coded sample styles-wrapper for static unit tests"
@@ -85,6 +87,7 @@
    :no-doc true}
   []
   (gen/generate (spec/gen ::style.format/styles-wrapper)))
+
 
 (defn generate-styles
   "Generate a random styles object"
