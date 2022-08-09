@@ -26,6 +26,10 @@
   "A hard-coded sample mash-steps for static unit tests"
   [sample-mash-step-wrapper])
 
+(def ^:const sample-mash-steps-wrapper
+  "A hard-coded sample mash-steps-wrapper for static unit tests"
+  {:mash-steps sample-mash-steps})
+
 
 (def sample-mash
   "A hard-coded sample mash for static unit tests"
@@ -65,6 +69,13 @@
   []
   (gen/generate (spec/gen ::mash.format/mash-steps)))
 
+
+(defn generate-mash-steps-wrapper
+  "Generate a random mash-steps object"
+  {:added  "1.3"
+   :no-doc true}
+  []
+  {:mash-steps (gen/generate (s/gen ::mash.format/mash-steps))})
 
 
 (defn generate-mash
