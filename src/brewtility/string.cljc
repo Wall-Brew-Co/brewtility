@@ -53,3 +53,43 @@
 
   ([s1 s2 opts]
    (str/includes? (prepare-for-compare s1 opts) (prepare-for-compare s2 opts))))
+
+
+(defn ->sporadic-case
+  "Take a string `s` and randomly coerce characters to either lower or upper case.
+
+   For example:
+
+   ```clj
+    (->sporadic-case \"hello world\") ;; => \"hElLo wOrLd\"
+   ```"
+  {:added    "1.3"
+   :see-also ["->spongebob-case"]}
+  [^String s]
+  (letfn [(random-case
+            [l]
+            (if (rand-nth [true false])
+              (str/upper-case l)
+              (str/lower-case l)))]
+    (->> s
+         seq
+         (map random-case)
+         (apply str))))
+
+
+(defn ->spongebob-case
+  "Take a string `s` and coerce characters alternatively between lower and upper case.
+
+   For example:
+
+   ```clj
+    (->spongebob-case \"spongebob\") ;; => \"sPoNgEbOb\"
+   ```"
+  {:added    "1.3"
+   :see-also ["->sporadic-case"]}
+  [^String s]
+  (letfn [(spongebob-case
+            [acc l]
+            (let [casing-fn (if (odd? (count acc)) str/upper-case str/lower-case)]
+              (str acc (casing-fn l))))]
+    (reduce spongebob-case "" (seq s))))

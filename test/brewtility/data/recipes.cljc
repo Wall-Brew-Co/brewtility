@@ -18,6 +18,17 @@
 
 (defn random-ibu-method
   "Return a random valid hop type."
+  {:added "1.3"
+   :no-doc true}
+  []
+  (-> recipes.format/ibu-method-types
+      vec
+      rand-nth
+      b-str/->sporadic-case))
+
+
+(defn random-ibu-method
+  "Return a random valid hop type."
   {:added "1.4"
    :no-doc true}
   []
@@ -85,7 +96,6 @@
   (gen/generate (spec/gen ::recipes.format/recipe)))
 
 
-
 (defn generate-recipe-wrapper
   "Generate a random recipe-wrapper object"
   {:added "1.4"
@@ -94,14 +104,12 @@
   (gen/generate (spec/gen ::recipes.format/recipe-wrapper)))
 
 
-
 (defn generate-recipes
   "Generate a random recipes object"
   {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::recipes.format/recipes)))
-
 
 
 (defn generate-recipes-wrapper

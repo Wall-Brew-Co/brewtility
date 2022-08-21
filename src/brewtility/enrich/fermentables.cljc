@@ -208,7 +208,7 @@
        (let [source-color  (if (fermentables.predicate/grain? fermentable opts)
                              (:color fermentable)
                              (color/srm->lovibond (:color fermentable)))
-             target-color  (case target-color-system
+             target-color  (case target-color-system ; TODO: Add this functionality to the `units` namespace
                              :lovibond source-color
                              :srm      (color/lovibond->srm source-color)
                              :ebc      (color/lovibond->ebc source-color)

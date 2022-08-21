@@ -140,3 +140,4 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Fermentable :type"
                    (sut/adjunct? (dissoc fermentables/sample-fermentable :type)))))))
+
