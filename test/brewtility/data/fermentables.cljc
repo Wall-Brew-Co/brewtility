@@ -49,7 +49,6 @@
   (gen/generate (spec/gen ::fermentables.format/fermentable)))
 
 
-
 (defn generate-fermentable-wrapper
   "Generate a random fermentable-wrapper object"
   {:added "1.4"
@@ -58,14 +57,12 @@
   (gen/generate (spec/gen ::fermentables.format/fermentable-wrapper)))
 
 
-
 (defn generate-fermentables
   "Generate a random fermentables object"
   {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::fermentables.format/fermentables)))
-
 
 
 (defn generate-fermentables-wrapper

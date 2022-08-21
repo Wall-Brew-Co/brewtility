@@ -1,5 +1,5 @@
 (ns brewtility.data.styles
-  "Namespace for static and generative test data for `common-beer-format.styles/*` specs."
+  "Namespace for static and generative test data for `common-beer-format.stylespec/*` specs."
   (:require [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
@@ -65,7 +65,6 @@
   (gen/generate (spec/gen ::style.format/style)))
 
 
-
 (defn generate-style-wrapper
   "Generate a random style-wrapper object"
   {:added "1.4"
@@ -95,7 +94,7 @@
   {:added  "1.3"
    :no-doc true}
   []
-  (gen/generate (s/gen ::style.format/styles)))
+  (gen/generate (spec/gen ::style.format/styles)))
 
 
 (defn generate-styles-wrapper
@@ -103,7 +102,7 @@
   {:added "1.3"
    :no-doc true}
   []
-  (gen/generate (s/gen ::style.format/styles-wrapper)))
+  (gen/generate (spec/gen ::style.format/styles-wrapper)))
 
 
 (deftest static-test-data-check

@@ -6,9 +6,15 @@
 
 (deftest approximates?-test
   (testing "Ensure approximation works as expected"
-    (is (true? (sut/approximates? 100 100 0.00001)))
-    (is (true? (sut/approximates? 100 90 0.1)))
-    (is (false? (sut/approximates? 100 90 0.01)))))
+    (is (true? (sut/approximates? 100 100 0.00001))
+        "Equal numbers will always return true")
+    (is (let [r-int (rand-int 1000000)]
+          (true? (sut/approximates? r-int r-int 0.00001)))
+        "Equal integers will always return true")
+    (is (true? (sut/approximates? 100 90 0.1))
+        "90 is within 10% of 100")
+    (is (false? (sut/approximates? 100 90 0.01))
+        "90 is not within 1% of 100")))
 
 
 (deftest ->1dp-test

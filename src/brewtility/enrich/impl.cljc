@@ -5,10 +5,12 @@
             [brewtility.units.volume :as volume]
             [brewtility.units.weight :as weight]))
 
+
 (def default-display-options
   "The default display options used for all enrichers."
   {options/precision 3
    options/suffix    options/short})
+
 
 ;; TODO: Pluralize strings
 (defn ->displayable-volume
@@ -80,9 +82,11 @@
    :no-doc   true
    :see-also ["target-unit-error" "systems-of-meaure-error" "suffix-error"]}
   [error-map conversion-type precision]
-  (let [error-msg (format "Invalid precision for %s conversion : %s. Must be an integer."
-                          (name conversion-type)
-                          precision)]
+  (let [error-msg (str "Invalid precision for "
+                       (name conversion-type)
+                       " conversion : "
+                       precision
+                       ". Must be an integer.")]
     (assoc error-map :precision error-msg)))
 
 
