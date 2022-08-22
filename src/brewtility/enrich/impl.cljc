@@ -1,7 +1,9 @@
 (ns brewtility.enrich.impl
-  {:no-doc true}
-  (:require [brewtility.units :as units]
-            [brewtility.units.options :as options]
+  {:no-doc              true
+   :added               "2.1"
+   :implementation-only true}
+  (:require [brewtility.units.options :as options]
+            [brewtility.units.time :as time]
             [brewtility.units.volume :as volume]
             [brewtility.units.weight :as weight]))
 
@@ -17,7 +19,7 @@
   "Convert a volume then render it to a displayable value."
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["->displayable-weight"]}
+   :see-also ["->displayable-weight" "->displayable-time"]}
   ([source-value source-units target-units]
    (->displayable-volume source-value source-units target-units default-display-options))
   ([source-value source-units target-units opts]
@@ -26,11 +28,12 @@
        (volume/display target-units opts))))
 
 
+;; TODO: Pluralize strings
 (defn ->displayable-weight
   "Convert a weight then render it to a displayable value."
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["->displayable-volume"]}
+   :see-also ["->displayable-volume" "->displayable-time"]}
   ([source-value source-units target-units]
    (->displayable-weight source-value source-units target-units default-display-options))
   ([source-value source-units target-units opts]
@@ -38,6 +41,18 @@
        (weight/convert source-units target-units)
        (weight/display target-units opts))))
 
+;; TODO: Pluralize strings
+(defn ->displayable-time
+  "Convert a time then render it to a displayable value."
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["->displayable-volume" "->displayable-time"]}
+  ([source-value source-units target-units]
+   (->displayable-time source-value source-units target-units default-display-options))
+  ([source-value source-units target-units opts]
+   (-> source-value
+       (time/convert source-units target-units)
+       (time/display target-units opts))))
 
 (def ^:private default-volume-by-system
   {options/imperial             options/imperial-gallon
@@ -52,8 +67,15 @@
    options/us-customary         options/pound
    options/international-system options/kilogram})
 
+(def ^:private ^:const default-time-by-system
+  {:imperial :minute
+   :metric   :minute
+   :us       :minute
+   :si       :minute})
+
 
 (defn target-unit-error
+  "A function to accumulate error messages in `error-map` if `target-units` is not a valid unit for `conversion-type`"
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["systems-of-meaure-error" "precision-error" "suffix-error"]}
@@ -66,6 +88,7 @@
 
 
 (defn systems-of-meaure-error
+  "A function to accumulate error messages in `error-map` if `system-of-measure` is not valid for `conversion-type`"
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["target-unit-error" "precision-error" "suffix-error"]}
@@ -78,6 +101,7 @@
 
 
 (defn precision-error
+  "A function to accumulate error messages in `error-map` if `precision` is not an integer"
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["target-unit-error" "systems-of-meaure-error" "suffix-error"]}
@@ -91,6 +115,7 @@
 
 
 (defn suffix-error
+  "A function to accumulate error messages in `error-map` if `suffix` is not a valid choice"
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["target-unit-error" "systems-of-meaure-error" "precision-error"]}
@@ -103,6 +128,9 @@
 
 
 (defn verify-enrich-displayable-volume-opts
+  "A function to verify the options map passed to `->displayable-volume`
+   This requires the user to supply valid values for: `target-units`, `system-of-measure`, `precision`, and `suffix`.
+   If any of these are invalid, an Exception is thrown with information on the invalid options."
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["enrich-displayable-volume"]}
@@ -119,13 +147,24 @@
                            (not valid-suffix?)    (suffix-error :volume suffix))]
     (if (empty? errors)
       opts
-      (throw (ex-info "Invalid enrichment options: " errors)))))
+      (throw (ex-info "Invalid displayable volume enrichment options: " errors)))))
 
 
 (defn enrich-displayable-volume
+  "A function to enrich a map with a human-readable version of a volume at `value-key`.
+   If invalid options are passed, the function throws an Exception with information on the invalid options.
+
+   Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
+   However, it will defer to more selective values passed in with the following precedence:
+
+   `:fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-precision` > `precision`
+   `:fine-grain-suffix` > `suffix`
+
+   If these options are valid, the function will convert the volume to the target units and return the original value with the new value added at `display-key`"
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["enrich-displayable-weight"]}
+   :see-also ["enrich-displayable-weight" "enrich-displayable-time"]}
   [source-data
    {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
     :or   {system-of-measure :us
@@ -147,6 +186,9 @@
 
 
 (defn verify-enrich-displayable-weight-opts
+  "A function to verify the options map passed to `->displayable-weight`
+   This requires the user to supply valid values for: `target-units`, `system-of-measure`, `precision`, and `suffix`.
+   If any of these are invalid, an Exception is thrown with information on the invalid options."
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["enrich-displayable-weight"]}
@@ -163,13 +205,24 @@
                            (not valid-suffix?)    (suffix-error :weight suffix))]
     (if (empty? errors)
       opts
-      (throw (ex-info "Invalid enrichment options: " errors)))))
+      (throw (ex-info "Invalid displayable weight enrichment options: " errors)))))
 
 
 (defn enrich-displayable-weight
+    "A function to enrich a map with a human-readable version of a weight at `value-key`.
+   If invalid options are passed, the function throws an Exception with information on the invalid options.
+
+   Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
+   However, it will defer to more selective values passed in with the following precedence:
+
+   `:fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-precision` > `precision`
+   `:fine-grain-suffix` > `suffix`
+
+   If these options are valid, the function will convert the weight to the target units and return the original value with the new value added at `display-key`"
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["enrich-displayable-volume"]}
+   :see-also ["enrich-displayable-volume" "enrich-displayable-time"]}
   [source-data
    {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
     :or   {system-of-measure options/us-customary
@@ -186,4 +239,59 @@
                                       :precision         precision
                                       :suffix            suffix})]
       (assoc source-data display-key (->displayable-weight source-value :kilogram target-units opts)))
+    source-data))
+
+(defn verify-enrich-displayable-time-opts
+  "A function to verify the options map passed to `->displayable-time`
+   This requires the user to supply valid values for: `target-units`, `system-of-measure`, `precision`, and `suffix`.
+   If any of these are invalid, an Exception is thrown with information on the invalid options."
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["enrich-displayable-time"]}
+  [{:keys [target-units system-of-measure precision suffix]
+    :as   opts}]
+  (let [valid-target?    (contains? time/measurements target-units)
+        valid-system?    (contains? options/systems-of-measure system-of-measure)
+        valid-precision? (int? precision)
+        valid-suffix?    (contains? options/supported-suffixes suffix)
+        errors           (cond-> {}
+                           (not valid-target?)    (target-unit-error :time target-units)
+                           (not valid-system?)    (systems-of-meaure-error :time system-of-measure)
+                           (not valid-precision?) (precision-error :time precision)
+                           (not valid-suffix?)    (suffix-error :time suffix))]
+    (if (empty? errors)
+      opts
+      (throw (ex-info "Invalid displayable time enrichment options: " errors)))))
+
+(defn enrich-displayable-time
+  "A function to enrich a map with a human-readable version of a time at `value-key`.
+   If invalid options are passed, the function throws an Exception with information on the invalid options.
+
+   Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
+   However, it will defer to more selective values passed in with the following precedence:
+
+   `:fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-precision` > `precision`
+   `:fine-grain-suffix` > `suffix`
+
+   If these options are valid, the function will convert the time to the target units and return the original value with the new value added at `display-key`"
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["enrich-displayable-volume" "enrich-displayable-weight"]}
+  [source-data
+   {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
+    :or   {system-of-measure :us
+           suffix            :short
+           precision         3}}]
+  (if-let [source-value (get source-data value-key)]
+    (let [system-of-measure-time (get default-time-by-system system-of-measure)
+          target-units           (or fine-grain-target-units system-of-measure-time)
+          precision              (or fine-grain-precision precision)
+          suffix                 (or fine-grain-suffix suffix)
+          opts                   (verify-enrich-displayable-time-opts
+                                  {:target-units      target-units
+                                   :system-of-measure system-of-measure
+                                   :precision         precision
+                                   :suffix            suffix})]
+      (assoc source-data display-key (->displayable-time source-value :minute target-units opts)))
     source-data))

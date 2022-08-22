@@ -35,6 +35,9 @@
             [brewtility.units.volume :as volume]
             [brewtility.units.weight :as weight]))
 
+;;
+;; Weight
+;;
 
 (defn convert
   "Given a `measurement` in `source-units`, convert it to the `target-units` in a given `measurement-type`.
