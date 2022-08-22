@@ -27,10 +27,10 @@
         "Enrichment pattern should produce a valid hop object")
     (testing "Static data comparison for enrichment pattern functions"
       (is (= {:amount         0.0638
-              :display-time   "60.0 m"
+              :display-time   "60.1 m"
               :use            "Boil"
               :name           "Goldings, East Kent"
-              :time           60.0
+              :time           60.1
               :display-amount "0.141 lb"
               :notes          "Great all purpose UK hop for ales, stouts, porters"
               :alpha          5.0
