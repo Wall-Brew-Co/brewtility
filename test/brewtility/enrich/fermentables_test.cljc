@@ -134,8 +134,8 @@
       (is (= {:amount           0.45
               :yield            78.0
               :supplier         "Gnome Brew"
-              :color            500.0
-              :display-color    "500.0°L"
+              :color            500.1
+              :display-color    "500.1°L"
               :name             "Black Barley"
               :moisture         5.0
               :type             "Grain"
