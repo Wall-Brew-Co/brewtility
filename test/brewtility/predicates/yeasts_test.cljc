@@ -6,6 +6,7 @@
             [common-beer-format.yeasts :as cbf-yeasts]))
 
 
+
 ;;
 ;; :type function tests
 ;;

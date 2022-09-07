@@ -2,7 +2,7 @@
   "Enricher-pattern functions for [hops](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) maps"
   {:added    "1.3"
    :see-also ["brewtility.enrich.equipment"
-              "brewtility.enrich.hops"
+              "brewtility.enrich.fermentables"
               "brewtility.enrich.mash"
               "brewtility.enrich.miscs"
               "brewtility.enrich.recipes"
@@ -10,6 +10,7 @@
               "brewtility.enrich.waters"
               "brewtility.enrich.yeast"]}
   (:require [brewtility.enrich.impl :as impl]))
+
 
 (defn enrich-display-amount
   "An enricher pattern function to render a human-readable display weight of a [hop](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) is in a given system.
@@ -39,15 +40,16 @@
               "enrich-hops-wrapper"]}
   ([hop] (enrich-display-amount hop {}))
   ([hop {:keys [hop-amount-target-units
-                        hop-amount-precision
-                        hop-amount-suffix]
-                 :as   opts}]
+                hop-amount-precision
+                hop-amount-suffix]
+         :as   opts}]
    (let [options (merge opts {:value-key               :amount
                               :display-key             :display-amount
                               :fine-grain-target-units hop-amount-target-units
                               :fine-grain-precision    hop-amount-precision
                               :fine-grain-suffix       hop-amount-suffix})]
      (impl/enrich-displayable-weight hop options))))
+
 
 (defn enrich-display-time
   "An enricher pattern function to render a human-readable display time of a [hop](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) is in a given system.
@@ -86,6 +88,7 @@
                               :fine-grain-suffix       hop-time-suffix})]
      (impl/enrich-displayable-time hop options))))
 
+
 (defn enrich-hop
   "An enricher pattern function to derive as many values from an [hop record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc).
 
@@ -122,6 +125,7 @@
    (-> hop
        (enrich-display-amount opts)
        (enrich-display-time opts))))
+
 
 (defn enrich-hop-wrapper
   "An enricher pattern function to derive as many values from an [hop-wrapper record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc).
