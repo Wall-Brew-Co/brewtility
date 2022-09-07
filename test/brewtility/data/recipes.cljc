@@ -24,17 +24,6 @@
   (-> recipes.format/ibu-method-types
       vec
       rand-nth
-      b-str/->sporadic-case))
-
-
-(defn random-ibu-method
-  "Return a random valid hop type."
-  {:added "1.4"
-   :no-doc true}
-  []
-  (-> recipes.format/ibu-method-types
-      vec
-      rand-nth
       spoon.str/->sporadic-case))
 
 

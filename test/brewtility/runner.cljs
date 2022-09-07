@@ -40,6 +40,7 @@
             [doo.runner :refer-macros [doo-tests]]))
 
 
+;; This should match the :require above (aside from doo itself)
 (doo-tests 'brewtility.calculations-test
            'brewtility.data.equipment
            'brewtility.data.fermentables

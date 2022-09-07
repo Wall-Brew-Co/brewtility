@@ -6,6 +6,7 @@
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
+
 (deftest enrich-add-after-boil-test
   (testing "add-after-boil can be derived from a fermentable"
     (is (boolean? (:add-after-boil (fermentable.enrich/enrich-add-after-boil (fermentable.data/generate-fermentable))))
@@ -18,15 +19,16 @@
                    :add-after-boil))
         "enrich-add-after-boil adds true when the add-after-boil key is truthy")
     (is (false? (-> fermentable.data/sample-fermentable
-                   (assoc :add-after-boil false)
-                   fermentable.enrich/enrich-add-after-boil
-                   :add-after-boil))
+                    (assoc :add-after-boil false)
+                    fermentable.enrich/enrich-add-after-boil
+                    :add-after-boil))
         "enrich-add-after-boil adds false when the add-after-boil key is falsy")
     (is (false? (-> fermentable.data/sample-fermentable
                     (dissoc :add-after-boil)
                     fermentable.enrich/enrich-add-after-boil
                     :add-after-boil))
         "enrich-add-after-boil adds false when the add-after-boil key is nil")))
+
 
 (deftest enrich-coarse-fine-diff-test
   (let [sample-grain       (assoc fermentable.data/sample-fermentable :type "grain")
@@ -42,6 +44,7 @@
       (is (nil? (:coarse-fine-diff (fermentable.enrich/enrich-coarse-fine-diff sample-dry-extract))))
       (is (nil? (:coarse-fine-diff (fermentable.enrich/enrich-coarse-fine-diff sample-sugar)))))))
 
+
 (deftest enrich-moisture-test
   (let [sample-grain       (assoc fermentable.data/sample-fermentable :type "grain")
         sample-adjunct     (assoc fermentable.data/sample-fermentable :type "adjunct")
@@ -55,6 +58,7 @@
       (is (nil? (:moisture (fermentable.enrich/enrich-moisture sample-extract))))
       (is (nil? (:moisture (fermentable.enrich/enrich-moisture sample-dry-extract))))
       (is (nil? (:moisture (fermentable.enrich/enrich-moisture sample-sugar)))))))
+
 
 (deftest enrich-diastatic-power-test
   (let [sample-grain       (assoc fermentable.data/sample-fermentable :type "grain")
@@ -70,6 +74,7 @@
       (is (nil? (:diastatic-power (fermentable.enrich/enrich-diastatic-power sample-dry-extract))))
       (is (nil? (:diastatic-power (fermentable.enrich/enrich-diastatic-power sample-sugar)))))))
 
+
 (deftest enrich-protein-test
   (let [sample-grain       (assoc fermentable.data/sample-fermentable :type "grain")
         sample-adjunct     (assoc fermentable.data/sample-fermentable :type "adjunct")
@@ -83,6 +88,7 @@
       (is (nil? (:protein (fermentable.enrich/enrich-protein sample-extract))))
       (is (nil? (:protein (fermentable.enrich/enrich-protein sample-dry-extract))))
       (is (nil? (:protein (fermentable.enrich/enrich-protein sample-sugar)))))))
+
 
 (deftest enrich-recommend-mash-test
   (let [sample-grain       (assoc fermentable.data/sample-fermentable :type "grain")
@@ -98,6 +104,7 @@
       (is (false? (:recommend-mash (fermentable.enrich/enrich-recommend-mash sample-dry-extract))))
       (is (false? (:recommend-mash (fermentable.enrich/enrich-recommend-mash sample-sugar)))))))
 
+
 (deftest enrich-ibu-gal-per-lb-test
   (let [sample-grain       (assoc fermentable.data/sample-fermentable :type "grain" :ibu-gal-per-lb 0.123)
         sample-adjunct     (assoc fermentable.data/sample-fermentable :type "adjunct" :ibu-gal-per-lb 0.123)
@@ -111,6 +118,7 @@
       (is (nil? (:ibu-gal-per-lb (fermentable.enrich/enrich-ibu-gallons-per-pound sample-adjunct))))
       (is (nil? (:ibu-gal-per-lb (fermentable.enrich/enrich-ibu-gallons-per-pound sample-dry-extract))))
       (is (nil? (:ibu-gal-per-lb (fermentable.enrich/enrich-ibu-gallons-per-pound sample-sugar)))))))
+
 
 ;;
 ;; Whole object enrichment tests

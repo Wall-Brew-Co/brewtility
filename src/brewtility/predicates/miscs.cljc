@@ -32,6 +32,7 @@
      (spoon.string/same-text? "spice" misc-type opts))))
 
 
+
 (defn fining?
   "A predicate function to determine if a [misc](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/miscs.cljc) is used to remove yeast and protein haze.
    An option map can be passed to this function as an optional second parameter.

@@ -5,6 +5,7 @@
             [common-beer-format.miscs :as cbf-miscs]))
 
 
+
 ;;
 ;; :type function tests
 ;;
