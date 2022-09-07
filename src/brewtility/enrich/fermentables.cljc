@@ -231,6 +231,7 @@
                                                                            :suffix                suffix
                                                                            :allowed-suffixes      #{:full :short}}))))))
 
+
 (defn enrich-display-amount
   "An enricher pattern function to render a human-readable display weight of a [fermentable](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/fermentables.cljc) is in a given system.
    In the BeerXML spec, the amount of a liquid extract is computed by its weight.
