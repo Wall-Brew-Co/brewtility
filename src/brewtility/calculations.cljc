@@ -207,7 +207,10 @@
 (defn calculate-equipment-boil-volume
   "Given a `common-beer-format` conforming `equipment`, calculate the volume of the wort at the start of the boil.
    If insufficient data is provided, this function will throw an exception."
-  {:added    "1.5"}
+  {:added    "1.5"
+   :see-also ["brewtility.enrich.equipment/enrich-calculated-boil-size"
+              "brewtility.enrich.equipment/enrich-equipment"
+              "brewtility.enrich.equipment/enrich-equipment-wrapper"]}
   [{:keys [batch-size top-up-water trub-chiller-loss boil-time evap-rate]}]
   (if (every? number? [batch-size top-up-water trub-chiller-loss boil-time evap-rate])
     (let [starting-water      (- batch-size top-up-water trub-chiller-loss)
