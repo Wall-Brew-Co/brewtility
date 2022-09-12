@@ -385,5 +385,5 @@
                                     :system-of-measure system-of-measure
                                     :precision         precision
                                     :suffix            suffix})]
-      (assoc source-data display-key (->displayable-temperature source-value :minute target-units opts)))
+      (assoc source-data display-key (->displayable-temperature source-value :celsius target-units opts)))
     source-data))
