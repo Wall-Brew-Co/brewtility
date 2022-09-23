@@ -4,6 +4,21 @@
   (:require [clojure.string :as str]))
 
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(def cast-to-uppercase?
+  "An option map key to cast strings to UPPER CASE in `prepare-for-compare`.
+   Commonly, this is set for the `options` argument of `same?` and `includes?`.
+   This option will be enabled if this key's value is truthy, and is disabled by default."
+  :uppercase?)
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+(def coerce-to-compare?
+  "An option map key to coerce values to strings in `prepare-for-compare`.
+   Commonly, this is set for the `options` argument of `same?` and `includes?`.
+   This option will be enabled if this key's value is truthy, and is disabled by default."
+  :coerce?)
+
+
 (defn prepare-for-compare
   "Takes a string `s`, trims it, and coerces it to lower case.
 
@@ -13,7 +28,10 @@
    - `:uppercase?` - If true, `s` will be coerced to upper case. Defaults to false.
    - `:coerce?` - If true, `s` will be cast to a string via `str`. Defaults to false."
   {:added    "1.3"
-   :see-also ["same?" "includes?"]}
+   :see-also ["same?"
+              "includes?"
+              "cast-to-uppercase?"
+              "coerce-to-compare?"]}
   ([s] (prepare-for-compare s {}))
 
   ([s {:keys [uppercase? coerce?]}]
@@ -31,7 +49,10 @@
    - `:uppercase?` - If true, `s1` and `s2` will be coerced to upper case. Defaults to false.
    - `:coerce?` - If true, `s1` and `s2` will be cast to a string via `str`. Defaults to false."
   {:added    "1.3"
-   :see-also ["includes?" "prepare-for-compare"]}
+   :see-also ["includes?"
+              "prepare-for-compare"
+              "cast-to-uppercase?"
+              "coerce-to-compare?"]}
   ([s1 s2] (same? s1 s2 {}))
 
   ([s1 s2 opts]
@@ -48,7 +69,10 @@
    - `:uppercase?` - If true, `s1` and `s2` will be coerced to upper case. Defaults to false.
    - `:coerce?` - If true, `s1` and `s2` will be cast to a string via `str`. Defaults to false."
   {:added    "1.3"
-   :see-also ["includes?" "prepare-for-compare"]}
+   :see-also ["includes?"
+              "prepare-for-compare"
+              "cast-to-uppercase?"
+              "coerce-to-compare?"]}
   ([s1 s2] (includes? s1 s2 {}))
 
   ([s1 s2 opts]

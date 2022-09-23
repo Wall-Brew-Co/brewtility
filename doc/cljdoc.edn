@@ -12,4 +12,5 @@
                     ["Units of Measure" {:file "doc/api/units.md"}]
                     ["Wrapping" {:file "doc/api/wrapping.md"}]]
                    ["Adopted Patterns" {}
+                    ["Enricher Pattern" {:file "doc/enricher-pattern.md"}]
                     ["Symbolic Keywords" {:file "doc/patterns/symbolic_keywords.md"}]]]}

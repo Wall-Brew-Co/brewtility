@@ -14,10 +14,13 @@
   (testing "Strings are appropriately re-cased and trimmed of whitespace"
     (is (= "" (sut/prepare-for-compare "   ")))
     (is (= "clojure" (sut/prepare-for-compare "ClOjUrE  ")))
+    (is (= "clojure" (sut/prepare-for-compare "ClOjUrE  " {:uppercase? false})))
+    (is (= "clojure" (sut/prepare-for-compare "ClOjUrE  " {sut/cast-to-uppercase? false})))
     (is (= "clojure" (sut/prepare-for-compare "clojure")))
     (is (= "100 lines of code" (sut/prepare-for-compare "  100 lines of CODE")))
     (is (= "a   b" (sut/prepare-for-compare "   a   b  ")))
     (is (= "CLOJURE" (sut/prepare-for-compare "ClOjUrE  " {:uppercase? true})))
+    (is (= "CLOJURE" (sut/prepare-for-compare "ClOjUrE  " {sut/cast-to-uppercase? true})))
     (is (= "CLOJURE" (sut/prepare-for-compare "clojure" {:uppercase? true})))
     (is (= "100 LINES OF CODE" (sut/prepare-for-compare "  100 lines of CODE" {:uppercase? true})))
     (is (= "A   B" (sut/prepare-for-compare "   a   b  " {:uppercase? true})))
