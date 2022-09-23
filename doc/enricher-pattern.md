@@ -16,7 +16,8 @@ For a concrete example, consider a sample [equipment](https://github.com/Wall-Br
 
 In the above, you can find two representations of the pre-boil volume that piece of equipment held.
 By the standard, the `:boil-size` is standardized to be the volume in litres, and the `:display-boil-size` is meant to represent that value in a region and human friendly way.
-This is great for users; however, it can be unweildy in applications for a few to store and transmit data which may only be used in the display layer. Programatically, we are often more interested in a smaller subset of the equipment record and will defer computing display values until they are needed.
+This is great for users; however, it can be unwieldy in applications for a few to store and transmit data which may only be used in the display layer.
+Programmatically, we are often more interested in a smaller subset of the equipment record and will defer computing display values until they are needed.
 
 While the unit conversion is simple, it can often lead to front-end code like this:
 
