@@ -101,7 +101,7 @@
                :display-batch-size))
         "Broad settings can be overriden with batch-size specific settings")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-display-batch-size equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-display-batch-size equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
 
 
@@ -134,7 +134,7 @@
                :display-tun-volume))
         "Broad settings can be overriden with tun-volume specific settings")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-display-tun-volume equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-display-tun-volume equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
 
 
@@ -167,7 +167,7 @@
                :display-tun-weight))
         "Broad settings can be overriden with tun-weight specific settings")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-display-tun-weight equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-display-tun-weight equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
 
 
@@ -205,7 +205,7 @@
                   :display-top-up-water))
         ":display-top-up-water is not added if trub-chiller-loss is not present")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-display-top-up-water equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-display-top-up-water equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
 
 
@@ -243,7 +243,7 @@
                   :display-trub-chiller-loss))
         ":display-trub-chiller-loss is not added if trub-chiller-loss is not present")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-display-trub-chiller-loss equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-display-trub-chiller-loss equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
 
 
@@ -283,7 +283,7 @@
                   :display-lauter-deadspace))
         "Display value will not be set if lauter-deadspace is not present")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-display-lauter-deadspace equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-display-lauter-deadspace equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
 
 
@@ -321,14 +321,14 @@
                   :display-top-up-kettle))
         ":display-top-up-kettle is not added if top-up-kettle is not present")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-display-top-up-kettle equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-display-top-up-kettle equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
 
 
 (deftest enrich-equipment-tests
   (testing "Ensure enrichment pattern works for all equipment"
     (is (spoon.spec/test-valid? ::equipment.format/equipment
-                     (equipment.enrich/enrich-equipment equipment.data/sample-equipment))
+                                (equipment.enrich/enrich-equipment equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")
     (is (= {:display-top-up-kettle     "0.132 gal"
             :display-batch-size        "5.257 gal"
@@ -388,7 +388,7 @@
 (deftest enrich-equipment-wrapper-tests
   (testing "Ensure enrichment pattern works for all equipment-wrapper"
     (is (spoon.spec/test-valid? ::equipment.format/equipment-wrapper
-                     (equipment.enrich/enrich-equipment-wrapper equipment.data/sample-equipment-wrapper))
+                                (equipment.enrich/enrich-equipment-wrapper equipment.data/sample-equipment-wrapper))
         "Enrichment pattern should produce a valid equipment-wrapper object")
     (is (= {:equipment {:display-top-up-kettle     "0.132 gal"
                         :display-batch-size        "5.257 gal"
@@ -452,35 +452,35 @@
     ;; extremely unlikely or require highly complex generators.
     (letfn [(gen-equipment [] (assoc (equipment.data/generate-equipment) :calc-boil-volume false))]
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-boil-size (gen-equipment)))
+                                  (equipment.enrich/enrich-display-boil-size (gen-equipment)))
           "enrich-display-boil-size is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-batch-size (gen-equipment)))
+                                  (equipment.enrich/enrich-display-batch-size (gen-equipment)))
           "enrich-display-batch-size is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-tun-volume (gen-equipment)))
+                                  (equipment.enrich/enrich-display-tun-volume (gen-equipment)))
           "enrich-display-tun-volume is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-tun-weight (gen-equipment)))
+                                  (equipment.enrich/enrich-display-tun-weight (gen-equipment)))
           "enrich-display-tun-weight is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-top-up-water (gen-equipment)))
+                                  (equipment.enrich/enrich-display-top-up-water (gen-equipment)))
           "enrich-display-top-up-water is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-trub-chiller-loss (gen-equipment)))
+                                  (equipment.enrich/enrich-display-trub-chiller-loss (gen-equipment)))
           "enrich-display-trub-chiller-loss is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-lauter-deadspace (gen-equipment)))
+                                  (equipment.enrich/enrich-display-lauter-deadspace (gen-equipment)))
           "enrich-display-lauter-deadspace is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-display-top-up-kettle (gen-equipment)))
+                                  (equipment.enrich/enrich-display-top-up-kettle (gen-equipment)))
           "enrich-display-top-up-kettle is a function to and from common-beer-format.equipment/equipment")
       (is (spoon.spec/test-valid? ::equipment.format/equipment
-                       (equipment.enrich/enrich-equipment (gen-equipment)))
+                                  (equipment.enrich/enrich-equipment (gen-equipment)))
           "enrich-equipment is a function to and from common-beer-format.equipment/equipment")))
   (testing "Ensure enrichment pattern works against arbitrary equipment wrappers"
     (is (spoon.spec/test-valid? ::equipment.format/equipment-wrapper
-                     (equipment.enrich/enrich-equipment-wrapper
-                       (assoc-in (equipment.data/generate-equipment-wrapper) [:equipment :calc-boil-volume] false)))
+                                (equipment.enrich/enrich-equipment-wrapper
+                                 (assoc-in (equipment.data/generate-equipment-wrapper) [:equipment :calc-boil-volume] false)))
         "enrich-equipment-wrapper is a function to and from common-beer-format.equipment/equipment-wrapper")))
 

@@ -1,6 +1,7 @@
 (ns brewtility.data.miscs
   "Namespace for static and generative test data for `common-beer-format.miscs/*` specs."
   (:require [clojure.spec.alpha :as spec]
+            [com.wallbrew.spoon.spec :as spoon.spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.miscs :as miscs.format]
