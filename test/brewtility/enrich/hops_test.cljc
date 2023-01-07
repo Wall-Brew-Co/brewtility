@@ -14,16 +14,16 @@
 (deftest enrich-hop-tests
   (testing "Ensure enrichment pattern functions generate conforming data"
     (is (spoon.spec/test-valid? ::hop.format/hop
-                  (hop.enrich/enrich-hop hop.data/sample-hop))
+                                (hop.enrich/enrich-hop hop.data/sample-hop))
         "Enrichment pattern should produce a valid hop object")
     (is (spoon.spec/test-valid? ::hop.format/hop-wrapper
-                  (hop.enrich/enrich-hop-wrapper hop.data/sample-hop-wrapper))
+                                (hop.enrich/enrich-hop-wrapper hop.data/sample-hop-wrapper))
         "Enrichment pattern should produce a valid hop object")
     (is (spoon.spec/test-valid? ::hop.format/hops
-                  (hop.enrich/enrich-hops hop.data/sample-hops))
+                                (hop.enrich/enrich-hops hop.data/sample-hops))
         "Enrichment pattern should produce a valid hop object")
     (is (spoon.spec/test-valid? ::hop.format/hops-wrapper
-                  (hop.enrich/enrich-hops-wrapper hop.data/sample-hops-wrapper))
+                                (hop.enrich/enrich-hops-wrapper hop.data/sample-hops-wrapper))
         "Enrichment pattern should produce a valid hop object")
     (testing "Static data comparison for enrichment pattern functions"
       (is (= {:amount         0.0638
@@ -42,19 +42,19 @@
   (testing "Ensure enrichment pattern works against arbitrary hop"
     (letfn [(gen-hop [] (hop.data/generate-hop))]
       (is (spoon.spec/test-valid? ::hop.format/hop
-                    (hop.enrich/enrich-display-amount (gen-hop)))
+                                  (hop.enrich/enrich-display-amount (gen-hop)))
           "enrich-display-amount is a function to and from common-beer-format.hopspec/hop")
       (is (spoon.spec/test-valid? ::hop.format/hop
-                    (hop.enrich/enrich-display-time (gen-hop)))
+                                  (hop.enrich/enrich-display-time (gen-hop)))
           "enrich-display-time is a function to and from common-beer-format.hopspec/hop")))
   (testing "Ensure enrichment pattern works against arbitrary hop wrappers"
     (is (spoon.spec/test-valid? ::hop.format/hop-wrapper
-                  (hop.enrich/enrich-hop-wrapper (hop.data/generate-hop-wrapper)))
+                                (hop.enrich/enrich-hop-wrapper (hop.data/generate-hop-wrapper)))
         "enrich-hop-wrapper is a function to and from common-beer-format.hopspec/hop-wrapper")
     (is (spoon.spec/test-valid? ::hop.format/hops
-                  (hop.enrich/enrich-hops (hop.data/generate-hops)))
+                                (hop.enrich/enrich-hops (hop.data/generate-hops)))
         "enrich-hops is a function to and from common-beer-format.hopspec/hops")
     (is (spoon.spec/test-valid? ::hop.format/hops-wrapper
-                  (hop.enrich/enrich-hops-wrapper (hop.data/generate-hops-wrapper)))
+                                (hop.enrich/enrich-hops-wrapper (hop.data/generate-hops-wrapper)))
         "enrich-hops-wrapper is a function to and from common-beer-format.hopspec/hops-wrapper")))
 

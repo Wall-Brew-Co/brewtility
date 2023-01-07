@@ -1,6 +1,7 @@
 (ns brewtility.data.hops
   "Namespace for static and generative test data for `common-beer-format.hops/*` specs."
   (:require [clojure.spec.alpha :as spec]
+            [com.wallbrew.spoon.spec :as spoon.spec]
             [clojure.spec.gen.alpha :as gen]
             [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]

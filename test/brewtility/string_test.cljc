@@ -4,7 +4,6 @@
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 
-
 (deftest prepare-for-compare-test
   (testing "Strings are appropriately re-cased and trimmed of whitespace"
     (is (= "" (sut/prepare-for-compare "   ")))

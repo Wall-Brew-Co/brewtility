@@ -24,7 +24,7 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-add-after-boil fermentable {}))
-  ([fermentable _opts] ;; Used to maintain signature parity with enricher pattern functions
+  ([fermentable _opts] ; Used to maintain signature parity with enricher pattern functions
    (if (contains? fermentable :add-after-boil)
      fermentable
      (assoc fermentable :add-after-boil false))))

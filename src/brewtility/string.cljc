@@ -5,13 +5,18 @@
 
 
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+
+
 (def cast-to-uppercase?
   "An option map key to cast strings to UPPER CASE in `prepare-for-compare`.
    Commonly, this is set for the `options` argument of `same?` and `includes?`.
    This option will be enabled if this key's value is truthy, and is disabled by default."
   :uppercase?)
 
+
 #_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+
+
 (def coerce-to-compare?
   "An option map key to coerce values to strings in `prepare-for-compare`.
    Commonly, this is set for the `options` argument of `same?` and `includes?`.
