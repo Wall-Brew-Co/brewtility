@@ -53,13 +53,13 @@
           :type                "All Grain"
           :version             1}
          equipment/sample-equipment-wrapper
-         fermentablespec/sample-fermentables-wrapper
-         hopspec/sample-hops-wrapper
+         fermentables/sample-fermentables-wrapper
+         hops/sample-hops-wrapper
          mash/sample-mash-wrapper
-         miscspec/sample-miscs-wrapper
-         stylespec/sample-style-wrapper
-         waterspec/sample-waters-wrapper
-         yeastspec/sample-yeasts-wrapper))
+         miscs/sample-miscs-wrapper
+         styles/sample-style-wrapper
+         waters/sample-waters-wrapper
+         yeasts/sample-yeasts-wrapper))
 
 
 (def sample-recipe-wrapper
