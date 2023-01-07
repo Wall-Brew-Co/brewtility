@@ -5,6 +5,7 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.yeasts :as yeasts.format]
+            [com.wallbrew.spoon.string :as spoon.str]
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
