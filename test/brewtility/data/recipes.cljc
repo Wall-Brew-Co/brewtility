@@ -13,7 +13,6 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.recipes :as recipes.format]
-            [com.wallbrew.spoon.string :as spoon.str]
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
@@ -55,13 +54,13 @@
           :type                "All Grain"
           :version             1}
          equipment/sample-equipment-wrapper
-         fermentablespec/sample-fermentables-wrapper
-         hopspec/sample-hops-wrapper
+         fermentables/sample-fermentables-wrapper
+         hops/sample-hops-wrapper
          mash/sample-mash-wrapper
-         miscspec/sample-miscs-wrapper
-         stylespec/sample-style-wrapper
-         waterspec/sample-waters-wrapper
-         yeastspec/sample-yeasts-wrapper))
+         miscs/sample-miscs-wrapper
+         styles/sample-style-wrapper
+         waters/sample-waters-wrapper
+         yeasts/sample-yeasts-wrapper))
 
 
 (def sample-recipe-wrapper

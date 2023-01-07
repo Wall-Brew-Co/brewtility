@@ -1,7 +1,7 @@
 (ns brewtility.enrich.fermentables-test
   (:require [brewtility.data.fermentables :as fermentable.data]
             [brewtility.enrich.fermentables :as fermentable.enrich]
-            [clojure.spec.alpha :as spec]
+            [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.fermentables :as fermentable.format]
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
@@ -126,16 +126,16 @@
 
 (deftest enrich-fermentable-tests
   (testing "Ensure enrichment pattern functions generate conforming data"
-    (is (spec/valid? ::fermentable.format/fermentable
+    (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                   (fermentable.enrich/enrich-fermentable fermentable.data/sample-fermentable))
         "Enrichment pattern should produce a valid fermentable object")
-    (is (spec/valid? ::fermentable.format/fermentable-wrapper
+    (is (spoon.spec/test-valid? ::fermentable.format/fermentable-wrapper
                   (fermentable.enrich/enrich-fermentable-wrapper fermentable.data/sample-fermentable-wrapper))
         "Enrichment pattern should produce a valid fermentable object")
-    (is (spec/valid? ::fermentable.format/fermentables
+    (is (spoon.spec/test-valid? ::fermentable.format/fermentables
                   (fermentable.enrich/enrich-fermentables fermentable.data/sample-fermentables))
         "Enrichment pattern should produce a valid fermentable object")
-    (is (spec/valid? ::fermentable.format/fermentables-wrapper
+    (is (spoon.spec/test-valid? ::fermentable.format/fermentables-wrapper
                   (fermentable.enrich/enrich-fermentables-wrapper fermentable.data/sample-fermentables-wrapper))
         "Enrichment pattern should produce a valid fermentable object")
     (testing "Static data comparison for enrichment pattern functions"
@@ -163,44 +163,44 @@
 (deftest generative-enrichment-tests
   (testing "Ensure enrichment pattern works against arbitrary fermentable"
     (letfn [(gen-fermentable [] (fermentable.data/generate-fermentable))]
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-add-after-boil (gen-fermentable)))
           "enrich-add-after-boil is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-coarse-fine-diff (gen-fermentable)))
           "enrich-coarse-fine-diff is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-moisture (gen-fermentable)))
           "enrich-moisture is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-diastatic-power (gen-fermentable)))
           "enrich-diastatic-power is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-protein (gen-fermentable)))
           "enrich-protein is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-recommend-mash (gen-fermentable)))
           "enrich-recommend-mash is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-ibu-gallons-per-pound (gen-fermentable)))
           "enrich-ibu-gallons-per-pound is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-display-color (gen-fermentable)))
           "enrich-display-color is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-display-amount (gen-fermentable)))
           "enrich-display-amount is a function to and from common-beer-format.fermentable/fermentable")
-      (is (spec/valid? ::fermentable.format/fermentable
+      (is (spoon.spec/test-valid? ::fermentable.format/fermentable
                     (fermentable.enrich/enrich-fermentable (gen-fermentable)))
           "enrich-fermentable is a function to and from common-beer-format.fermentable/fermentable")))
   (testing "Ensure enrichment pattern works against arbitrary fermentable wrappers"
-    (is (spec/valid? ::fermentable.format/fermentable-wrapper
+    (is (spoon.spec/test-valid? ::fermentable.format/fermentable-wrapper
                   (fermentable.enrich/enrich-fermentable-wrapper (fermentable.data/generate-fermentable-wrapper)))
         "enrich-fermentable-wrapper is a function to and from common-beer-format.fermentable/fermentable-wrapper")
-    (is (spec/valid? ::fermentable.format/fermentables
+    (is (spoon.spec/test-valid? ::fermentable.format/fermentables
                   (fermentable.enrich/enrich-fermentables (fermentable.data/generate-fermentables)))
         "enrich-fermentables is a function to and from common-beer-format.fermentable/fermentables")
-    (is (spec/valid? ::fermentable.format/fermentables-wrapper
+    (is (spoon.spec/test-valid? ::fermentable.format/fermentables-wrapper
                   (fermentable.enrich/enrich-fermentables-wrapper (fermentable.data/generate-fermentables-wrapper)))
         "enrich-fermentables-wrapper is a function to and from common-beer-format.fermentable/fermentables-wrapper")))
 
