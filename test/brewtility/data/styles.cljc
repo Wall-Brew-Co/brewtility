@@ -1,6 +1,7 @@
 (ns brewtility.data.styles
   "Namespace for static and generative test data for `common-beer-format.stylespec/*` specs."
   (:require [clojure.spec.alpha :as spec]
+            [com.wallbrew.spoon.spec :as spoon.spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.styles :as style.format]

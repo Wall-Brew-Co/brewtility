@@ -21,7 +21,7 @@
               "enrich-miscs"
               "enrich-miscs-wrapper"]}
   ([misc] (enrich-amount-is-weight misc {}))
-  ([misc _] ;; Used to maintain signature parity with enricher pattern functions
+  ([misc _] ; Used to maintain signature parity with enricher pattern functions
    (if (contains? misc :amount-is-weight)
      misc
      (assoc misc :amount-is-weight false))))
@@ -105,8 +105,6 @@
      (if (:amount-is-weight misc)
        (impl/enrich-displayable-weight misc options)
        (impl/enrich-displayable-volume misc options)))))
-
-
 
 
 (defn enrich-misc
