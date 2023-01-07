@@ -4,11 +4,6 @@
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 
-(defn rand-str
-  "Generate a random string of length `len`."
-  [len]
-  (apply str (take len (repeatedly #(char (+ (rand 26) 65))))))
-
 
 (deftest prepare-for-compare-test
   (testing "Strings are appropriately re-cased and trimmed of whitespace"
@@ -55,20 +50,3 @@
     (is (true? (sut/includes? nil "" {:coerce? true})))
     (is (true? (sut/includes? :carrot ":CARROT" {:coerce? true})))))
 
-
-(deftest ->sporadic-case-tests
-  (testing "Re-cased strings are the `same` as their original value"
-    (is (sut/same? "clojure" (sut/->sporadic-case "clojure")))
-    (is (sut/same? "100 lines of clojure" (sut/->sporadic-case "100 lines of clojure")))
-    (is (sut/same? "clojure" (sut/->sporadic-case "CLOJURE"))))
-  (testing "Re-cased strings are stings"
-    (is (string? (sut/->sporadic-case (rand-str 1000))))))
-
-
-(deftest ->spongebob-case-tests
-  (testing "Re-cased strings are the `same` as their original value"
-    (is (sut/same? "clojure" (sut/->spongebob-case "clojure")))
-    (is (sut/same? "100 lines of clojure" (sut/->spongebob-case "100 lines of clojure")))
-    (is (sut/same? "clojure" (sut/->spongebob-case "CLOJURE"))))
-  (testing "Re-cased strings are stings"
-    (is (string? (sut/->spongebob-case (rand-str 1000))))))
