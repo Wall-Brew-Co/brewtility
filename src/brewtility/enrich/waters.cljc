@@ -11,6 +11,7 @@
               "brewtility.enrich.yeast"]}
   (:require [brewtility.enrich.impl :as impl]))
 
+
 (defn enrich-display-amount
   "An enricher pattern function to render a human-readable display amount of a [water](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/waters.cljc) is in a given system.
 
@@ -46,7 +47,8 @@
                               :fine-grain-target-units water-amount-target-units
                               :fine-grain-precision    water-amount-precision
                               :fine-grain-suffix       water-amount-suffix})]
-       (impl/enrich-displayable-volume water options))))
+     (impl/enrich-displayable-volume water options))))
+
 
 (defn enrich-water
   "An enricher pattern function to derive as many values from an [water record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/waters.cljc).
@@ -79,8 +81,9 @@
    (-> water
        (enrich-display-amount opts))))
 
+
 (defn enrich-water-wrapper
-    "An enricher pattern function to derive as many values from an [water record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/waters.cljc) as possible.
+  "An enricher pattern function to derive as many values from an [water record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/waters.cljc) as possible.
      
       An option map may be passed as an optional second argument.
    The following keys are supported for controlling high-level behavior:
@@ -108,6 +111,7 @@
   ([water] (enrich-water-wrapper water {}))
   ([water opts]
    (update water :water enrich-water opts)))
+
 
 (defn enrich-waters
   "An enricher pattern function to derive as many values from a collection of [water records](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/waters.cljc) as possible.
@@ -138,6 +142,7 @@
   ([waters] (enrich-waters waters {}))
   ([waters opts]
    (map #(enrich-water % opts) waters)))
+
 
 (defn enrich-waters-wrapper
   "An enricher pattern function to derive as many values from a collection of [water records](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/waters.cljc) as possible.
