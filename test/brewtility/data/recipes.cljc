@@ -9,7 +9,6 @@
             [brewtility.data.waters :as waters]
             [brewtility.data.yeasts :as yeasts]
             [clojure.spec.alpha :as spec]
-            [com.wallbrew.spoon.spec :as spoon.spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [com.wallbrew.spoon.string :as spoon.str]
