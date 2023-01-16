@@ -41,7 +41,7 @@
         "Explicitly setting `:amount-is-weight` to false causes the value to be retained")))
 
 (deftest enrich-display-time-test
-  (testing "Ensure enricher correctly defaults to setting display time to minutes"
+  (testing "Ensure enricher correctly defaults to setting display time"
     (is (= "15.0 m" (-> miscs.data/sample-misc
                         miscs.enrich/enrich-display-time
                         :display-time))
@@ -85,6 +85,106 @@
     (is (spoon.spec/test-valid? ::miscs.format/misc (-> miscs.data/sample-misc miscs.enrich/enrich-display-time))
         "miscs.data/sample-misc conforms to the spec")))
 
+(deftest enrich-display-amount-test
+  (testing "Ensure enricher correctly defaults to setting display amount as a weight"
+    (let [weighted-misc (assoc miscs.data/sample-misc :amount-is-weight true)]
+      (is (= "0.022 lb" (-> weighted-misc
+                            miscs.enrich/enrich-display-amount
+                            :display-amount))
+          "miscs.data/sample-misc sets the amount to 15.0, which is the default unit")
+      (is (= "34.293 lb" (-> weighted-misc
+                             (assoc :amount 15.555)
+                             miscs.enrich/enrich-display-amount
+                             :display-amount))
+          "enrich-display-amount defaults precision to 3")
+      (is (= "34.29 lb" (-> weighted-misc
+                            (assoc :amount 15.555)
+                            (miscs.enrich/enrich-display-amount {:misc-amount-precision 2})
+                            :display-amount))
+          "enrich-display-amount can be configured to use a different precision")
+      (is (= "15000.0 g" (-> weighted-misc
+                             (assoc :amount 15.0)
+                             (miscs.enrich/enrich-display-amount {:misc-amount-target-units :gram})
+                             :display-amount))
+          "enrich-display-amount unites can be configured to use seconds")
+      (is (= "33.069 pound" (-> weighted-misc
+                                (assoc :amount 15.0)
+                                (miscs.enrich/enrich-display-amount {:misc-amount-suffix :full})
+                                :display-amount))
+          "enrich-display-amount can be configured to use full suffixes")
+      (is (= "34.29 lb" (-> weighted-misc
+                            (assoc :amount 15.555)
+                            (miscs.enrich/enrich-display-amount {:precision 2})
+                            :display-amount))
+          "enrich-display-amount can be configured to use a different precision with default settings keys")
+      (is (= "15.0 kg" (-> weighted-misc
+                           (assoc :amount 15.0)
+                           (miscs.enrich/enrich-display-amount {:system-of-measure :metric})
+                           :display-amount))
+          "enrich-display-amount unites can be configured with default settings keys")
+      (is (= "33.069 pound" (-> weighted-misc
+                                (assoc :amount 15.0)
+                                (miscs.enrich/enrich-display-amount {:suffix :full})
+                                :display-amount))
+          "enrich-display-amount can be configured to use full suffixes with default settings keys")))
+  (testing "Ensure enricher correctly defaults to setting display amount as a volume"
+    (let [volume-misc (assoc miscs.data/sample-misc :amount-is-weight false)]
+      (is (= "0.003 gal" (-> volume-misc
+                             miscs.enrich/enrich-display-amount
+                             :display-amount))
+          "miscs.data/sample-misc sets the amount to 15.0, which is the default unit")
+      (is (= "4.109 gal" (-> volume-misc
+                             (assoc :amount 15.555)
+                             miscs.enrich/enrich-display-amount
+                             :display-amount))
+          "enrich-display-amount defaults precision to 3")
+      (is (= "4.11 gal" (-> volume-misc
+                            (assoc :amount 15.555)
+                            (miscs.enrich/enrich-display-amount {:misc-amount-precision 2})
+                            :display-amount))
+          "enrich-display-amount can be configured to use a different precision")
+      (is (= "3043.263 tsp" (-> volume-misc
+                                (assoc :amount 15.0)
+                                (miscs.enrich/enrich-display-amount {:misc-amount-target-units :teaspoon})
+                                :display-amount))
+          "enrich-display-amount unites can be configured to use seconds")
+      (is (= "3.963 US gallon" (-> volume-misc
+                                   (assoc :amount 15.0)
+                                   (miscs.enrich/enrich-display-amount {:misc-amount-suffix :full})
+                                   :display-amount))
+          "enrich-display-amount can be configured to use full suffixes")
+      (is (= "4.11 gal" (-> volume-misc
+                            (assoc :amount 15.555)
+                            (miscs.enrich/enrich-display-amount {:precision 2})
+                            :display-amount))
+          "enrich-display-amount can be configured to use a different precision with default settings keys")
+      (is (= "15.0 l" (-> volume-misc
+                          (assoc :amount 15.0)
+                          (miscs.enrich/enrich-display-amount {:system-of-measure :metric})
+                          :display-amount))
+          "enrich-display-amount unites can be configured with default settings keys")
+      (is (= "3.963 US gallon" (-> volume-misc
+                                   (assoc :amount 15.0)
+                                   (miscs.enrich/enrich-display-amount {:suffix :full})
+                                   :display-amount))
+          "enrich-display-amount can be configured to use full suffixes with default settings keys")))
+  (testing "Ensure resulting `misc` still conforms to the spec"
+    (is (spoon.spec/test-valid? ::miscs.format/misc (-> miscs.data/sample-misc 
+                                                        (assoc :amount-is-weight true)
+                                                        miscs.enrich/enrich-display-amount))
+        "miscs.data/sample-misc conforms to the spec if the amount is a weight")
+    (is (spoon.spec/test-valid? ::miscs.format/misc (-> miscs.data/sample-misc
+                                                        (assoc :amount-is-weight false)
+                                                        miscs.enrich/enrich-display-amount))
+        "miscs.data/sample-misc conforms to the spec if the amount is a volume")
+    (is (spoon.spec/test-valid? ::miscs.format/misc (-> (miscs.data/generate-misc)
+                                                        (assoc :amount-is-weight true)
+                                                        miscs.enrich/enrich-display-amount))
+        "miscs.data/sample-misc conforms to the spec if the amount is a weight")
+    (is (spoon.spec/test-valid? ::miscs.format/misc (-> (miscs.data/generate-misc)
+                                                        (assoc :amount-is-weight false)
+                                                        miscs.enrich/enrich-display-amount))
+        "miscs.data/sample-misc conforms to the spec if the amount is a volume")))
 
 ;;
 ;; Whole object enrichment tests
@@ -113,6 +213,7 @@
               :time             15.0
               :type             "Fining"
               :notes            "Used as a clarifying agent during the last few minutes of the boil"
+              :display-amount   "0.003 gal"
               :version          1}
              (miscs.enrich/enrich-misc miscs.data/sample-misc))))))
 
