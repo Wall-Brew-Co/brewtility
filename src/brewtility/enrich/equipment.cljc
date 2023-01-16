@@ -83,11 +83,11 @@
     {:keys [boil-size-target-units boil-size-precision boil-size-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :boil-size
-                         :display-key             :display-boil-size
-                         :fine-grain-target-units boil-size-target-units
-                         :fine-grain-precision    boil-size-precision
-                         :fine-grain-suffix       boil-size-suffix})]
+                        {impl/value-key               :boil-size
+                         impl/display-key             :display-boil-size
+                         impl/fine-grain-target-units boil-size-target-units
+                         impl/fine-grain-precision    boil-size-precision
+                         impl/fine-grain-suffix       boil-size-suffix})]
      (impl/enrich-displayable-volume equipment options))))
 
 
@@ -118,11 +118,11 @@
     {:keys [batch-size-target-units batch-size-precision batch-size-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :batch-size
-                         :display-key             :display-batch-size
-                         :fine-grain-target-units batch-size-target-units
-                         :fine-grain-precision    batch-size-precision
-                         :fine-grain-suffix       batch-size-suffix})]
+                        {impl/value-key               :batch-size
+                         impl/display-key             :display-batch-size
+                         impl/fine-grain-target-units batch-size-target-units
+                         impl/fine-grain-precision    batch-size-precision
+                         impl/fine-grain-suffix       batch-size-suffix})]
      (impl/enrich-displayable-volume equipment options))))
 
 
@@ -153,11 +153,11 @@
     {:keys [tun-volume-target-units tun-volume-precision tun-volume-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :tun-volume
-                         :display-key             :display-tun-volume
-                         :fine-grain-target-units tun-volume-target-units
-                         :fine-grain-precision    tun-volume-precision
-                         :fine-grain-suffix       tun-volume-suffix})]
+                        {impl/value-key               :tun-volume
+                         impl/display-key             :display-tun-volume
+                         impl/fine-grain-target-units tun-volume-target-units
+                         impl/fine-grain-precision    tun-volume-precision
+                         impl/fine-grain-suffix       tun-volume-suffix})]
      (impl/enrich-displayable-volume equipment options))))
 
 
@@ -188,11 +188,11 @@
     {:keys [tun-weight-target-units tun-weight-precision tun-weight-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :tun-weight
-                         :display-key             :display-tun-weight
-                         :fine-grain-target-units tun-weight-target-units
-                         :fine-grain-precision    tun-weight-precision
-                         :fine-grain-suffix       tun-weight-suffix})]
+                        {impl/value-key               :tun-weight
+                         impl/display-key             :display-tun-weight
+                         impl/fine-grain-target-units tun-weight-target-units
+                         impl/fine-grain-precision    tun-weight-precision
+                         impl/fine-grain-suffix       tun-weight-suffix})]
      (impl/enrich-displayable-weight equipment options))))
 
 
@@ -223,11 +223,11 @@
     {:keys [top-up-water-target-units top-up-water-precision top-up-water-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :top-up-water
-                         :display-key             :display-top-up-water
-                         :fine-grain-target-units top-up-water-target-units
-                         :fine-grain-precision    top-up-water-precision
-                         :fine-grain-suffix       top-up-water-suffix})]
+                        {impl/value-key               :top-up-water
+                         impl/display-key             :display-top-up-water
+                         impl/fine-grain-target-units top-up-water-target-units
+                         impl/fine-grain-precision    top-up-water-precision
+                         impl/fine-grain-suffix       top-up-water-suffix})]
      (impl/enrich-displayable-volume equipment options))))
 
 
@@ -258,11 +258,11 @@
     {:keys [trub-chiller-loss-target-units trub-chiller-loss-precision trub-chiller-loss-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :trub-chiller-loss
-                         :display-key             :display-trub-chiller-loss
-                         :fine-grain-target-units trub-chiller-loss-target-units
-                         :fine-grain-precision    trub-chiller-loss-precision
-                         :fine-grain-suffix       trub-chiller-loss-suffix})]
+                        {impl/value-key               :trub-chiller-loss
+                         impl/display-key             :display-trub-chiller-loss
+                         impl/fine-grain-target-units trub-chiller-loss-target-units
+                         impl/fine-grain-precision    trub-chiller-loss-precision
+                         impl/fine-grain-suffix       trub-chiller-loss-suffix})]
      (impl/enrich-displayable-volume equipment options))))
 
 
@@ -293,11 +293,11 @@
     {:keys [lauter-deadspace-target-units lauter-deadspace-precision lauter-deadspace-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :lauter-deadspace
-                         :display-key             :display-lauter-deadspace
-                         :fine-grain-target-units lauter-deadspace-target-units
-                         :fine-grain-precision    lauter-deadspace-precision
-                         :fine-grain-suffix       lauter-deadspace-suffix})]
+                        {impl/value-key               :lauter-deadspace
+                         impl/display-key             :display-lauter-deadspace
+                         impl/fine-grain-target-units lauter-deadspace-target-units
+                         impl/fine-grain-precision    lauter-deadspace-precision
+                         impl/fine-grain-suffix       lauter-deadspace-suffix})]
      (impl/enrich-displayable-volume equipment options))))
 
 
@@ -328,11 +328,11 @@
     {:keys [top-up-kettle-target-units top-up-kettle-precision top-up-kettle-suffix]
      :as   opts}]
    (let [options (merge opts
-                        {:value-key               :top-up-kettle
-                         :display-key             :display-top-up-kettle
-                         :fine-grain-target-units top-up-kettle-target-units
-                         :fine-grain-precision    top-up-kettle-precision
-                         :fine-grain-suffix       top-up-kettle-suffix})]
+                        {impl/value-key               :top-up-kettle
+                         impl/display-key             :display-top-up-kettle
+                         impl/fine-grain-target-units top-up-kettle-target-units
+                         impl/fine-grain-precision    top-up-kettle-precision
+                         impl/fine-grain-suffix       top-up-kettle-suffix})]
      (impl/enrich-displayable-volume equipment options))))
 
 

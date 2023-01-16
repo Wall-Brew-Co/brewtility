@@ -263,11 +263,11 @@
                         fermentable-amount-precision
                         fermentable-amount-suffix]
                  :as   opts}]
-   (let [options (merge opts {:value-key               :amount
-                              :display-key             :display-amount
-                              :fine-grain-target-units fermentable-amount-target-units
-                              :fine-grain-precision    fermentable-amount-precision
-                              :fine-grain-suffix       fermentable-amount-suffix})]
+   (let [options (merge opts {impl/value-key               :amount
+                              impl/display-key             :display-amount
+                              impl/fine-grain-target-units fermentable-amount-target-units
+                              impl/fine-grain-precision    fermentable-amount-precision
+                              impl/fine-grain-suffix       fermentable-amount-suffix})]
      (impl/enrich-displayable-weight fermentable options))))
 
 

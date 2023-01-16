@@ -42,11 +42,11 @@
                   water-amount-precision
                   water-amount-suffix]
            :as   opts}]
-   (let [options (merge opts {:value-key               :amount
-                              :display-key             :display-amount
-                              :fine-grain-target-units water-amount-target-units
-                              :fine-grain-precision    water-amount-precision
-                              :fine-grain-suffix       water-amount-suffix})]
+   (let [options (merge opts {impl/value-key               :amount
+                              impl/display-key             :display-amount
+                              impl/fine-grain-target-units water-amount-target-units
+                              impl/fine-grain-precision    water-amount-precision
+                              impl/fine-grain-suffix       water-amount-suffix})]
      (impl/enrich-displayable-volume water options))))
 
 

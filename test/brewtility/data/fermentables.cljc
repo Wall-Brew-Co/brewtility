@@ -1,7 +1,6 @@
 (ns brewtility.data.fermentables
   "Namespace for static and generative test data for `common-beer-format.fermentables/*` specs."
   (:require [clojure.spec.alpha :as spec]
-            [com.wallbrew.spoon.spec :as spoon.spec]
             [clojure.spec.gen.alpha :as gen]
             [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]

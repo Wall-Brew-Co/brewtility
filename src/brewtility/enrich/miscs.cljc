@@ -57,11 +57,11 @@
                  misc-time-precision
                  misc-time-suffix]
           :as   opts}]
-   (let [options (merge opts {:value-key               :time
-                              :display-key             :display-time
-                              :fine-grain-target-units misc-time-target-units
-                              :fine-grain-precision    misc-time-precision
-                              :fine-grain-suffix       misc-time-suffix})]
+   (let [options (merge opts {impl/value-key               :time
+                              impl/display-key             :display-time
+                              impl/fine-grain-target-units misc-time-target-units
+                              impl/fine-grain-precision    misc-time-precision
+                              impl/fine-grain-suffix       misc-time-suffix})]
      (impl/enrich-displayable-time misc options))))
 
 
@@ -97,11 +97,11 @@
                  misc-amount-precision
                  misc-amount-suffix]
           :as   opts}]
-   (let [options (merge opts {:value-key               :amount
-                              :display-key             :display-amount
-                              :fine-grain-target-units misc-amount-target-units
-                              :fine-grain-precision    misc-amount-precision
-                              :fine-grain-suffix       misc-amount-suffix})]
+   (let [options (merge opts {impl/value-key               :amount
+                              impl/display-key             :display-amount
+                              impl/fine-grain-target-units misc-amount-target-units
+                              impl/fine-grain-precision    misc-amount-precision
+                              impl/fine-grain-suffix       misc-amount-suffix})]
      (if (:amount-is-weight misc)
        (impl/enrich-displayable-weight misc options)
        (impl/enrich-displayable-volume misc options)))))
