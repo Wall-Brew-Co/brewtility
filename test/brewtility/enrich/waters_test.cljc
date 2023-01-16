@@ -6,6 +6,7 @@
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
+
 (deftest enrich-display-amount-test
   (testing "Ensure :display-amount renders correctly"
     (is (= "5.283 gal" (-> waters.data/sample-water
@@ -47,6 +48,7 @@
                                  (waters.enrich/enrich-display-amount {:suffix :full})
                                  :display-amount))
         "enrich-display-amount can be configured to use full suffixes with default settings keys")))
+
 
 ;;
 ;; Whole object enrichment tests

@@ -6,6 +6,7 @@
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
+
 (deftest enrich-amount-is-weight-test
   (testing "Ensure enricher doesn't alter the value of existing `:amount is weight` keys"
     (is (nil? (:amount-is-weight miscs.data/sample-misc))
@@ -39,6 +40,7 @@
                    (miscs.enrich/enrich-amount-is-weight :some-value)
                    :amount-is-weight))
         "Explicitly setting `:amount-is-weight` to false causes the value to be retained")))
+
 
 (deftest enrich-display-time-test
   (testing "Ensure enricher correctly defaults to setting display time"
@@ -84,6 +86,7 @@
   (testing "Ensure resulting `misc` still conforms to the spec"
     (is (spoon.spec/test-valid? ::miscs.format/misc (-> miscs.data/sample-misc miscs.enrich/enrich-display-time))
         "miscs.data/sample-misc conforms to the spec")))
+
 
 (deftest enrich-display-amount-test
   (testing "Ensure enricher correctly defaults to setting display amount as a weight"
@@ -169,7 +172,7 @@
                                    :display-amount))
           "enrich-display-amount can be configured to use full suffixes with default settings keys")))
   (testing "Ensure resulting `misc` still conforms to the spec"
-    (is (spoon.spec/test-valid? ::miscs.format/misc (-> miscs.data/sample-misc 
+    (is (spoon.spec/test-valid? ::miscs.format/misc (-> miscs.data/sample-misc
                                                         (assoc :amount-is-weight true)
                                                         miscs.enrich/enrich-display-amount))
         "miscs.data/sample-misc conforms to the spec if the amount is a weight")
@@ -185,6 +188,7 @@
                                                         (assoc :amount-is-weight false)
                                                         miscs.enrich/enrich-display-amount))
         "miscs.data/sample-misc conforms to the spec if the amount is a volume")))
+
 
 ;;
 ;; Whole object enrichment tests
