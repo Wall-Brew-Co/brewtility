@@ -43,11 +43,11 @@
                 hop-amount-precision
                 hop-amount-suffix]
          :as   opts}]
-   (let [options (merge opts {:value-key               :amount
-                              :display-key             :display-amount
-                              :fine-grain-target-units hop-amount-target-units
-                              :fine-grain-precision    hop-amount-precision
-                              :fine-grain-suffix       hop-amount-suffix})]
+   (let [options (merge opts {impl/value-key               :amount
+                              impl/display-key             :display-amount
+                              impl/fine-grain-target-units hop-amount-target-units
+                              impl/fine-grain-precision    hop-amount-precision
+                              impl/fine-grain-suffix       hop-amount-suffix})]
      (impl/enrich-displayable-weight hop options))))
 
 
@@ -81,11 +81,11 @@
                 hop-time-precision
                 hop-time-suffix]
          :as   opts}]
-   (let [options (merge opts {:value-key               :time
-                              :display-key             :display-time
-                              :fine-grain-target-units hop-time-target-units
-                              :fine-grain-precision    hop-time-precision
-                              :fine-grain-suffix       hop-time-suffix})]
+   (let [options (merge opts {impl/value-key               :time
+                              impl/display-key             :display-time
+                              impl/fine-grain-target-units hop-time-target-units
+                              impl/fine-grain-precision    hop-time-precision
+                              impl/fine-grain-suffix       hop-time-suffix})]
      (impl/enrich-displayable-time hop options))))
 
 

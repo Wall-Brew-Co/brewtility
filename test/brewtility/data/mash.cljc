@@ -1,7 +1,6 @@
 (ns brewtility.data.mash
   "Namespace for static and generative test data for `common-beer-format.mash/*` specs."
   (:require [clojure.spec.alpha :as spec]
-            [com.wallbrew.spoon.spec :as spoon.spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.mash :as mash.format]

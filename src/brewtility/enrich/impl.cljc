@@ -15,6 +15,26 @@
    options/suffix    options/short})
 
 
+(def ^:const value-key
+  "The key to source data from in `->displayable` functions"
+  :value-key)
+
+(def ^:const display-key
+  "The key to store displayable data in in `->displayable` functions"
+  :display-key)
+
+(def ^:const fine-grain-target-units
+  "The target units to use for fine-grain toggling of displayable units in `->displayable` functions"
+  :fine-grain-target-units)
+
+(def ^:const fine-grain-precision
+  "The suffix to use for fine-grain setting of precision in `->displayable` functions"
+  :fine-grain-precision)
+
+(def ^:const fine-grain-suffix
+  "The suffix to use for fine-grain setting of precision in `->displayable` functions"
+  :fine-grain-suffix)
+
 
 
 
@@ -183,6 +203,7 @@
       (throw (ex-info "Invalid displayable volume enrichment options: " errors)))))
 
 
+#_{:clj-kondo/ignore [:shadowed-var]}
 (defn enrich-displayable-volume
   "A function to enrich a map with a human-readable version of a volume at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -190,7 +211,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `:fine-grain-target-units` > `system-of-measure`
+   `impl/fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -199,7 +220,7 @@
    :no-doc   true
    :see-also ["enrich-displayable-weight" "enrich-displayable-time"]}
   [source-data
-   {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
+   {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure :us
            suffix            :short
            precision         3}}]
@@ -241,6 +262,7 @@
       (throw (ex-info "Invalid displayable weight enrichment options: " errors)))))
 
 
+#_{:clj-kondo/ignore [:shadowed-var]}
 (defn enrich-displayable-weight
   "A function to enrich a map with a human-readable version of a weight at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -248,7 +270,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `:fine-grain-target-units` > `system-of-measure`
+   `impl/fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -282,7 +304,7 @@
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["enrich-displayable-time"]}
-  [{:keys [target-units system-of-measure precision suffix]
+  [{:keys [precision suffix system-of-measure target-units]
     :as   opts}]
   (let [valid-target?    (contains? time/measurements target-units)
         valid-system?    (contains? options/systems-of-measure system-of-measure)
@@ -298,6 +320,7 @@
       (throw (ex-info "Invalid displayable time enrichment options: " errors)))))
 
 
+#_{:clj-kondo/ignore [:shadowed-var]}
 (defn enrich-displayable-time
   "A function to enrich a map with a human-readable version of a time at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -305,7 +328,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `:fine-grain-target-units` > `system-of-measure`
+   `impl/fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -314,7 +337,7 @@
    :no-doc   true
    :see-also ["enrich-displayable-volume" "enrich-displayable-weight"]}
   [source-data
-   {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
+   {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure :us
            suffix            :short
            precision         3}}]
@@ -339,7 +362,7 @@
   {:added    "1.3.0"
    :no-doc   true
    :see-also ["enrich-displayable-temperature"]}
-  [{:keys [target-units system-of-measure precision suffix]
+  [{:keys [precision suffix system-of-measure target-units]
     :as   opts}]
   (let [valid-target?    (contains? temperature/measurements target-units)
         valid-system?    (contains? options/systems-of-measure system-of-measure)
@@ -355,6 +378,7 @@
       (throw (ex-info "Invalid displayable temperature enrichment options: " errors)))))
 
 
+#_{:clj-kondo/ignore [:shadowed-var]}
 (defn enrich-displayable-temperature
   "A function to enrich a map with a human-readable version of a temperature at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -362,7 +386,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `:fine-grain-target-units` > `system-of-measure`
+   `impl/fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -371,7 +395,7 @@
    :no-doc   true
    :see-also ["enrich-displayable-volume" "enrich-displayable-weight"]}
   [source-data
-   {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
+   {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure :us
            suffix            :short
            precision         3}}]
