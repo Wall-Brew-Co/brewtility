@@ -108,7 +108,7 @@
 
 
 (defn enrich-misc
-  "An enricher pattern function to derive as many values from an [misc record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/miscs.cljc).
+  "An enricher pattern function to derive as many values from a [misc record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/miscs.cljc).
 
    An option map may be passed as an optional second argument.
    The following keys are supported for controlling high-level behavior:

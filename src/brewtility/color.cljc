@@ -1,23 +1,27 @@
 (ns brewtility.color
   "Namespace for calculating beer colors"
-  {:added "1.0"})
+  {:added "1.0"}
+  (:require [brewtility.static :as static]))
 
 
 (def ^:const color-systems
   "The color systems available across brewtility"
-  #{:srm :ebc :lovibond :rgba})
+  #{static/srm
+    static/ebc
+    static/lovibond
+    static/rgba})
 
 
 (def ^:const color-system->display-name
   "A map from color system names to their full and short unit names"
-  {:srm      {:full  "standard reference method"
-              :short "srm"}
-   :ebc      {:full  "ebc"
-              :short "ebc"}
-   :lovibond {:full  "degrees lovibond"
-              :short "°L"}
-   :rgba     {:full  ""
-              :short ""}})
+  {static/srm      {static/full  "standard reference method"
+                    static/short "srm"}
+   static/ebc      {static/full  "ebc"
+                    static/short "ebc"}
+   static/lovibond {static/full  "degrees lovibond"
+                    static/short "°L"}
+   static/rgba     {static/full  ""
+                    static/short ""}})
 
 
 ;;
@@ -226,7 +230,7 @@
   "rgba(3,4,3,1)")
 
 
-(def srm-color-map
+(def ^:const srm-color-map
   "A map of integer values to their closest SRM value as an RGBa color code"
   {1	 srm-1
    2	 srm-2

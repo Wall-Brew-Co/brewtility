@@ -15,21 +15,26 @@
    options/suffix    options/short})
 
 
+
 (def ^:const value-key
   "The key to source data from in `->displayable` functions"
   :value-key)
+
 
 (def ^:const display-key
   "The key to store displayable data in in `->displayable` functions"
   :display-key)
 
+
 (def ^:const fine-grain-target-units
   "The target units to use for fine-grain toggling of displayable units in `->displayable` functions"
   :fine-grain-target-units)
 
+
 (def ^:const fine-grain-precision
   "The suffix to use for fine-grain setting of precision in `->displayable` functions"
   :fine-grain-precision)
+
 
 (def ^:const fine-grain-suffix
   "The suffix to use for fine-grain setting of precision in `->displayable` functions"
@@ -107,17 +112,17 @@
 
 
 (def ^:private ^:const default-time-by-system
-  {:imperial :minute
-   :metric   :minute
-   :us       :minute
-   :si       :minute})
+  {static/imperial             :minute
+   static/metric               :minute
+   static/us-customary         :minute
+   static/international-system :minute})
 
 
 (def ^:private ^:const default-temperature-by-system
-  {:imperial :fahrenheit
-   :metric   :celsius
-   :us       :fahrenheit
-   :si       :celsius})
+  {static/imperial             :fahrenheit
+   static/metric               :celsius
+   static/us-customary         :fahrenheit
+   static/international-system :celsius})
 
 
 (defn target-unit-error
@@ -164,7 +169,7 @@
                        " conversion : "
                        precision
                        ". Must be an integer.")]
-    (assoc error-map :precision error-msg)))
+    (assoc error-map static/precision error-msg)))
 
 
 (defn suffix-error
@@ -204,6 +209,8 @@
 
 
 #_{:clj-kondo/ignore [:shadowed-var]}
+
+
 (defn enrich-displayable-volume
   "A function to enrich a map with a human-readable version of a volume at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -222,7 +229,7 @@
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure :us
-           suffix            :short
+           suffix            static/short
            precision         3}}]
 
   (if-let [source-value (get source-data value-key)]
@@ -232,9 +239,9 @@
           suffix                   (or fine-grain-suffix suffix)
           opts                     (verify-enrich-displayable-volume-opts
                                      {:target-units      target-units
-                                      :system-of-measure system-of-measure
-                                      :precision         precision
-                                      :suffix            suffix})]
+                                      static/system-of-measure system-of-measure
+                                      static/precision         precision
+                                      static/suffix            suffix})]
       (assoc source-data display-key (->displayable-volume source-value :liter target-units opts)))
     source-data))
 
@@ -263,6 +270,8 @@
 
 
 #_{:clj-kondo/ignore [:shadowed-var]}
+
+
 (defn enrich-displayable-weight
   "A function to enrich a map with a human-readable version of a weight at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -290,9 +299,9 @@
           suffix                   (or fine-grain-suffix suffix)
           opts                     (verify-enrich-displayable-weight-opts
                                      {:target-units      target-units
-                                      :system-of-measure system-of-measure
-                                      :precision         precision
-                                      :suffix            suffix})]
+                                      static/system-of-measure system-of-measure
+                                      static/precision         precision
+                                      static/suffix            suffix})]
       (assoc source-data display-key (->displayable-weight source-value :kilogram target-units opts)))
     source-data))
 
@@ -321,6 +330,8 @@
 
 
 #_{:clj-kondo/ignore [:shadowed-var]}
+
+
 (defn enrich-displayable-time
   "A function to enrich a map with a human-readable version of a time at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -339,7 +350,7 @@
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure :us
-           suffix            :short
+           suffix            static/short
            precision         3}}]
   (if-let [source-value (get source-data value-key)]
     (let [system-of-measure-time (get default-time-by-system system-of-measure)
@@ -348,9 +359,9 @@
           suffix                 (or fine-grain-suffix suffix)
           opts                   (verify-enrich-displayable-time-opts
                                    {:target-units      target-units
-                                    :system-of-measure system-of-measure
-                                    :precision         precision
-                                    :suffix            suffix})]
+                                    static/system-of-measure system-of-measure
+                                    static/precision         precision
+                                    static/suffix            suffix})]
       (assoc source-data display-key (->displayable-time source-value :minute target-units opts)))
     source-data))
 
@@ -379,6 +390,8 @@
 
 
 #_{:clj-kondo/ignore [:shadowed-var]}
+
+
 (defn enrich-displayable-temperature
   "A function to enrich a map with a human-readable version of a temperature at `value-key`.
    If invalid options are passed, the function throws an Exception with information on the invalid options.
@@ -397,7 +410,7 @@
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure :us
-           suffix            :short
+           suffix            static/short
            precision         3}}]
   (if-let [source-value (get source-data value-key)]
     (let [system-of-measure-temperature (get default-temperature-by-system system-of-measure)
@@ -406,8 +419,8 @@
           suffix                 (or fine-grain-suffix suffix)
           opts                   (verify-enrich-displayable-temperature-opts
                                    {:target-units      target-units
-                                    :system-of-measure system-of-measure
-                                    :precision         precision
-                                    :suffix            suffix})]
+                                    static/system-of-measure system-of-measure
+                                    static/precision         precision
+                                    static/suffix            suffix})]
       (assoc source-data display-key (->displayable-temperature source-value :celsius target-units opts)))
     source-data))
