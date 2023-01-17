@@ -11,7 +11,8 @@
               "brewtility.enrich.yeast"]}
   (:require [brewtility.color :as color]
             [brewtility.enrich.impl :as impl]
-            [brewtility.predicates.fermentables :as fermentables.predicate]))
+            [brewtility.predicates.fermentables :as fermentables.predicate]
+            [brewtility.static :as static]))
 
 
 (defn enrich-add-after-boil
@@ -209,12 +210,12 @@
   ([fermentable {:keys [color-system suffix]
                  :as   opts}]
    (let [source-color-system (if (fermentables.predicate/grain? fermentable opts)
-                               :lovibond
-                               :srm)
+                               static/lovibond
+                               static/srm)
          target-color-system (or color-system source-color-system)
-         suffix              (or suffix :short)]
+         suffix              (or suffix static/short)]
      (if (and (contains? color/color-systems target-color-system)
-              (contains? #{:full :short} suffix))
+              (contains? #{static/full static/short} suffix))
        (let [source-color  (if (fermentables.predicate/grain? fermentable opts)
                              (:color fermentable)
                              (color/srm->lovibond (:color fermentable)))
