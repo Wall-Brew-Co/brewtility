@@ -26,6 +26,7 @@
      yeast
      (assoc yeast :amount-is-weight false))))
 
+
 (defn enrich-display-amount
   "An enricher pattern function to render a human-readable display amount of a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is in a given system.
    If the `amount-is-weight` key evaluates truthy, the `amount` will be treated as a weight in kilograms.
@@ -67,6 +68,7 @@
        (impl/enrich-displayable-weight yeast options)
        (impl/enrich-displayable-volume yeast options)))))
 
+
 (defn enrich-display-min-temperature
   "An enricher pattern function to render a human-readable display minimum-viable fermentation temperature of a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is in a given system.
    If the `min-temperature` key is not present, the map will not be changed.
@@ -106,7 +108,8 @@
                                 impl/fine-grain-suffix       yeast-min-temperature-suffix})]
        (impl/enrich-displayable-temperature yeast options))
      yeast)))
-   
+
+
 (defn enrich-display-max-temperature
   "An enricher pattern function to render a human-readable display maximum-viable fermentation temperature of a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is in a given system.
    If the `max-temperature` key is not present, the map will not be changed.
@@ -146,6 +149,7 @@
                                 impl/fine-grain-suffix       yeast-max-temperature-suffix})]
        (impl/enrich-displayable-temperature yeast options))
      yeast)))
+
 
 (defn enrich-yeast
   "An enricher pattern function to derive as many values from a [yeast record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
@@ -193,6 +197,7 @@
        (enrich-display-min-temperature opts)
        (enrich-display-max-temperature opts))))
 
+
 (defn enrich-yeast-wrapper
   "An enricher pattern function to derive as many values from a [yeast-wrapper record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
    
@@ -234,6 +239,7 @@
   ([yeast-wrapper] (enrich-yeast-wrapper yeast-wrapper {}))
   ([yeast-wrapper opts]
    (update yeast-wrapper :yeast enrich-yeast opts)))
+
 
 (defn enrich-yeasts
   "An enricher pattern function to derive as many values from a [yeast-wrapper record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
@@ -277,6 +283,7 @@
   ([yeasts opts]
    (map #(enrich-yeast-wrapper % opts) yeasts)))
 
+
 (defn enrich-yeasts-wrapper
   "An enricher pattern function to derive as many values from a [yeast-wrapper record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
    
@@ -318,4 +325,3 @@
   ([yeasts-wrapper] (enrich-yeasts-wrapper yeasts-wrapper {}))
   ([yeasts-wrapper opts]
    (update yeasts-wrapper :yeasts enrich-yeasts opts)))
-  

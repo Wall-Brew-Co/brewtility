@@ -1,5 +1,6 @@
 (ns brewtility.enrich.impl-test
   (:require [brewtility.enrich.impl :as sut]
+            [brewtility.static :as static]
             [clojure.string :as str]
             #? (:clj  [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
@@ -19,7 +20,21 @@
     (is (= "5.678 liter"
            (sut/->displayable-volume 1.5 :american-gallon :liter {:precision 3
                                                                   :suffix    :full}))
-        "Conversion may override the default suffix")))
+        "Conversion may override the default suffix"))
+  (testing "Ensure ->displayable-volume supports its full suite of options with static keys"
+    (is (= "5.678 l"
+           (sut/->displayable-volume 1.5 static/american-gallon static/liter)
+           (sut/->displayable-volume 1.5 static/american-gallon static/liter {static/precision static/default-precision
+                                                                              static/suffix    static/short}))
+        "Conversion defaults to 3 digits of precisions and shorthand unit names with static keys")
+    (is (= "5.7 l"
+           (sut/->displayable-volume 1.5 static/american-gallon static/liter {static/precision 1
+                                                                              static/suffix    static/short}))
+        "Conversion may override the default precision with static keys")
+    (is (= "5.678 liter"
+           (sut/->displayable-volume 1.5 static/american-gallon static/liter {static/precision 3
+                                                                              static/suffix    static/full}))
+        "Conversion may override the default suffix with static keys")))
 
 
 (deftest ->displayable-weight-test
@@ -183,6 +198,13 @@
     (testing "Ensure verify-enrich-displayable-volume-opts returns valid opts"
       (is (= valid-opts (sut/verify-enrich-displayable-volume-opts valid-opts))
           "Valid opts are returned unchanged"))
+    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+      (let [valid-opts-w-keys {:target-units            static/teaspoon
+                               static/system-of-measure static/metric
+                               static/precision         2
+                               static/suffix            static/full}]
+        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-volume-opts valid-opts-w-keys))
+            "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
@@ -212,6 +234,13 @@
     (testing "Ensure verify-enrich-displayable-weight-opts returns valid opts"
       (is (= valid-opts (sut/verify-enrich-displayable-weight-opts valid-opts))
           "Valid opts are returned unchanged"))
+    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+      (let [valid-opts-w-keys {:target-units            static/pound
+                               static/system-of-measure static/metric
+                               static/precision         2
+                               static/suffix            static/full}]
+        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-weight-opts valid-opts-w-keys))
+            "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
@@ -241,6 +270,13 @@
     (testing "Ensure verify-enrich-displayable-time-opts returns valid opts"
       (is (= valid-opts (sut/verify-enrich-displayable-time-opts valid-opts))
           "Valid opts are returned unchanged"))
+    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+      (let [valid-opts-w-keys {:target-units            static/minute
+                               static/system-of-measure static/metric
+                               static/precision         2
+                               static/suffix            static/full}]
+        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-time-opts valid-opts-w-keys))
+            "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
@@ -270,6 +306,13 @@
     (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts"
       (is (= valid-opts (sut/verify-enrich-displayable-temperature-opts valid-opts))
           "Valid opts are returned unchanged"))
+    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+      (let [valid-opts-w-keys {:target-units            static/c
+                               static/system-of-measure static/metric
+                               static/precision         2
+                               static/suffix            static/full}]
+        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-temperature-opts valid-opts-w-keys))
+            "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))

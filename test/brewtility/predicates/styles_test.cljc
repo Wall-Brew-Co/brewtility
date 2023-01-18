@@ -6,7 +6,6 @@
             [common-beer-format.styles :as cbf-styles]))
 
 
-
 ;;
 ;; :type function tests
 ;;
