@@ -46,16 +46,6 @@
   {:styles sample-styles})
 
 
-(def sample-styles
-  "A hard-coded sample styles for static unit tests"
-  [sample-style-wrapper])
-
-
-(def sample-styles-wrapper
-  "A hard-coded sample styles-wrapper for static unit tests"
-  {:styles sample-styles})
-
-
 (defn generate-style
   "Generate a random style object"
   {:added  "1.4"
@@ -83,22 +73,6 @@
 (defn generate-styles-wrapper
   "Generate a random styles-wrapper object"
   {:added "1.4"
-   :no-doc true}
-  []
-  (gen/generate (spec/gen ::style.format/styles-wrapper)))
-
-
-(defn generate-styles
-  "Generate a random styles object"
-  {:added  "1.3"
-   :no-doc true}
-  []
-  (gen/generate (spec/gen ::style.format/styles)))
-
-
-(defn generate-styles-wrapper
-  "Generate a random styles-wrapper object"
-  {:added "1.3"
    :no-doc true}
   []
   (gen/generate (spec/gen ::style.format/styles-wrapper)))

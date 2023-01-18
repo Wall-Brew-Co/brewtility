@@ -32,7 +32,6 @@
      (spoon.string/same-text? "lager" style-type opts))))
 
 
-
 (defn ale?
   "A predicate function to determine if a [style](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/styles.cljc) is for ales.
    An option map can be passed to this function as an optional second parameter.

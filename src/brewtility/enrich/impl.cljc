@@ -15,7 +15,6 @@
    options/suffix    options/short})
 
 
-
 (def ^:const value-key
   "The key to source data from in `->displayable` functions"
   :value-key)
@@ -39,8 +38,6 @@
 (def ^:const fine-grain-suffix
   "The suffix to use for fine-grain setting of precision in `->displayable` functions"
   :fine-grain-suffix)
-
-
 
 
 ;; TODO: Pluralize strings
@@ -84,6 +81,7 @@
        (time/convert source-units target-units)
        (time/display target-units opts))))
 
+
 ;; TODO: Pluralize strings
 (defn ->displayable-temperature
   "Convert a temperature then render it to a displayable value."
@@ -96,6 +94,7 @@
    (-> source-value
        (temperature/convert source-units target-units)
        (temperature/display target-units opts))))
+
 
 (def ^:private default-volume-by-system
   {options/imperial             options/imperial-gallon
@@ -112,17 +111,17 @@
 
 
 (def ^:private ^:const default-time-by-system
-  {static/imperial             :minute
-   static/metric               :minute
-   static/us-customary         :minute
-   static/international-system :minute})
+  {options/imperial             options/minute
+   options/metric               options/minute
+   options/us-customary         options/minute
+   options/international-system options/minute})
 
 
 (def ^:private ^:const default-temperature-by-system
-  {static/imperial             :fahrenheit
-   static/metric               :celsius
-   static/us-customary         :fahrenheit
-   static/international-system :celsius})
+  {options/imperial             options/fahrenheit
+   options/metric               options/celsius
+   options/us-customary         options/fahrenheit
+   options/international-system options/celsius})
 
 
 (defn target-unit-error
@@ -169,7 +168,7 @@
                        " conversion : "
                        precision
                        ". Must be an integer.")]
-    (assoc error-map static/precision error-msg)))
+    (assoc error-map options/precision error-msg)))
 
 
 (defn suffix-error
@@ -228,9 +227,9 @@
    :see-also ["enrich-displayable-weight" "enrich-displayable-time"]}
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
-    :or   {system-of-measure :us
-           suffix            static/short
-           precision         3}}]
+    :or   {system-of-measure options/us-customary
+           suffix            options/short
+           precision         options/default-precision}}]
 
   (if-let [source-value (get source-data value-key)]
     (let [system-of-measure-volume (get default-volume-by-system system-of-measure)
@@ -239,9 +238,9 @@
           suffix                   (or fine-grain-suffix suffix)
           opts                     (verify-enrich-displayable-volume-opts
                                      {:target-units      target-units
-                                      static/system-of-measure system-of-measure
-                                      static/precision         precision
-                                      static/suffix            suffix})]
+                                      options/system-of-measure system-of-measure
+                                      options/precision         precision
+                                      options/suffix            suffix})]
       (assoc source-data display-key (->displayable-volume source-value :liter target-units opts)))
     source-data))
 
@@ -299,9 +298,9 @@
           suffix                   (or fine-grain-suffix suffix)
           opts                     (verify-enrich-displayable-weight-opts
                                      {:target-units      target-units
-                                      static/system-of-measure system-of-measure
-                                      static/precision         precision
-                                      static/suffix            suffix})]
+                                      options/system-of-measure system-of-measure
+                                      options/precision         precision
+                                      options/suffix            suffix})]
       (assoc source-data display-key (->displayable-weight source-value :kilogram target-units opts)))
     source-data))
 
@@ -349,9 +348,9 @@
    :see-also ["enrich-displayable-volume" "enrich-displayable-weight"]}
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
-    :or   {system-of-measure :us
-           suffix            static/short
-           precision         3}}]
+    :or   {system-of-measure options/us-customary
+           suffix            options/short
+           precision         options/default-precision}}]
   (if-let [source-value (get source-data value-key)]
     (let [system-of-measure-time (get default-time-by-system system-of-measure)
           target-units           (or fine-grain-target-units system-of-measure-time)
@@ -359,10 +358,10 @@
           suffix                 (or fine-grain-suffix suffix)
           opts                   (verify-enrich-displayable-time-opts
                                    {:target-units      target-units
-                                    static/system-of-measure system-of-measure
-                                    static/precision         precision
-                                    static/suffix            suffix})]
-      (assoc source-data display-key (->displayable-time source-value :minute target-units opts)))
+                                    options/system-of-measure system-of-measure
+                                    options/precision         precision
+                                    options/suffix            suffix})]
+      (assoc source-data display-key (->displayable-time source-value options/minute target-units opts)))
     source-data))
 
 
@@ -409,9 +408,9 @@
    :see-also ["enrich-displayable-volume" "enrich-displayable-weight"]}
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
-    :or   {system-of-measure :us
-           suffix            static/short
-           precision         3}}]
+    :or   {system-of-measure options/us-customary
+           suffix            options/short
+           precision         options/default-precision}}]
   (if-let [source-value (get source-data value-key)]
     (let [system-of-measure-temperature (get default-temperature-by-system system-of-measure)
           target-units           (or fine-grain-target-units system-of-measure-temperature)
@@ -419,8 +418,8 @@
           suffix                 (or fine-grain-suffix suffix)
           opts                   (verify-enrich-displayable-temperature-opts
                                    {:target-units      target-units
-                                    static/system-of-measure system-of-measure
-                                    static/precision         precision
-                                    static/suffix            suffix})]
+                                    options/system-of-measure system-of-measure
+                                    options/precision         precision
+                                    options/suffix            suffix})]
       (assoc source-data display-key (->displayable-temperature source-value :celsius target-units opts)))
     source-data))

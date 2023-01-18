@@ -127,20 +127,20 @@
           "enrich-display-amount can be configured to use full suffixes with default settings keys")))
   (testing "Ensure resulting `yeast` still conforms to the spec"
     (is (spoon.spec/test-valid? ::yeasts.format/yeast (-> yeasts.data/sample-yeast
-                                                        (assoc :amount-is-weight true)
-                                                        yeasts.enrich/enrich-display-amount))
+                                                          (assoc :amount-is-weight true)
+                                                          yeasts.enrich/enrich-display-amount))
         "yeasts.data/sample-yeast conforms to the spec if the amount is a weight")
     (is (spoon.spec/test-valid? ::yeasts.format/yeast (-> yeasts.data/sample-yeast
-                                                        (assoc :amount-is-weight false)
-                                                        yeasts.enrich/enrich-display-amount))
+                                                          (assoc :amount-is-weight false)
+                                                          yeasts.enrich/enrich-display-amount))
         "yeasts.data/sample-yeast conforms to the spec if the amount is a volume")
     (is (spoon.spec/test-valid? ::yeasts.format/yeast (-> (yeasts.data/generate-yeast)
-                                                        (assoc :amount-is-weight true)
-                                                        yeasts.enrich/enrich-display-amount))
+                                                          (assoc :amount-is-weight true)
+                                                          yeasts.enrich/enrich-display-amount))
         "yeasts.data/sample-yeast conforms to the spec if the amount is a weight")
     (is (spoon.spec/test-valid? ::yeasts.format/yeast (-> (yeasts.data/generate-yeast)
-                                                        (assoc :amount-is-weight false)
-                                                        yeasts.enrich/enrich-display-amount))
+                                                          (assoc :amount-is-weight false)
+                                                          yeasts.enrich/enrich-display-amount))
         "yeasts.data/sample-yeast conforms to the spec if the amount is a volume")))
 
 
