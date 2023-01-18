@@ -11,7 +11,8 @@
               "brewtility.enrich.yeast"]}
   (:require [brewtility.calculations :as calc]
             [brewtility.enrich.impl :as impl]
-            [brewtility.precision :as precision]))
+            [brewtility.precision :as precision]
+            [brewtility.static :as static]))
 
 
 (defn enrich-calculated-boil-size
@@ -40,7 +41,7 @@
   ([{:keys [calc-boil-volume]
      :as   equipment}
     {:keys [safe-calculating-boil-size precision]
-     :or   {precision 3}}]
+     :or   {precision static/default-precision}}]
    (try
      (if calc-boil-volume
        (let [derived-boil-size (precision/->precision (calc/calculate-equipment-boil-volume equipment) precision)]

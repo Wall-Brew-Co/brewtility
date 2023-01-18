@@ -481,6 +481,6 @@
   (testing "Ensure enrichment pattern works against arbitrary equipment wrappers"
     (is (spoon.spec/test-valid? ::equipment.format/equipment-wrapper
                                 (equipment.enrich/enrich-equipment-wrapper
-                                 (assoc-in (equipment.data/generate-equipment-wrapper) [:equipment :calc-boil-volume] false)))
+                                  (assoc-in (equipment.data/generate-equipment-wrapper) [:equipment :calc-boil-volume] false)))
         "enrich-equipment-wrapper is a function to and from common-beer-format.equipment/equipment-wrapper")))
 

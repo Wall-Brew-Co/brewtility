@@ -14,7 +14,6 @@
             [com.wallbrew.spoon.string :as spoon.string]))
 
 
-
 ;;
 ;; :type functions
 ;;
@@ -37,7 +36,6 @@
      (spoon.string/same-text? "ale" yeast-type opts))))
 
 
-
 (defn lager?
   "A predicate function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is for lager.
    An option map can be passed to this function as an optional second parameter.
@@ -54,7 +52,6 @@
   ([yeast opts]
    (let [yeast-type (impl/fetch-or-throw! yeast :type "Yeast :type is required to determine if it's for lagers")]
      (spoon.string/same-text? "lager" yeast-type opts))))
-
 
 
 (defn wheat?
@@ -75,7 +72,6 @@
      (spoon.string/same-text? "wheat" yeast-type opts))))
 
 
-
 (defn wine?
   "A predicate function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is a common wine strain.
    An option map can be passed to this function as an optional second parameter.
@@ -94,7 +90,6 @@
      (spoon.string/same-text? "wine" yeast-type opts))))
 
 
-
 (defn champagne?
   "A predicate function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is a common champagne strain.
    An option map can be passed to this function as an optional second parameter.
@@ -111,7 +106,6 @@
   ([yeast opts]
    (let [yeast-type (impl/fetch-or-throw! yeast :type "Yeast :type is required to determine if it's a strain typical to champagnes")]
      (spoon.string/same-text? "champagne" yeast-type opts))))
-
 
 
 ;;
@@ -135,7 +129,6 @@
      (spoon.string/same-text? "liquid" yeast-form opts))))
 
 
-
 (defn dry?
   "A predicate function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is in dry form.
    An option map can be passed to this function as an optional second parameter.
@@ -151,7 +144,6 @@
   ([yeast opts]
    (let [yeast-form (impl/fetch-or-throw! yeast :form "Yeast :form is required to determine if it is in dry form")]
      (spoon.string/same-text? "dry" yeast-form opts))))
-
 
 
 (defn slant?
@@ -172,7 +164,6 @@
      (spoon.string/same-text? "slant" yeast-form opts))))
 
 
-
 (defn culture?
   "A predicate function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is a living culture.
    An option map can be passed to this function as an optional second parameter.
@@ -188,7 +179,6 @@
   ([yeast opts]
    (let [yeast-form (impl/fetch-or-throw! yeast :form "Yeast :form is required to determine if it is in culture form")]
      (spoon.string/same-text? "culture" yeast-form opts))))
-
 
 
 ;;
@@ -212,7 +202,6 @@
      (spoon.string/same-text? "low" yeast-flocculation opts))))
 
 
-
 (defn medium-flocculation?
   "A predicate function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) generates a medium amount of floc.
    An option map can be passed to this function as an optional second parameter.
@@ -230,7 +219,6 @@
      (spoon.string/same-text? "medium" yeast-flocculation opts))))
 
 
-
 (defn high-flocculation?
   "A predicate function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) generates a high amount of floc.
    An option map can be passed to this function as an optional second parameter.
@@ -246,7 +234,6 @@
   ([yeast opts]
    (let [yeast-flocculation (impl/fetch-or-throw! yeast :flocculation "Yeast :flocculation is required to determine if generates a high amount of floc")]
      (spoon.string/same-text? "high" yeast-flocculation opts))))
-
 
 
 (defn very-high-flocculation?
