@@ -10,10 +10,10 @@
   "Given a `common-beer-format` conforming `fermentable`, normalize it for color computation"
   [fermentable]
   (let [is-not-grain? (not= "grain" (str/lower-case (:type fermentable)))
-        kg->lbs       (fn [w] (units/convert-weight w :kilogram :pound))] ;; MCU is calculated against pounds
+        kg->lbs       (fn [w] (units/convert-weight w :kilogram :pound))] ; MCU is calculated against pounds
     (cond-> fermentable
       true          (update :amount kg->lbs)
-      is-not-grain? (update :color color/srm->lovibond)))) ;; Grain color is in Lovibond, all other fermentables use SRM
+      is-not-grain? (update :color color/srm->lovibond)))) ; Grain color is in Lovibond, all other fermentables use SRM
 
 (defn calculate-malt-color-units
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the overall Malt Color Units for a recipe"

@@ -1,6 +1,7 @@
 (ns brewtility.color
   "Namespace for calculating beer colors")
 
+
 ;;
 ;; SRM Beer Colors (https://en.wikipedia.org/wiki/Standard_Reference_Method)
 ;;
