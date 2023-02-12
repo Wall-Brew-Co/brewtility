@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 1
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["The calculate-potential-final-gravity` function."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2020-08-15T15:25:50.590693400Z"}

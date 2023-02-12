@@ -1,12 +1,20 @@
 (defproject com.wallbrew/brewtility "1.2.0"
   :description "Utility functions for all of your brewing needs"
   :url "https://github.com/Wall-Brew-Co/brewtility"
-  :license {:name "MIT"
-            :url  "https://opensource.org/licenses/MIT"}
+  :license {:name         "MIT"
+            :url          "https://opensource.org/licenses/MIT"
+            :distribution :repo
+            :comments     "Same-as all Wall-Brew projects"}
+  :scm {:name "git"
+        :url  "https://github.com/Wall-Brew-Co/brewtility"}
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
-  :plugins [[lein-cljsbuild "1.1.8"]]
+  :plugins [[com.github.clj-kondo/lein-clj-kondo "0.2.4"]
+            [com.wallbrew/lein-sealog "1.0.2"]
+            [lein-cljsbuild "1.1.8"]
+            [lein-project-version "0.1.0"]
+            [mvxcvi/cljstyle "0.15.0"]]
 
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[com.wallbrew/common-beer-data "1.1.0"]
