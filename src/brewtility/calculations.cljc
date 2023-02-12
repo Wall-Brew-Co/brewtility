@@ -77,13 +77,14 @@
     (gravity-points->potential-gravity total-gravity-points batch-size)))
 
 
-(def ^:const gravity->abv-multiplier 
+(def ^:const gravity->abv-multiplier
   "The multiplier used to convert gravity to ABV. 
    
    This is a constant, and is not configurable."
   0.00135)
 
-(def ^:const default-attenuation 
+
+(def ^:const default-attenuation
   "A default attenuation for yeast if none is provided.
    This represents a common level home brewers should expect from their yeast."
   0.75)
