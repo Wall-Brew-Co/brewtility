@@ -2,7 +2,7 @@
                 :minor 2
                 :patch 0}
  :version-type :semver3
- :changes      {:added      ["Refeactor calculations to accept `common-beer-format` data."
+ :changes      {:added      ["Refactor calculations to accept `common-beer-format` data."
                              "Leverage `common-beer-data` for static test case data."]
                 :changed    []
                 :deprecated []
