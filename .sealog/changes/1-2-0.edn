@@ -1,0 +1,12 @@
+{:version      {:major 1
+                :minor 2
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Refeactor calculations to accept `common-beer-format` data."
+                             "Leverage `common-beer-data` for static test case data."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2022-07-10T15:26:34.496183100Z"}

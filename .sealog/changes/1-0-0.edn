@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Initial release."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2020-07-19T16:43:49.339723700Z"}
