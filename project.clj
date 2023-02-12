@@ -15,7 +15,7 @@
             [lein-cljsbuild "1.1.8"]
             [lein-project-version "0.1.0"]
             [mvxcvi/cljstyle "0.15.0"]]
-  
+
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
                                     :password      :env/clojars_pass
