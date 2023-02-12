@@ -6,10 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.4.0 - 2023-02-12](#140---2023-02-12)
 * [1.3.0 - 2023-02-12](#130---2023-02-12)
 * [1.2.0 - 2022-07-10](#120---2022-07-10)
 * [1.1.0 - 2020-08-15](#110---2020-08-15)
 * [1.0.0 - 2020-07-19](#100---2020-07-19)
+
+## 1.4.0 - 2023-02-12
+
+* Added
+  * Functions to "wrap" and "unwrap" `common-beer-format` maps.
+  * Static and generative data in the `common-beer-format` format for test cases.
 
 ## 1.3.0 - 2023-02-12
 

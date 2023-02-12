@@ -1,4 +1,4 @@
-(defproject com.wallbrew/brewtility "1.3.0"
+(defproject com.wallbrew/brewtility "1.4.0"
   :description "Utility functions for all of your brewing needs"
   :url "https://github.com/Wall-Brew-Co/brewtility"
   :license {:name         "MIT"
@@ -7,14 +7,16 @@
             :comments     "Same-as all Wall-Brew projects"}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/brewtility"}
-  :dependencies [[org.clojure/clojure "1.11.1"]
+  :dependencies [[com.wallbrew/spoon "1.1.0"]
+                 [org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "0.2.4"]
             [com.wallbrew/lein-sealog "1.0.2"]
             [lein-cljsbuild "1.1.8"]
             [lein-project-version "0.1.0"]
-            [mvxcvi/cljstyle "0.15.0"]]
+            [mvxcvi/cljstyle "0.15.0"]
+            [ns-sort "1.0.3"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user

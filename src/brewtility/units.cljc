@@ -15,9 +15,9 @@
    :imperial-gallon      4.54609
    :american-gallon      3.78541
    :litre                1.0
-   :liter                1.0   ;; To support regional spelling
+   :liter                1.0   ; To support regional spelling
    :millilitre           0.001
-   :milliliter           0.001}) ;; To support regional spelling
+   :milliliter           0.001}) ; To support regional spelling
 
 (defn liter->volume-measurement
   [measurement-name]
