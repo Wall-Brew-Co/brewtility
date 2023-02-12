@@ -1,15 +1,31 @@
-(defproject com.wallbrew/brewtility "1.2.0"
+(defproject com.wallbrew/brewtility "1.4.0"
   :description "Utility functions for all of your brewing needs"
   :url "https://github.com/Wall-Brew-Co/brewtility"
-  :license {:name "MIT"
-            :url  "https://opensource.org/licenses/MIT"}
-  :dependencies [[org.clojure/clojure "1.11.1"]
+  :license {:name         "MIT"
+            :url          "https://opensource.org/licenses/MIT"
+            :distribution :repo
+            :comments     "Same-as all Wall-Brew projects"}
+  :scm {:name "git"
+        :url  "https://github.com/Wall-Brew-Co/brewtility"}
+  :dependencies [[com.wallbrew/spoon "1.1.0"]
+                 [org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
-  :plugins [[lein-cljsbuild "1.1.8"]]
+  :plugins [[com.github.clj-kondo/lein-clj-kondo "0.2.4"]
+            [com.wallbrew/lein-sealog "1.0.2"]
+            [lein-cljsbuild "1.1.8"]
+            [lein-project-version "0.1.0"]
+            [mvxcvi/cljstyle "0.15.0"]
+            [ns-sort "1.0.3"]]
+
+  :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
+                                    :username      :env/clojars_user
+                                    :password      :env/clojars_pass
+                                    :sign-releases false}]]
+  :deploy-branches ["master"]
 
   :profiles {:uberjar {:aot :all}
-             :dev     {:dependencies [[com.wallbrew/common-beer-data "1.1.0"]
+             :dev     {:dependencies [[com.wallbrew/common-beer-data "1.2.0"]
                                       [com.wallbrew/common-beer-format "2.2.0"]
                                       [doo "0.1.11"]]
                        :plugins      [[lein-doo "0.1.11"]]}}

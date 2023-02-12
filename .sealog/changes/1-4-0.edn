@@ -1,0 +1,12 @@
+{:version      {:major 1
+                :minor 4
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Functions to \"wrap\" and \"unwrap\" `common-beer-format` maps."
+                             "Static and generative data in the `common-beer-format` format for test cases."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2023-02-12T16:09:02.130530200Z"}

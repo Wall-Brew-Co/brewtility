@@ -1,0 +1,12 @@
+{:cljdoc.doc/tree [["Readme" {:file "README.md"}]
+                   ["Changelog" {:file "CHANGELOG.md"}]
+                   ["Community" {}
+                    ["Contributing" {:file "CONTRIBUTING.md"}]
+                    ["Code of Conduct" {:file "CODE_OF_CONDUCT.md"}]
+                    ["License" {:file "LICENSE.md"}]]
+                   ["Functionality" {}
+                    ["Calculations" {:file "doc/api/calculations.md"}]
+                    ["Color" {:file "doc/api/color.md"}]
+                    ["Precision" {:file "doc/api/precision.md"}]
+                    ["Units of Measure" {:file "doc/api/units.md"}]
+                    ["Wrapping" {:file "doc/api/wrapping.md"}]]]}

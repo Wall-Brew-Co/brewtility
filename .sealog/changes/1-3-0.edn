@@ -1,0 +1,11 @@
+{:version      {:major 1
+                :minor 3
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["Automated deployments to clojars."]
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      []
+                :security   []}
+ :timestamp    "2023-02-12T15:39:48.637349Z"}

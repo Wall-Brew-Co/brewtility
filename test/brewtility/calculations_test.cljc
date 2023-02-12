@@ -1,12 +1,12 @@
 (ns brewtility.calculations-test
-  (:require [brewtility.calculations :as sut]
+  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            [brewtility.calculations :as sut]
             [brewtility.color :as color]
             [brewtility.precision :as bp]
-            [common-beer-data.fermentables.grains :as grains]
             [common-beer-data.fermentables.adjuncts :as adjuncts]
-            [common-beer-data.hops.both :as hops]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            [common-beer-data.fermentables.grains :as grains]
+            [common-beer-data.hops.both :as hops]))
 
 
 (deftest normalize-fermentable-test
