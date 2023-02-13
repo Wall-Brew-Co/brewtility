@@ -11,6 +11,16 @@
             [brewtility.data.waters]
             [brewtility.data.yeasts]
             [brewtility.precision-test]
+            [brewtility.predicates.equipment-test]
+            [brewtility.predicates.fermentables-test]
+            [brewtility.predicates.hops-test]
+            [brewtility.predicates.impl-test]
+            [brewtility.predicates.mash-test]
+            [brewtility.predicates.miscs-test]
+            [brewtility.predicates.recipes-test]
+            [brewtility.predicates.styles-test]
+            [brewtility.predicates.waters-test]
+            [brewtility.predicates.yeasts-test]
             [brewtility.units-test]
             [brewtility.wrapping-test]
             [doo.runner :refer-macros [doo-tests]]))
@@ -28,5 +38,15 @@
            'brewtility.data.waters
            'brewtility.data.yeasts
            'brewtility.precision-test
+           'brewtility.predicates.equipment-test
+           'brewtility.predicates.fermentables-test
+           'brewtility.predicates.hops-test
+           'brewtility.predicates.impl-test
+           'brewtility.predicates.mash-test
+           'brewtility.predicates.miscs-test
+           'brewtility.predicates.recipes-test
+           'brewtility.predicates.styles-test
+           'brewtility.predicates.waters-test
+           'brewtility.predicates.yeasts-test
            'brewtility.units-test
            'brewtility.wrapping-test)
