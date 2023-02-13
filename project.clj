@@ -1,13 +1,13 @@
-(defproject com.wallbrew/brewtility "1.4.0"
-  :description "Utility functions for all of your brewing needs"
+(defproject com.wallbrew/brewtility "1.5.0"
+  :description "Utility functions for all of your brewing needs."
   :url "https://github.com/Wall-Brew-Co/brewtility"
   :license {:name         "MIT"
             :url          "https://opensource.org/licenses/MIT"
             :distribution :repo
-            :comments     "Same-as all Wall-Brew projects"}
+            :comments     "Same-as all Wall-Brew projects."}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/brewtility"}
-  :dependencies [[com.wallbrew/spoon "1.1.0"]
+  :dependencies [[com.wallbrew/spoon "1.2.1"]
                  [org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
@@ -26,7 +26,7 @@
 
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[com.wallbrew/common-beer-data "1.2.0"]
-                                      [com.wallbrew/common-beer-format "2.2.0"]
+                                      [com.wallbrew/common-beer-format "2.2.1"]
                                       [doo "0.1.11"]]
                        :plugins      [[lein-doo "0.1.11"]]}}
 

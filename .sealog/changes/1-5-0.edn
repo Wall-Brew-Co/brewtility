@@ -1,0 +1,12 @@
+{:version      {:major 1
+                :minor 5
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["A calculation function to derive the volume of wort at the start of the boil."
+                             "Predicate functions for all `common-beer-format` types."]
+                :changed    ["`com.wallbrew/spoon` is now a production dependency of `brewtility`."]
+                :deprecated []
+                :removed    []
+                :fixed      ["Introduced missing `defn` metadata tags in the `calculation` namespace."]
+                :security   []}
+ :timestamp    "2023-02-13T00:10:04.600775500Z"}

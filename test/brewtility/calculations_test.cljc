@@ -33,7 +33,7 @@
       (is (= 20.784 (bp/->3dp (sut/calculate-malt-color-units fermentables batch-size))))
       (is (= 21.273 (bp/->3dp (sut/calculate-srm-color fermentables batch-size))))
       (is (= 41.907 (bp/->3dp (sut/calculate-ebc-color fermentables batch-size))))
-      (is (= 41.907 (bp/->3dp (sut/calculate-lovibond-color fermentables batch-size))))
+      (is (= 16.265 (bp/->3dp (sut/calculate-lovibond-color fermentables batch-size))))
       (is (= color/srm-21 (sut/calculate-rgba-color fermentables batch-size))))))
 
 
@@ -107,3 +107,34 @@
       (is (= 68.93  (bp/->3dp (sut/calculate-recipe-ibus [(assoc hop-1 :amount 0.01 :time 120) (assoc hop-2 :amount 0.02 :time 60)] 15 1.03))))
       (is (= 34.465  (bp/->3dp (sut/calculate-recipe-ibus [(assoc hop-1 :amount 0.01 :time 120) (assoc hop-2 :amount 0.02 :time 60)] 30 1.03))))
       (is (= 52.64 (bp/->3dp (sut/calculate-recipe-ibus [(assoc hop-1 :amount 0.01 :time 120) (assoc hop-2 :amount 0.02 :time 60)] 15 1.06)))))))
+
+
+(deftest calculate-equipment-boil-volume-test
+  (testing "An exception is thrown when data required for the calculation is missing"
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot calculate boil volume with non-numeric values" (sut/calculate-equipment-boil-volume {}))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot calculate boil volume with non-numeric values" (sut/calculate-equipment-boil-volume {})))))
+  (testing "Verify calculation correctness"
+    (is (= 1.0 (sut/calculate-equipment-boil-volume {:batch-size        1.0
+                                                     :top-up-water      0.0
+                                                     :trub-chiller-loss 0.0
+                                                     :boil-time         0.0
+                                                     :evap-rate         9.0}))
+        "When the boil time is zero, the boil volume is equal to the batch size")
+    (is (= 0.0 (sut/calculate-equipment-boil-volume {:batch-size        1.0
+                                                     :top-up-water      0.5
+                                                     :trub-chiller-loss 0.5
+                                                     :boil-time         0.0
+                                                     :evap-rate         9.0}))
+        "If the batch size is all replacement/lost water, the boil size is 0")
+    (is (= 1.1 (sut/calculate-equipment-boil-volume {:batch-size        1.0
+                                                     :top-up-water      0.0
+                                                     :trub-chiller-loss 0.0
+                                                     :boil-time         60.0
+                                                     :evap-rate         10.0}))
+        "A ten percent loss of water with no replacement water")
+    (is (= 0.55 (sut/calculate-equipment-boil-volume {:batch-size        1.0
+                                                      :top-up-water      0.5
+                                                      :trub-chiller-loss 0.0
+                                                      :boil-time         60.0
+                                                      :evap-rate         10.0}))
+        "A ten percent loss of water after a half-gallon  addition")))

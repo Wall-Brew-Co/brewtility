@@ -1,6 +1,6 @@
 (ns brewtility.wrapping
   "Namespace for wrapping and unwrapping common-beer-format maps.
-   
+
    Since the BeerXML format wraps attributes in tags indicating the type of ingreditent/process/etc.,
      the analogous common-beer-format maps are nested in a map with a single key.
    This namespace provides functions for wrapping and unwrapping these maps."

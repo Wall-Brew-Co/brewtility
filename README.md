@@ -33,6 +33,7 @@ The library does provide access to other functions, but those primarily exist in
 - [Calculations](doc/api/calculations.md)
 - [Color](doc/api/color.md)
 - [Precision](doc/api/precision.md)
+- [Predicates](doc/api/predicates.md)
 - [Units of Measure](doc/api/units.md)
 - [Wrapping](doc/api/wrapping.md)
 

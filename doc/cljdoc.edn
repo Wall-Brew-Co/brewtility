@@ -2,11 +2,11 @@
                    ["Changelog" {:file "CHANGELOG.md"}]
                    ["Community" {}
                     ["Contributing" {:file "CONTRIBUTING.md"}]
-                    ["Code of Conduct" {:file "CODE_OF_CONDUCT.md"}]
-                    ["License" {:file "LICENSE"}]]
+                    ["Code of Conduct" {:file "CODE_OF_CONDUCT.md"}]]
                    ["Functionality" {}
                     ["Calculations" {:file "doc/api/calculations.md"}]
                     ["Color" {:file "doc/api/color.md"}]
                     ["Precision" {:file "doc/api/precision.md"}]
+                    ["Predicates" {:file "doc/api/predicates.md"}]
                     ["Units of Measure" {:file "doc/api/units.md"}]
                     ["Wrapping" {:file "doc/api/wrapping.md"}]]]}

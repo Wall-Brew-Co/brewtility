@@ -1,8 +1,8 @@
 (ns brewtility.color-test
-  (:require [brewtility.color :as sut]
-            [brewtility.precision :as bp]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            [brewtility.color :as sut]
+            [brewtility.precision :as bp]))
 
 
 (deftest srm->rgba-test

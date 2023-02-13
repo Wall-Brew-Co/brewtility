@@ -1,8 +1,8 @@
 (ns brewtility.units-test
-  (:require [brewtility.units :as sut]
+  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
             [brewtility.precision :as bp]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            [brewtility.units :as sut]))
 
 
 (deftest convert-volume-test
