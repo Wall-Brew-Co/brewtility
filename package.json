@@ -1,7 +1,7 @@
 {
   "name": "brewtility",
-  "version": "1.4.0",
-  "description": "Utility functions for all of your brewing needs",
+  "version": "1.5.0",
+  "description": "Utility functions for all of your brewing needs.",
   "main": "index.js",
   "directories": {
     "test": "test"

@@ -199,6 +199,7 @@
   (let [reducing-fn (fn [acc h] (+ acc (calculate-ibu-per-hop h batch-size potential-gravity)))]
     (reduce reducing-fn 0 hops)))
 
+
 (defn calculate-equipment-boil-volume
   "Given a `common-beer-format` conforming `equipment`, calculate the volume of the wort at the start of the boil.
    If insufficient data is provided, this function will throw an exception."

@@ -33,7 +33,7 @@
       (is (= 20.784 (bp/->3dp (sut/calculate-malt-color-units fermentables batch-size))))
       (is (= 21.273 (bp/->3dp (sut/calculate-srm-color fermentables batch-size))))
       (is (= 41.907 (bp/->3dp (sut/calculate-ebc-color fermentables batch-size))))
-      (is (= 41.907 (bp/->3dp (sut/calculate-lovibond-color fermentables batch-size))))
+      (is (= 16.265 (bp/->3dp (sut/calculate-lovibond-color fermentables batch-size))))
       (is (= color/srm-21 (sut/calculate-rgba-color fermentables batch-size))))))
 
 
@@ -107,6 +107,7 @@
       (is (= 68.93  (bp/->3dp (sut/calculate-recipe-ibus [(assoc hop-1 :amount 0.01 :time 120) (assoc hop-2 :amount 0.02 :time 60)] 15 1.03))))
       (is (= 34.465  (bp/->3dp (sut/calculate-recipe-ibus [(assoc hop-1 :amount 0.01 :time 120) (assoc hop-2 :amount 0.02 :time 60)] 30 1.03))))
       (is (= 52.64 (bp/->3dp (sut/calculate-recipe-ibus [(assoc hop-1 :amount 0.01 :time 120) (assoc hop-2 :amount 0.02 :time 60)] 15 1.06)))))))
+
 
 (deftest calculate-equipment-boil-volume-test
   (testing "An exception is thrown when data required for the calculation is missing"

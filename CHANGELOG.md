@@ -6,11 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [1.5.0 - 2023-02-13](#150---2023-02-13)
 * [1.4.0 - 2023-02-12](#140---2023-02-12)
 * [1.3.0 - 2023-02-12](#130---2023-02-12)
 * [1.2.0 - 2022-07-10](#120---2022-07-10)
 * [1.1.0 - 2020-08-15](#110---2020-08-15)
 * [1.0.0 - 2020-07-19](#100---2020-07-19)
+
+## 1.5.0 - 2023-02-13
+
+* Added
+  * A calculation function to derive the volume of wort at the start of the boil.
+  * Predicate functions for all `common-beer-format` types.
+* Changed
+  * `com.wallbrew/spoon` is now a production dependency of `brewtility`.
+* Fixed
+  * Introduced missing `defn` metadata tags in the `calculation` namespace.
 
 ## 1.4.0 - 2023-02-12
 
