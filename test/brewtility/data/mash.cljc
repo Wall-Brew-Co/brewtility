@@ -8,7 +8,7 @@
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 
-(def ^:const sample-mash-step
+(def sample-mash-step
   "A hard-coded sample mash step for static unit tests"
   {:infuse-amount 10.0
    :name          "Conversion Step, 68C"
@@ -18,17 +18,17 @@
    :version       1})
 
 
-(def ^:const sample-mash-step-wrapper
+(def sample-mash-step-wrapper
   "A hard-coded sample mash-step-wrapper for static unit tests"
   {:mash-step sample-mash-step})
 
 
-(def ^:const sample-mash-steps
+(def sample-mash-steps
   "A hard-coded sample mash-steps for static unit tests"
   [sample-mash-step-wrapper])
 
 
-(def ^:const sample-mash
+(def sample-mash
   "A hard-coded sample mash for static unit tests"
   {:name       "Single Step Infusion, 68 C"
    :version    1
@@ -36,7 +36,7 @@
    :mash-steps sample-mash-steps})
 
 
-(def ^:const sample-mash-wrapper
+(def sample-mash-wrapper
   "A hard-coded sample mash-wrapper for static unit tests"
   {:mash sample-mash})
 

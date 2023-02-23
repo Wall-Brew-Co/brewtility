@@ -8,7 +8,7 @@
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 
-(def ^:const sample-equipment
+(def sample-equipment
   "A hard-coded sample equipment for static unit tests"
   {:batch-size        19.9
    :boil-size         26.2
@@ -28,7 +28,7 @@
    :version           1})
 
 
-(def ^:const sample-equipment-wrapper
+(def sample-equipment-wrapper
   "A hard-coded sample equipment-wrapper for static unit tests"
   {:equipment sample-equipment})
 

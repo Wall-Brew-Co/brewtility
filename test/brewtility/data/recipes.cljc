@@ -33,7 +33,7 @@
     (is (spoon.spec/test-valid? ::recipes.format/ibu-method (random-ibu-method)))))
 
 
-(def ^:const sample-recipe
+(def sample-recipe
   "A hard-coded sample recipe for static unit tests"
   (merge {:age                 24.0
           :age-temp            17.0
@@ -63,17 +63,17 @@
          yeasts/sample-yeasts-wrapper))
 
 
-(def ^:const sample-recipe-wrapper
+(def sample-recipe-wrapper
   "A hard-coded sample recipe-wrapper for static unit tests"
   {:recipe sample-recipe})
 
 
-(def ^:const sample-recipes
+(def sample-recipes
   "A hard-coded sample recipes for static unit tests"
   [sample-recipe-wrapper])
 
 
-(def ^:const sample-recipes-wrapper
+(def sample-recipes-wrapper
   "A hard-coded sample recipes-wrapper for static unit tests"
   {:recipes sample-recipes})
 
