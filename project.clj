@@ -11,7 +11,7 @@
                  [org.clojure/clojure "1.11.1"]
                  [org.clojure/clojurescript "1.11.60" :scope "provided"]]
 
-  :plugins [[com.github.clj-kondo/lein-clj-kondo "0.2.4"]
+  :plugins [[com.github.clj-kondo/lein-clj-kondo "0.2.5"]
             [com.wallbrew/lein-sealog "1.0.2"]
             [lein-cljsbuild "1.1.8"]
             [lein-project-version "0.1.0"]
