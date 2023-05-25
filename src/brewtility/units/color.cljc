@@ -1,8 +1,14 @@
 (ns brewtility.units.color
   "A namespace for converting between different units of color.
     
-   By the BeerXML spec, color is measured in different units in different contexts.
-   This namespace provides a way to convert between SRM and other units of color."
+   In the BeerXML spec, color is measured in different units in different contexts.
+   This namespace provides a way to convert between SRM and other units of color.
+   
+   Currently, brewtility supports the following types of color:
+     - [SRM](https://en.wikipedia.org/wiki/Standard_Reference_Method)
+     - [EBC](https://en.wikipedia.org/wiki/European_Brewery_Convention)
+     - [Lovibond](https://en.wikipedia.org/wiki/Beer_measurement#Colour)
+     - [RGBa](https://en.wikipedia.org/wiki/RGBA_color_model)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
             [brewtility.units.options :as opts]))

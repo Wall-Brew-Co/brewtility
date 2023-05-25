@@ -20,102 +20,13 @@
   {:added   "1.0"
    :changed "2.0"}
   (:require [brewtility.units.color :as color]
+            [brewtility.units.options :as opts]
             [brewtility.units.pressure :as pressure]
             [brewtility.units.specific-gravity :as specific-gravity]
             [brewtility.units.temperature :as temperature]
             [brewtility.units.time :as time]
             [brewtility.units.volume :as volume]
             [brewtility.units.weight :as weight]))
-
-(def system-of-measure
-  "The system of measure used in the recipe or for a given unit.
-
-   Brewility supports the following systems of measure:
-     - [British imperial](https://en.wikipedia.org/wiki/Imperial_units)
-     - [Metric system](https://en.wikipedia.org/wiki/Metric_system)
-     - [United States Customary Units](https://en.wikipedia.org/wiki/United_States_customary_units)
-     - [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)"
-  :system-of-measure)
-
-
-(def imperial
-  "The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
-
-   Commonly used with `brewtility.units` and in argument maps for enricher functions."
-  :imperial)
-
-
-(def metric
-  "The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
-
-   Commonly used with `brewtility.units` and in argument maps for enricher functions."
-  :metric)
-
-
-(def us-customary
-  "The [United States Customary Units](https://en.wikipedia.org/wiki/United_States_customary_units) system of measure.
-
-   Commonly used with `brewtility.units` and in argument maps for enricher functions.."
-  :us)
-
-
-(def international-system
-  "The [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units) system of measure.
-
-   Commonly used with `brewtility.units` and in argument maps for enricher functions."
-  :si)
-
-(def systems-of-meaure
-  "The systems of measure available across brewtility.
-   
-   Brewility supports the following systems of measure:
-     - [British imperial](https://en.wikipedia.org/wiki/Imperial_units)
-     - [Metric system](https://en.wikipedia.org/wiki/Metric_system)
-     - [United States Customary Units](https://en.wikipedia.org/wiki/United_States_customary_units)
-     - [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units)"
-  #{imperial
-    international-system
-    metric
-    us-customary})
-
-(def suffix
-  "The type of suffix to add on to displayed units of measure.
-
-   Brewility supports the following suffix types:
-     - `:short` - A short suffix. (e.g. \"tsp\" instead of \"teaspoon\")
-     - `:full` - The full name as a suffix (e.g. \"teaspoon\")"
-  :suffix)
-
-
-(def short
-  "A short suffix. 
-   (e.g. \"tsp\" instead of \"teaspoon\")"
-  :short)
-
-
-(def full
-  "The full name as a suffix.
-   (e.g. \"teaspoon\")"
-  :full)
-
-
-(def supported-suffixes
-  "A set of supported suffix types.
-   
-   Brewility supports the following suffix types:
-     - `:short` - A short suffix. (e.g. \"tsp\" instead of \"teaspoon\")
-     - `:full` - The full name as a suffix (e.g. \"teaspoon\")"
-  #{short full})
-
-(def measurement-types
-  "The measurement types available across brewtility."
-  #{:color
-    :pressure
-    :specific-gravity
-    :temperature
-    :time
-    :volume
-    :weight})
 
 (defn convert
   "Given a `measurement` in `source-units`, convert it to the `target-units` in a given `measurement-type`.
@@ -147,7 +58,7 @@
     :weight           (weight/convert measurement source-units target-units)
     :else (throw (ex-info "Unsupported unit system"
                           {:measurement-type measurement-type
-                           :allowed-values   measurement-types
+                           :allowed-values   opts/measurement-types
                            :measurement      measurement}))))
 
 
@@ -175,7 +86,7 @@
    (display measurement source-units measurement-type {}))
   ([measurement-type measurement source-units opts]
 
-   (let [options (merge {:precision 2 suffix short} opts)]
+   (let [options (merge {opts/precision opts/default-precision opts/suffix opts/short} opts)]
      (case measurement-type
        :color            (color/display measurement source-units options)
        :pressure         (pressure/display measurement source-units options)
@@ -186,5 +97,5 @@
        :weight           (weight/display measurement source-units options)
        :else (throw (ex-info "Unsupported unit system"
                              {:measurement-type measurement-type
-                              :allowed-values   measurement-types
+                              :allowed-values   opts/measurement-types
                               :measurement      measurement}))))))
