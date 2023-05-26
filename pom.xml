@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/brewtility</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/brewtility.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/brewtility.git</developerConnection>
-    <tag>47bfea691592555cd7be8f910c170d69591be94d</tag>
+    <tag>d63f9c518e8f68f0e964fc32214131c4a6686383</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -84,7 +84,7 @@
     <dependency>
       <groupId>com.wallbrew</groupId>
       <artifactId>common-beer-data</artifactId>
-      <version>1.2.0</version>
+      <version>1.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
