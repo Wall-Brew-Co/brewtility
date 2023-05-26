@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/brewtility</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/brewtility.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/brewtility.git</developerConnection>
-    <tag>d63f9c518e8f68f0e964fc32214131c4a6686383</tag>
+    <tag>911e7cdb55b475ab2282a818a43b823cee444669</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
