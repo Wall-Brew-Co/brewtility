@@ -5,6 +5,7 @@
   {:added "2.0"}
   (:refer-clojure :exclude [short second]))
 
+
 ;; Defaults
 
 (def default-precision
@@ -93,6 +94,7 @@
 (def supported-suffixes
   "A set of supported suffix types."
   #{short full})
+
 
 (def measurement-types
   "The measurement types available across brewtility."
@@ -398,6 +400,7 @@
    Commonly used with `brewtility.units` and in argument/option maps."
   :week)
 
+
 ;; Pressure Units
 
 (def pascal
@@ -441,6 +444,7 @@
    
    Commonly used with `brewtility.units.pressure` and in argument maps."
   :psi)
+
 
 ;; Specific Gravity Units
 

@@ -1,14 +1,15 @@
 (ns brewtility.units.specific-gravity
   "A namespace for converting between different units of specific gravity.
    
-   In the BeerXML spec, pecific gravity is measured in relative to the weight of the same size sample of water.
-   This namespace converts between that ration and other units.
+   In the BeerXML spec, specific gravity is measured in relative to the weight of the same size sample of water.
+   This namespace converts between that ratio and other units.
    
    Currently, brewtility supports the following types of specific gravity:
      - [specific-gravity](https://en.wikipedia.org/wiki/Specific_gravity)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
             [brewtility.units.options :as opts]))
+
 
 (def ^:const measurements
   "The specific gravity systems available across brewtility."

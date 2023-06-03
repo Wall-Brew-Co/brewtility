@@ -1,5 +1,5 @@
 (ns brewtility.units.pressure
-   "A namespace for converting between different units of pressure.
+  "A namespace for converting between different units of pressure.
     
    In the BeerXML spec, pressure is measured in kilopascals (kPa).
    This namespace provides a way to convert between kilopascals and other units.
@@ -15,6 +15,7 @@
   (:require [brewtility.precision :as precision]
             [brewtility.units.options :as opts]))
 
+
 (def ^:const measurements
   "The pressure measurements supported by brewtility."
   #{opts/pascal
@@ -23,6 +24,7 @@
     opts/atmosphere
     opts/torr
     opts/psi})
+
 
 (def ^:const measurements->display-name
   "A map of pressure measurements to their display names."
