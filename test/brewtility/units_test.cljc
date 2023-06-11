@@ -248,9 +248,9 @@
       (is (= "23.2 ebc"
              (sut/display options/color 23.2 options/ebc)
              (sut/display options/color 23.2 :ebc)))
-      (is (= "10.0 degrees lovibond"
-             (sut/display options/color 10.0 options/lovibond {options/suffix options/full})
-             (sut/display options/color 10.0 :lovibond {options/suffix options/full})))
+      (is (= "10.1 degrees lovibond"
+             (sut/display options/color 10.1 options/lovibond {options/suffix options/full})
+             (sut/display options/color 10.1 :lovibond {options/suffix options/full})))
       (is (= color/srm-37 (sut/display options/color color/srm-37 options/rgba))))
     (testing "Pressure:"
       (is (= "1.5 pa"
