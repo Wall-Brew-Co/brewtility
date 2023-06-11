@@ -4,7 +4,6 @@
    This namespace is responsible for running all of the ClojureScript tests.
    To add new test namespaces, add them to the `:require` and `doo-tests` clauses below."
   (:require [brewtility.calculations-test]
-            [brewtility.color-test]
             [brewtility.data.equipment]
             [brewtility.data.fermentables]
             [brewtility.data.hops]
@@ -38,7 +37,6 @@
 
 
 (doo-tests 'brewtility.calculations-test
-           'brewtility.color-test
            'brewtility.data.equipment
            'brewtility.data.fermentables
            'brewtility.data.hops
