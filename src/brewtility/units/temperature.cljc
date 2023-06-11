@@ -5,7 +5,7 @@
    This namespace converts between that and other units.
    
    Currently, brewtility supports the following types of temperature measurements:
-     - [clesius](https://en.wikipedia.org/wiki/Celsius)
+     - [celsius](https://en.wikipedia.org/wiki/Celsius)
      - [fahrenheit](https://en.wikipedia.org/wiki/Fahrenheit)
      - [kelvin](https://en.wikipedia.org/wiki/Kelvin_(unit))"
   {:added "2.0"}

@@ -9,7 +9,7 @@ For example:
 (units/display :volume 1.5 :liter {:suffix :full}) ;; => "1.5 liter"
 ```
 
-This allows us to easily extend the definition of a single function to fulfil multiple complex needs; however, option maps come with considerable drawbacks.
+This allows us to easily extend the definition of a single function to fulfill multiple complex needs; however, option maps come with considerable drawbacks.
 When a map is keyed with keywords, it is easy to introduce subtle, hard-to-detect errors.
 Since most of these functions select default values for keys not present, typos can lead to meaningful differences in behavior.
 For example:

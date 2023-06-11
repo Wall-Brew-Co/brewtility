@@ -1,0 +1,22 @@
+{:version      {:major 2
+                :minor 0
+                :patch 0}
+ :version-type :semver3
+ :changes      {:added      ["`brewtility.units.color` for converting between SRM, EBC, and Lovibond."
+                             "`brewtility.units.pressure` for converting between PSI, Bar, etc."
+                             "`brewtility.units.specific-gravity` for converting Specific Gravity."
+                             "`brewtility.units.temperature` for converting between Celsius, Fahrenheit, and Kelvin."
+                             "`brewtility.units.time` for converting between seconds, minutes, hours, etc."
+                             "`brewtility.units.volume` for converting between gallons, liters, etc."
+                             "`brewtility.units.weight` for converting between pounds, kilograms, etc."
+                             "`brewtility.units.options` to introduce the symbolic keyword pattern"
+                             "Display functions for all unit types."]
+                :changed    ["Internal functions that convert between unit systems now use `brewtility.units`"]
+                :deprecated []
+                :removed    ["`brewility.color` has been removed in favor of `brewtility.units.color`"
+                             "`brewtility.units/convert-weight` has been removed in favor of `brewtility.units/convert` and `brewtility.units.weight/convert`"
+                             "`brewtility.units/convert-volume` has been removed in favor of `brewtility.units/convert` and `brewtility.units.volume/convert`"
+                             "`brewtility.units/convert-temperature` has been removed in favor of `brewtility.units/convert` and `brewtility.units.temperature/convert`"]
+                :fixed      []
+                :security   []}
+ :timestamp    "2023-06-11T18:47:32.340619900Z"}

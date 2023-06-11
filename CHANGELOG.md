@@ -6,12 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [2.0.0 - 2023-06-11](#200---2023-06-11)
 * [1.5.0 - 2023-02-13](#150---2023-02-13)
 * [1.4.0 - 2023-02-12](#140---2023-02-12)
 * [1.3.0 - 2023-02-12](#130---2023-02-12)
 * [1.2.0 - 2022-07-10](#120---2022-07-10)
 * [1.1.0 - 2020-08-15](#110---2020-08-15)
 * [1.0.0 - 2020-07-19](#100---2020-07-19)
+
+## 2.0.0 - 2023-06-11
+
+* Added
+  * `brewtility.units.color` for converting between SRM, EBC, and Lovibond.
+  * `brewtility.units.pressure` for converting between PSI, Bar, etc.
+  * `brewtility.units.specific-gravity` for converting Specific Gravity.
+  * `brewtility.units.temperature` for converting between Celsius, Fahrenheit, and Kelvin.
+  * `brewtility.units.time` for converting between seconds, minutes, hours, etc.
+  * `brewtility.units.volume` for converting between gallons, liters, etc.
+  * `brewtility.units.weight` for converting between pounds, kilograms, etc.
+  * `brewtility.units.options` to introduce the symbolic keyword pattern
+  * Display functions for all unit types.
+* Changed
+  * Internal functions that convert between unit systems now use `brewtility.units`
+* Removed
+  * `brewility.color` has been removed in favor of `brewtility.units.color`
+  * `brewtility.units/convert-weight` has been removed in favor of `brewtility.units/convert` and `brewtility.units.weight/convert`
+  * `brewtility.units/convert-volume` has been removed in favor of `brewtility.units/convert` and `brewtility.units.volume/convert`
+  * `brewtility.units/convert-temperature` has been removed in favor of `brewtility.units/convert` and `brewtility.units.temperature/convert`
 
 ## 1.5.0 - 2023-02-13
 
