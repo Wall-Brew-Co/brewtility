@@ -31,11 +31,17 @@ Below are examples of provided functionality for each namespace.
 The library does provide access to other functions, but those primarily exist in support of those outlined here.
 
 - [Calculations](doc/api/calculations.md)
-- [Color](doc/api/color.md)
 - [Precision](doc/api/precision.md)
 - [Predicates](doc/api/predicates.md)
 - [Units of Measure](doc/api/units.md)
 - [Wrapping](doc/api/wrapping.md)
+
+## Common Patterns
+
+Brewtility follows several conventions and design patterns that result in artifacts available to library consumers.
+These are not strictly required for use; however, they provide additional documentation and ease-of-use to those who adopt them.
+
+- [Symbolic Keywords](doc/patterns/symbolic_keywords.md)
 
 ## Testing
 

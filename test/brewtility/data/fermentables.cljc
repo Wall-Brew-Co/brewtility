@@ -8,7 +8,7 @@
             #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
 
 
-(def ^:const sample-fermentable
+(def sample-fermentable
   "A hard-coded sample fermentable for static unit tests"
   {:amount           0.45
    :coarse-fine-diff 1.5
@@ -26,17 +26,17 @@
    :yield            78.0})
 
 
-(def ^:const sample-fermentable-wrapper
+(def sample-fermentable-wrapper
   "A hard-coded sample fermentable-wrapper for static unit tests"
   {:fermentable sample-fermentable})
 
 
-(def ^:const sample-fermentables
+(def sample-fermentables
   "A hard-coded sample fermentables for static unit tests"
   [sample-fermentable-wrapper])
 
 
-(def ^:const sample-fermentables-wrapper
+(def sample-fermentables-wrapper
   "A hard-coded sample fermentables-wrapper for static unit tests"
   {:fermentables sample-fermentables})
 

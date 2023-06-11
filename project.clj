@@ -1,4 +1,4 @@
-(defproject com.wallbrew/brewtility "1.5.0"
+(defproject com.wallbrew/brewtility "2.0.0"
   :description "Utility functions for all of your brewing needs."
   :url "https://github.com/Wall-Brew-Co/brewtility"
   :license {:name         "MIT"
