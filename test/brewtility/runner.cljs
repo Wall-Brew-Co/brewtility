@@ -1,4 +1,8 @@
 (ns brewtility.runner
+  "The ClojureScript test runner for brewtility.
+   
+   This namespace is responsible for running all of the ClojureScript tests.
+   To add new test namespaces, add them to the `:require` and `doo-tests` clauses below."
   (:require [brewtility.calculations-test]
             [brewtility.color-test]
             [brewtility.data.equipment]
@@ -22,6 +26,13 @@
             [brewtility.predicates.waters-test]
             [brewtility.predicates.yeasts-test]
             [brewtility.units-test]
+            [brewtility.units.color-test]
+            [brewtility.units.pressure-test]
+            [brewtility.units.specific-gravity-test]
+            [brewtility.units.temperature-test]
+            [brewtility.units.time-test]
+            [brewtility.units.volume-test]
+            [brewtility.units.weight-test]
             [brewtility.wrapping-test]
             [doo.runner :refer-macros [doo-tests]]))
 
@@ -49,4 +60,11 @@
            'brewtility.predicates.waters-test
            'brewtility.predicates.yeasts-test
            'brewtility.units-test
+           'brewtility.units.color-test
+           'brewtility.units.pressure-test
+           'brewtility.units.specific-gravity-test
+           'brewtility.units.temperature-test
+           'brewtility.units.time-test
+           'brewtility.units.volume-test
+           'brewtility.units.weight-test
            'brewtility.wrapping-test)

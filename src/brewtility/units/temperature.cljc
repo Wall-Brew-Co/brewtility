@@ -96,6 +96,56 @@
    options/k          celsius->kelvin})
 
 
+(defn- is-celsius?
+  "A function to determine if a temperature measurement is in celsius."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement]
+  (boolean (or (= measurement options/c)
+               (= measurement options/celsius))))
+
+
+(defn- is-fahrenheit?
+  "A function to determine if a temperature measurement is in fahrenheit."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement]
+  (boolean (or (= measurement options/f)
+               (= measurement options/fahrenheit))))
+
+
+(defn- is-kelvin?
+  "A function to determine if a temperature measurement is in kelvin."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement]
+  (boolean (or (= measurement options/k)
+               (= measurement options/kelvin))))
+
+
+(defn- is-centigrade?
+  "A function to determine if a temperature measurement is in centigrade."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement]
+  (= measurement options/centigrade))
+
+
+(defn- same-measurement?
+  "A function to determine if two temperature measurements systems are the same."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement1 measurement2]
+  (boolean (or (and (is-celsius? measurement1)
+                    (is-celsius? measurement2))
+               (and (is-fahrenheit? measurement1)
+                    (is-fahrenheit? measurement2))
+               (and (is-kelvin? measurement1)
+                    (is-kelvin? measurement2))
+               (and (is-centigrade? measurement1)
+                    (is-centigrade? measurement2)))))
+
+
 (defn convert
   "Given a `temperature` in `source-measurement`, convert it to the `target-measurement`.
    Supported values for `source-measurement` and `target-measurement` are enumerated in [[temperature-measurements]].
@@ -106,7 +156,7 @@
   (if (and (contains? measurements source-measurement)
            (contains? measurements target-measurement)
            (number? temperature))
-    (if (= source-measurement target-measurement)
+    (if (same-measurement? source-measurement target-measurement)
       temperature
       (let [source->celsius-fn (measurement->celsius source-measurement)
             celsius->target-fn (celsius->measurement target-measurement)]
@@ -124,7 +174,7 @@
    For example,
 
    ```clj
-    (display 1.5 :pound) ;; => \"1.5 lb\"
+    (display 1.5 :celsius) ;; => \"1.5 c\"
    ```
 
    This function accepts an option map as an optional third argument. The following options are available:

@@ -57,10 +57,10 @@
     :time             (time/convert measurement source-units target-units)
     :volume           (volume/convert measurement source-units target-units)
     :weight           (weight/convert measurement source-units target-units)
-    :else (throw (ex-info "Unsupported unit system"
-                          {:measurement-type measurement-type
-                           :allowed-values   options/measurement-types
-                           :measurement      measurement}))))
+    (throw (ex-info "Unsupported unit system"
+                    {:measurement-type measurement-type
+                     :allowed-values   options/measurement-types
+                     :measurement      measurement}))))
 
 
 (defn display
@@ -84,10 +84,11 @@
               "brewtility.units.volume/display"
               "brewtility.units.weight/display"]}
   ([measurement-type measurement source-units]
-   (display measurement source-units measurement-type {}))
+   (display measurement-type measurement source-units {}))
   ([measurement-type measurement source-units opts]
 
-   (let [options (merge {options/precision options/default-precision options/suffix options/short} opts)]
+   (let [options (merge {options/precision options/default-precision
+                         options/suffix    options/short} opts)]
      (case measurement-type
        :color            (color/display measurement source-units options)
        :pressure         (pressure/display measurement source-units options)
@@ -96,7 +97,7 @@
        :time             (time/display measurement source-units options)
        :volume           (volume/display measurement source-units options)
        :weight           (weight/display measurement source-units options)
-       :else (throw (ex-info "Unsupported unit system"
-                             {:measurement-type measurement-type
-                              :allowed-values   options/measurement-types
-                              :measurement      measurement}))))))
+       (throw (ex-info "Unsupported unit system"
+                       {:measurement-type measurement-type
+                        :allowed-values   options/measurement-types
+                        :measurement      measurement}))))))

@@ -97,6 +97,36 @@
                                  options/short "tsp"}})
 
 
+(defn- liters?
+  "An implementation function to determine if a measurement is in liters."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement-name]
+  (boolean (or (= measurement-name options/liter)
+               (= measurement-name options/litre))))
+
+
+(defn- milliliters?
+  "An implementation function to determine if a measurement is in milliliters."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement-name]
+  (boolean (or (= measurement-name options/milliliter)
+               (= measurement-name options/millilitre))))
+
+
+(defn- same-measurement?
+  "An implementation function to determine if two measurement systems are the same."
+  {:no-doc true
+   :added  "2.0"}
+  [measurement-name1 measurement-name2]
+  (boolean (or (= measurement-name1 measurement-name2)
+               (and (liters? measurement-name1)
+                    (liters? measurement-name2))
+               (and (milliliters? measurement-name1)
+                    (milliliters? measurement-name2)))))
+
+
 (defn- liter->measurement
   "An implementation function to convert liters to another unit of volume"
   {:no-doc true
@@ -115,7 +145,7 @@
   (if (and (contains? measurements source-measurement)
            (contains? measurements target-measurement)
            (number? volume))
-    (if (= source-measurement target-measurement)
+    (if (same-measurement? source-measurement target-measurement)
       volume
       (let [source->litre-multiplier (measurement->litre source-measurement)
             litre->target-multiplier (liter->measurement target-measurement)]

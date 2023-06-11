@@ -3,7 +3,7 @@
    
    Implemented as part of the Symbolic Keyword pattern."
   {:added "2.0"}
-  (:refer-clojure :exclude [short second]))
+  (:refer-clojure :exclude [second short time]))
 
 
 ;; Defaults
@@ -14,6 +14,9 @@
 
 
 ;; Systems of Measure
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+
 
 (def system-of-measure
   "The system of measure used in the recipe or for a given unit.
@@ -27,11 +30,17 @@
   :system-of-measure)
 
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+
+
 (def imperial
   "The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
    
    Commonly used with `brewtility.units` and in argument/option maps."
   :imperial)
+
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 
 
 (def metric
@@ -41,11 +50,17 @@
   :metric)
 
 
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
+
+
 (def us-customary
   "The [United States Customary Units](https://en.wikipedia.org/wiki/United_States_customary_units) system of measure.
    
    Commonly used with `brewtility.units` and in argument/option maps.."
   :us)
+
+
+#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}
 
 
 (def international-system
@@ -96,15 +111,114 @@
   #{short full})
 
 
+(def color
+  "The color systems used in the recipe or for a given unit.
+   
+   Commonly used with `brewtility.units.color` and in argument/option maps.
+   Brewility supports the following color systems:
+     - [Standard Reference Method](https://en.wikipedia.org/wiki/Standard_Reference_Method)
+     - [European Brewery Convention](https://en.wikipedia.org/wiki/European_Brewery_Convention)
+     - [Lovibond](https://en.wikipedia.org/wiki/Beer_measurement#Colour)
+     - [RGBA](https://en.wikipedia.org/wiki/RGBA_color_space)"
+  :color)
+
+
+(def pressure
+  "The pressure systems used in the recipe or for a given unit.
+   
+   Commonly used with `brewtility.units.pressure` and in argument/option maps.
+   Currently, brewtility supports the following types of pressure:
+      - [pascal](https://en.wikipedia.org/wiki/Pascal_(unit)#Multiples_and_submultiples)
+      - [kilopascal](https://en.wikipedia.org/wiki/Pascal_(unit)#Multiples_and_submultiples)
+      - [bar](https://en.wikipedia.org/wiki/Bar_(unit))
+      - [atmosphere](https://en.wikipedia.org/wiki/Atmosphere_(unit))
+      - [torr](https://en.wikipedia.org/wiki/Torr)
+      - [psi](https://en.wikipedia.org/wiki/Pound-force_per_square_inch"
+  :pressure)
+
+
+(def specific-gravity
+  "The specific gravity systems used in the recipe or for a given unit.
+   
+   Commonly used with `brewtility.units.specific-gravity` and in argument/option maps.
+   Currently, brewtility supports the following types of specific gravity:
+   Currently, brewtility supports the following types of specific gravity:
+     - [specific-gravity](https://en.wikipedia.org/wiki/Specific_gravity)"
+  :specific-gravity)
+
+
+(def temperature
+  "The temperature systems used in the recipe or for a given unit.
+   
+   Commonly used with `brewtility.units.temperature` and in argument/option maps.
+   Currently, brewtility supports the following types of temperature:
+     - [celsius](https://en.wikipedia.org/wiki/Celsius)
+     - [fahrenheit](https://en.wikipedia.org/wiki/Fahrenheit)
+     - [kelvin](https://en.wikipedia.org/wiki/Kelvin)"
+  :temperature)
+
+
+(def time
+  "The time systems used in the recipe or for a given unit.
+   
+   Commonly used with `brewtility.units.time` and in argument/option maps.
+   Currently, brewtility supports the following types of time measurements:
+     - [microsecond](https://en.wikipedia.org/wiki/Microsecond)
+     - [nanosecond](https://en.wikipedia.org/wiki/Nanosecond)
+     - [millisecond](https://en.wikipedia.org/wiki/Millisecond)
+     - [second](https://en.wikipedia.org/wiki/Second)
+     - [minute](https://en.wikipedia.org/wiki/Minute)
+     - [hour](https://en.wikipedia.org/wiki/Hour)
+     - [day](https://en.wikipedia.org/wiki/Day)
+     - [week](https://en.wikipedia.org/wiki/Week)"
+  :time)
+
+
+(def volume
+  "The volume systems used in the recipe or for a given unit.
+   
+   Commonly used with `brewtility.units.volume` and in argument/option maps.
+   Currently, brewtility supports the following types of volume:
+      - [american-fluid-ounce](https://en.wikipedia.org/wiki/Fluid_ounce)
+      - [american-gallon](https://en.wikipedia.org/wiki/Gallon)
+      - [american-pint](https://en.wikipedia.org/wiki/Pint)
+      - [american-quart](https://en.wikipedia.org/wiki/Quart)
+      - [cup](https://en.wikipedia.org/wiki/Cup_(unit))
+      - [imperial-fluid-ounce](https://en.wikipedia.org/wiki/Fluid_ounce)
+      - [imperial-gallon](https://en.wikipedia.org/wiki/Gallon)
+      - [imperial-pint](https://en.wikipedia.org/wiki/Pint)
+      - [imperial-quart](https://en.wikipedia.org/wiki/Quart)
+      - [liter](https://en.wikipedia.org/wiki/Litre)
+      - [litre](https://en.wikipedia.org/wiki/Litre)
+      - [milliliter](https://en.wikipedia.org/wiki/Millilitre)
+      - [millilitre](https://en.wikipedia.org/wiki/Millilitre)
+      - [tablespoon](https://en.wikipedia.org/wiki/Tablespoon)
+      - [teaspoon](https://en.wikipedia.org/wiki/Teaspoon))"
+  :volume)
+
+
+(def weight
+  "The weight systems used in the recipe or for a given unit.
+   
+   Commonly used with `brewtility.units.weight` and in argument/option maps.
+   Currently, brewtility supports the following types of weight:
+      - [gram](https://en.wikipedia.org/wiki/Gram)
+      - [milligram](https://en.wikipedia.org/wiki/Milligram)
+      - [kilogram](https://en.wikipedia.org/wiki/Kilogram)
+      - [ounce](https://en.wikipedia.org/wiki/Ounce)
+      - [pound](https://en.wikipedia.org/wiki/Pound_(mass))"
+  :weight)
+
+
 (def measurement-types
   "The measurement types available across brewtility."
-  #{:color
-    :pressure
-    :specific-gravity
-    :temperature
-    :time
-    :volume
-    :weight})
+  #{color
+    pressure
+    specific-gravity
+    temperature
+    time
+    volume
+    weight})
 
 
 ;; Color Systems
@@ -445,9 +559,3 @@
    Commonly used with `brewtility.units.pressure` and in argument maps."
   :psi)
 
-
-;; Specific Gravity Units
-
-(def ^:const specific-gravity
-  "The [Specific Gravity](https://en.wikipedia.org/wiki/Specific_gravity) unit of measure."
-  :specific-gravity)

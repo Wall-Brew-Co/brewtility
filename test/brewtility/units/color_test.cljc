@@ -100,14 +100,14 @@
 (deftest display-test
   (testing "Ensure various color unit conversions behave as expected"
     (is (= "10.0 srm"
-           (sut/display 10.0 options/srm))
-        (sut/display 10.0 :srm))
+           (sut/display 10.0 options/srm)
+           (sut/display 10.0 :srm)))
     (is (= "23.2 ebc"
-           (sut/display 23.2 options/ebc))
-        (sut/display 23.2 :ebc))
+           (sut/display 23.2 options/ebc)
+           (sut/display 23.2 :ebc)))
     (is (= "10.0 degrees lovibond"
-           (sut/display 10.0 options/lovibond {options/suffix options/full}))
-        (sut/display 10.0 :lovibond))
+           (sut/display 10.0 options/lovibond {options/suffix options/full})
+           (sut/display 10.0 :lovibond {options/suffix options/full})))
     (is (= sut/srm-37 (sut/display sut/srm-37 options/rgba))))
   (testing "Invalid options throw an exception"
     #?(:clj (is (thrown-with-msg? Exception #"Unsupported" (sut/display 10.0 :invalid))))

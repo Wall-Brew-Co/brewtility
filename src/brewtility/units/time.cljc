@@ -52,7 +52,7 @@
    options/microsecond {options/full  "microsecond"
                         options/short "µs"}
    options/millisecond {options/full  "millisecond"
-                        options/short "ims"}
+                        options/short "ms"}
    options/minute      {options/full  "minute"
                         options/short "m"}
    options/nanosecond  {options/full  "nanosecond"

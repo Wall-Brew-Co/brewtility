@@ -58,7 +58,7 @@
 
    For example,
    ```clj
-    (display 1.5 :pound) ;; => \"1.5 lb\"
+    (display 1.5 :specific-gravity) ;; => \"1.5 sg\"
    ```
 
    This function accepts an option map as an optional third argument. The following options are available:
