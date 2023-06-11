@@ -22,79 +22,79 @@
       - [teaspoon](https://en.wikipedia.org/wiki/Teaspoon))"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as opts]))
+            [brewtility.units.options :as options]))
 
 
 (def ^:const measurements
   "The volume measurements available across brewtility"
-  #{opts/american-gallon
-    opts/american-pint
-    opts/american-quart
-    opts/cup
-    opts/imperial-gallon
-    opts/imperial-pint
-    opts/imperial-quart
-    opts/liter
-    opts/litre
-    opts/milliliter
-    opts/millilitre
-    opts/tablespoon
-    opts/teaspoon
-    opts/american-fluid-ounce
-    opts/imperial-fluid-ounce})
+  #{options/american-gallon
+    options/american-pint
+    options/american-quart
+    options/cup
+    options/imperial-gallon
+    options/imperial-pint
+    options/imperial-quart
+    options/liter
+    options/litre
+    options/milliliter
+    options/millilitre
+    options/tablespoon
+    options/teaspoon
+    options/american-fluid-ounce
+    options/imperial-fluid-ounce})
 
 
 (def ^:const measurement->litre
   "A map from measurement names to doubles representing their fractional value to one liter"
-  {opts/american-fluid-ounce 0.0295735
-   opts/american-gallon      3.78541
-   opts/american-pint        0.473176
-   opts/american-quart       0.946353
-   opts/cup                  0.236588
-   opts/imperial-fluid-ounce 0.0284131
-   opts/imperial-gallon      4.54609
-   opts/imperial-pint        0.568261
-   opts/imperial-quart       1.13652
-   opts/liter                1.0
-   opts/litre                1.0
-   opts/milliliter           0.001
-   opts/millilitre           0.001
-   opts/tablespoon           0.0147868
-   opts/teaspoon             0.00492892})
+  {options/american-fluid-ounce 0.0295735
+   options/american-gallon      3.78541
+   options/american-pint        0.473176
+   options/american-quart       0.946353
+   options/cup                  0.236588
+   options/imperial-fluid-ounce 0.0284131
+   options/imperial-gallon      4.54609
+   options/imperial-pint        0.568261
+   options/imperial-quart       1.13652
+   options/liter                1.0
+   options/litre                1.0
+   options/milliliter           0.001
+   options/millilitre           0.001
+   options/tablespoon           0.0147868
+   options/teaspoon             0.00492892})
 
 
 (def ^:const measurements->display-name
   "A map from measurement names to their full name and abbreviation"
-  {opts/american-fluid-ounce {opts/full  "fluid ounce"
-                              opts/short "fl oz"}
-   opts/american-gallon      {opts/full  "US gallon"
-                              opts/short "gal"}
-   opts/american-pint        {opts/full  "american pint"
-                              opts/short "pt"}
-   opts/american-quart       {opts/full  "american quart"
-                              opts/short "qt"}
-   opts/cup                  {opts/full  "cup"
-                              opts/short "c"}
-   opts/imperial-fluid-ounce {opts/full  "imperial fluid ounce"
-                              opts/short "imp fl oz"}
-   opts/imperial-gallon      {opts/full  "imperial gallon"
-                              opts/short "gal"}
-   opts/imperial-pint        {opts/full  "imperial pint"
-                              opts/short "pt"}
-   opts/imperial-quart       {opts/full  "imperial quart"
-                              opts/short "qt"}
-   opts/liter                {opts/full  "liter"
-                              opts/short "l"}
-   opts/litre                {opts/full  "litre"
-                              opts/short "l"}
-   opts/milliliter           {opts/full  "milliliter"
-                              opts/short "ml"}
-   opts/millilitre           {opts/full  "millilitre"
-                              opts/short "ml"}
-   opts/tablespoon           {opts/full  "tablespoon"
-                              opts/short "tbsp"}
-   opts/teaspoon             {opts/full  "teaspoon"
-                              opts/short "tsp"}})
+  {options/american-fluid-ounce {options/full  "fluid ounce"
+                                 options/short "fl oz"}
+   options/american-gallon      {options/full  "US gallon"
+                                 options/short "gal"}
+   options/american-pint        {options/full  "american pint"
+                                 options/short "pt"}
+   options/american-quart       {options/full  "american quart"
+                                 options/short "qt"}
+   options/cup                  {options/full  "cup"
+                                 options/short "c"}
+   options/imperial-fluid-ounce {options/full  "imperial fluid ounce"
+                                 options/short "imp fl oz"}
+   options/imperial-gallon      {options/full  "imperial gallon"
+                                 options/short "gal"}
+   options/imperial-pint        {options/full  "imperial pint"
+                                 options/short "pt"}
+   options/imperial-quart       {options/full  "imperial quart"
+                                 options/short "qt"}
+   options/liter                {options/full  "liter"
+                                 options/short "l"}
+   options/litre                {options/full  "litre"
+                                 options/short "l"}
+   options/milliliter           {options/full  "milliliter"
+                                 options/short "ml"}
+   options/millilitre           {options/full  "millilitre"
+                                 options/short "ml"}
+   options/tablespoon           {options/full  "tablespoon"
+                                 options/short "tbsp"}
+   options/teaspoon             {options/full  "teaspoon"
+                                 options/short "tsp"}})
 
 
 (defn- liter->measurement
@@ -146,12 +146,12 @@
   ([volume source-units]
    (display volume source-units {}))
   ([volume source-units {:keys [precision suffix]
-                         :or   {precision opts/default-precision
-                                suffix    opts/short}}]
+                         :or   {precision options/default-precision
+                                suffix    options/short}}]
    (if (and (contains? measurements source-units)
             (number? volume)
             (integer? precision)
-            (contains? opts/supported-suffixes suffix))
+            (contains? options/supported-suffixes suffix))
      (let [display-name (get-in measurements->display-name [source-units suffix])]
        (-> volume
            (precision/->precision precision)
@@ -162,4 +162,4 @@
                       :volume           volume
                       :precision        precision
                       :suffix           suffix
-                      :allowed-suffixes opts/supported-suffixes})))))
+                      :allowed-suffixes options/supported-suffixes})))))

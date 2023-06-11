@@ -12,39 +12,39 @@
       - [pound](https://en.wikipedia.org/wiki/Pound_(mass))"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as opts]))
+            [brewtility.units.options :as options]))
 
 
 (def ^:const measurements
   "The weight measurements available across brewtility"
-  #{opts/gram
-    opts/kilogram
-    opts/milligram
-    opts/ounce
-    opts/pound})
+  #{options/gram
+    options/kilogram
+    options/milligram
+    options/ounce
+    options/pound})
 
 
 (def ^:const measurement->kilogram
   "A map from measurement names to doubles representing their fractional value to one kilogram"
-  {opts/gram      0.001
-   opts/kilogram  1.0
-   opts/milligram 0.000001
-   opts/ounce     0.02834952
-   opts/pound     0.45359237})
+  {options/gram      0.001
+   options/kilogram  1.0
+   options/milligram 0.000001
+   options/ounce     0.02834952
+   options/pound     0.45359237})
 
 
 (def ^:const measurements->display-name
   "A map from measurement names to their full name and abbreviation"
-  {opts/gram      {opts/full  "gram"
-                   opts/short "g"}
-   opts/kilogram  {opts/full  "kilogram"
-                   opts/short "kg"}
-   opts/milligram {opts/full  "milligram"
-                   opts/short "mg"}
-   opts/ounce     {opts/full  "ounce"
-                   opts/short "oz"}
-   opts/pound     {opts/full  "pound"
-                   opts/short "lb"}})
+  {options/gram      {options/full  "gram"
+                      options/short "g"}
+   options/kilogram  {options/full  "kilogram"
+                      options/short "kg"}
+   options/milligram {options/full  "milligram"
+                      options/short "mg"}
+   options/ounce     {options/full  "ounce"
+                      options/short "oz"}
+   options/pound     {options/full  "pound"
+                      options/short "lb"}})
 
 
 (defn- kilogram->measurement
@@ -96,12 +96,12 @@
   ([weight source-units]
    (display weight source-units {}))
   ([weight source-units {:keys [precision suffix]
-                         :or   {precision opts/default-precision
-                                suffix    opts/short}}]
+                         :or   {precision options/default-precision
+                                suffix    options/short}}]
    (if (and (contains? measurements source-units)
             (number? weight)
             (integer? precision)
-            (contains? opts/supported-suffixes suffix))
+            (contains? options/supported-suffixes suffix))
      (let [display-name (get-in measurements->display-name [source-units suffix])]
        (-> weight
            (precision/->precision precision)
@@ -112,4 +112,4 @@
                       :weight           weight
                       :precision        precision
                       :suffix           suffix
-                      :allowed-suffixes opts/supported-suffixes})))))
+                      :allowed-suffixes options/supported-suffixes})))))

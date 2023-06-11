@@ -1,6 +1,6 @@
 (ns brewtility.precision-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+  (:require #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.precision :as sut]))
 
 

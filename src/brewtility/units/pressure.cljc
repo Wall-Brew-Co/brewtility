@@ -13,33 +13,33 @@
       - [psi](https://en.wikipedia.org/wiki/Pound-force_per_square_inch"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as opts]))
+            [brewtility.units.options :as options]))
 
 
 (def ^:const measurements
   "The pressure measurements supported by brewtility."
-  #{opts/pascal
-    opts/kilopascal
-    opts/bar
-    opts/atmosphere
-    opts/torr
-    opts/psi})
+  #{options/pascal
+    options/kilopascal
+    options/bar
+    options/atmosphere
+    options/torr
+    options/psi})
 
 
 (def ^:const measurements->display-name
   "A map of pressure measurements to their display names."
-  {opts/pascal     {opts/full  "pascal"
-                    opts/short "ka"}
-   opts/kilopascal {opts/full  "kilopascals"
-                    opts/short "kpa"}
-   opts/bar        {opts/full  "bar"
-                    opts/short "bar"}
-   opts/atmosphere {opts/full  "atmosphere"
-                    opts/short "atm"}
-   opts/torr       {opts/full  "torr"
-                    opts/short "torr"}
-   opts/psi        {opts/full  "pounds per square inch"
-                    opts/short "psi"}})
+  {options/pascal     {options/full  "pascal"
+                       options/short "pa"}
+   options/kilopascal {options/full  "kilopascals"
+                       options/short "kpa"}
+   options/bar        {options/full  "bar"
+                       options/short "bar"}
+   options/atmosphere {options/full  "atmosphere"
+                       options/short "atm"}
+   options/torr       {options/full  "torr"
+                       options/short "torr"}
+   options/psi        {options/full  "pounds per square inch"
+                       options/short "psi"}})
 
 
 (defn- pascal->kilopascal
@@ -124,22 +124,22 @@
 
 (def ^:const measurement->kilopascal
   "A map of pressure measurements to functions that convert to kilopascals."
-  {opts/pascal     pascal->kilopascal
-   opts/kilopascal identity
-   opts/bar        bar->kilopascal
-   opts/atmosphere atmosphere->kilopascal
-   opts/torr       torr->kilopascal
-   opts/psi        psi->kilopascal})
+  {options/pascal     pascal->kilopascal
+   options/kilopascal identity
+   options/bar        bar->kilopascal
+   options/atmosphere atmosphere->kilopascal
+   options/torr       torr->kilopascal
+   options/psi        psi->kilopascal})
 
 
 (def ^:const kilopascal->measurement
   "A map of pressure measurements to functions that convert from kilopascals."
-  {opts/pascal     kilopascal->pascal
-   opts/kilopascal identity
-   opts/bar        kilopascal->bar
-   opts/atmosphere kilopascal->atmosphere
-   opts/torr       kilopascal->torr
-   opts/psi        kilopascal->psi})
+  {options/pascal     kilopascal->pascal
+   options/kilopascal identity
+   options/bar        kilopascal->bar
+   options/atmosphere kilopascal->atmosphere
+   options/torr       kilopascal->torr
+   options/psi        kilopascal->psi})
 
 
 (defn convert
@@ -178,12 +178,12 @@
   ([pressure source-units]
    (display pressure source-units {}))
   ([pressure source-units {:keys [precision suffix]
-                           :or   {precision opts/default-precision
-                                  suffix    opts/short}}]
+                           :or   {precision options/default-precision
+                                  suffix    options/short}}]
    (if (and (contains? measurements source-units)
             (number? pressure)
             (integer? precision)
-            (contains? opts/supported-suffixes suffix))
+            (contains? options/supported-suffixes suffix))
      (let [display-name (get-in measurements->display-name [source-units suffix])]
        (-> pressure
            (precision/->precision precision)
@@ -194,4 +194,4 @@
                       :pressure         pressure
                       :precision        precision
                       :suffix           suffix
-                      :allowed-suffixes opts/supported-suffixes})))))
+                      :allowed-suffixes options/supported-suffixes})))))

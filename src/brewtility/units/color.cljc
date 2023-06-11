@@ -11,27 +11,27 @@
      - [RGBa](https://en.wikipedia.org/wiki/RGBA_color_model)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as opts]))
+            [brewtility.units.options :as options]))
 
 
-(def measurements
+(def ^:const measurements
   "The color systems available across brewtility."
-  #{opts/srm
-    opts/ebc
-    opts/lovibond
-    opts/rgba})
+  #{options/srm
+    options/ebc
+    options/lovibond
+    options/rgba})
 
 
-(def measurements->display-name
+(def ^:const measurements->display-name
   "A map from color system names to their full and short unit names"
-  {opts/srm      {opts/full  "standard reference method"
-                  opts/short "srm"}
-   opts/ebc      {opts/full  "ebc"
-                  opts/short "ebc"}
-   opts/lovibond {opts/full  "degrees lovibond"
-                  opts/short "°L"}
-   opts/rgba     {opts/full  ""
-                  opts/short ""}})
+  {options/srm      {options/full  "standard reference method"
+                     options/short "srm"}
+   options/ebc      {options/full  "ebc"
+                     options/short "ebc"}
+   options/lovibond {options/full  "degrees lovibond"
+                     options/short "°L"}
+   options/rgba     {options/full  ""
+                     options/short ""}})
 
 
 ;;
@@ -326,17 +326,17 @@
   "A map from color systems to the implementation function that converts to SRM.
    
    Note: RGBa is not included because it is not a color system, but a color representation."
-  {opts/ebc      ebc->srm
-   opts/lovibond lovibond->srm
-   opts/srm      identity})
+  {options/ebc      ebc->srm
+   options/lovibond lovibond->srm
+   options/srm      identity})
 
 
 (def srm->measurement
   "A map from color systems to the implementation function that converts from SRM"
-  {opts/ebc      srm->ebc
-   opts/lovibond srm->lovibond
-   opts/srm      identity
-   opts/rgba     srm->rgba})
+  {options/ebc      srm->ebc
+   options/lovibond srm->lovibond
+   options/srm      identity
+   options/rgba     srm->rgba})
 
 
 (defn convert
@@ -380,22 +380,23 @@
   ([color source-units]
    (display color source-units {}))
   ([color source-units {:keys [precision suffix]
-                        :or   {precision opts/default-precision
-                               suffix    opts/short}}]
-   (if (and (contains? measurements source-units)
-            (number? color)
-            (integer? precision)
-            (contains? opts/supported-suffixes suffix))
-     (if (= source-units :rgba)
-       color
+                        :or   {precision options/default-precision
+                               suffix    options/short}}]
+   (if (= source-units :rgba)
+     color
+     (if (and (contains? measurements source-units)
+              (number? color)
+              (integer? precision)
+              (contains? options/supported-suffixes suffix))
+
        (let [display-name (get-in measurements->display-name [source-units suffix])]
          (-> color
              (precision/->precision precision)
-             (str " " display-name))))
-     (throw (ex-info "Unsupported color display options"
-                     {:source-units     source-units
-                      :allowed-values   measurements
-                      :color            color
-                      :precision        precision
-                      :suffix           suffix
-                      :allowed-suffixes opts/supported-suffixes})))))
+             (str " " display-name)))
+       (throw (ex-info "Unsupported color display options"
+                       {:source-units     source-units
+                        :allowed-values   measurements
+                        :color            color
+                        :precision        precision
+                        :suffix           suffix
+                        :allowed-suffixes options/supported-suffixes}))))))

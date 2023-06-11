@@ -2,8 +2,8 @@
   (:require [brewtility.precision :as precision]
             [brewtility.units.color :as sut]
             [brewtility.units.options :as options]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (deftest srm->rgba-test
@@ -91,4 +91,57 @@
            (precision/->2dp (sut/convert 60.38 options/ebc options/lovibond))))
     (is (= -45.53
            (precision/->2dp (sut/convert -23.11 options/srm options/ebc))
-           (precision/->2dp (sut/convert -16.5 options/lovibond options/ebc))))))
+           (precision/->2dp (sut/convert -16.5 options/lovibond options/ebc)))))
+  (testing "Invalid options throw an exception"
+    #?(:clj (is (thrown-with-msg? Exception #"Unsupported" (sut/convert 10.0 :invalid :srm))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Unsupported" (sut/convert 10.0 :invalid :srm))))))
+
+
+(deftest display-test
+  (testing "Ensure various color unit conversions behave as expected"
+    (is (= "10.0 srm"
+           (sut/display 10.0 options/srm))
+        (sut/display 10.0 :srm))
+    (is (= "23.2 ebc"
+           (sut/display 23.2 options/ebc))
+        (sut/display 23.2 :ebc))
+    (is (= "10.0 degrees lovibond"
+           (sut/display 10.0 options/lovibond {options/suffix options/full}))
+        (sut/display 10.0 :lovibond))
+    (is (= sut/srm-37 (sut/display sut/srm-37 options/rgba))))
+  (testing "Invalid options throw an exception"
+    #?(:clj (is (thrown-with-msg? Exception #"Unsupported" (sut/display 10.0 :invalid))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Unsupported" (sut/display 10.0 :invalid))))))
+
+
+(deftest code-type-tests
+  (testing "Ensure maps used for options are structurally correct"
+    (testing "Measurement types"
+      (is (set? sut/measurements))
+      (is (every? keyword? sut/measurements))
+      (is (not-empty sut/measurements)))
+    (testing "Measurement display names"
+      (is (map? sut/measurements->display-name))
+      (is (not-empty sut/measurements->display-name))
+      (is (every? keyword? (keys sut/measurements->display-name)))
+      (is (every? map? (vals sut/measurements->display-name)))
+      (is (every? #(contains? % options/full) (vals sut/measurements->display-name)))
+      (is (every? #(contains? % options/short) (vals sut/measurements->display-name))))
+    (testing "SRM color map"
+      (is (map? sut/srm-color-map))
+      (is (not-empty sut/srm-color-map))
+      (is (every? number? (keys sut/srm-color-map)))
+      (is (every? string? (vals sut/srm-color-map))))
+    (testing "measurement->srm"
+      (is (map? sut/measurement->srm))
+      (is (not-empty sut/measurement->srm))
+      (is (every? keyword? (keys sut/measurement->srm)))
+      (is (every? ifn? (vals sut/measurement->srm))))
+    (testing "srm->measurement"
+      (is (map? sut/srm->measurement))
+      (is (not-empty sut/srm->measurement))
+      (is (every? keyword? (keys sut/srm->measurement)))
+      (is (= (sort (keys sut/srm->measurement))
+             (sort (keys sut/measurements->display-name))
+             (sort sut/measurements)))
+      (is (every? ifn? (vals sut/srm->measurement))))))

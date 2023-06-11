@@ -20,7 +20,7 @@
   {:added   "1.0"
    :changed "2.0"}
   (:require [brewtility.units.color :as color]
-            [brewtility.units.options :as opts]
+            [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
             [brewtility.units.specific-gravity :as specific-gravity]
             [brewtility.units.temperature :as temperature]
@@ -59,7 +59,7 @@
     :weight           (weight/convert measurement source-units target-units)
     :else (throw (ex-info "Unsupported unit system"
                           {:measurement-type measurement-type
-                           :allowed-values   opts/measurement-types
+                           :allowed-values   options/measurement-types
                            :measurement      measurement}))))
 
 
@@ -87,7 +87,7 @@
    (display measurement source-units measurement-type {}))
   ([measurement-type measurement source-units opts]
 
-   (let [options (merge {opts/precision opts/default-precision opts/suffix opts/short} opts)]
+   (let [options (merge {options/precision options/default-precision options/suffix options/short} opts)]
      (case measurement-type
        :color            (color/display measurement source-units options)
        :pressure         (pressure/display measurement source-units options)
@@ -98,5 +98,5 @@
        :weight           (weight/display measurement source-units options)
        :else (throw (ex-info "Unsupported unit system"
                              {:measurement-type measurement-type
-                              :allowed-values   opts/measurement-types
+                              :allowed-values   options/measurement-types
                               :measurement      measurement}))))))

@@ -4,7 +4,8 @@
   {:added "1.0"}
   (:require [brewtility.predicates.fermentables :as fermentables]
             [brewtility.units.color :as color]
-            [brewtility.units.options :as opts]
+            [brewtility.units.options :as options]
+            [brewtility.units.time :as time]
             [brewtility.units.volume :as volume]
             [brewtility.units.weight :as weight]))
 
@@ -14,10 +15,10 @@
   {:added "1.0"}
   [fermentable]
   (let [is-not-grain? (not (fermentables/grain? fermentable))
-        kg->lbs       (fn [w] (weight/convert w opts/kilogram opts/pound))] ; MCU is calculated against pounds
+        kg->lbs       (fn [w] (weight/convert w options/kilogram options/pound))] ; MCU is calculated against pounds
     (cond-> fermentable
       true          (update :amount kg->lbs)
-      is-not-grain? (update :color #(color/convert % opts/srm opts/lovibond))))) ; Grain color is in Lovibond, all other fermentables use SRM
+      is-not-grain? (update :color #(color/convert % options/srm options/lovibond))))) ; Grain color is in Lovibond, all other fermentables use SRM
 
 (defn calculate-malt-color-units
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the overall Malt Color Units for a recipe."
@@ -27,7 +28,7 @@
   (let [normalized-fermentables (map normalize-fermentable fermentables)
         reducing-fn             (fn [acc v] (+ acc (* (:amount v) (:color v))))
         color                   (reduce reducing-fn 0 normalized-fermentables)
-        imperial-volume         (volume/convert batch-size opts/litre opts/american-gallon)]
+        imperial-volume         (volume/convert batch-size options/litre options/american-gallon)]
     (/ color imperial-volume)))
 
 
@@ -50,7 +51,7 @@
   [fermentables batch-size]
   (-> fermentables
       (calculate-srm-color batch-size)
-      (color/convert opts/srm opts/ebc)))
+      (color/convert options/srm options/ebc)))
 
 
 (defn calculate-lovibond-color
@@ -63,7 +64,7 @@
   [fermentables batch-size]
   (-> fermentables
       (calculate-srm-color batch-size)
-      (color/convert opts/srm opts/lovibond)))
+      (color/convert options/srm options/lovibond)))
 
 
 (defn calculate-rgba-color
@@ -76,7 +77,7 @@
   [fermentables batch-size]
   (-> fermentables
       (calculate-srm-color batch-size)
-      (color/convert opts/srm opts/rgba)))
+      (color/convert options/srm options/rgba)))
 
 
 (defn potential-gravity->gravity-points
@@ -84,7 +85,7 @@
   {:added    "1.0"
    :see-also ["gravity-points->potential-gravity"]}
   [potential-gravity weight]
-  (let [weight-in-pounds (weight/convert weight opts/kilogram opts/pound)]
+  (let [weight-in-pounds (weight/convert weight options/kilogram options/pound)]
     (-> potential-gravity
         (* 1000)
         (- 1000)
@@ -96,7 +97,7 @@
   {:added    "1.0"
    :see-also ["potential-gravity->gravity-points"]}
   [gravity-points volume]
-  (let [volume-in-gallons (volume/convert volume opts/litre opts/american-gallon)]
+  (let [volume-in-gallons (volume/convert volume options/litre options/american-gallon)]
     (-> gravity-points
         (/ volume-in-gallons)
         (+ 1000)
@@ -178,7 +179,7 @@
   "Calculate the maximum amount of alpha acid released by `weight` ounce of a hop at `percent` alpha acid."
   {:added "1.0"}
   [weight alpha]
-  (let [weight-in-ounces (weight/convert weight opts/kilogram opts/ounce)
+  (let [weight-in-ounces (weight/convert weight options/kilogram options/ounce)
         aau-normalization-factor 100]
     (* aau-normalization-factor weight-in-ounces alpha)))
 
@@ -189,7 +190,7 @@
   [hop batch-size potential-gravity]
   (let [utilization       (calculate-hop-utilization potential-gravity (:time hop))
         alpha-acid-units  (calculate-alpha-acid-units (:amount hop) (:alpha hop))
-        imperial-volume   (volume/convert batch-size opts/litre opts/american-gallon)
+        imperial-volume   (volume/convert batch-size options/litre options/american-gallon)
         conversion-factor 74.89]
     (/ (* alpha-acid-units utilization conversion-factor) imperial-volume)))
 
@@ -209,7 +210,7 @@
   [{:keys [batch-size top-up-water trub-chiller-loss boil-time evap-rate]}]
   (if (every? number? [batch-size top-up-water trub-chiller-loss boil-time evap-rate])
     (let [starting-water      (- batch-size top-up-water trub-chiller-loss)
-          boil-time-in-hours  (/ boil-time 60.0)
+          boil-time-in-hours  (time/convert boil-time options/minute options/hour)
           evaporation-decimal (/ evap-rate 100.0)
           evaporated-water    (+ 1 (* boil-time-in-hours evaporation-decimal))]
       (* starting-water evaporated-water))

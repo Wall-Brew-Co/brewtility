@@ -8,28 +8,28 @@
      - [specific-gravity](https://en.wikipedia.org/wiki/Specific_gravity)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as opts]))
+            [brewtility.units.options :as options]))
 
 
 (def ^:const measurements
   "The specific gravity systems available across brewtility."
-  #{opts/specific-gravity})
+  #{options/specific-gravity})
 
 
 (def ^:const measurements->display-name
   "A map from specific gravity system names to their full and short unit names."
-  {opts/specific-gravity {opts/full  "specific gravity"
-                          opts/short "sg"}})
+  {options/specific-gravity {options/full  "specific gravity"
+                             options/short "sg"}})
 
 
 (def ^:const measurement->specific-gravity
   "A map from specific gravity system names to the conversion function to specific gravity."
-  {opts/specific-gravity identity})
+  {options/specific-gravity identity})
 
 
 (def ^:const specific-gravity->measurement
   "A map from specific gravity system names to the conversion function from specific gravity."
-  {opts/specific-gravity identity})
+  {options/specific-gravity identity})
 
 
 (defn convert
@@ -70,12 +70,12 @@
   ([gravity source-units]
    (display gravity source-units {}))
   ([gravity source-units {:keys [precision suffix]
-                          :or   {precision opts/default-precision
-                                 suffix    opts/short}}]
+                          :or   {precision options/default-precision
+                                 suffix    options/short}}]
    (if (and (contains? measurements source-units)
             (number? gravity)
             (integer? precision)
-            (contains? opts/supported-suffixes suffix))
+            (contains? options/supported-suffixes suffix))
      (let [display-name (get-in measurements->display-name [source-units suffix])]
        (-> gravity
            (precision/->precision precision)
@@ -86,4 +86,4 @@
                       :specific-gravity gravity
                       :precision        precision
                       :suffix           suffix
-                      :allowed-suffixes opts/supported-suffixes})))))
+                      :allowed-suffixes options/supported-suffixes})))))

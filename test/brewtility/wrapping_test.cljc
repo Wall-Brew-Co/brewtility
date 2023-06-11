@@ -1,6 +1,6 @@
 (ns brewtility.wrapping-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+  (:require #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.data.equipment :as equipment.data]
             [brewtility.data.fermentables :as fermentables.data]
             [brewtility.data.hops :as hops.data]

@@ -15,52 +15,52 @@
      - [week](https://en.wikipedia.org/wiki/Week)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as opts])
+            [brewtility.units.options :as options])
   (:refer-clojure :exclude [time]))
 
 
 (def ^:const measurements
   "The time measurements available across brewtility"
-  #{opts/day
-    opts/hour
-    opts/microsecond
-    opts/millisecond
-    opts/minute
-    opts/nanosecond
-    opts/second
-    opts/week})
+  #{options/day
+    options/hour
+    options/microsecond
+    options/millisecond
+    options/minute
+    options/nanosecond
+    options/second
+    options/week})
 
 
 (def ^:const measurement->minute
   "A map from measurement names to doubles representing their fractional value to one minute"
-  {opts/day         1440.0
-   opts/hour        60.0
-   opts/microsecond (/ 1.0 60000000)
-   opts/millisecond (/ 1.0 60000)
-   opts/minute      1.0
-   opts/nanosecond  (/ 1.0 60000000000)
-   opts/second      (/ 1.0 60)
-   opts/week        10080.0})
+  {options/day         1440.0
+   options/hour        60.0
+   options/microsecond (/ 1.0 60000000)
+   options/millisecond (/ 1.0 60000)
+   options/minute      1.0
+   options/nanosecond  (/ 1.0 60000000000)
+   options/second      (/ 1.0 60)
+   options/week        10080.0})
 
 
 (def ^:const measurements->display-name
   "A map from measurement names to their full name and abbreviation"
-  {opts/day         {opts/full  "days"
-                     opts/short "d"}
-   opts/hour        {opts/full  "hour"
-                     opts/short "hr"}
-   opts/microsecond {opts/full  "microsecond"
-                     opts/short "µs"}
-   opts/millisecond {opts/full  "millisecond"
-                     opts/short "ims"}
-   opts/minute      {opts/full  "minute"
-                     opts/short "m"}
-   opts/nanosecond  {opts/full  "nanosecond"
-                     opts/short "ns"}
-   opts/second      {opts/full  "second"
-                     opts/short "s"}
-   opts/week        {opts/full  "week"
-                     opts/short "w"}})
+  {options/day         {options/full  "days"
+                        options/short "d"}
+   options/hour        {options/full  "hour"
+                        options/short "hr"}
+   options/microsecond {options/full  "microsecond"
+                        options/short "µs"}
+   options/millisecond {options/full  "millisecond"
+                        options/short "ims"}
+   options/minute      {options/full  "minute"
+                        options/short "m"}
+   options/nanosecond  {options/full  "nanosecond"
+                        options/short "ns"}
+   options/second      {options/full  "second"
+                        options/short "s"}
+   options/week        {options/full  "week"
+                        options/short "w"}})
 
 
 (defn- minute->measurement
@@ -112,12 +112,12 @@
   ([time source-units]
    (display time source-units {}))
   ([time source-units {:keys [precision suffix]
-                       :or   {precision opts/default-precision
-                              suffix    opts/short}}]
+                       :or   {precision options/default-precision
+                              suffix    options/short}}]
    (if (and (contains? measurements source-units)
             (number? time)
             (integer? precision)
-            (contains? opts/supported-suffixes suffix))
+            (contains? options/supported-suffixes suffix))
      (let [display-name (get-in measurements->display-name [source-units suffix])]
        (-> time
            (precision/->precision precision)
@@ -128,4 +128,4 @@
                       :time             time
                       :precision        precision
                       :suffix           suffix
-                      :allowed-suffixes opts/supported-suffixes})))))
+                      :allowed-suffixes options/supported-suffixes})))))

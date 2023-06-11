@@ -10,36 +10,36 @@
      - [kelvin](https://en.wikipedia.org/wiki/Kelvin_(unit))"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as opts]))
+            [brewtility.units.options :as options]))
 
 
 (def ^:const measurements
   "The temperature measurements supported by brewtility."
-  #{opts/c
-    opts/celsius
-    opts/centigrade
-    opts/f
-    opts/fahrenheit
-    opts/k
-    opts/kelvin})
+  #{options/c
+    options/celsius
+    options/centigrade
+    options/f
+    options/fahrenheit
+    options/k
+    options/kelvin})
 
 
 (def ^:const measurements->display-name
   "The temperature measurements supported by brewtility."
-  {opts/c          {opts/full  "celsius"
-                    opts/short "c"}
-   opts/celsius    {opts/full  "celsius"
-                    opts/short "c"}
-   opts/centigrade {opts/full  "centigrade"
-                    opts/short "mg"}
-   opts/f          {opts/full  "fahrenheit"
-                    opts/short "f"}
-   opts/fahrenheit {opts/full  "fahrenheit"
-                    opts/short "f"}
-   opts/k          {opts/full  "kelvin"
-                    opts/short "k"}
-   opts/kelvin     {opts/full  "kelvin"
-                    opts/short "k"}})
+  {options/c          {options/full  "celsius"
+                       options/short "c"}
+   options/celsius    {options/full  "celsius"
+                       options/short "c"}
+   options/centigrade {options/full  "centigrade"
+                       options/short "mg"}
+   options/f          {options/full  "fahrenheit"
+                       options/short "f"}
+   options/fahrenheit {options/full  "fahrenheit"
+                       options/short "f"}
+   options/k          {options/full  "kelvin"
+                       options/short "k"}
+   options/kelvin     {options/full  "kelvin"
+                       options/short "k"}})
 
 
 (defn- celsius->fahrenheit
@@ -76,24 +76,24 @@
 
 (def ^:const measurement->celsius
   "A map from measurement names to the implementation function which converts them to degrees celsius"
-  {opts/c          identity
-   opts/celsius    identity
-   opts/centigrade identity
-   opts/f          fahrenheit->celsius
-   opts/fahrenheit fahrenheit->celsius
-   opts/k          kelvin->celsius
-   opts/kelvin     kelvin->celsius})
+  {options/c          identity
+   options/celsius    identity
+   options/centigrade identity
+   options/f          fahrenheit->celsius
+   options/fahrenheit fahrenheit->celsius
+   options/k          kelvin->celsius
+   options/kelvin     kelvin->celsius})
 
 
 (def ^:const celsius->measurement
   "A map from measurement names to the implementation function which converts them from degrees celsius"
-  {opts/celsius    identity
-   opts/c          identity
-   opts/centigrade identity
-   opts/fahrenheit celsius->fahrenheit
-   opts/f          celsius->fahrenheit
-   opts/kelvin     celsius->kelvin
-   opts/k          celsius->kelvin})
+  {options/celsius    identity
+   options/c          identity
+   options/centigrade identity
+   options/fahrenheit celsius->fahrenheit
+   options/f          celsius->fahrenheit
+   options/kelvin     celsius->kelvin
+   options/k          celsius->kelvin})
 
 
 (defn convert
@@ -137,12 +137,12 @@
   ([temperature source-units]
    (display temperature source-units {}))
   ([temperature source-units {:keys [precision suffix]
-                              :or   {precision opts/default-precision
-                                     suffix    opts/short}}]
+                              :or   {precision options/default-precision
+                                     suffix    options/short}}]
    (if (and (contains? measurements source-units)
             (number? temperature)
             (integer? precision)
-            (contains? opts/supported-suffixes suffix))
+            (contains? options/supported-suffixes suffix))
      (let [display-name (get-in measurements->display-name [source-units suffix])]
        (-> temperature
            (precision/->precision precision)
@@ -153,4 +153,4 @@
                       :temperature      temperature
                       :precision        precision
                       :suffix           suffix
-                      :allowed-suffixes opts/supported-suffixes})))))
+                      :allowed-suffixes options/supported-suffixes})))))
