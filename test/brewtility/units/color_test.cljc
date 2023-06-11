@@ -99,9 +99,9 @@
 
 (deftest display-test
   (testing "Ensure various color unit conversions behave as expected"
-    (is (= "10.0 srm"
-           (sut/display 10.0 options/srm)
-           (sut/display 10.0 :srm)))
+    (is (= "10.1 srm"
+           (sut/display 10.1 options/srm)
+           (sut/display 10.1 :srm)))
     (is (= "23.2 ebc"
            (sut/display 23.2 options/ebc)
            (sut/display 23.2 :ebc)))

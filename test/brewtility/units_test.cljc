@@ -242,9 +242,9 @@
 (deftest display-test
   (testing "Supported systems can cast display values"
     (testing "Color:"
-      (is (= "10.0 srm"
-             (sut/display options/color 10.0 options/srm)
-             (sut/display options/color 10.0 :srm)))
+      (is (= "10.1 srm"
+             (sut/display options/color 10.1 options/srm)
+             (sut/display options/color 10.1 :srm)))
       (is (= "23.2 ebc"
              (sut/display options/color 23.2 options/ebc)
              (sut/display options/color 23.2 :ebc)))
