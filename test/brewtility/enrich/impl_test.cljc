@@ -1,9 +1,9 @@
 (ns brewtility.enrich.impl-test
   (:require [brewtility.enrich.impl :as sut]
-            [brewtility.static :as static]
+            [brewtility.units.options :as options]
             [clojure.string :as str]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (deftest ->displayable-volume-test
@@ -23,17 +23,17 @@
         "Conversion may override the default suffix"))
   (testing "Ensure ->displayable-volume supports its full suite of options with static keys"
     (is (= "5.678 l"
-           (sut/->displayable-volume 1.5 static/american-gallon static/liter)
-           (sut/->displayable-volume 1.5 static/american-gallon static/liter {static/precision static/default-precision
-                                                                              static/suffix    static/short}))
+           (sut/->displayable-volume 1.5 options/american-gallon options/liter)
+           (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision options/default-precision
+                                                                              options/suffix    options/short}))
         "Conversion defaults to 3 digits of precisions and shorthand unit names with static keys")
     (is (= "5.7 l"
-           (sut/->displayable-volume 1.5 static/american-gallon static/liter {static/precision 1
-                                                                              static/suffix    static/short}))
+           (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision 1
+                                                                              options/suffix    options/short}))
         "Conversion may override the default precision with static keys")
     (is (= "5.678 liter"
-           (sut/->displayable-volume 1.5 static/american-gallon static/liter {static/precision 3
-                                                                              static/suffix    static/full}))
+           (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision 3
+                                                                              options/suffix    options/full}))
         "Conversion may override the default suffix with static keys")))
 
 
@@ -199,10 +199,10 @@
       (is (= valid-opts (sut/verify-enrich-displayable-volume-opts valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
-      (let [valid-opts-w-keys {:target-units            static/teaspoon
-                               static/system-of-measure static/metric
-                               static/precision         2
-                               static/suffix            static/full}]
+      (let [valid-opts-w-keys {:target-units            options/teaspoon
+                               options/system-of-measure options/metric
+                               options/precision         2
+                               options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/verify-enrich-displayable-volume-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
@@ -235,10 +235,10 @@
       (is (= valid-opts (sut/verify-enrich-displayable-weight-opts valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
-      (let [valid-opts-w-keys {:target-units            static/pound
-                               static/system-of-measure static/metric
-                               static/precision         2
-                               static/suffix            static/full}]
+      (let [valid-opts-w-keys {:target-units            options/pound
+                               options/system-of-measure options/metric
+                               options/precision         2
+                               options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/verify-enrich-displayable-weight-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
@@ -271,10 +271,10 @@
       (is (= valid-opts (sut/verify-enrich-displayable-time-opts valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
-      (let [valid-opts-w-keys {:target-units            static/minute
-                               static/system-of-measure static/metric
-                               static/precision         2
-                               static/suffix            static/full}]
+      (let [valid-opts-w-keys {:target-units            options/minute
+                               options/system-of-measure options/metric
+                               options/precision         2
+                               options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/verify-enrich-displayable-time-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
@@ -307,10 +307,10 @@
       (is (= valid-opts (sut/verify-enrich-displayable-temperature-opts valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
-      (let [valid-opts-w-keys {:target-units            static/c
-                               static/system-of-measure static/metric
-                               static/precision         2
-                               static/suffix            static/full}]
+      (let [valid-opts-w-keys {:target-units            options/c
+                               options/system-of-measure options/metric
+                               options/precision         2
+                               options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/verify-enrich-displayable-temperature-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"

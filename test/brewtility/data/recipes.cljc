@@ -13,13 +13,13 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.recipes :as recipes.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (defn random-ibu-method
   "Return a random valid hop type."
-  {:added "1.3"
+  {:added "2.0"
    :no-doc true}
   []
   (-> recipes.format/ibu-method-types

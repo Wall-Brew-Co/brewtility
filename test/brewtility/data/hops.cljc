@@ -5,8 +5,8 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.hops :as hops.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (defn random-hop-type

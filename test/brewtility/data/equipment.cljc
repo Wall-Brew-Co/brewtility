@@ -4,8 +4,8 @@
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.equipment :as equipment.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (def sample-equipment

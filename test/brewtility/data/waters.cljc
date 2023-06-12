@@ -4,13 +4,13 @@
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.waters :as waters.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (defn random-ph
   "Generate a random `:ph` value."
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (rand 14))
@@ -53,7 +53,7 @@
 
 (defn generate-water
   "Generate a random water object"
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/water)))
@@ -61,7 +61,7 @@
 
 (defn generate-water-wrapper
   "Generate a random water-wrapper object"
-  {:added "1.4"
+  {:added "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/water-wrapper)))
@@ -69,7 +69,7 @@
 
 (defn generate-waters
   "Generate a random waters object"
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/waters)))
@@ -77,7 +77,7 @@
 
 (defn generate-waters-wrapper
   "Generate a random waters-wrapper object"
-  {:added "1.4"
+  {:added "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/waters-wrapper)))

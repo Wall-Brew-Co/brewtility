@@ -4,8 +4,8 @@
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.miscs :as miscs.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (def sample-misc
@@ -13,7 +13,7 @@
   {:amount  0.010
    :name    "Irish Moss"
    :notes   "Used as a clarifying agent during the last few minutes of the boil"
-   :time    15.0
+   :time    15.1
    :type    "Fining"
    :use     "Boil"
    :version 1})

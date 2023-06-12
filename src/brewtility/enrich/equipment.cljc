@@ -1,6 +1,6 @@
 (ns brewtility.enrich.equipment
   "Enricher-pattern functions for [equipment](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/equipment.cljc) maps"
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.enrich.fermentables"
               "brewtility.enrich.hops"
               "brewtility.enrich.mash"
@@ -12,7 +12,7 @@
   (:require [brewtility.calculations :as calc]
             [brewtility.enrich.impl :as impl]
             [brewtility.precision :as precision]
-            [brewtility.static :as static]))
+            [brewtility.units.options :as options]))
 
 
 (defn enrich-calculated-boil-size
@@ -33,7 +33,7 @@
                                        Defaults to `false`.
      - `:precision` - The number of decimal places to round the calculated value to.
                      Defaults to `3`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.calculations/calculate-equipment-boil-volume"
               "enrich-equipment"
               "enrich-equipment-wrapper"]}
@@ -41,7 +41,7 @@
   ([{:keys [calc-boil-volume]
      :as   equipment}
     {:keys [safe-calculating-boil-size precision]
-     :or   {precision static/default-precision}}]
+     :or   {precision options/default-precision}}]
    (try
      (if calc-boil-volume
        (let [derived-boil-size (precision/->precision (calc/calculate-equipment-boil-volume equipment) precision)]
@@ -77,7 +77,7 @@
     - `:boil-size-target-units`: The unit to convert the boil size into. Supersedes `:system-of-measure`.
     - `:boil-size-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:boil-size-suffix`: The suffix type to append to the boil size. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-boil-size equipment {}))
   ([equipment
@@ -112,7 +112,7 @@
     - `:batch-size-target-units`: The unit to convert the batch size into. Supersedes `:system-of-measure`.
     - `:batch-size-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:batch-size-suffix`: The suffix type to append to the batch size. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-batch-size equipment {}))
   ([equipment
@@ -147,7 +147,7 @@
     - `:tun-volume-target-units`: The unit to convert the tun volume into. Supersedes `:system-of-measure`.
     - `:tun-volume-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:tun-volume-suffix`: The suffix type to append to the tun volume. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-tun-volume equipment {}))
   ([equipment
@@ -182,7 +182,7 @@
     - `:tun-weight-target-units`: The unit to convert the tun weight into. Supersedes `:system-of-measure`.
     - `:tun-weight-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:tun-weight-suffix`: The suffix type to append to the tun weight. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-tun-weight equipment {}))
   ([equipment
@@ -217,7 +217,7 @@
     - `:top-up-water-target-units`: The unit to convert the top up water into. Supersedes `:system-of-measure`.
     - `:top-up-water-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:top-up-water-suffix`: The suffix type to append to the top up water. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-top-up-water equipment {}))
   ([equipment
@@ -252,7 +252,7 @@
     - `:trub-chiller-loss-target-units`: The unit to convert the trub chiller loss into. Supersedes `:system-of-measure`.
     - `:trub-chiller-loss-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:trub-chiller-loss-suffix`: The suffix type to append to the trub chiller loss. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-trub-chiller-loss equipment {}))
   ([equipment
@@ -287,7 +287,7 @@
     - `:lauter-deadspace-target-units`: The unit to convert the lauter deadspace into. Supersedes `:system-of-measure`.
     - `:lauter-deadspace-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:lauter-deadspace-suffix`: The suffix type to append to the lauter deadspace. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-lauter-deadspace equipment {}))
   ([equipment
@@ -322,7 +322,7 @@
     - `:top-up-kettle-target-units`: The unit to convert the top up kettle into. Supersedes `:system-of-measure`.
     - `:top-up-kettle-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:top-up-kettle-suffix`: The suffix type to append to the top up kettle. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-equipment" "enrich-equipment-wrapper"]}
   ([equipment] (enrich-display-top-up-kettle equipment {}))
   ([equipment
@@ -390,7 +390,7 @@
         - `:top-up-kettle-target-units`: The unit to convert the top up kettle into. Supersedes `:system-of-measure`.
         - `:top-up-kettle-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:top-up-kettle-suffix`: The suffix type to append to the top up kettle. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-calculated-boil-size"
               "enrich-calculated-boil-size"
               "enrich-diplay-tun-volume"
@@ -469,7 +469,7 @@
         - `:top-up-kettle-target-units`: The unit to convert the top up kettle into. Supersedes `:system-of-measure`.
         - `:top-up-kettle-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:top-up-kettle-suffix`: The suffix type to append to the top up kettle. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-calculated-boil-size"
               "enrich-calculated-boil-size"
               "enrich-diplay-tun-volume"

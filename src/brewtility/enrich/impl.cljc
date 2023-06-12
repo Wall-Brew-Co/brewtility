@@ -2,7 +2,8 @@
   {:no-doc              true
    :added               "2.1"
    :implementation-only true}
-  (:require [brewtility.units.options :as options]
+  (:require [brewtility.units.color :as color]
+            [brewtility.units.options :as options]
             [brewtility.units.temperature :as temperature]
             [brewtility.units.time :as time]
             [brewtility.units.volume :as volume]
@@ -45,7 +46,10 @@
   "Convert a volume then render it to a displayable value."
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["->displayable-weight" "->displayable-time" "->displayable-temperature"]}
+   :see-also ["->displayable-weight"
+              "->displayable-time"
+              "->displayable-temperature"
+              "->displayable-color"]}
   ([source-value source-units target-units]
    (->displayable-volume source-value source-units target-units default-display-options))
   ([source-value source-units target-units opts]
@@ -59,7 +63,10 @@
   "Convert a weight then render it to a displayable value."
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["->displayable-volume" "->displayable-time" "->displayable-temperature"]}
+   :see-also ["->displayable-volume"
+              "->displayable-time"
+              "->displayable-temperature"
+              "->displayable-color"]}
   ([source-value source-units target-units]
    (->displayable-weight source-value source-units target-units default-display-options))
   ([source-value source-units target-units opts]
@@ -73,7 +80,10 @@
   "Convert a time then render it to a displayable value."
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["->displayable-volume" "->displayable-time"]}
+   :see-also ["->displayable-volume"
+              "->displayable-weight"
+              "->displayable-temperature"
+              "->displayable-color"]}
   ([source-value source-units target-units]
    (->displayable-time source-value source-units target-units default-display-options))
   ([source-value source-units target-units opts]
@@ -87,13 +97,32 @@
   "Convert a temperature then render it to a displayable value."
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["->displayable-volume" "->displayable-time"]}
+   :see-also ["->displayable-volume"
+              "->displayable-weight"
+              "->displayable-time"
+              "->displayable-color"]}
   ([source-value source-units target-units]
    (->displayable-temperature source-value source-units target-units default-display-options))
   ([source-value source-units target-units opts]
    (-> source-value
        (temperature/convert source-units target-units)
        (temperature/display target-units opts))))
+
+;; TODO: Pluralize strings
+(defn ->displayable-color
+  "Convert a color then render it to a displayable value."
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["->displayable-volume"
+              "->displayable-weight"
+              "->displayable-time"
+              "->displayable-temperature"]}
+  ([source-value source-units target-units]
+   (->displayable-color source-value source-units target-units default-display-options))
+  ([source-value source-units target-units opts]
+   (-> source-value
+       (color/convert source-units target-units)
+       (color/display target-units opts))))
 
 
 (def ^:private default-volume-by-system
@@ -131,6 +160,7 @@
    :see-also ["systems-of-meaure-error" "precision-error" "suffix-error"]}
   [error-map conversion-type target-units]
   (let [allowed-values (case conversion-type
+                         :color       color/measurements
                          :volume      volume/measurements
                          :weight      weight/measurements
                          :time        time/measurements
@@ -139,6 +169,33 @@
                             (name conversion-type)
                             " conversion : `"
                             target-units
+                            "`. Allowed values are: "
+                            allowed-values)]
+    (assoc error-map :units error-msg)))
+
+
+(defn source-unit-error
+  "A function to accumulate error messages in `error-map` if `source-units` is not a valid unit for `conversion-type`.
+   
+   Note: This is only used for color conversion at this time.
+         BeerXML prescribes the system of measure for all other units."
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["systems-of-meaure-error"
+              "precision-error"
+              "suffix-error"
+              "target-unit-error"]}
+  [error-map conversion-type source-units]
+  (let [allowed-values (case conversion-type
+                         :color       color/measurements
+                         :temperature temperature/measurements
+                         :time        time/measurements
+                         :volume      volume/measurements
+                         :weight      weight/measurements)
+        error-msg      (str "Invalid unit for "
+                            (name conversion-type)
+                            " conversion : `"
+                            source-units
                             "`. Allowed values are: "
                             allowed-values)]
     (assoc error-map :units error-msg)))
@@ -224,7 +281,10 @@
    If these options are valid, the function will convert the volume to the target units and return the original value with the new value added at `display-key`"
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["enrich-displayable-weight" "enrich-displayable-time"]}
+   :see-also ["enrich-displayable-color"
+              "enrich-displayable-weight"
+              "enrich-displayable-temperature"
+              "enrich-displayable-time"]}
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure options/us-customary
@@ -285,7 +345,10 @@
    If these options are valid, the function will convert the weight to the target units and return the original value with the new value added at `display-key`"
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["enrich-displayable-volume" "enrich-displayable-time"]}
+   :see-also ["enrich-displayable-volume"
+              "enrich-displayable-color"
+              "enrich-displayable-temperature"
+              "enrich-displayable-time"]}
   [source-data
    {:keys [value-key display-key system-of-measure suffix precision fine-grain-target-units fine-grain-precision fine-grain-suffix]
     :or   {system-of-measure options/us-customary
@@ -345,7 +408,10 @@
    If these options are valid, the function will convert the time to the target units and return the original value with the new value added at `display-key`"
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["enrich-displayable-volume" "enrich-displayable-weight"]}
+   :see-also ["enrich-displayable-volume"
+              "enrich-displayable-weight"
+              "enrich-displayable-temperature"
+              "enrich-displayable-color"]}
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure options/us-customary
@@ -405,7 +471,10 @@
    If these options are valid, the function will convert the temperature to the target units and return the original value with the new value added at `display-key`"
   {:added    "1.3.0"
    :no-doc   true
-   :see-also ["enrich-displayable-volume" "enrich-displayable-weight"]}
+   :see-also ["enrich-displayable-volume"
+              "enrich-displayable-weight"
+              "enrich-displayable-color"
+              "enrich-displayable-time"]}
   [source-data
    {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix system-of-measure value-key]
     :or   {system-of-measure options/us-customary
@@ -422,4 +491,64 @@
                                     options/precision         precision
                                     options/suffix            suffix})]
       (assoc source-data display-key (->displayable-temperature source-value :celsius target-units opts)))
+    source-data))
+
+
+(defn verify-enrich-displayable-color-opts
+  "A function to verify the options map passed to `->displayable-color`
+   This requires the user to supply valid values for: `target-units`, `precision`, and `suffix`.
+   If any of these are invalid, an Exception is thrown with information on the invalid options."
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["enrich-displayable-color"]}
+  [{:keys [target-units source-units precision suffix]
+    :as   opts}]
+  (let [valid-target?    (contains? color/srm->measurement target-units)
+        valid-source?    (contains? color/measurement->srm source-units)
+        valid-precision? (int? precision)
+        valid-suffix?    (contains? options/supported-suffixes suffix)
+        errors           (cond-> {}
+                           (not valid-target?)    (target-unit-error :color target-units)
+                           (not valid-source?)    (source-unit-error :color source-units)
+                           (not valid-precision?) (precision-error :color precision)
+                           (not valid-suffix?)    (suffix-error :color suffix))]
+    (if (empty? errors)
+      opts
+      (throw (ex-info "Invalid displayable color enrichment options: " errors)))))
+
+
+#_{:clj-kondo/ignore [:shadowed-var]}
+
+
+(defn enrich-displayable-color
+  "A function to enrich a map with a human-readable version of a color at `value-key`.
+   If invalid options are passed, the function throws an Exception with information on the invalid options.
+
+   Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
+   However, it will defer to more selective values passed in with the following precedence:
+
+   `:fine-grain-precision` > `precision`
+   `:fine-grain-suffix` > `suffix`
+
+   If these options are valid, the function will convert the color to the target system and return the original value with the new value added at `display-key`"
+  {:added    "1.3.0"
+   :no-doc   true
+   :see-also ["enrich-displayable-volume"
+              "enrich-displayable-weight"
+              "enrich-displayable-temperature"
+              "enrich-displayable-time"]}
+  [source-data
+   {:keys [display-key fine-grain-precision fine-grain-suffix fine-grain-target-units precision suffix value-key source-units]
+    :or   {suffix    options/short
+           precision options/default-precision}}]
+  (if-let [source-value (get source-data value-key)]
+    (let [target-units fine-grain-target-units
+          precision    (or fine-grain-precision precision)
+          suffix       (or fine-grain-suffix suffix)
+          opts         (verify-enrich-displayable-color-opts
+                         {:target-units    target-units
+                          :source-units    source-units
+                          options/precision precision
+                          options/suffix    suffix})]
+      (assoc source-data display-key (->displayable-color source-value source-units target-units opts)))
     source-data))

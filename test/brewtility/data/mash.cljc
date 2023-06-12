@@ -4,8 +4,8 @@
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.mash :as mash.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (def sample-mash-step
@@ -72,7 +72,7 @@
 
 (defn generate-mash-steps-wrapper
   "Generate a random mash-steps object"
-  {:added  "1.3"
+  {:added  "2.0"
    :no-doc true}
   []
   {:mash-steps (gen/generate (spec/gen ::mash.format/mash-steps))})
