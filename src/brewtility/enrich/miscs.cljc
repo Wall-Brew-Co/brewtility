@@ -1,6 +1,6 @@
 (ns brewtility.enrich.miscs
   "Enricher-pattern functions for [miscs](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/miscs.cljc) maps"
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.fermentables"
               "brewtility.enrich.hops"
@@ -15,7 +15,7 @@
 (defn enrich-amount-is-weight
   "An enricher pattern function to determine if a [misc](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/miscs.cljc) should be measured by weight/volume.
    When this feild is not present, it is assumed to be false."
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["enrich-misc"
               "enrich-misc-wrapper"
               "enrich-miscs"
@@ -47,7 +47,7 @@
     - `:misc-time-target-units`: The unit to convert the time into. Supersedes `:system-of-measure`.
     - `:misc-time-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:misc-time-suffix`: The suffix type to append to the time. Supersedes `:suffix`."
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["enrich-misc"
               "enrich-misc-wrapper"
               "enrich-miscs"
@@ -87,7 +87,7 @@
     - `:misc-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:misc-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:misc-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["enrich-misc"
               "enrich-misc-wrapper"
               "enrich-miscs"
@@ -132,7 +132,7 @@
         - `:misc-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:misc-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:misc-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-amount-is-weight"
@@ -172,7 +172,7 @@
         - `:misc-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:misc-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:misc-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-amount-is-weight"
@@ -209,7 +209,7 @@
         - `:misc-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:misc-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:misc-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-amount-is-weight"
@@ -246,7 +246,7 @@
         - `:misc-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:misc-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:misc-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-amount-is-weight"

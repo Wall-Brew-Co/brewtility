@@ -1,6 +1,6 @@
 (ns brewtility.enrich.styles
   "Enricher-pattern functions for [styles](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/styles.cljc) maps"
-  {:added    "2.0"
+  {:added    "2.1"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.fermentables"
               "brewtility.enrich.hops"
