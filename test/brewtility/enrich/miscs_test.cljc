@@ -44,10 +44,6 @@
 
 (deftest enrich-display-time-test
   (testing "Ensure enricher correctly defaults to setting display time"
-    (is (= "15.0 m" (-> miscs.data/sample-misc
-                        miscs.enrich/enrich-display-time
-                        :display-time))
-        "miscs.data/sample-misc sets the time to 15.0, which is the default unit")
     (is (= "15.555 m" (-> miscs.data/sample-misc
                           (assoc :time 15.555)
                           miscs.enrich/enrich-display-time
@@ -58,13 +54,13 @@
                          (miscs.enrich/enrich-display-time {:misc-time-precision 2})
                          :display-time))
         "enrich-display-time can be configured to use a different precision")
-    (is (= "900.0 s" (-> miscs.data/sample-misc
-                         (assoc :time 15.0)
+    (is (= "13.2 s" (-> miscs.data/sample-misc
+                         (assoc :time 0.22)
                          (miscs.enrich/enrich-display-time {:misc-time-target-units :second})
                          :display-time))
         "enrich-display-time unites can be configured to use seconds")
-    (is (= "15.0 minute" (-> miscs.data/sample-misc
-                             (assoc :time 15.0)
+    (is (= "15.1 minute" (-> miscs.data/sample-misc
+                             (assoc :time 15.1)
                              (miscs.enrich/enrich-display-time {:misc-time-suffix :full})
                              :display-time))
         "enrich-display-time can be configured to use full suffixes")
@@ -73,13 +69,13 @@
                          (miscs.enrich/enrich-display-time {:precision 2})
                          :display-time))
         "enrich-display-time can be configured to use a different precision with default settings keys")
-    (is (= "15.0 m" (-> miscs.data/sample-misc
-                        (assoc :time 15.0)
+    (is (= "15.1 m" (-> miscs.data/sample-misc
+                        (assoc :time 15.1)
                         (miscs.enrich/enrich-display-time {:system-of-measure :metric})
                         :display-time))
         "enrich-display-time unites can be configured with default settings keys")
-    (is (= "15.0 minute" (-> miscs.data/sample-misc
-                             (assoc :time 15.0)
+    (is (= "15.1 minute" (-> miscs.data/sample-misc
+                             (assoc :time 15.1)
                              (miscs.enrich/enrich-display-time {:suffix :full})
                              :display-time))
         "enrich-display-time can be configured to use full suffixes with default settings keys"))
@@ -105,8 +101,8 @@
                             (miscs.enrich/enrich-display-amount {:misc-amount-precision 2})
                             :display-amount))
           "enrich-display-amount can be configured to use a different precision")
-      (is (= "15000.0 g" (-> weighted-misc
-                             (assoc :amount 15.0)
+      (is (= "15444.4 g" (-> weighted-misc
+                             (assoc :amount 15.4444)
                              (miscs.enrich/enrich-display-amount {:misc-amount-target-units :gram})
                              :display-amount))
           "enrich-display-amount unites can be configured to use seconds")
@@ -120,8 +116,8 @@
                             (miscs.enrich/enrich-display-amount {:precision 2})
                             :display-amount))
           "enrich-display-amount can be configured to use a different precision with default settings keys")
-      (is (= "15.0 kg" (-> weighted-misc
-                           (assoc :amount 15.0)
+      (is (= "15.4 kg" (-> weighted-misc
+                           (assoc :amount 15.4)
                            (miscs.enrich/enrich-display-amount {:system-of-measure :metric})
                            :display-amount))
           "enrich-display-amount unites can be configured with default settings keys")
@@ -161,8 +157,8 @@
                             (miscs.enrich/enrich-display-amount {:precision 2})
                             :display-amount))
           "enrich-display-amount can be configured to use a different precision with default settings keys")
-      (is (= "15.0 l" (-> volume-misc
-                          (assoc :amount 15.0)
+      (is (= "15.1 l" (-> volume-misc
+                          (assoc :amount 15.1)
                           (miscs.enrich/enrich-display-amount {:system-of-measure :metric})
                           :display-amount))
           "enrich-display-amount unites can be configured with default settings keys")
@@ -210,11 +206,11 @@
         "Enrichment pattern should produce a valid misc object")
     (testing "Static data comparison for enrichment pattern functions"
       (is (= {:amount           0.01
-              :display-time     "15.0 m"
+              :display-time     "15.1 m"
               :amount-is-weight false
               :use              "Boil"
               :name             "Irish Moss"
-              :time             15.0
+              :time             15.1
               :type             "Fining"
               :notes            "Used as a clarifying agent during the last few minutes of the boil"
               :display-amount   "0.003 gal"

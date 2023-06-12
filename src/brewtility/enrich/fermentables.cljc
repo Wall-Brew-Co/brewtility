@@ -1,6 +1,6 @@
 (ns brewtility.enrich.fermentables
   "Enricher-pattern functions for [fermentables](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/fermentables.cljc) maps"
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.hops"
               "brewtility.enrich.mash"
@@ -9,17 +9,17 @@
               "brewtility.enrich.styles"
               "brewtility.enrich.waters"
               "brewtility.enrich.yeast"]}
-  (:require [brewtility.color :as color]
-            [brewtility.enrich.impl :as impl]
+  (:require [brewtility.enrich.impl :as impl]
             [brewtility.predicates.fermentables :as fermentables.predicate]
-            [brewtility.static :as static]))
+            [brewtility.units.color :as color]
+            [brewtility.units.options :as options]))
 
 
 (defn enrich-add-after-boil
   "An enricher pattern function to determine if a [fermentable](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/fermentables.cljc) was added after the boil.
    In the BeerXML spec, this behavior is implicitly falsey.
    Therefore, if the :add-after-boil field is not present, this function will explicitly set it to false."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-fermentable"
               "enrich-fermentable-wrapper"
               "enrich-fermentables"
@@ -41,7 +41,7 @@
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
      - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -66,7 +66,7 @@
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
      - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -91,7 +91,7 @@
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
      - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -116,7 +116,7 @@
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
      - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -141,7 +141,7 @@
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
      - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -166,7 +166,7 @@
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
      - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["brewtility.predicates.fermentables/extract?"
               "enrich-fermentable"
               "enrich-fermentable-wrapper"
@@ -200,7 +200,7 @@
     - `:fermentable-color-target-units`: The unit to convert the color into. Supersedes `:color-system`.
     - `:fermentable-color-precision`: The number of significant decimal places to display. Supersedes `:color`.
     - `:fermentable-color-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-fermentable"
               "enrich-fermentable-wrapper"
               "enrich-fermentables"
@@ -210,25 +210,25 @@
   ([fermentable {:keys [color-system suffix]
                  :as   opts}]
    (let [source-color-system (if (fermentables.predicate/grain? fermentable opts)
-                               static/lovibond
-                               static/srm)
+                               options/lovibond
+                               options/srm)
          target-color-system (or color-system source-color-system)
-         suffix              (or suffix static/short)]
-     (if (and (contains? color/color-systems target-color-system)
-              (contains? #{static/full static/short} suffix))
+         suffix              (or suffix options/short)]
+     (if (and (contains? color/measurements target-color-system)
+              (contains? #{options/full options/short} suffix))
        (let [source-color  (if (fermentables.predicate/grain? fermentable opts)
                              (:color fermentable)
-                             (color/srm->lovibond (:color fermentable)))
+                             (color/convert (:color fermentable) options/srm options/lovibond))
              target-color  (case target-color-system ; TODO: Add this functionality to the `units` namespace
                              :lovibond source-color
-                             :srm      (color/lovibond->srm source-color)
-                             :ebc      (color/lovibond->ebc source-color)
-                             :rgba     (color/lovibond->rgba source-color))
-             suffix-string (get-in color/color-system->display-name [target-color-system suffix])
+                             :srm      (color/convert source-color options/lovibond options/srm)
+                             :ebc      (color/convert source-color options/lovibond options/ebc)
+                             :rgba     (color/convert source-color options/lovibond options/rgba))
+             suffix-string (get-in color/measurements->display-name [target-color-system suffix])
              display-value (str target-color suffix-string)]
          (assoc fermentable :display-color display-value))
        (throw (ex-info "Invalid options for displaying fermentable color" {:color-system          target-color-system
-                                                                           :allowed-color-systems color/color-systems
+                                                                           :allowed-color-systems color/measurements
                                                                            :suffix                suffix
                                                                            :allowed-suffixes      #{:full :short}}))))))
 
@@ -254,7 +254,7 @@
     - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-fermentable"
               "enrich-fermentable-wrapper"
               "enrich-fermentables"
@@ -304,7 +304,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"
@@ -363,7 +363,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"
@@ -413,7 +413,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"
@@ -463,7 +463,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "1.3"
+  {:added    "2.0"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"

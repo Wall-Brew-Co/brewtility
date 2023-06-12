@@ -1,5 +1,5 @@
 (ns brewtility.predicates.equipment
-  "Predicate functions for [equipment](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/equipment.cljc) maps"
+  "Predicate functions for [equipment](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/equipment.cljc) maps."
   {:added    "1.5"
    :see-also ["brewtility.predicates.fermentables"
               "brewtility.predicates.hops"
