@@ -14,7 +14,7 @@
             [brewtility.units.options :as options]))
 
 
-(def ^:const measurements
+(def measurements
   "The color systems available across brewtility."
   #{options/srm
     options/ebc
@@ -22,7 +22,7 @@
     options/rgba})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from color system names to their full and short unit names"
   {options/srm      {options/full  "standard reference method"
                      options/short "srm"}

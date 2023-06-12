@@ -11,23 +11,23 @@
             [brewtility.units.options :as options]))
 
 
-(def ^:const measurements
+(def measurements
   "The specific gravity systems available across brewtility."
   #{options/specific-gravity})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from specific gravity system names to their full and short unit names."
   {options/specific-gravity {options/full  "specific gravity"
                              options/short "sg"}})
 
 
-(def ^:const measurement->specific-gravity
+(def measurement->specific-gravity
   "A map from specific gravity system names to the conversion function to specific gravity."
   {options/specific-gravity identity})
 
 
-(def ^:const specific-gravity->measurement
+(def specific-gravity->measurement
   "A map from specific gravity system names to the conversion function from specific gravity."
   {options/specific-gravity identity})
 

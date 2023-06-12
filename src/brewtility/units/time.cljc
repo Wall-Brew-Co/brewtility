@@ -19,7 +19,7 @@
   (:refer-clojure :exclude [time]))
 
 
-(def ^:const measurements
+(def measurements
   "The time measurements available across brewtility"
   #{options/day
     options/hour
@@ -31,7 +31,7 @@
     options/week})
 
 
-(def ^:const measurement->minute
+(def measurement->minute
   "A map from measurement names to doubles representing their fractional value to one minute"
   {options/day         1440.0
    options/hour        60.0
@@ -43,7 +43,7 @@
    options/week        10080.0})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from measurement names to their full name and abbreviation"
   {options/day         {options/full  "days"
                         options/short "d"}

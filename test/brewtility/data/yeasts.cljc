@@ -11,7 +11,7 @@
 
 (defn random-flocculation
   "Return a random valid flocculation."
-  {:added "2.0"
+  {:added "1.4"
    :no-doc true}
   []
   (-> yeasts.format/yeast-flocculation-types
@@ -59,7 +59,7 @@
 
 (defn generate-yeast
   "Generate a random yeast object"
-  {:added  "2.0"
+  {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::yeasts.format/yeast)))
@@ -67,7 +67,7 @@
 
 (defn generate-yeast-wrapper
   "Generate a random yeast-wrapper object"
-  {:added "2.0"
+  {:added "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::yeasts.format/yeast-wrapper)))
@@ -75,7 +75,7 @@
 
 (defn generate-yeasts
   "Generate a random yeasts object"
-  {:added  "2.0"
+  {:added  "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::yeasts.format/yeasts)))
@@ -83,7 +83,7 @@
 
 (defn generate-yeasts-wrapper
   "Generate a random yeasts-wrapper object"
-  {:added "2.0"
+  {:added "1.4"
    :no-doc true}
   []
   (gen/generate (spec/gen ::yeasts.format/yeasts-wrapper)))
