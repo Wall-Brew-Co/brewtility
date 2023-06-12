@@ -36,12 +36,12 @@
   {:style sample-style})
 
 
-(def ^:const sample-styles
+(def sample-styles
   "A hard-coded sample styles for static unit tests"
   [sample-style-wrapper])
 
 
-(def ^:const sample-styles-wrapper
+(def sample-styles-wrapper
   "A hard-coded sample styles-wrapper for static unit tests"
   {:styles sample-styles})
 

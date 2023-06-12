@@ -27,7 +27,7 @@
   [sample-mash-step-wrapper])
 
 
-(def ^:const sample-mash-steps-wrapper
+(def sample-mash-steps-wrapper
   "A hard-coded sample mash-steps-wrapper for static unit tests"
   {:mash-steps sample-mash-steps})
 
