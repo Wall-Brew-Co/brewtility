@@ -55,9 +55,9 @@
                          :display-time))
         "enrich-display-time can be configured to use a different precision")
     (is (= "13.2 s" (-> miscs.data/sample-misc
-                         (assoc :time 0.22)
-                         (miscs.enrich/enrich-display-time {:misc-time-target-units :second})
-                         :display-time))
+                        (assoc :time 0.22)
+                        (miscs.enrich/enrich-display-time {:misc-time-target-units :second})
+                        :display-time))
         "enrich-display-time unites can be configured to use seconds")
     (is (= "15.1 minute" (-> miscs.data/sample-misc
                              (assoc :time 15.1)

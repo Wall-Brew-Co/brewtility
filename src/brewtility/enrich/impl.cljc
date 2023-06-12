@@ -108,6 +108,7 @@
        (temperature/convert source-units target-units)
        (temperature/display target-units opts))))
 
+
 ;; TODO: Pluralize strings
 (defn ->displayable-color
   "Convert a color then render it to a displayable value."
