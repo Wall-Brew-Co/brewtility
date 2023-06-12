@@ -25,15 +25,15 @@
     (is (= "5.678 l"
            (sut/->displayable-volume 1.5 options/american-gallon options/liter)
            (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision options/default-precision
-                                                                              options/suffix    options/short}))
+                                                                                options/suffix    options/short}))
         "Conversion defaults to 3 digits of precisions and shorthand unit names with static keys")
     (is (= "5.7 l"
            (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision 1
-                                                                              options/suffix    options/short}))
+                                                                                options/suffix    options/short}))
         "Conversion may override the default precision with static keys")
     (is (= "5.678 liter"
            (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision 3
-                                                                              options/suffix    options/full}))
+                                                                                options/suffix    options/full}))
         "Conversion may override the default suffix with static keys")))
 
 
