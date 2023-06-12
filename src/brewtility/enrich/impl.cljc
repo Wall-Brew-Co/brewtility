@@ -16,27 +16,27 @@
    options/suffix    options/short})
 
 
-(def ^:const value-key
+(def value-key
   "The key to source data from in `->displayable` functions"
   :value-key)
 
 
-(def ^:const display-key
+(def display-key
   "The key to store displayable data in in `->displayable` functions"
   :display-key)
 
 
-(def ^:const fine-grain-target-units
+(def fine-grain-target-units
   "The target units to use for fine-grain toggling of displayable units in `->displayable` functions"
   :fine-grain-target-units)
 
 
-(def ^:const fine-grain-precision
+(def fine-grain-precision
   "The suffix to use for fine-grain setting of precision in `->displayable` functions"
   :fine-grain-precision)
 
 
-(def ^:const fine-grain-suffix
+(def fine-grain-suffix
   "The suffix to use for fine-grain setting of precision in `->displayable` functions"
   :fine-grain-suffix)
 
@@ -139,14 +139,14 @@
    options/international-system options/kilogram})
 
 
-(def ^:private ^:const default-time-by-system
+(def ^:private default-time-by-system
   {options/imperial             options/minute
    options/metric               options/minute
    options/us-customary         options/minute
    options/international-system options/minute})
 
 
-(def ^:private ^:const default-temperature-by-system
+(def ^:private default-temperature-by-system
   {options/imperial             options/fahrenheit
    options/metric               options/celsius
    options/us-customary         options/fahrenheit
