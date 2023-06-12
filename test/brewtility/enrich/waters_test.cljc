@@ -38,8 +38,8 @@
                           (waters.enrich/enrich-display-amount {:precision 2})
                           :display-amount))
         "enrich-display-amount can be configured to use a different precision with default settings keys")
-    (is (= "15.0 l" (-> waters.data/sample-water
-                        (assoc :amount 15.0)
+    (is (= "15.1 l" (-> waters.data/sample-water
+                        (assoc :amount 15.1)
                         (waters.enrich/enrich-display-amount {:system-of-measure :metric})
                         :display-amount))
         "enrich-display-amount unites can be configured with default settings keys")

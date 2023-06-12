@@ -12,7 +12,7 @@
   {:amount  0.010
    :name    "Irish Moss"
    :notes   "Used as a clarifying agent during the last few minutes of the boil"
-   :time    15.0
+   :time    15.1
    :type    "Fining"
    :use     "Boil"
    :version 1})

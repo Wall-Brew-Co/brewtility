@@ -71,7 +71,7 @@
 
 (defn generate-mash-steps-wrapper
   "Generate a random mash-steps object"
-  {:added  "1.3"
+  {:added  "2.0"
    :no-doc true}
   []
   {:mash-steps (gen/generate (spec/gen ::mash.format/mash-steps))})

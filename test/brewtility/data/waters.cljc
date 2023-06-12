@@ -9,7 +9,7 @@
 
 (defn random-ph
   "Generate a random `:ph` value."
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (rand 14))
@@ -52,7 +52,7 @@
 
 (defn generate-water
   "Generate a random water object"
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/water)))
@@ -60,7 +60,7 @@
 
 (defn generate-water-wrapper
   "Generate a random water-wrapper object"
-  {:added "1.4"
+  {:added "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/water-wrapper)))
@@ -68,7 +68,7 @@
 
 (defn generate-waters
   "Generate a random waters object"
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/waters)))
@@ -76,7 +76,7 @@
 
 (defn generate-waters-wrapper
   "Generate a random waters-wrapper object"
-  {:added "1.4"
+  {:added "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/waters-wrapper)))

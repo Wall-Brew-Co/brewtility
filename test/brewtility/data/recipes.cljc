@@ -18,7 +18,7 @@
 
 (defn random-ibu-method
   "Return a random valid hop type."
-  {:added "1.3"
+  {:added "2.0"
    :no-doc true}
   []
   (-> recipes.format/ibu-method-types

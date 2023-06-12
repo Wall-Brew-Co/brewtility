@@ -59,8 +59,8 @@
                             (yeasts.enrich/enrich-display-amount {:yeast-amount-precision 2})
                             :display-amount))
           "enrich-display-amount can be configured to use a different precision")
-      (is (= "15000.0 g" (-> weighted-yeast
-                             (assoc :amount 15.0)
+      (is (= "15444.4 g" (-> weighted-yeast
+                             (assoc :amount 15.4444)
                              (yeasts.enrich/enrich-display-amount {:yeast-amount-target-units :gram})
                              :display-amount))
           "enrich-display-amount unites can be configured to use seconds")
@@ -74,8 +74,8 @@
                             (yeasts.enrich/enrich-display-amount {:precision 2})
                             :display-amount))
           "enrich-display-amount can be configured to use a different precision with default settings keys")
-      (is (= "15.0 kg" (-> weighted-yeast
-                           (assoc :amount 15.0)
+      (is (= "15.4 kg" (-> weighted-yeast
+                           (assoc :amount 15.4)
                            (yeasts.enrich/enrich-display-amount {:system-of-measure :metric})
                            :display-amount))
           "enrich-display-amount unites can be configured with default settings keys")
@@ -115,8 +115,8 @@
                             (yeasts.enrich/enrich-display-amount {:precision 2})
                             :display-amount))
           "enrich-display-amount can be configured to use a different precision with default settings keys")
-      (is (= "15.0 l" (-> volume-yeast
-                          (assoc :amount 15.0)
+      (is (= "15.1 l" (-> volume-yeast
+                          (assoc :amount 15.1)
                           (yeasts.enrich/enrich-display-amount {:system-of-measure :metric})
                           :display-amount))
           "enrich-display-amount unites can be configured with default settings keys")

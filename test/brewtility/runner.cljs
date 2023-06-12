@@ -13,6 +13,13 @@
             [brewtility.data.styles]
             [brewtility.data.waters]
             [brewtility.data.yeasts]
+            [brewtility.enrich.equipment-test]
+            [brewtility.enrich.fermentables-test]
+            [brewtility.enrich.hops-test]
+            [brewtility.enrich.mash-test]
+            [brewtility.enrich.miscs-test]
+            [brewtility.enrich.waters-test]
+            [brewtility.enrich.yeasts-test]
             [brewtility.precision-test]
             [brewtility.predicates.equipment-test]
             [brewtility.predicates.fermentables-test]
@@ -51,6 +58,13 @@
            'brewtility.data.styles
            'brewtility.data.waters
            'brewtility.data.yeasts
+           'brewtility.enrich.equipment-test
+           'brewtility.enrich.fermentables-test
+           'brewtility.enrich.hops-test
+           'brewtility.enrich.mash-test
+           'brewtility.enrich.miscs-test
+           'brewtility.enrich.waters-test
+           'brewtility.enrich.yeasts-test
            'brewtility.precision-test
            'brewtility.predicates.equipment-test
            'brewtility.predicates.fermentables-test
