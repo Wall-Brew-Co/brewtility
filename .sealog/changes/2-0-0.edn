@@ -13,7 +13,7 @@
                              "Display functions for all unit types."]
                 :changed    ["Internal functions that convert between unit systems now use `brewtility.units`"]
                 :deprecated []
-                :removed    ["`brewility.color` has been removed in favor of `brewtility.units.color`"
+                :removed    ["`brewtility.color` has been removed in favor of `brewtility.units.color`"
                              "`brewtility.units/convert-weight` has been removed in favor of `brewtility.units/convert` and `brewtility.units.weight/convert`"
                              "`brewtility.units/convert-volume` has been removed in favor of `brewtility.units/convert` and `brewtility.units.volume/convert`"
                              "`brewtility.units/convert-temperature` has been removed in favor of `brewtility.units/convert` and `brewtility.units.temperature/convert`"]
