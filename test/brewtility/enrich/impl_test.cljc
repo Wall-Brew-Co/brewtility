@@ -189,145 +189,145 @@
           "The valid values are included in the error message"))))
 
 
-(deftest verify-enrich-displayable-volume-opts-test
+(deftest parse-enrich-displayable-volume-opts-test
   (let [valid-opts  {:target-units      :teaspoon
                      :system-of-measure :metric
                      :precision         2
                      :suffix            :full}
         error-regex #"Invalid displayable volume enrichment options"]
-    (testing "Ensure verify-enrich-displayable-volume-opts returns valid opts"
-      (is (= valid-opts (sut/verify-enrich-displayable-volume-opts valid-opts))
+    (testing "Ensure parse-enrich-displayable-volume-opts returns valid opts"
+      (is (= valid-opts (sut/parse-enrich-displayable-volume-opts valid-opts))
           "Valid opts are returned unchanged"))
-    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units            options/teaspoon
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-volume-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-volume-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (dissoc valid-opts :suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-volume-opts (assoc valid-opts :suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :suffix :fake))))))))
 
 
-(deftest verify-enrich-displayable-weight-opts-test
+(deftest parse-enrich-displayable-weight-opts-test
   (let [valid-opts  {:target-units      :pound
                      :system-of-measure :metric
                      :precision         2
                      :suffix            :full}
         error-regex #"Invalid displayable weight enrichment options"]
-    (testing "Ensure verify-enrich-displayable-weight-opts returns valid opts"
-      (is (= valid-opts (sut/verify-enrich-displayable-weight-opts valid-opts))
+    (testing "Ensure parse-enrich-displayable-weight-opts returns valid opts"
+      (is (= valid-opts (sut/parse-enrich-displayable-weight-opts valid-opts))
           "Valid opts are returned unchanged"))
-    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units            options/pound
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-weight-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-weight-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (dissoc valid-opts :suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-weight-opts (assoc valid-opts :suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :suffix :fake))))))))
 
 
-(deftest verify-enrich-displayable-time-opts-test
+(deftest parse-enrich-displayable-time-opts-test
   (let [valid-opts  {:target-units      :minute
                      :system-of-measure :metric
                      :precision         2
                      :suffix            :full}
         error-regex #"Invalid displayable time enrichment options"]
-    (testing "Ensure verify-enrich-displayable-time-opts returns valid opts"
-      (is (= valid-opts (sut/verify-enrich-displayable-time-opts valid-opts))
+    (testing "Ensure parse-enrich-displayable-time-opts returns valid opts"
+      (is (= valid-opts (sut/parse-enrich-displayable-time-opts valid-opts))
           "Valid opts are returned unchanged"))
-    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units            options/minute
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-time-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-time-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (dissoc valid-opts :suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-time-opts (assoc valid-opts :suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :suffix :fake))))))))
 
 
-(deftest verify-enrich-displayable-temperature-opts-test
+(deftest parse-enrich-displayable-temperature-opts-test
   (let [valid-opts  {:target-units      :c
                      :system-of-measure :metric
                      :precision         2
                      :suffix            :full}
         error-regex #"Invalid displayable temperature enrichment options"]
-    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts"
-      (is (= valid-opts (sut/verify-enrich-displayable-temperature-opts valid-opts))
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts"
+      (is (= valid-opts (sut/parse-enrich-displayable-temperature-opts valid-opts))
           "Valid opts are returned unchanged"))
-    (testing "Ensure verify-enrich-displayable-temperature-opts returns valid opts with static keys"
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units            options/c
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/verify-enrich-displayable-temperature-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-temperature-opts valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (dissoc valid-opts :suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/verify-enrich-displayable-temperature-opts (assoc valid-opts :suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :suffix :fake))))))))
