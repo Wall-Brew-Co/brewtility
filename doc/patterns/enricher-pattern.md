@@ -35,7 +35,7 @@ While the unit conversion is simple, it can often lead to front-end code like th
 ```
 
 Helper functions may be extracted, but the above code would certainly benefit from the `:display-boil-size` and `:display-tun-weight` fields which may optionally exist on the `equipment` record.
-As a utility library for beer data, brewtility comes with the functionality needed to compute these display fields; however, keeping them as loose datums isn't fully desireable either.
+As a utility library for beer data, brewtility comes with the functionality needed to compute these display fields; however, keeping them as loose datums isn't fully desirable either.
 In the contexts we want display data available for an equipment record, it's much easier to provide that data with the equipment record.
 To that end, this library implements an enrichment pattern.
 

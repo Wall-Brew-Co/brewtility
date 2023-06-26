@@ -1,6 +1,6 @@
 (ns brewtility.predicates.fermentables-test
   (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.data.fermentables :as fermentables]
             [brewtility.predicates.fermentables :as sut]
             [common-beer-format.fermentables :as cbf-fermentables]))

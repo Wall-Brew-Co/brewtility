@@ -1,6 +1,6 @@
 (ns brewtility.predicates.recipes-test
   (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.data.recipes :as recipes]
             [brewtility.predicates.recipes :as sut]
             [common-beer-format.recipes :as cbf-recipes]))

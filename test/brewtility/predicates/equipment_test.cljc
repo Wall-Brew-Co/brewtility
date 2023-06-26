@@ -1,6 +1,6 @@
 (ns brewtility.predicates.equipment-test
   (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.data.equipment :as equipment]
             [brewtility.predicates.equipment :as sut]
             [common-beer-format.equipment :as cbf-equipment]))
