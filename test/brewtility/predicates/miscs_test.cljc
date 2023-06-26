@@ -1,6 +1,6 @@
 (ns brewtility.predicates.miscs-test
   (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.data.miscs :as miscs]
             [brewtility.predicates.miscs :as sut]
             [common-beer-format.miscs :as cbf-miscs]))

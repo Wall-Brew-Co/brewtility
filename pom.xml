@@ -82,6 +82,12 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>cider</groupId>
+      <artifactId>cider-nrepl</artifactId>
+      <version>0.31.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.wallbrew</groupId>
       <artifactId>common-beer-data</artifactId>
       <version>1.3.0</version>
@@ -97,6 +103,12 @@
       <groupId>doo</groupId>
       <artifactId>doo</artifactId>
       <version>0.1.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>nrepl</groupId>
+      <artifactId>nrepl</artifactId>
+      <version>1.0.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -4,7 +4,7 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.miscs :as miscs.format]
             #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (deftest enrich-amount-is-weight-test

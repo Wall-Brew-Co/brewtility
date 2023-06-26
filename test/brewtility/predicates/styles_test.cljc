@@ -1,6 +1,6 @@
 (ns brewtility.predicates.styles-test
   (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.data.styles :as styles]
             [brewtility.predicates.styles :as sut]
             [common-beer-format.styles :as cbf-styles]))

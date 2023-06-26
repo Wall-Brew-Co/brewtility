@@ -1,6 +1,6 @@
 (ns brewtility.predicates.hops-test
   (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.data.hops :as hops]
             [brewtility.predicates.hops :as sut]
             [common-beer-format.hops :as cbf-hops]))
