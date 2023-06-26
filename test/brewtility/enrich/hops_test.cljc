@@ -4,7 +4,7 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.hops :as hop.format]
             #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 ;;

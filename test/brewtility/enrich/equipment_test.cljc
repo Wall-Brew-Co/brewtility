@@ -4,7 +4,7 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.equipment :as equipment.format]
             #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (deftest enrich-calculated-boil-size-tests
@@ -66,7 +66,7 @@
                                                            :boil-size-precision    1
                                                            :boil-size-suffix       :full})
                :display-boil-size))
-        "Broad settings can be overriden with boil-size specific settings")
+        "Broad settings can be overridden with boil-size specific settings")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
                                 (equipment.enrich/enrich-display-boil-size equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
@@ -99,7 +99,7 @@
                                                             :batch-size-precision    1
                                                             :batch-size-suffix       :full})
                :display-batch-size))
-        "Broad settings can be overriden with batch-size specific settings")
+        "Broad settings can be overridden with batch-size specific settings")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
                                 (equipment.enrich/enrich-display-batch-size equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
@@ -132,7 +132,7 @@
                                                             :tun-volume-precision    1
                                                             :tun-volume-suffix       :full})
                :display-tun-volume))
-        "Broad settings can be overriden with tun-volume specific settings")
+        "Broad settings can be overridden with tun-volume specific settings")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
                                 (equipment.enrich/enrich-display-tun-volume equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
@@ -165,7 +165,7 @@
                                                             :tun-weight-precision    1
                                                             :tun-weight-suffix       :full})
                :display-tun-weight))
-        "Broad settings can be overriden with tun-weight specific settings")
+        "Broad settings can be overridden with tun-weight specific settings")
     (is (spoon.spec/test-valid? ::equipment.format/equipment
                                 (equipment.enrich/enrich-display-tun-weight equipment.data/sample-equipment))
         "Enrichment pattern should produce a valid equipment object")))
@@ -198,7 +198,7 @@
                                                               :top-up-water-precision    1
                                                               :top-up-water-suffix       :full})
                :display-top-up-water))
-        "Broad settings can be overriden with top-up-water specific settings")
+        "Broad settings can be overridden with top-up-water specific settings")
     (is (nil? (-> equipment.data/sample-equipment
                   (dissoc :top-up-water)
                   equipment.enrich/enrich-display-top-up-water
@@ -236,7 +236,7 @@
                                                                    :trub-chiller-loss-precision    1
                                                                    :trub-chiller-loss-suffix       :full})
                :display-trub-chiller-loss))
-        "Broad settings can be overriden with trub-chiller-loss specific settings")
+        "Broad settings can be overridden with trub-chiller-loss specific settings")
     (is (nil? (-> equipment.data/sample-equipment
                   (dissoc :trub-chiller-loss)
                   equipment.enrich/enrich-display-lauter-deadspace
@@ -274,7 +274,7 @@
                                                                   :lauter-deadspace-precision    1
                                                                   :lauter-deadspace-suffix       :full})
                :display-lauter-deadspace))
-        "Broad settings can be overriden with lauter-deadspace specific settings")
+        "Broad settings can be overridden with lauter-deadspace specific settings")
     (is (nil? (-> equipment.data/sample-equipment
                   (dissoc :lauter-deadspace)
                   (equipment.enrich/enrich-display-lauter-deadspace {:lauter-deadspace-target-units :cup
@@ -314,7 +314,7 @@
                                                                :top-up-kettle-precision    1
                                                                :top-up-kettle-suffix       :full})
                :display-top-up-kettle))
-        "Broad settings can be overriden with top-up-kettle specific settings")
+        "Broad settings can be overridden with top-up-kettle specific settings")
     (is (nil? (-> equipment.data/sample-equipment
                   (dissoc :top-up-kettle)
                   equipment.enrich/enrich-display-top-up-kettle

@@ -245,7 +245,7 @@
                          :time             time/measurements
                          :volume           volume/measurements
                          :weight           weight/measurements)
-        error-msg      (str "Invalid unit for "
+        error-msg      (str "Invalid target unit for "
                             (name conversion-type)
                             " conversion : `"
                             target-units
@@ -274,7 +274,7 @@
                          :time             time/measurements
                          :volume           volume/measurements
                          :weight           weight/measurements)
-        error-msg      (str "Invalid unit for "
+        error-msg      (str "Invalid source unit for "
                             (name conversion-type)
                             " conversion : `"
                             source-units
@@ -378,7 +378,7 @@
                            (not valid-suffix?)    (suffix-error :pressure suffix))]
     (if (empty? errors)
       opts
-      (throw (ex-info "Invalid options for `->displayable-pressure`: " errors)))))
+      (throw (ex-info "Invalid displayable pressure enrichment options: " errors)))))
 
 
 (defn parse-enrich-displayable-specific-gravity-opts
@@ -401,7 +401,7 @@
                            (not valid-suffix?)    (suffix-error :specific-gravity suffix))]
     (if (empty? errors)
       opts
-      (throw (ex-info "Invalid options for `->displayable-specific-gravity`: " errors)))))
+      (throw (ex-info "Invalid displayable specific gravity enrichment options: " errors)))))
 
 
 (defn parse-enrich-displayable-temperature-opts
@@ -506,7 +506,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `impl/fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -549,7 +549,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `impl/fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -591,7 +591,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `impl/fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -633,7 +633,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `impl/fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -675,7 +675,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `impl/fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -717,7 +717,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `impl/fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
@@ -760,7 +760,7 @@
    Since many enrichers can leverage the same options (for example, `:precision`) this function will check for common options.
    However, it will defer to more selective values passed in with the following precedence:
 
-   `impl/fine-grain-target-units` > `system-of-measure`
+   `:fine-grain-target-units` > `system-of-measure`
    `:fine-grain-precision` > `precision`
    `:fine-grain-suffix` > `suffix`
 
