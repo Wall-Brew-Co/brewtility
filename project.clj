@@ -9,7 +9,7 @@
         :url  "https://github.com/Wall-Brew-Co/brewtility"}
   :dependencies [[com.wallbrew/spoon "1.2.1"]
                  [org.clojure/clojure "1.11.1"]
-                 [org.clojure/clojurescript "1.11.121" :scope "provided"]]
+                 [org.clojure/clojurescript "1.11.132" :scope "provided"]]
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2023.09.07"]
             [com.wallbrew/lein-sealog "1.0.2"]
