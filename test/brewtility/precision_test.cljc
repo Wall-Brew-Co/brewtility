@@ -16,12 +16,12 @@
     (is (false? (sut/approximates? 100 90 0.01))
         "90 is not within 1% of 100"))
   (testing "Ensure that non-numeric values throw an exception"
-    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate non-numeric values" (sut/approximates? nil 100 0.00001))))
-    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate non-numeric values" (sut/approximates? 100 nil 0.00001))))
-    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate non-numeric values" (sut/approximates? 100 100 nil))))
-    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate non-numeric values" (sut/approximates? nil 100 0.00001))))
-    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate non-numeric values" (sut/approximates? 100 nil 0.00001))))
-    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate non-numeric values" (sut/approximates? 100 100 nil))))))
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate using non-numeric values" (sut/approximates? nil 100 0.00001))))
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate using non-numeric values" (sut/approximates? 100 nil 0.00001))))
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate using non-numeric values" (sut/approximates? 100 100 nil))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate using non-numeric values" (sut/approximates? nil 100 0.00001))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate using non-numeric values" (sut/approximates? 100 nil 0.00001))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate using non-numeric values" (sut/approximates? 100 100 nil))))))
 
 
 (deftest ->1dp-test

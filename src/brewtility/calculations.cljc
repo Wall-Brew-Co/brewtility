@@ -28,6 +28,7 @@
     (throw (ex-info "Cannot calculate color with non-numeric values" {:amount amount
                                                                       :color  color}))))
 
+
 (defn calculate-malt-color-units
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the overall Malt Color Units for a recipe."
   {:added    "1.0"
