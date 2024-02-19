@@ -25,10 +25,10 @@
    :see-also ["->1dp" "->2dp" "->3dp"]}
   [^double x ^long num-decimals]
   (double
-   #?(:clj (.setScale (bigdec x) num-decimals RoundingMode/HALF_UP)
-      :cljs (let [denominator (Math/pow 10.0 (double num-decimals))
-                  numerator   (Math/round (* x denominator))]
-              (/ numerator denominator)))))
+    #?(:clj (.setScale (bigdec x) num-decimals RoundingMode/HALF_UP)
+       :cljs (let [denominator (Math/pow 10.0 (double num-decimals))
+                   numerator   (Math/round (* x denominator))]
+               (/ numerator denominator)))))
 
 
 (defn ->1dp
