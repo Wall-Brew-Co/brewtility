@@ -15,7 +15,7 @@
             [com.wallbrew/lein-sealog "1.1.0"]
             [lein-cljsbuild "1.1.8"]
             [lein-project-version "0.1.0"]
-            [mvxcvi/cljstyle "0.15.0"]
+            [mvxcvi/cljstyle "0.16.630"]
             [ns-sort "1.0.3"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
