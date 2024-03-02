@@ -11,7 +11,6 @@
               "brewtility.enrich.yeast"]}
   (:require [brewtility.enrich.impl :as impl]
             [brewtility.predicates.fermentables :as fermentables.predicate]
-            [brewtility.units.color :as color]
             [brewtility.units.options :as options]))
 
 
