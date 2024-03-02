@@ -9,7 +9,8 @@
               "brewtility.enrich.styles"
               "brewtility.enrich.waters"
               "brewtility.enrich.yeast"]}
-  (:require [brewtility.enrich.impl :as impl]))
+  (:require [brewtility.enrich.impl :as impl]
+            [brewtility.units.options :as options]))
 
 
 (defn enrich-display-amount
@@ -48,7 +49,7 @@
                               impl/fine-grain-target-units hop-amount-target-units
                               impl/fine-grain-precision    hop-amount-precision
                               impl/fine-grain-suffix       hop-amount-suffix})]
-     (impl/enrich-displayable-weight hop options))))
+     (impl/enrich-displayable-units options/weight hop options))))
 
 
 (defn enrich-display-time
@@ -86,7 +87,7 @@
                               impl/fine-grain-target-units hop-time-target-units
                               impl/fine-grain-precision    hop-time-precision
                               impl/fine-grain-suffix       hop-time-suffix})]
-     (impl/enrich-displayable-time hop options))))
+     (impl/enrich-displayable-units options/time hop options))))
 
 
 (defn enrich-hop

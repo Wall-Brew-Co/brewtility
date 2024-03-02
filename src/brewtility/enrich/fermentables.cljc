@@ -206,31 +206,22 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-display-color fermentable {}))
-  ;; TODO: Port this color conversion into the `units` namespace
-  ([fermentable {:keys [color-system suffix]
+  ([fermentable {:keys [color-system
+                        fermentable-color-target-units
+                        fermentable-color-precision
+                        fermentable-color-suffix]
                  :as   opts}]
    (let [source-color-system (if (fermentables.predicate/grain? fermentable opts)
                                options/lovibond
                                options/srm)
-         target-color-system (or color-system source-color-system)
-         suffix              (or suffix options/short)]
-     (if (and (contains? color/measurements target-color-system)
-              (contains? #{options/full options/short} suffix))
-       (let [source-color  (if (fermentables.predicate/grain? fermentable opts)
-                             (:color fermentable)
-                             (color/convert (:color fermentable) options/srm options/lovibond))
-             target-color  (case target-color-system ; TODO: Add this functionality to the `units` namespace
-                             :lovibond source-color
-                             :srm      (color/convert source-color options/lovibond options/srm)
-                             :ebc      (color/convert source-color options/lovibond options/ebc)
-                             :rgba     (color/convert source-color options/lovibond options/rgba))
-             suffix-string (get-in color/measurements->display-name [target-color-system suffix])
-             display-value (str target-color suffix-string)]
-         (assoc fermentable :display-color display-value))
-       (throw (ex-info "Invalid options for displaying fermentable color" {:color-system          target-color-system
-                                                                           :allowed-color-systems color/measurements
-                                                                           :suffix                suffix
-                                                                           :allowed-suffixes      #{:full :short}}))))))
+         color-system        (or color-system source-color-system)
+         opts                (merge opts {:source-units                source-color-system
+                                          impl/value-key               :color
+                                          impl/display-key             :display-color
+                                          impl/fine-grain-target-units (or fermentable-color-target-units color-system)
+                                          impl/fine-grain-precision    fermentable-color-precision
+                                          impl/fine-grain-suffix       fermentable-color-suffix})]
+     (impl/enrich-displayable-units options/color fermentable opts))))
 
 
 (defn enrich-display-amount
@@ -269,7 +260,7 @@
                               impl/fine-grain-target-units fermentable-amount-target-units
                               impl/fine-grain-precision    fermentable-amount-precision
                               impl/fine-grain-suffix       fermentable-amount-suffix})]
-     (impl/enrich-displayable-weight fermentable options))))
+     (impl/enrich-displayable-units options/weight fermentable options))))
 
 
 (defn enrich-fermentable

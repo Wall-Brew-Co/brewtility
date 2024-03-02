@@ -9,7 +9,8 @@
               "brewtility.enrich.recipes"
               "brewtility.enrich.waters"
               "brewtility.enrich.yeast"]}
-  (:require [brewtility.enrich.impl :as impl]))
+  (:require [brewtility.enrich.impl :as impl]
+            [brewtility.units.options :as options]))
 
 
 (defn enrich-display-og-min
@@ -47,7 +48,7 @@
                               impl/fine-grain-target-units style-display-og-min-target-units
                               impl/fine-grain-precision    style-display-og-min-precision
                               impl/fine-grain-suffix       style-display-og-min-suffix})]
-     (impl/enrich-displayable-specific-gravity style options))))
+     (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
 (defn enrich-display-og-max
@@ -85,7 +86,7 @@
                               impl/fine-grain-target-units style-display-og-max-target-units
                               impl/fine-grain-precision    style-display-og-max-precision
                               impl/fine-grain-suffix       style-display-og-max-suffix})]
-     (impl/enrich-displayable-specific-gravity style options))))
+     (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
 (defn enrich-display-fg-min
@@ -124,7 +125,7 @@
                               impl/fine-grain-target-units style-display-fg-min-target-units
                               impl/fine-grain-precision    style-display-fg-min-precision
                               impl/fine-grain-suffix       style-display-fg-min-suffix})]
-     (impl/enrich-displayable-specific-gravity style options))))
+     (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
 (defn enrich-display-fg-max
@@ -163,7 +164,7 @@
                               impl/fine-grain-target-units style-display-fg-max-target-units
                               impl/fine-grain-precision    style-display-fg-max-precision
                               impl/fine-grain-suffix       style-display-fg-max-suffix})]
-     (impl/enrich-displayable-specific-gravity style options))))
+     (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
 (defn enrich-display-color-min
@@ -202,7 +203,7 @@
                               impl/fine-grain-target-units style-display-color-min-target-units
                               impl/fine-grain-precision    style-display-color-min-precision
                               impl/fine-grain-suffix       style-display-color-min-suffix})]
-     (impl/enrich-displayable-color style options))))
+     (impl/enrich-displayable-units options/color style options))))
 
 
 (defn enrich-display-color-max
@@ -241,4 +242,4 @@
                               impl/fine-grain-target-units style-display-color-max-target-units
                               impl/fine-grain-precision    style-display-color-max-precision
                               impl/fine-grain-suffix       style-display-color-max-suffix})]
-     (impl/enrich-displayable-color style options))))
+     (impl/enrich-displayable-units options/color style options))))

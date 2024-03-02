@@ -9,7 +9,8 @@
               "brewtility.enrich.styles"
               "brewtility.enrich.waters"
               "brewtility.enrich.yeast"]}
-  (:require [brewtility.enrich.impl :as impl]))
+  (:require [brewtility.enrich.impl :as impl]
+            [brewtility.units.options :as options]))
 
 
 (defn enrich-display-step-temperature
@@ -50,7 +51,7 @@
                               impl/fine-grain-target-units display-temperature-target-units
                               impl/fine-grain-precision    display-temperature-precision
                               impl/fine-grain-suffix       display-temperature-suffix})]
-     (impl/enrich-displayable-temperature mash-step options))))
+     (impl/enrich-displayable-units options/temperature mash-step options))))
 
 
 (defn enrich-display-infuse-amount
@@ -91,7 +92,7 @@
                               impl/fine-grain-target-units display-infuse-amount-target-units
                               impl/fine-grain-precision    display-infuse-amount-precision
                               impl/fine-grain-suffix       display-infuse-amount-suffix})]
-     (impl/enrich-displayable-volume mash-step options))))
+     (impl/enrich-displayable-units options/volume mash-step options))))
 
 
 (defn enrich-mash-step
@@ -282,7 +283,7 @@
                               impl/fine-grain-target-units display-grain-temperature-target-units
                               impl/fine-grain-precision    display-grain-temperature-precision
                               impl/fine-grain-suffix       display-grain-temperature-suffix})]
-     (impl/enrich-displayable-temperature mash options))))
+     (impl/enrich-displayable-units options/temperature mash options))))
 
 
 (defn enrich-display-tun-temperature
@@ -319,7 +320,7 @@
                               impl/fine-grain-target-units display-tun-temperature-target-units
                               impl/fine-grain-precision    display-tun-temperature-precision
                               impl/fine-grain-suffix       display-tun-temperature-suffix})]
-     (impl/enrich-displayable-temperature mash options))))
+     (impl/enrich-displayable-units options/temperature mash options))))
 
 
 (defn enrich-display-sparge-temperature
@@ -356,7 +357,7 @@
                               impl/fine-grain-target-units display-sparge-temperature-target-units
                               impl/fine-grain-precision    display-sparge-temperature-precision
                               impl/fine-grain-suffix       display-sparge-temperature-suffix})]
-     (impl/enrich-displayable-temperature mash options))))
+     (impl/enrich-displayable-units options/temperature mash options))))
 
 
 (defn enrich-display-tun-weight
@@ -393,7 +394,7 @@
                               impl/fine-grain-target-units display-tun-weight-target-units
                               impl/fine-grain-precision    display-tun-weight-precision
                               impl/fine-grain-suffix       display-tun-weight-suffix})]
-     (impl/enrich-displayable-weight mash options))))
+     (impl/enrich-displayable-units options/weight mash options))))
 
 
 (defn enrich-mash

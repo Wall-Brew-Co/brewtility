@@ -43,141 +43,141 @@
 (deftest ->displayable-color-test
   (testing "Ensure ->displayable-color supports its full suite of options."
     (is (= "2.955 ebc"
-           (sut/->displayable-color 1.5 options/srm options/ebc)
-           (sut/->displayable-color 1.5 options/srm options/ebc sut/default-display-options))
+           (sut/->displayable-units options/color 1.5 options/srm options/ebc)
+           (sut/->displayable-units options/color 1.5 options/srm options/ebc sut/default-display-options))
         "Conversion defaults to 3 digits of precisions and shorthand unit names")
     (is (= "3.0 ebc"
-           (sut/->displayable-color 1.5 options/srm options/ebc {options/precision 1})
-           (sut/->displayable-color 1.5 options/srm options/ebc {options/precision 1
-                                                                 options/suffix    options/short}))
+           (sut/->displayable-units options/color 1.5 options/srm options/ebc {options/precision 1})
+           (sut/->displayable-units options/color 1.5 options/srm options/ebc {options/precision 1
+                                                                               options/suffix    options/short}))
         "Conversion may override the default precision")
     (is (= "1.668 degrees lovibond"
-           (sut/->displayable-color 1.5 options/srm options/lovibond {options/suffix options/full})
-           (sut/->displayable-color 1.5 options/srm options/lovibond {options/precision 3
-                                                                      options/suffix    options/full}))
+           (sut/->displayable-units options/color 1.5 options/srm options/lovibond {options/suffix options/full})
+           (sut/->displayable-units options/color 1.5 options/srm options/lovibond {options/precision 3
+                                                                                    options/suffix    options/full}))
         "Conversion may override the default suffix")))
 
 
 (deftest ->displayable-pressure-test
   (testing "Ensure ->displayable-pressure supports its full suite of options"
     (is (= "0.103 bar"
-           (sut/->displayable-pressure 1.5 options/psi options/bar)
-           (sut/->displayable-pressure 1.5 options/psi options/bar sut/default-display-options))
+           (sut/->displayable-units options/pressure 1.5 options/psi options/bar)
+           (sut/->displayable-units options/pressure 1.5 options/psi options/bar sut/default-display-options))
         "Conversion defaults to 3 digits of precisions and shorthand unit names")
     (is (= "0.1 bar"
-           (sut/->displayable-pressure 1.5 options/psi options/bar {options/precision 1})
-           (sut/->displayable-pressure 1.5 options/psi options/bar {options/precision 1
-                                                                    options/suffix    options/short}))
+           (sut/->displayable-units options/pressure 1.5 options/psi options/bar {options/precision 1})
+           (sut/->displayable-units options/pressure 1.5 options/psi options/bar {options/precision 1
+                                                                                  options/suffix    options/short}))
         "Conversion may override the default precision")
     (is (= "10.342 kilopascals"
-           (sut/->displayable-pressure 1.5 options/psi options/kilopascal {options/suffix options/full})
-           (sut/->displayable-pressure 1.5 options/psi options/kilopascal {options/precision 3
-                                                                           options/suffix    options/full}))
+           (sut/->displayable-units options/pressure 1.5 options/psi options/kilopascal {options/suffix options/full})
+           (sut/->displayable-units options/pressure 1.5 options/psi options/kilopascal {options/precision 3
+                                                                                         options/suffix    options/full}))
         "Conversion may override the default suffix")))
 
 
 (deftest ->displayable-specific-gravity-test
   (testing "Ensure ->displayable-specific-gravity supports its full suite of options"
     (is (= "1.5 sg"
-           (sut/->displayable-specific-gravity 1.5 options/specific-gravity options/specific-gravity)
-           (sut/->displayable-specific-gravity 1.5 options/specific-gravity options/specific-gravity sut/default-display-options))
+           (sut/->displayable-units options/specific-gravity 1.5 options/specific-gravity options/specific-gravity)
+           (sut/->displayable-units options/specific-gravity 1.5 options/specific-gravity options/specific-gravity sut/default-display-options))
         "Conversion defaults to 3 digits of precisions and shorthand unit names")
     (is (= "1.5 sg"
-           (sut/->displayable-specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/precision 1})
-           (sut/->displayable-specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/precision 1
-                                                                                                      options/suffix    options/short}))
+           (sut/->displayable-units options/specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/precision 1})
+           (sut/->displayable-units options/specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/precision 1
+                                                                                                                    options/suffix    options/short}))
         "Conversion may override the default precision")
     (is (= "1.5 specific gravity"
-           (sut/->displayable-specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/suffix options/full})
-           (sut/->displayable-specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/precision 3
-                                                                                                      options/suffix    options/full}))
+           (sut/->displayable-units options/specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/suffix options/full})
+           (sut/->displayable-units options/specific-gravity 1.5 options/specific-gravity options/specific-gravity {options/precision 3
+                                                                                                                    options/suffix    options/full}))
         "Conversion may override the default suffix")))
 
 
 (deftest ->displayable-temperature-test
   (testing "Ensure ->displayable-temperature supports its full suite of options"
     (is (= "318.75 k"
-           (sut/->displayable-temperature 45.6 options/c options/k)
-           (sut/->displayable-temperature 45.6 options/c options/k {options/precision 3
-                                                                    options/suffix    options/short}))
+           (sut/->displayable-units options/temperature 45.6 options/c options/k)
+           (sut/->displayable-units options/temperature 45.6 options/c options/k {options/precision 3
+                                                                                  options/suffix    options/short}))
         "Conversion defaults to 3 digits of precisions and shorthand unit names")
     (is (= "318.8 k"
-           (sut/->displayable-temperature 45.6 options/c options/k {options/precision 1})
-           (sut/->displayable-temperature 45.6 options/c options/k {options/precision 1
-                                                                    options/suffix    options/short}))
+           (sut/->displayable-units options/temperature 45.6 options/c options/k {options/precision 1})
+           (sut/->displayable-units options/temperature 45.6 options/c options/k {options/precision 1
+                                                                                  options/suffix    options/short}))
         "Conversion may override the default precision")
     (is (= "318.75 kelvin"
-           (sut/->displayable-temperature 45.6 options/c options/k {options/precision 3
-                                                                    options/suffix    options/full})
-           (sut/->displayable-temperature 45.6 options/c options/k {options/suffix options/full}))
+           (sut/->displayable-units options/temperature 45.6 options/c options/k {options/precision 3
+                                                                                  options/suffix    options/full})
+           (sut/->displayable-units options/temperature 45.6 options/c options/k {options/suffix options/full}))
         "Conversion may override the default suffix")))
 
 
 (deftest ->displayable-time-test
   (testing "Ensure ->displayable-time supports its full suite of options"
     (is (= "0.76 m"
-           (sut/->displayable-time 45.6 options/second options/minute)
-           (sut/->displayable-time 45.6 options/second options/minute {options/precision 3
-                                                                       options/suffix    options/short}))
+           (sut/->displayable-units options/time 45.6 options/second options/minute)
+           (sut/->displayable-units options/time 45.6 options/second options/minute {options/precision 3
+                                                                                     options/suffix    options/short}))
         "Conversion defaults to 3 digits of precisions and shorthand unit names")
     (is (= "0.8 m"
-           (sut/->displayable-time 45.6 options/second options/minute {options/precision 1})
-           (sut/->displayable-time 45.6 options/second options/minute {options/precision 1
-                                                                       options/suffix    options/short}))
+           (sut/->displayable-units options/time 45.6 options/second options/minute {options/precision 1})
+           (sut/->displayable-units options/time 45.6 options/second options/minute {options/precision 1
+                                                                                     options/suffix    options/short}))
         "Conversion may override the default precision")
     (is (= "0.76 minute"
-           (sut/->displayable-time 45.6 options/second options/minute {options/suffix options/full})
-           (sut/->displayable-time 45.6 options/second options/minute {options/precision 3
-                                                                       options/suffix    options/full}))
+           (sut/->displayable-units options/time 45.6 options/second options/minute {options/suffix options/full})
+           (sut/->displayable-units options/time 45.6 options/second options/minute {options/precision 3
+                                                                                     options/suffix    options/full}))
         "Conversion may override the default suffix")))
 
 
 (deftest ->displayable-volume-test
   (testing "Ensure ->displayable-volume supports its full suite of options"
     (is (= "5.678 l"
-           (sut/->displayable-volume 1.5 :american-gallon :liter)
-           (sut/->displayable-volume 1.5 :american-gallon :liter {options/precision 3
-                                                                  options/suffix    :short}))
+           (sut/->displayable-units options/volume 1.5 :american-gallon :liter)
+           (sut/->displayable-units options/volume 1.5 :american-gallon :liter {options/precision 3
+                                                                                options/suffix    :short}))
         "Conversion defaults to 3 digits of precisions and shorthand unit names")
     (is (= "5.7 l"
-           (sut/->displayable-volume 1.5 :american-gallon :liter {options/precision 1
-                                                                  options/suffix    :short}))
+           (sut/->displayable-units options/volume 1.5 :american-gallon :liter {options/precision 1
+                                                                                options/suffix    :short}))
         "Conversion may override the default precision")
     (is (= "5.678 liter"
-           (sut/->displayable-volume 1.5 :american-gallon :liter {options/precision 3
-                                                                  options/suffix    :full}))
+           (sut/->displayable-units options/volume 1.5 :american-gallon :liter {options/precision 3
+                                                                                options/suffix    :full}))
         "Conversion may override the default suffix"))
   (testing "Ensure ->displayable-volume supports its full suite of options with static keys"
     (is (= "5.678 l"
-           (sut/->displayable-volume 1.5 options/american-gallon options/liter)
-           (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision options/default-precision
-                                                                                options/suffix    options/short}))
+           (sut/->displayable-units options/volume 1.5 options/american-gallon options/liter)
+           (sut/->displayable-units options/volume 1.5 options/american-gallon options/liter {options/precision options/default-precision
+                                                                                              options/suffix    options/short}))
         "Conversion defaults to 3 digits of precisions and shorthand unit names with static keys")
     (is (= "5.7 l"
-           (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision 1
-                                                                                options/suffix    options/short}))
+           (sut/->displayable-units options/volume 1.5 options/american-gallon options/liter {options/precision 1
+                                                                                              options/suffix    options/short}))
         "Conversion may override the default precision with static keys")
     (is (= "5.678 liter"
-           (sut/->displayable-volume 1.5 options/american-gallon options/liter {options/precision 3
-                                                                                options/suffix    options/full}))
+           (sut/->displayable-units options/volume 1.5 options/american-gallon options/liter {options/precision 3
+                                                                                              options/suffix    options/full}))
         "Conversion may override the default suffix with static keys")))
 
 
 (deftest ->displayable-weight-test
   (testing "Ensure ->displayable-weight supports its full suite of options"
     (is (= "0.053 oz"
-           (sut/->displayable-weight 1.5 options/gram options/ounce)
-           (sut/->displayable-weight 1.5 options/gram options/ounce sut/default-display-options))
+           (sut/->displayable-units options/weight 1.5 options/gram options/ounce)
+           (sut/->displayable-units options/weight 1.5 options/gram options/ounce sut/default-display-options))
         "Conversion defaults to 3 digits of precisions and shorthand unit names")
     (is (= "0.1 oz"
-           (sut/->displayable-weight 1.5 options/gram options/ounce {options/precision 1})
-           (sut/->displayable-weight 1.5 options/gram options/ounce {options/precision 1
-                                                                     options/suffix    options/short}))
+           (sut/->displayable-units options/weight 1.5 options/gram options/ounce {options/precision 1})
+           (sut/->displayable-units options/weight 1.5 options/gram options/ounce {options/precision 1
+                                                                                   options/suffix    options/short}))
         "Conversion may override the default precision")
     (is (= "0.053 ounce"
-           (sut/->displayable-weight 1.5 options/gram options/ounce {options/suffix    options/full})
-           (sut/->displayable-weight 1.5 options/gram options/ounce {options/precision 3
-                                                                     options/suffix    options/full}))
+           (sut/->displayable-units options/weight 1.5 options/gram options/ounce {options/suffix options/full})
+           (sut/->displayable-units options/weight 1.5 options/gram options/ounce {options/precision 3
+                                                                                   options/suffix    options/full}))
         "Conversion may override the default suffix")))
 
 
@@ -499,9 +499,9 @@
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
-        error-regex #"Invalid displayable color enrichment options"]
+        error-regex #"Invalid enrichment options for ->displayable-units:"]
     (testing "Ensure parse-enrich-displayable-color-opts returns valid opts"
-      (is (= valid-opts (sut/parse-enrich-displayable-color-opts valid-opts))
+      (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/color valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/lovibond
@@ -509,22 +509,22 @@
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-color-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/color valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-color-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-color-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-color-opts (dissoc valid-opts options/precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-color-opts (dissoc valid-opts options/precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-color-opts (dissoc valid-opts options/suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-color-opts (dissoc valid-opts options/suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts options/precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts options/precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts options/suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts options/suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-color-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-color-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-color-opts (assoc valid-opts options/precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-color-opts (assoc valid-opts options/precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-color-opts (assoc valid-opts options/suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-color-opts (assoc valid-opts options/suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts options/precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts options/precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts options/suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts options/suffix :fake))))))))
 
 
 (deftest parse-enrich-displayable-pressure-opts-test
@@ -532,35 +532,35 @@
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
-        error-regex #"Invalid displayable pressure enrichment options"]
+        error-regex #"Invalid enrichment options for ->displayable-units:"]
     (testing "Ensure parse-enrich-displayable-pressure-opts returns valid opts"
-      (is (= valid-opts (sut/parse-enrich-displayable-pressure-opts valid-opts))
+      (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/pressure valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-pressure-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/psi
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-pressure-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/pressure valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts options/precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts options/precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts options/suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (dissoc valid-opts options/suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts options/system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts options/system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts options/precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts options/precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts options/suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts options/suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts options/precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts options/precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts options/suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-pressure-opts (assoc valid-opts options/suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts options/precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts options/precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts options/suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (assoc valid-opts options/suffix :fake))))))))
 
 
 (deftest parse-enrich-displayable-specific-gravity-opts-test
@@ -568,35 +568,35 @@
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
-        error-regex #"Invalid displayable specific gravity enrichment options"]
+        error-regex #"Invalid enrichment options for ->displayable-units:"]
     (testing "Ensure parse-enrich-displayable-specific-gravity-opts returns valid opts"
-      (is (= valid-opts (sut/parse-enrich-displayable-specific-gravity-opts valid-opts))
+      (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/specific-gravity valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-specific-gravity-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/specific-gravity
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-specific-gravity-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/specific-gravity valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts options/precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts options/precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts options/suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (dissoc valid-opts options/suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts options/system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts options/system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts options/precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts options/precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts options/suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts options/suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts options/precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts options/precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts options/suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-specific-gravity-opts (assoc valid-opts options/suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts options/precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts options/precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts options/suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (assoc valid-opts options/suffix :fake))))))))
 
 
 (deftest parse-enrich-displayable-temperature-opts-test
@@ -604,35 +604,35 @@
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
-        error-regex #"Invalid displayable temperature enrichment options"]
+        error-regex #"Invalid enrichment options for ->displayable-units:"]
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts"
-      (is (= valid-opts (sut/parse-enrich-displayable-temperature-opts valid-opts))
+      (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/temperature valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/c
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-temperature-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/temperature valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts options/precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts options/precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts options/suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (dissoc valid-opts options/suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts options/system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts options/system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts options/precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts options/precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts options/suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts options/suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts options/precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts options/precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts options/suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-temperature-opts (assoc valid-opts options/suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts options/precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts options/precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts options/suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (assoc valid-opts options/suffix :fake))))))))
 
 
 (deftest parse-enrich-displayable-time-opts-test
@@ -640,35 +640,35 @@
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
-        error-regex #"Invalid displayable time enrichment options"]
+        error-regex #"Invalid enrichment options for ->displayable-units:"]
     (testing "Ensure parse-enrich-displayable-time-opts returns valid opts"
-      (is (= valid-opts (sut/parse-enrich-displayable-time-opts valid-opts))
+      (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/time valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/minute
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-time-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/time valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts options/precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts options/precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts options/suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (dissoc valid-opts options/suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts options/system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts options/system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts options/precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts options/precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts options/suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts options/suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts options/precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts options/precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts options/suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-time-opts (assoc valid-opts options/suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts options/precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts options/precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts options/suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (assoc valid-opts options/suffix :fake))))))))
 
 
 (deftest parse-enrich-displayable-volume-opts-test
@@ -676,35 +676,35 @@
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
-        error-regex #"Invalid displayable volume enrichment options"]
+        error-regex #"Invalid enrichment options for ->displayable-units:"]
     (testing "Ensure parse-enrich-displayable-volume-opts returns valid opts"
-      (is (= valid-opts (sut/parse-enrich-displayable-volume-opts valid-opts))
+      (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/volume valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/teaspoon
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-volume-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/volume valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts options/precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts options/precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts options/suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (dissoc valid-opts options/suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts options/system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts options/system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts options/precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts options/precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts options/suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts options/suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts options/precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts options/precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts options/suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-volume-opts (assoc valid-opts options/suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts options/precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts options/precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts options/suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (assoc valid-opts options/suffix :fake))))))))
 
 
 (deftest parse-enrich-displayable-weight-opts-test
@@ -712,138 +712,138 @@
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
-        error-regex #"Invalid displayable weight enrichment options"]
+        error-regex #"Invalid enrichment options for ->displayable-units:"]
     (testing "Ensure parse-enrich-displayable-weight-opts returns valid opts"
-      (is (= valid-opts (sut/parse-enrich-displayable-weight-opts valid-opts))
+      (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/weight valid-opts))
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/pound
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
-        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-weight-opts valid-opts-w-keys))
+        (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/weight valid-opts-w-keys))
             "Valid opts are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts :target-units)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts options/system-of-measure)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts options/precision)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts options/precision)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts options/suffix)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (dissoc valid-opts options/suffix))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts :target-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts options/system-of-measure)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts options/system-of-measure)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts options/precision)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts options/precision)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts options/suffix)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts options/suffix))))))
     (testing "An invalid selection for any require value throws an error"
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :target-units :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts :target-units :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts options/system-of-measure :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts options/precision :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts options/precision :fake)))))
-      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts options/suffix :fake)))))
-      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-weight-opts (assoc valid-opts options/suffix :fake))))))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts :target-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts options/system-of-measure :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts options/precision :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts options/precision :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts options/suffix :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (assoc valid-opts options/suffix :fake))))))))
 
 
 (deftest enrich-displayable-color-test
   (testing "Validate displayable color enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-color base-map {:display-key :hello
-                                                                :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/color base-map {:display-key :hello
+                                                                              :value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "0.595 srm")]
-        (is (= result-map (sut/enrich-displayable-color base-map {:display-key  :display
-                                                                  :value-key    :value
-                                                                  :source-units options/lovibond
-                                                                  :target-units options/srm})))))))
+        (is (= result-map (sut/enrich-displayable-units options/color base-map {:display-key  :display
+                                                                                :value-key    :value
+                                                                                :source-units options/lovibond
+                                                                                :target-units options/srm})))))))
 
 
 (deftest enrich-displayable-pressure-test
   (testing "Validate displayable pressure enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-pressure base-map {:display-key :hello
-                                                                   :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/pressure base-map {:display-key :hello
+                                                                                 :value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "1000.0 pa")]
-        (is (= result-map (sut/enrich-displayable-pressure base-map {:display-key             :display
-                                                                     :value-key               :value
-                                                                     :fine-grain-target-units options/pascal})))))))
+        (is (= result-map (sut/enrich-displayable-units options/pressure base-map {:display-key             :display
+                                                                                   :value-key               :value
+                                                                                   :fine-grain-target-units options/pascal})))))))
 
 
 (deftest enrich-displayable-specific-gravity-test
   (testing "Validate displayable specific-gravity enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-specific-gravity base-map {:display-key :hello
-                                                                           :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/specific-gravity base-map {:display-key :hello
+                                                                                         :value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "1.0 sg")]
-        (is (= result-map (sut/enrich-displayable-specific-gravity base-map {:display-key             :display
-                                                                             :value-key               :value
-                                                                             :fine-grain-target-units options/specific-gravity})))))))
+        (is (= result-map (sut/enrich-displayable-units options/specific-gravity base-map {:display-key             :display
+                                                                                           :value-key               :value
+                                                                                           :fine-grain-target-units options/specific-gravity})))))))
 
 
 (deftest enrich-displayable-temperature-test
   (testing "Validate displayable temperature enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-temperature base-map {:display-key :hello
-                                                                      :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/temperature base-map {:display-key :hello
+                                                                                    :value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "274.15 k")]
-        (is (= result-map (sut/enrich-displayable-temperature base-map {:display-key             :display
-                                                                        :value-key               :value
-                                                                        :fine-grain-target-units options/k})))))))
+        (is (= result-map (sut/enrich-displayable-units options/temperature base-map {:display-key             :display
+                                                                                      :value-key               :value
+                                                                                      :fine-grain-target-units options/k})))))))
 
 
 (deftest enrich-displayable-time-test
   (testing "Validate displayable time enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-time base-map {:display-key :hello
-                                                               :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/time base-map {:display-key :hello
+                                                                             :value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "1.0 m")]
-        (is (= result-map (sut/enrich-displayable-time base-map {:display-key             :display
-                                                                 :value-key               :value
-                                                                 :fine-grain-target-units options/minute})))))))
+        (is (= result-map (sut/enrich-displayable-units options/time base-map {:display-key             :display
+                                                                               :value-key               :value
+                                                                               :fine-grain-target-units options/minute})))))))
 
 
 (deftest enrich-displayable-volume-test
   (testing "Validate displayable volume enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-volume base-map {:display-key :hello
-                                                                 :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/volume base-map {:display-key :hello
+                                                                               :value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "202.884 tsp")]
-        (is (= result-map (sut/enrich-displayable-volume base-map {:display-key             :display
-                                                                   :value-key               :value
-                                                                   :fine-grain-target-units options/teaspoon})))))))
+        (is (= result-map (sut/enrich-displayable-units options/volume base-map {:display-key             :display
+                                                                                 :value-key               :value
+                                                                                 :fine-grain-target-units options/teaspoon})))))))
 
 
 (deftest enrich-displayable-weight-test
   (testing "Validate displayable weight enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-weight base-map {:display-key :hello
-                                                                 :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/weight base-map {:display-key :hello
+                                                                               :value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "2.205 lb")]
-        (is (= result-map (sut/enrich-displayable-weight base-map {:display-key             :display
-                                                                   :value-key               :value
-                                                                   :fine-grain-target-units options/pound})))))))
+        (is (= result-map (sut/enrich-displayable-units options/weight base-map {:display-key             :display
+                                                                                 :value-key               :value
+                                                                                 :fine-grain-target-units options/pound})))))))
