@@ -9,7 +9,8 @@
               "brewtility.enrich.recipes"
               "brewtility.enrich.styles"
               "brewtility.enrich.waters"]}
-  (:require [brewtility.enrich.impl :as impl]))
+  (:require [brewtility.enrich.impl :as impl]
+            [brewtility.units.options :as options]))
 
 
 (defn enrich-amount-is-weight
@@ -65,14 +66,14 @@
                               impl/fine-grain-precision    yeast-amount-precision
                               impl/fine-grain-suffix       yeast-amount-suffix})]
      (if (:amount-is-weight yeast)
-       (impl/enrich-displayable-weight yeast options)
-       (impl/enrich-displayable-volume yeast options)))))
+       (impl/enrich-displayable-units options/weight yeast options)
+       (impl/enrich-displayable-units options/volume yeast options)))))
 
 
 (defn enrich-display-min-temperature
   "An enricher pattern function to render a human-readable display minimum-viable fermentation temperature of a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is in a given system.
    If the `min-temperature` key is not present, the map will not be changed.
-   
+
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
@@ -106,14 +107,14 @@
                                 impl/fine-grain-target-units yeast-min-temperature-target-units
                                 impl/fine-grain-precision    yeast-min-temperature-precision
                                 impl/fine-grain-suffix       yeast-min-temperature-suffix})]
-       (impl/enrich-displayable-temperature yeast options))
+       (impl/enrich-displayable-units options/temperature yeast options))
      yeast)))
 
 
 (defn enrich-display-max-temperature
   "An enricher pattern function to render a human-readable display maximum-viable fermentation temperature of a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) is in a given system.
    If the `max-temperature` key is not present, the map will not be changed.
-   
+
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
@@ -147,16 +148,16 @@
                                 impl/fine-grain-target-units yeast-max-temperature-target-units
                                 impl/fine-grain-precision    yeast-max-temperature-precision
                                 impl/fine-grain-suffix       yeast-max-temperature-suffix})]
-       (impl/enrich-displayable-temperature yeast options))
+       (impl/enrich-displayable-units options/temperature yeast options))
      yeast)))
 
 
 (defn enrich-yeast
   "An enricher pattern function to derive as many values from a [yeast record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
-   
+
   An option map may be passed as an optional second argument.
-  The following keys are supported for controlling high-level behavior: 
-   
+  The following keys are supported for controlling high-level behavior:
+
    - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
@@ -168,7 +169,7 @@
         - `:full`: The full name of the selected unit. For example, `\"° Lovibond\"` for `:lovibond`.
 
    To support fine-grained control of behavior, this function also supports the following keys inherited from the other field-specific enrichers:
-   
+
    - [[enrich-display-amount]]
        - `:yeast-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
        - `yeast-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
@@ -200,10 +201,10 @@
 
 (defn enrich-yeast-wrapper
   "An enricher pattern function to derive as many values from a [yeast-wrapper record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
-   
+
   An option map may be passed as an optional second argument.
-  The following keys are supported for controlling high-level behavior: 
-   
+  The following keys are supported for controlling high-level behavior:
+
    - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
@@ -215,7 +216,7 @@
         - `:full`: The full name of the selected unit. For example, `\"° Lovibond\"` for `:lovibond`.
 
    To support fine-grained control of behavior, this function also supports the following keys inherited from the other field-specific enrichers:
-   
+
    - [[enrich-display-amount]]
        - `:yeast-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
        - `yeast-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
@@ -243,10 +244,10 @@
 
 (defn enrich-yeasts
   "An enricher pattern function to derive as many values from a [yeast-wrapper record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
-   
+
   An option map may be passed as an optional second argument.
-  The following keys are supported for controlling high-level behavior: 
-   
+  The following keys are supported for controlling high-level behavior:
+
    - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
@@ -258,7 +259,7 @@
         - `:full`: The full name of the selected unit. For example, `\"° Lovibond\"` for `:lovibond`.
 
    To support fine-grained control of behavior, this function also supports the following keys inherited from the other field-specific enrichers:
-   
+
    - [[enrich-display-amount]]
        - `:yeast-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
        - `yeast-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
@@ -286,10 +287,10 @@
 
 (defn enrich-yeasts-wrapper
   "An enricher pattern function to derive as many values from a [yeast-wrapper record](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) as possible.
-   
+
   An option map may be passed as an optional second argument.
-  The following keys are supported for controlling high-level behavior: 
-   
+  The following keys are supported for controlling high-level behavior:
+
    - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
@@ -301,7 +302,7 @@
         - `:full`: The full name of the selected unit. For example, `\"° Lovibond\"` for `:lovibond`.
 
    To support fine-grained control of behavior, this function also supports the following keys inherited from the other field-specific enrichers:
-   
+
    - [[enrich-display-amount]]
        - `:yeast-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
        - `yeast-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
