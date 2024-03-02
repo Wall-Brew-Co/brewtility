@@ -35,10 +35,6 @@ jobs:
         run: |
           cljstyle fix --report --report-timing --verbose
 
-      - name: Sort Namespaces
-        run: |
-          lein ns-sort
-
       - name: Render Changelog
         run: |
           lein sealog render
