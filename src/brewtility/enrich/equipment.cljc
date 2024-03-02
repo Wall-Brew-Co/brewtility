@@ -1,5 +1,5 @@
 (ns brewtility.enrich.equipment
-  "Enricher-pattern functions for [equipment](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/equipment.cljc) maps"
+  "Enricher-pattern functions for [equipment](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/equipment.cljc) maps."
   {:added    "2.1"
    :see-also ["brewtility.enrich.fermentables"
               "brewtility.enrich.hops"
@@ -89,7 +89,7 @@
                          impl/fine-grain-target-units boil-size-target-units
                          impl/fine-grain-precision    boil-size-precision
                          impl/fine-grain-suffix       boil-size-suffix})]
-     (impl/enrich-displayable-volume equipment options))))
+     (impl/enrich-displayable-units options/volume equipment options))))
 
 
 (defn enrich-display-batch-size
@@ -124,7 +124,7 @@
                          impl/fine-grain-target-units batch-size-target-units
                          impl/fine-grain-precision    batch-size-precision
                          impl/fine-grain-suffix       batch-size-suffix})]
-     (impl/enrich-displayable-volume equipment options))))
+     (impl/enrich-displayable-units options/volume equipment options))))
 
 
 (defn enrich-display-tun-volume
@@ -159,7 +159,7 @@
                          impl/fine-grain-target-units tun-volume-target-units
                          impl/fine-grain-precision    tun-volume-precision
                          impl/fine-grain-suffix       tun-volume-suffix})]
-     (impl/enrich-displayable-volume equipment options))))
+     (impl/enrich-displayable-units options/volume equipment options))))
 
 
 (defn enrich-display-tun-weight
@@ -194,7 +194,7 @@
                          impl/fine-grain-target-units tun-weight-target-units
                          impl/fine-grain-precision    tun-weight-precision
                          impl/fine-grain-suffix       tun-weight-suffix})]
-     (impl/enrich-displayable-weight equipment options))))
+     (impl/enrich-displayable-units options/weight equipment options))))
 
 
 (defn enrich-display-top-up-water
@@ -229,7 +229,7 @@
                          impl/fine-grain-target-units top-up-water-target-units
                          impl/fine-grain-precision    top-up-water-precision
                          impl/fine-grain-suffix       top-up-water-suffix})]
-     (impl/enrich-displayable-volume equipment options))))
+     (impl/enrich-displayable-units options/volume equipment options))))
 
 
 (defn enrich-display-trub-chiller-loss
@@ -264,7 +264,7 @@
                          impl/fine-grain-target-units trub-chiller-loss-target-units
                          impl/fine-grain-precision    trub-chiller-loss-precision
                          impl/fine-grain-suffix       trub-chiller-loss-suffix})]
-     (impl/enrich-displayable-volume equipment options))))
+     (impl/enrich-displayable-units options/volume equipment options))))
 
 
 (defn enrich-display-lauter-deadspace
@@ -299,7 +299,7 @@
                          impl/fine-grain-target-units lauter-deadspace-target-units
                          impl/fine-grain-precision    lauter-deadspace-precision
                          impl/fine-grain-suffix       lauter-deadspace-suffix})]
-     (impl/enrich-displayable-volume equipment options))))
+     (impl/enrich-displayable-units options/volume equipment options))))
 
 
 (defn enrich-display-top-up-kettle
@@ -334,7 +334,7 @@
                          impl/fine-grain-target-units top-up-kettle-target-units
                          impl/fine-grain-precision    top-up-kettle-precision
                          impl/fine-grain-suffix       top-up-kettle-suffix})]
-     (impl/enrich-displayable-volume equipment options))))
+     (impl/enrich-displayable-units options/volume equipment options))))
 
 
 (defn enrich-equipment
