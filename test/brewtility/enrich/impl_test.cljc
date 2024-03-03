@@ -32,8 +32,20 @@
       (is (set/subset? (set (vals sut/default-time-by-system)) time/measurements))
       (is (set/subset? (set (vals sut/default-volume-by-system)) volume/measurements))
       (is (set/subset? (set (vals sut/default-weight-by-system)) weight/measurements))))
+  (testing "BeerXML Standard Units"
+    (is (= (sort (keys sut/beer-xml-standard-units))
+           (sort (vec options/measurement-types))))
+    (is (contains? color/measurements (get sut/beer-xml-standard-units options/color)))
+    (is (contains? pressure/measurements (get sut/beer-xml-standard-units options/pressure)))
+    (is (contains? specific-gravity/measurements (get sut/beer-xml-standard-units options/specific-gravity)))
+    (is (contains? temperature/measurements (get sut/beer-xml-standard-units options/temperature)))
+    (is (contains? time/measurements (get sut/beer-xml-standard-units options/time)))
+    (is (contains? volume/measurements (get sut/beer-xml-standard-units options/volume)))
+    (is (contains? weight/measurements (get sut/beer-xml-standard-units options/weight))))
   (testing "Option keys"
     (is (keyword? sut/value-key))
+    (is (keyword? sut/low-value-key))
+    (is (keyword? sut/high-value-key))
     (is (keyword? sut/display-key))
     (is (keyword? sut/fine-grain-target-units))
     (is (keyword? sut/fine-grain-precision))
@@ -747,14 +759,14 @@
   (testing "Validate displayable color enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-units options/color base-map {:display-key :hello
-                                                                              :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/color base-map {sut/display-key :hello
+                                                                              sut/value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "0.595 srm")]
-        (is (= result-map (sut/enrich-displayable-units options/color base-map {:display-key  :display
-                                                                                :value-key    :value
+        (is (= result-map (sut/enrich-displayable-units options/color base-map {sut/display-key  :display
+                                                                                sut/value-key    :value
                                                                                 :source-units options/lovibond
                                                                                 :target-units options/srm})))))))
 
@@ -763,87 +775,104 @@
   (testing "Validate displayable pressure enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-units options/pressure base-map {:display-key :hello
-                                                                                 :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/pressure base-map {sut/display-key :hello
+                                                                                 sut/value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "1000.0 pa")]
-        (is (= result-map (sut/enrich-displayable-units options/pressure base-map {:display-key             :display
-                                                                                   :value-key               :value
-                                                                                   :fine-grain-target-units options/pascal})))))))
+        (is (= result-map (sut/enrich-displayable-units options/pressure base-map {sut/display-key             :display
+                                                                                   sut/value-key               :value
+                                                                                   sut/fine-grain-target-units options/pascal})))))))
 
 
 (deftest enrich-displayable-specific-gravity-test
   (testing "Validate displayable specific-gravity enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-units options/specific-gravity base-map {:display-key :hello
-                                                                                         :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/specific-gravity base-map {sut/display-key :hello
+                                                                                         sut/value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "1.0 sg")]
-        (is (= result-map (sut/enrich-displayable-units options/specific-gravity base-map {:display-key             :display
-                                                                                           :value-key               :value
-                                                                                           :fine-grain-target-units options/specific-gravity})))))))
+        (is (= result-map (sut/enrich-displayable-units options/specific-gravity base-map {sut/display-key             :display
+                                                                                           sut/value-key               :value
+                                                                                           sut/fine-grain-target-units options/specific-gravity})))))))
 
 
 (deftest enrich-displayable-temperature-test
   (testing "Validate displayable temperature enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-units options/temperature base-map {:display-key :hello
-                                                                                    :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/temperature base-map {sut/display-key :hello
+                                                                                    sut/value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "274.15 k")]
-        (is (= result-map (sut/enrich-displayable-units options/temperature base-map {:display-key             :display
-                                                                                      :value-key               :value
-                                                                                      :fine-grain-target-units options/k})))))))
+        (is (= result-map (sut/enrich-displayable-units options/temperature base-map {sut/display-key             :display
+                                                                                      sut/value-key               :value
+                                                                                      sut/fine-grain-target-units options/k})))))))
 
 
 (deftest enrich-displayable-time-test
   (testing "Validate displayable time enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-units options/time base-map {:display-key :hello
-                                                                             :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/time base-map {sut/display-key :hello
+                                                                             sut/value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "1.0 m")]
-        (is (= result-map (sut/enrich-displayable-units options/time base-map {:display-key             :display
-                                                                               :value-key               :value
-                                                                               :fine-grain-target-units options/minute})))))))
+        (is (= result-map (sut/enrich-displayable-units options/time base-map {sut/display-key             :display
+                                                                               sut/value-key               :value
+                                                                               sut/fine-grain-target-units options/minute})))))))
 
 
 (deftest enrich-displayable-volume-test
   (testing "Validate displayable volume enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-units options/volume base-map {:display-key :hello
-                                                                               :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/volume base-map {sut/display-key :hello
+                                                                               sut/value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "202.884 tsp")]
-        (is (= result-map (sut/enrich-displayable-units options/volume base-map {:display-key             :display
-                                                                                 :value-key               :value
-                                                                                 :fine-grain-target-units options/teaspoon})))))))
+        (is (= result-map (sut/enrich-displayable-units options/volume base-map {sut/display-key             :display
+                                                                                 sut/value-key               :value
+                                                                                 sut/fine-grain-target-units options/teaspoon})))))))
 
 
 (deftest enrich-displayable-weight-test
   (testing "Validate displayable weight enrichment."
     (testing "If no value is provided, return the original map."
       (let [base-map {:hello "there"}]
-        (is (= base-map (sut/enrich-displayable-units options/weight base-map {:display-key :hello
-                                                                               :value-key   :missing})))))
+        (is (= base-map (sut/enrich-displayable-units options/weight base-map {sut/display-key :hello
+                                                                               sut/value-key   :missing})))))
     (testing "When a value is provided, add the data at `:display-key`"
       (let [base-map   {:hello "there"
                         :value 1}
             result-map (assoc base-map :display "2.205 lb")]
-        (is (= result-map (sut/enrich-displayable-units options/weight base-map {:display-key             :display
-                                                                                 :value-key               :value
-                                                                                 :fine-grain-target-units options/pound})))))))
+        (is (= result-map (sut/enrich-displayable-units options/weight base-map {sut/display-key             :display
+                                                                                 sut/value-key               :value
+                                                                                 sut/fine-grain-target-units options/pound})))))))
+
+(deftest enrich-displayable-range-test
+  (testing "Validate displayable range enrichment."
+    (testing "If neither value is provided, return the original map."
+      (let [base-map {:a 1
+                      :b 3}]
+        (is (= base-map (sut/enrich-displayable-range options/weight base-map {sut/display-key    :hello
+                                                                               sut/low-value-key  :missing
+                                                                               sut/high-value-key :also-gone})))))
+    (testing "When all values are provided, add the data at `:display-key`"
+      (let [base-map   {:a 3
+                        :b 6}
+            result-map (assoc base-map :display "6.614 - 13.228 lb")]
+        (is (= result-map (sut/enrich-displayable-range options/weight base-map {sut/display-key             :display
+                                                                                 sut/low-value-key           :a
+                                                                                 sut/high-value-key          :b
+                                                                                 sut/fine-grain-target-units options/pound})))))))

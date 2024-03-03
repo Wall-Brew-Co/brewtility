@@ -2,7 +2,7 @@
   "A namespace of static symbolic keywords and values used in the option maps throughout brewtility.
 
    Implemented as part of the Symbolic Keyword pattern."
-  {:added "2.2"})
+  {:added "2.1"})
 
 
 ;; Option keys
@@ -12,3 +12,4 @@
 
    This option is inherited from the functions in `com.wallbrew.spoon.string`"
   :uppercase?)
+

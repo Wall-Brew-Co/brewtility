@@ -72,7 +72,7 @@
 
 (def systems-of-measure
   "The set of supported measurement systems"
-  #{imperial metric us-customary international-system})
+  #{imperial international-system metric us-customary})
 
 
 (def systems-of-measure
@@ -150,7 +150,7 @@
 
 
 (def color
-  "The color systems used in the recipe.
+  "The color systems used in the recipe or for a given unit.
 
    Commonly used with `brewtility.units.color` and in argument/option maps.
    Brewility supports the following color systems:
@@ -162,7 +162,7 @@
 
 
 (def pressure
-  "The pressure systems used in the recipe.
+  "The pressure systems used in the recipe or for a given unit.
 
    Commonly used with `brewtility.units.pressure` and in argument/option maps.
    Currently, brewtility supports the following types of pressure:
@@ -176,7 +176,7 @@
 
 
 (def specific-gravity
-  "The specific gravity systems used in the recipe.
+  "The specific gravity systems used in the recipe or for a given unit.
 
    Commonly used with `brewtility.units.specific-gravity` and in argument/option maps.
    Currently, brewtility supports the following types of specific gravity:
@@ -186,7 +186,7 @@
 
 
 (def temperature
-  "The temperature systems used in the recipe.
+  "The temperature systems used in the recipe or for a given unit.
 
    Commonly used with `brewtility.units.temperature` and in argument/option maps.
    Currently, brewtility supports the following types of temperature:
@@ -197,7 +197,7 @@
 
 
 (def time
-  "The time systems used in the recipe.
+  "The time systems used in the recipe or for a given unit.
 
    Commonly used with `brewtility.units.time` and in argument/option maps.
    Currently, brewtility supports the following types of time measurements:
@@ -213,7 +213,7 @@
 
 
 (def volume
-  "The volume systems used in the recipe.
+  "The volume systems used in the recipe or for a given unit.
 
    Commonly used with `brewtility.units.volume` and in argument/option maps.
    Currently, brewtility supports the following types of volume:
@@ -236,7 +236,7 @@
 
 
 (def weight
-  "The weight systems used in the recipe.
+  "The weight systems used in the recipe or for a given unit.
 
    Commonly used with `brewtility.units.weight` and in argument/option maps.
    Currently, brewtility supports the following types of weight:
