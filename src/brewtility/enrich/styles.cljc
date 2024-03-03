@@ -173,11 +173,11 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-- `:system-of-measure`: The unit system of measure to convert the min-temperature into. Defaults to `:us`. Acceptable values are:
-  - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
-  - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
-  - `:us`: The [United States Customary Units](https://en.wikipedia.org/wiki/United_States_customary_units) system of measure.
-  - `:si`: The [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units) system of measure.
+    - `:color-system` - The color system to use for the conversion. Default is `:lovibond` for type `:grain`, and `:srm` otherwise. Acceptable values are:
+      - `:lovibond` - Use the [Lovibond](https://en.wikipedia.org/wiki/Beer_measurement#Colour) system.
+      - `:srm` - Use the [Standard Reference Method](https://en.wikipedia.org/wiki/Standard_Reference_Method) system.
+      - `:ebc` - Use the [European Brewing Convention](https://www.lovibond.com/en/PC/Colour-Measurement/Colour-Scales-Standards/EBC-European-Brewing-Convention) system.
+      - `:rgba` - USe the [RGBa](https://www.w3schools.com/cssref/func_rgba.asp) color system, commonly used in CSS.
 
     - `:precision`: The number of significant decimal places to display. Defaults to 3.
     - `:suffix`: The suffix type to append to the min-temperature Defaults to `:short`. Acceptable values are:
@@ -194,13 +194,14 @@
               "enrich-styles"
               "enrich-styles-wrapper"]}
   ([style] (enrich-display-color-min style {}))
-  ([style {:keys [style-display-color-min-target-units
+  ([style {:keys [color-system
+                  style-display-color-min-target-units
                   style-display-color-min-precision
                   style-display-color-min-suffix]
            :as opts}]
    (let [options (merge opts {impl/value-key               :color-min
                               impl/display-key             :display-color-min
-                              impl/fine-grain-target-units style-display-color-min-target-units
+                              impl/fine-grain-target-units (or style-display-color-min-target-units color-system)
                               impl/fine-grain-precision    style-display-color-min-precision
                               impl/fine-grain-suffix       style-display-color-min-suffix})]
      (impl/enrich-displayable-units options/color style options))))
@@ -212,11 +213,11 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-- `:system-of-measure`: The unit system of measure to convert the min-temperature into. Defaults to `:us`. Acceptable values are:
-  - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
-  - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
-  - `:us`: The [United States Customary Units](https://en.wikipedia.org/wiki/United_States_customary_units) system of measure.
-  - `:si`: The [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units) system of measure.
+    - `:color-system` - The color system to use for the conversion. Default is `:lovibond` for type `:grain`, and `:srm` otherwise. Acceptable values are:
+      - `:lovibond` - Use the [Lovibond](https://en.wikipedia.org/wiki/Beer_measurement#Colour) system.
+      - `:srm` - Use the [Standard Reference Method](https://en.wikipedia.org/wiki/Standard_Reference_Method) system.
+      - `:ebc` - Use the [European Brewing Convention](https://www.lovibond.com/en/PC/Colour-Measurement/Colour-Scales-Standards/EBC-European-Brewing-Convention) system.
+      - `:rgba` - USe the [RGBa](https://www.w3schools.com/cssref/func_rgba.asp) color system, commonly used in CSS.
 
     - `:precision`: The number of significant decimal places to display. Defaults to 3.
     - `:suffix`: The suffix type to append to the min-temperature Defaults to `:short`. Acceptable values are:
@@ -233,13 +234,14 @@
               "enrich-styles"
               "enrich-styles-wrapper"]}
   ([style] (enrich-display-color-max style {}))
-  ([style {:keys [style-display-color-max-target-units
+  ([style {:keys [color-system
+                  style-display-color-max-target-units
                   style-display-color-max-precision
                   style-display-color-max-suffix]
            :as opts}]
    (let [options (merge opts {impl/value-key               :color-max
                               impl/display-key             :display-color-max
-                              impl/fine-grain-target-units style-display-color-max-target-units
+                              impl/fine-grain-target-units (or style-display-color-max-target-units color-system)
                               impl/fine-grain-precision    style-display-color-max-precision
                               impl/fine-grain-suffix       style-display-color-max-suffix})]
      (impl/enrich-displayable-units options/color style options))))

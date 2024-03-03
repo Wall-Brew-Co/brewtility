@@ -9,18 +9,18 @@
 
 (def sample-misc
   "A hard-coded sample misc for static unit tests"
-  {:amount  0.010
-   :name    "Irish Moss"
-   :notes   "Used as a clarifying agent during the last few minutes of the boil"
-   :time    15.1
-   :type    "Fining"
-   :use     "Boil"
-   :version 1})
+  {miscs.format/amount  0.010
+   miscs.format/name    "Irish Moss"
+   miscs.format/notes   "Used as a clarifying agent during the last few minutes of the boil"
+   miscs.format/time    15.1
+   miscs.format/type    "Fining"
+   miscs.format/use     "Boil"
+   miscs.format/version 1})
 
 
 (def sample-misc-wrapper
   "A hard-coded sample misc-wrapper for static unit tests"
-  {:misc sample-misc})
+  {miscs.format/misc sample-misc})
 
 
 (def sample-miscs
@@ -30,7 +30,7 @@
 
 (def sample-miscs-wrapper
   "A hard-coded sample miscs-wrapper for static unit tests"
-  {:miscs sample-miscs})
+  {miscs.format/miscs sample-miscs})
 
 
 (defn generate-misc

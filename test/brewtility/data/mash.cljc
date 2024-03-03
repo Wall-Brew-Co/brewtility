@@ -9,17 +9,17 @@
 
 (def sample-mash-step
   "A hard-coded sample mash step for static unit tests"
-  {:infuse-amount 10.0
-   :name          "Conversion Step, 68C"
-   :step-temp     68.0
-   :step-time     60.0
-   :type          "Infusion"
-   :version       1})
+  {mash.format/infuse-amount 10.0
+   mash.format/name          "Conversion Step, 68C"
+   mash.format/step-temp     68.0
+   mash.format/step-time     60.0
+   mash.format/type          "Infusion"
+   mash.format/version       1})
 
 
 (def sample-mash-step-wrapper
   "A hard-coded sample mash-step-wrapper for static unit tests"
-  {:mash-step sample-mash-step})
+  {mash.format/mash-step sample-mash-step})
 
 
 (def sample-mash-steps
@@ -29,15 +29,15 @@
 
 (def sample-mash-steps-wrapper
   "A hard-coded sample mash-steps-wrapper for static unit tests"
-  {:mash-steps sample-mash-steps})
+  {mash.format/mash-steps sample-mash-steps})
 
 
 (def sample-mash
   "A hard-coded sample mash for static unit tests"
-  {:name       "Single Step Infusion, 68 C"
-   :version    1
-   :grain-temp 22.0
-   :mash-steps sample-mash-steps})
+  {mash.format/name       "Single Step Infusion, 68 C"
+   mash.format/version    1
+   mash.format/grain-temp 22.0
+   mash.format/mash-steps sample-mash-steps})
 
 
 (def sample-mash-wrapper
@@ -74,7 +74,7 @@
   {:added  "2.0"
    :no-doc true}
   []
-  {:mash-steps (gen/generate (spec/gen ::mash.format/mash-steps))})
+  {mash.format/mash-steps (gen/generate (spec/gen ::mash.format/mash-steps))})
 
 
 (defn generate-mash

@@ -9,25 +9,25 @@
 
 (def sample-fermentable
   "A hard-coded sample fermentable for static unit tests"
-  {:amount           0.45
-   :coarse-fine-diff 1.5
-   :color            500.1
-   :diastatic-power  0.0
-   :max-in-batch     10.0
-   :moisture         5.0
-   :name             "Black Barley"
-   :notes            "Unmalted roasted barley for stouts, porters"
-   :origin           "United States"
-   :protein          13.2
-   :supplier         "Gnome Brew"
-   :type             "Grain"
-   :version          1
-   :yield            78.0})
+  {fermentables.format/amount           0.45
+   fermentables.format/coarse-fine-diff 1.5
+   fermentables.format/color            500.1
+   fermentables.format/diastatic-power  0.0
+   fermentables.format/max-in-batch     10.0
+   fermentables.format/moisture         5.0
+   fermentables.format/name             "Black Barley"
+   fermentables.format/notes            "Unmalted roasted barley for stouts, porters"
+   fermentables.format/origin           "United States"
+   fermentables.format/protein          13.2
+   fermentables.format/supplier         "Gnome Brew"
+   fermentables.format/type             "Grain"
+   fermentables.format/version          1
+   fermentables.format/yield            78.0})
 
 
 (def sample-fermentable-wrapper
   "A hard-coded sample fermentable-wrapper for static unit tests"
-  {:fermentable sample-fermentable})
+  {fermentables.format/fermentable sample-fermentable})
 
 
 (def sample-fermentables
@@ -37,7 +37,7 @@
 
 (def sample-fermentables-wrapper
   "A hard-coded sample fermentables-wrapper for static unit tests"
-  {:fermentables sample-fermentables})
+  {fermentables.format/fermentables sample-fermentables})
 
 
 (defn generate-fermentable

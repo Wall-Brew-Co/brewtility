@@ -5,8 +5,7 @@
   {:no-doc              true
    :added               "2.1"
    :implementation-only true}
-  (:require [brewtility.precision :as precision]
-            [brewtility.units :as units]
+  (:require [brewtility.units :as units]
             [brewtility.units.color :as color]
             [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
@@ -157,7 +156,7 @@
                             target-units
                             "`. Allowed values are: "
                             allowed-values)]
-    (assoc error-map :units error-msg)))
+    (assoc error-map :target-units error-msg)))
 
 
 (defn source-unit-error
@@ -186,7 +185,7 @@
                             source-units
                             "`. Allowed values are: "
                             allowed-values)]
-    (assoc error-map :units error-msg)))
+    (assoc error-map :source-units error-msg)))
 
 
 (defn systems-of-meaure-error
@@ -203,7 +202,7 @@
                        system-of-measure
                        ". Allowed values are:"
                        options/systems-of-measure)]
-    (assoc error-map :system-of-measure error-msg)))
+    (assoc error-map options/system-of-measure error-msg)))
 
 
 (defn precision-error
@@ -268,14 +267,16 @@
    :no-doc   true
    :see-also ["enrich-displayable-pressure"]}
   [measurement-type
-   {:keys [target-units system-of-measure precision suffix]
+   {:keys [target-units source-units system-of-measure precision suffix]
     :as   opts}]
-  (let [valid-target?    (valid-unit-for-measurement-type? measurement-type target-units)
+  (let [valid-source?    (valid-unit-for-measurement-type? measurement-type source-units)
+        valid-target?    (valid-unit-for-measurement-type? measurement-type target-units)
         valid-system?    (contains? options/systems-of-measure system-of-measure)
         valid-precision? (int? precision)
         valid-suffix?    (contains? options/supported-suffixes suffix)
         errors           (cond-> {}
                            (not valid-target?)    (target-unit-error measurement-type target-units)
+                           (not valid-source?)    (source-unit-error measurement-type source-units)
                            (not valid-system?)    (systems-of-meaure-error measurement-type system-of-measure)
                            (not valid-precision?) (precision-error measurement-type precision)
                            (not valid-suffix?)    (suffix-error measurement-type suffix))]

@@ -42,18 +42,18 @@
 
 (def sample-hop
   "A hard-coded sample hop for static unit tests"
-  {:alpha   5.0
-   :amount  0.0638
-   :name    "Goldings, East Kent"
-   :notes   "Great all purpose UK hop for ales, stouts, porters"
-   :time    60.1
-   :use     "Boil"
-   :version 1})
+  {hops.format/alpha   5.0
+   hops.format/amount  0.0638
+   hops.format/name    "Goldings, East Kent"
+   hops.format/notes   "Great all purpose UK hop for ales, stouts, porters"
+   hops.format/time    60.1
+   hops.format/use     "Boil"
+   hops.format/version 1})
 
 
 (def sample-hop-wrapper
   "A hard-coded sample hop-wrapper for static unit tests"
-  {:hop sample-hop})
+  {hops.format/hop sample-hop})
 
 
 (def sample-hops
@@ -63,7 +63,7 @@
 
 (def sample-hops-wrapper
   "A hard-coded sample hops-wrapper for static unit tests"
-  {:hops sample-hops})
+  {hops.format/hops sample-hops})
 
 
 (defn generate-hop
@@ -102,9 +102,9 @@
   (testing "Since this library assumes common-beer-format data is utilized, make sure static test data conforms"
     (is (spoon.spec/test-valid? ::hops.format/hop sample-hop)
         "Static test data should conform to common-beer-format.hop/hop")
-    (is (spoon.spec/test-valid? ::hops.format/hop (assoc sample-hop :type (random-hop-type)))
+    (is (spoon.spec/test-valid? ::hops.format/hop (assoc sample-hop hops.format/type (random-hop-type)))
         "Static test data should conform to common-beer-format.hop/hop, even with an added optional type")
-    (is (spoon.spec/test-valid? ::hops.format/hop (assoc sample-hop :form (random-hop-form)))
+    (is (spoon.spec/test-valid? ::hops.format/hop (assoc sample-hop hops.format/form (random-hop-form)))
         "Static test data should conform to common-beer-format.hop/hop, even with an added optional form")
     (is (spoon.spec/test-valid? ::hops.format/hop sample-hop)
         "Static test data should conform to common-beer-format.hop/hop")
@@ -118,9 +118,9 @@
 
 (deftest generative-test-data-check
   (testing "Since this library assumes common-beer-format data is utilized, make sure generative test data conforms"
-    (is (spoon.spec/test-valid? ::hops.format/hop (assoc (generate-hop) :type (random-hop-type)))
+    (is (spoon.spec/test-valid? ::hops.format/hop (assoc (generate-hop) hops.format/type (random-hop-type)))
         "Generative test data should conform to common-beer-format.hop/hop, even with an added optional type")
-    (is (spoon.spec/test-valid? ::hops.format/hop (assoc (generate-hop) :form (random-hop-form)))
+    (is (spoon.spec/test-valid? ::hops.format/hop (assoc (generate-hop) hops.format/form (random-hop-form)))
         "Generative test data should conform to common-beer-format.hop/hop, even with an added optional form")
     (is (spoon.spec/test-valid? ::hops.format/hop (generate-hop))
         "Generative test data should conform to common-beer-format.hop/hop")

@@ -9,27 +9,27 @@
 
 (def sample-equipment
   "A hard-coded sample equipment for static unit tests"
-  {:batch-size        19.9
-   :boil-size         26.2
-   :boil-time         60.5
-   :calc-boil-volume  true
-   :evap-rate         9.0
-   :hop-utilization   100.5
-   :lauter-deadspace  0.8
-   :name              "8 Gal pot with 5 gal Igloo Cooler"
-   :notes             "Popular all grain setup. 5 Gallon Gott or Igloo cooler as mash tun with false bottom, and 7-9 gallon brewpot capable of boiling at least 6 gallons of wort. Primarily used for single infusion mashes."
-   :top-up-kettle     0.5
-   :top-up-water      0.5
-   :trub-chiller-loss 0.8
-   :tun-specific-heat 0.3
-   :tun-volume        19.9
-   :tun-weight        2.5
-   :version           1})
+  {equipment.format/batch-size        19.9
+   equipment.format/boil-size         26.2
+   equipment.format/boil-time         60.5
+   equipment.format/calc-boil-volume  true
+   equipment.format/evap-rate         9.0
+   equipment.format/hop-utilization   100.5
+   equipment.format/lauter-deadspace  0.8
+   equipment.format/name              "8 Gal pot with 5 gal Igloo Cooler"
+   equipment.format/notes             "Popular all grain setup. 5 Gallon Gott or Igloo cooler as mash tun with false bottom, and 7-9 gallon brewpot capable of boiling at least 6 gallons of wort. Primarily used for single infusion mashes."
+   equipment.format/top-up-kettle     0.5
+   equipment.format/top-up-water      0.5
+   equipment.format/trub-chiller-loss 0.8
+   equipment.format/tun-specific-heat 0.3
+   equipment.format/tun-volume        19.9
+   equipment.format/tun-weight        2.5
+   equipment.format/version           1})
 
 
 (def sample-equipment-wrapper
   "A hard-coded sample equipment-wrapper for static unit tests"
-  {:equipment sample-equipment})
+  {equipment.format/equipment sample-equipment})
 
 
 (defn generate-equipment
