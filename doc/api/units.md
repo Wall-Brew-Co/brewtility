@@ -76,6 +76,7 @@ Brewtility supports four systems of measure:
 These are the most commonly seen systems in brewing.
 There are measurement functions for the most common types of measurements within these systems:
 
+- [Bitterness](##bitterness)
 - [Color](##color)
 - [Pressure](##pressure)
 - [Specific Gravity](##specific-gravity)
@@ -83,6 +84,15 @@ There are measurement functions for the most common types of measurements within
 - [Time](##time)
 - [Volume](##volume)
 - [Weight](##weight)
+
+### Bitterness
+
+Currently, brewtility supports the following bitterness measurements:
+
+- [IBU](https://en.wikipedia.org/wiki/International_bitterness_units)
+
+While there is currently only one system, the same namespace and functionality exists as the other measurement types.
+This allows for progressive evolution, and provides a consistent interface to every measurement type encoded in the BeerXML specification.
 
 ### Color
 
@@ -92,10 +102,6 @@ Currently, brewtility supports the following types of color:
 - [EBC](https://en.wikipedia.org/wiki/European_Brewery_Convention)
 - [Lovibond](https://en.wikipedia.org/wiki/Beer_measurement#Colour)
 - [RGBa](https://en.wikipedia.org/wiki/RGBA_color_model)
-
-The `RGBa` system is special, as it can only be used as an argument for the result of a unit conversion.
-Unfortunately, there is not a great deterministic way to cast the values back to the other systems.
-brewtility will thrown an exception in this case and explain the problem.
 
 ### Pressure
 
