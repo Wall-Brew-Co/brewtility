@@ -115,6 +115,14 @@
   "A set of supported suffix types."
   #{short full})
 
+(def bitterness
+  "The bitterness systems used in the recipe or for a given unit.
+
+   Commonly used with `brewtility.units.bitterness` and in argument/option maps.
+   Currently, brewtility supports the following types of bitterness:
+     - [international-bitterness-units](https://en.wikipedia.org/wiki/International_bitterness_units)"
+  :bitterness)
+
 
 (def color
   "The color systems used in the recipe or for a given unit.
@@ -217,13 +225,21 @@
 
 (def measurement-types
   "The measurement types available across brewtility."
-  #{color
+  #{bitterness
+    color
     pressure
     specific-gravity
     temperature
     time
     volume
     weight})
+
+;; Bitterness Systems
+(def ibu
+  "The [International Bitterness Units](https://en.wikipedia.org/wiki/International_bitterness_units) system of measure.
+
+   Commonly used with `brewtility.units.bitterness` and in argument/option maps."
+  :ibu)
 
 
 ;; Color Systems

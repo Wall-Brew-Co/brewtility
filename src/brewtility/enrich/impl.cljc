@@ -6,6 +6,7 @@
    :added               "2.1"
    :implementation-only true}
   (:require [brewtility.units :as units]
+            [brewtility.units.bitterness :as bitterness]
             [brewtility.units.color :as color]
             [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
@@ -18,7 +19,7 @@
 
 (def default-display-options
   "The default display options used for all enrichers."
-  {options/precision 3
+  {options/precision options/default-precision
    options/suffix    options/short})
 
 
@@ -55,6 +56,13 @@
 (def fine-grain-suffix
   "The suffix to use for fine-grain setting of precision in `enrich-displayable-*` functions"
   :fine-grain-suffix)
+
+(def default-bitterness-by-system
+  "The default bitterness to use for each system in `enrich-displayable-*` functions."
+  {options/imperial             options/ibu
+   options/metric               options/ibu
+   options/us-customary         options/ibu
+   options/international-system options/ibu})
 
 
 (def default-color-by-system
