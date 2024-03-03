@@ -33,6 +33,8 @@
             [brewtility.predicates.waters-test]
             [brewtility.predicates.yeasts-test]
             [brewtility.units-test]
+            [brewtility.units.bitterness-test]
+            [brewtility.units.carbonation-test]
             [brewtility.units.color-test]
             [brewtility.units.pressure-test]
             [brewtility.units.specific-gravity-test]
@@ -75,6 +77,8 @@
            'brewtility.predicates.waters-test
            'brewtility.predicates.yeasts-test
            'brewtility.units-test
+           'brewtility.units.bitterness-test
+           'brewtility.units.carbonation-test
            'brewtility.units.color-test
            'brewtility.units.pressure-test
            'brewtility.units.specific-gravity-test

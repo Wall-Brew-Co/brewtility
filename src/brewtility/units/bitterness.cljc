@@ -10,22 +10,27 @@
   (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]))
 
+
 (def measurements
-    "The IBU systems available across brewtility."
-    #{options/ibu})
+  "The IBU systems available across brewtility."
+  #{options/ibu})
+
 
 (def measurements->display-name
-    "A map from IBU system names to their full and short unit names."
-    {options/ibu {options/full  "international bitterness units"
-                  options/short "ibu"}})
+  "A map from IBU system names to their full and short unit names."
+  {options/ibu {options/full  "international bitterness units"
+                options/short "ibu"}})
+
 
 (def measurement->ibu
-    "A map from IBU system names to the conversion function to IBU."
-    {options/ibu identity})
+  "A map from IBU system names to the conversion function to IBU."
+  {options/ibu identity})
+
 
 (def ibu->measurement
-    "A map from IBU system names to the conversion function from IBU."
-    {options/ibu identity})
+  "A map from IBU system names to the conversion function from IBU."
+  {options/ibu identity})
+
 
 (defn convert
   "Given a `bitterness` in `source-measurement`, convert it to the `target-measurement`.
@@ -46,6 +51,7 @@
                      :target-measurement target-measurement
                      :allowed-values     measurements
                      :bitterness         bitterness}))))
+
 
 (defn display
   "A function to render a human-readable `bitterness` in `source-units`.

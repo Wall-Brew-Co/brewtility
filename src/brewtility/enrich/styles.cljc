@@ -246,6 +246,7 @@
                               impl/fine-grain-suffix       style-display-color-max-suffix})]
      (impl/enrich-displayable-units options/color style options))))
 
+
 (defn enrich-og-range
   "An enricher pattern function to render a human-readable display original gravity ranges for a [style](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/style.cljc) is in a given system.
 
@@ -283,6 +284,7 @@
                               impl/fine-grain-precision    style-display-og-range-precision
                               impl/fine-grain-suffix       style-display-og-range-suffix})]
      (impl/enrich-displayable-range options/specific-gravity style options))))
+
 
 (defn enrich-fg-range
   "An enricher pattern function to render a human-readable display final gravity ranges for a [style](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/style.cljc) is in a given system.
@@ -323,4 +325,4 @@
      (impl/enrich-displayable-range options/specific-gravity style options))))
 
 
-;;; NOTE CARB AND ABV MIN/MAXES ARE OPTIONAL
+;; NOTE CARB AND ABV MIN/MAXES ARE OPTIONAL

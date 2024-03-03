@@ -11,41 +11,46 @@
   (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]))
 
+
 (def measurements
-    "The carbonation systems available across brewtility."
-    #{options/volumes-of-co2 options/grams-per-liter})
+  "The carbonation systems available across brewtility."
+  #{options/volumes-of-co2 options/grams-per-liter})
+
 
 (def measurements->display-name
-    "A map from carbonation system names to their full and short unit names."
-    {options/volumes-of-co2 {options/full  "volumes of CO2"
-                             options/short "vols"}
-     options/grams-per-liter {options/full  "grams per liter"
-                              options/short "g/L"}})
+  "A map from carbonation system names to their full and short unit names."
+  {options/volumes-of-co2 {options/full  "volumes of CO2"
+                           options/short "vols"}
+   options/grams-per-liter {options/full  "grams per liter"
+                            options/short "g/L"}})
+
 
 (defn- volumes-of-co2->grams-per-liter
-    "An implementation function to convert `volumes-of-co2` to grams per liter"
-    {:no-doc true
-     :added  "2.1"}
-    [volumes-of-co2]
-    (* 1.96 volumes-of-co2))
+  "An implementation function to convert `volumes-of-co2` to grams per liter"
+  {:no-doc true
+   :added  "2.1"}
+  [volumes-of-co2]
+  (* 1.96 volumes-of-co2))
 
 
 (defn- grams-per-liter->volumes-of-co2
-    "An implementation function to convert `grams-per-liter` to volumes of CO2"
-    {:no-doc true
-     :added  "2.1"}
-    [grams-per-liter]
-    (/ grams-per-liter 1.96))
+  "An implementation function to convert `grams-per-liter` to volumes of CO2"
+  {:no-doc true
+   :added  "2.1"}
+  [grams-per-liter]
+  (/ grams-per-liter 1.96))
+
 
 (def measurement->volumes-of-co2
   "A map from carbonation system names to the conversion function to volumes of CO2."
   {options/volumes-of-co2  identity
    options/grams-per-liter volumes-of-co2->grams-per-liter})
 
+
 (def volumes-of-co2->measurement
-    "A map from carbonation system names to the conversion function from volumes of CO2."
-    {options/volumes-of-co2  identity
-     options/grams-per-liter grams-per-liter->volumes-of-co2})
+  "A map from carbonation system names to the conversion function from volumes of CO2."
+  {options/volumes-of-co2  identity
+   options/grams-per-liter grams-per-liter->volumes-of-co2})
 
 
 (defn convert
@@ -67,6 +72,7 @@
                      :target-measurement target-measurement
                      :allowed-values     measurements
                      :carbonation        carbonation}))))
+
 
 (defn display
   "A function to render a human-readable `carbonation` in `source-units`.
@@ -90,7 +96,7 @@
        (-> carbonation
            (convert source-units options/volumes-of-co2)
            (precision/->precision precision)
-           (str display-name suffix)))
+           (str " " display-name)))
      (throw (ex-info "Unsupported carbonation display units"
                      {:source-units       source-units
                       :allowed-values     measurements
