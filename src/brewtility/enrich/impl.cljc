@@ -26,9 +26,11 @@
   "The key to source data from in `enrich-displayable-*` functions"
   :value-key)
 
+
 (def low-value-key
   "The key to source data from in `enrich-displayable-*` functions for the lower end of the range"
   :low-value-key)
+
 
 (def high-value-key
   "The key to source data from in `enrich-displayable-*` functions for the higher end of the range"
@@ -395,12 +397,12 @@
             precision               (or fine-grain-precision precision)
             suffix                  (or fine-grain-suffix suffix)
             opts                    (parse-enrich-displayable-units-opts
-                                     measurement-type
-                                     {:target-units             target-units
-                                      :source-units             source-units
-                                      options/system-of-measure system-of-measure
-                                      options/precision         precision
-                                      options/suffix            suffix})
+                                      measurement-type
+                                      {:target-units             target-units
+                                       :source-units             source-units
+                                       options/system-of-measure system-of-measure
+                                       options/precision         precision
+                                       options/suffix            suffix})
             converted-low-value     (units/convert measurement-type low-source-value source-units target-units {options/precision precision})
             displayable-high-value  (->displayable-units measurement-type high-source-value source-units target-units opts)
             displayable-range       (str converted-low-value " - " displayable-high-value)]
