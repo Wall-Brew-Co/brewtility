@@ -30,6 +30,10 @@ This provides a consistent interface to every system of measure, unit type, and 
 (units/convert units/volume 20 :teaspoon :liter)
 ;; => 0.099
 
+;; You can also round the conversion to a specified precision
+(units/convert units/volume 20 :teaspoon :liter {:precision 1})
+;; => 0.1
+
 ;; If you only plan on dealing with volumes,
 ;;   then you can import the `brewtility.units.volume` namespace
 (volume/convert 9.99209 :imperial-pint :american-pint)

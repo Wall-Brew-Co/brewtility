@@ -19,11 +19,11 @@
   (if (and (number? amount)
            (number? color))
     (let [is-not-grain? (not (fermentables/grain? fermentable))
-          ; MCU is calculated against pounds
+          ;; MCU is calculated against pounds
           kg->lbs       (fn [w] (weight/convert w options/kilogram options/pound))]
       (cond-> fermentable
         true          (update :amount kg->lbs)
-        ; Grain color is in Lovibond, all other fermentables use SRM
+        ;; Grain color is in Lovibond, all other fermentables use SRM
         is-not-grain? (update :color #(color/convert % options/srm options/lovibond))))
     (throw (ex-info "Cannot calculate color with non-numeric values" {:amount amount
                                                                       :color  color}))))
