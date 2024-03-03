@@ -120,6 +120,7 @@
   "A set of supported suffix types."
   #{short full})
 
+
 (def bitterness
   "The bitterness systems used in the recipe or for a given unit.
 
@@ -127,6 +128,7 @@
    Currently, brewtility supports the following types of bitterness:
      - [international-bitterness-units](https://en.wikipedia.org/wiki/International_bitterness_units)"
   :bitterness)
+
 
 (def carbonation
   "The carbonation systems used in the recipe or for a given unit.
@@ -278,6 +280,7 @@
     volume
     weight})
 
+
 ;; Bitterness Systems
 (def ibu
   "The [International Bitterness Units](https://en.wikipedia.org/wiki/International_bitterness_units) system of measure.
@@ -285,12 +288,14 @@
    Commonly used with `brewtility.units.bitterness` and in argument/option maps."
   :ibu)
 
+
 ;; Carbonation Systems
 (def volumes-of-co2
   "The [volumes of CO2](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages) system of measure.
 
    Commonly used with `brewtility.units.carbonation` and in argument/option maps."
   :volumes-of-co2)
+
 
 (def grams-per-liter
   "The [grams per liter](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages) system of measure.
