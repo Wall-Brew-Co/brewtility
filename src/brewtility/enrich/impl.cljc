@@ -7,6 +7,7 @@
    :implementation-only true}
   (:require [brewtility.units :as units]
             [brewtility.units.bitterness :as bitterness]
+            [brewtility.units.carbonation :as carbonation]
             [brewtility.units.color :as color]
             [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
@@ -57,12 +58,21 @@
   "The suffix to use for fine-grain setting of precision in `enrich-displayable-*` functions"
   :fine-grain-suffix)
 
+
 (def default-bitterness-by-system
   "The default bitterness to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/ibu
    options/metric               options/ibu
    options/us-customary         options/ibu
    options/international-system options/ibu})
+
+
+(def default-carbonation-by-system
+  "The default carbonation to use for each system in `enrich-displayable-*` functions."
+  {options/imperial             options/volumes-of-co2
+   options/metric               options/volumes-of-co2
+   options/us-customary         options/volumes-of-co2
+   options/international-system options/volumes-of-co2})
 
 
 (def default-color-by-system
@@ -123,7 +133,9 @@
 
 (def beer-xml-standard-units
   "The standard units for each measurement type in BeerXML."
-  {options/color            options/srm
+  {options/bitterness       options/ibu
+   options/carbonation      options/volumes-of-co2
+   options/color            options/srm
    options/pressure         options/kilopascal
    options/specific-gravity options/specific-gravity
    options/temperature      options/celsius
@@ -153,6 +165,8 @@
               "suffix-error"]}
   [error-map conversion-type target-units]
   (let [allowed-values (case conversion-type
+                         :bitterness       bitterness/measurements
+                         :carbonation      carbonation/measurements
                          :color            color/measurements
                          :pressure         pressure/measurements
                          :specific-gravity specific-gravity/measurements
@@ -182,6 +196,8 @@
               "target-unit-error"]}
   [error-map conversion-type source-units]
   (let [allowed-values (case conversion-type
+                         :bitterness       bitterness/measurements
+                         :carbonation      carbonation/measurements
                          :color            color/measurements
                          :pressure         pressure/measurements
                          :specific-gravity specific-gravity/measurements
@@ -257,6 +273,8 @@
    :no-doc   false}
   [measurement-type unit]
   (case measurement-type
+    :bitterness       (contains? bitterness/measurements unit)
+    :carbonation      (contains? carbonation/measurements unit)
     :color            (contains? color/measurements unit)
     :pressure         (contains? pressure/measurements unit)
     :specific-gravity (contains? specific-gravity/measurements unit)
@@ -275,7 +293,7 @@
    If any of these are invalid, a Java Exception or Javascript Error is thrown with information on the invalid options."
   {:added    "2.1"
    :no-doc   true
-   :see-also ["enrich-displayable-pressure"]}
+   :see-also ["enrich-displayable-units"]}
   [measurement-type
    {:keys [target-units source-units system-of-measure precision suffix]
     :as   opts}]
@@ -300,16 +318,12 @@
    If the measurement type is not supported, a Java Exception or Javascript Error is thrown with information on the invalid options."
   {:added    "2.1"
    :no-doc   true
-   :see-also ["enrich-displayable-color"
-              "enrich-displayable-pressure"
-              "enrich-displayable-specific-gravity"
-              "enrich-displayable-temperature"
-              "enrich-displayable-time"
-              "enrich-displayable-volume"
-              "enrich-displayable-weight"
+   :see-also ["enrich-displayable-units"
               "enrich-displayable-range"]}
   [measurement-type system-of-measure]
   (case measurement-type
+    :bitterness       (get default-bitterness-by-system system-of-measure)
+    :carbonation      (get default-carbonation-by-system system-of-measure)
     :color            (get default-color-by-system system-of-measure)
     :pressure         (get default-pressure-by-system system-of-measure)
     :specific-gravity (get default-specific-gravity-by-system system-of-measure)
