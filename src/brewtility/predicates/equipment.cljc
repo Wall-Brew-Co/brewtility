@@ -16,7 +16,9 @@
    In the BeerXML spec, this behavior is implicitly falsey.
    Therefore, if the :calc-boil-volume field is not present, this function will explicitly return false."
   {:added "1.5"}
-  ([equipment] (calculated-boil-volume? equipment {})) ; Added to match the arity of the other predicate functions
+  ([equipment] (calculated-boil-volume? equipment {}))
+; Added to match the arity of the other predicate functions
+
   ([equipment _opts]
    (if (contains? equipment :calc-boil-volume)
      (:calc-boil-volume equipment)
