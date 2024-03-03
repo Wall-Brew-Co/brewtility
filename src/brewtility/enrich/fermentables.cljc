@@ -38,8 +38,7 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "2.1"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
@@ -63,8 +62,7 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "2.1"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
@@ -88,8 +86,7 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "2.1"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
@@ -113,8 +110,7 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "2.1"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
@@ -138,8 +134,7 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "2.1"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
@@ -163,8 +158,7 @@
    An option map may be passed as an optional second argument to this function to override the default behavior.
    Supported keys include:
 
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "2.1"
    :see-also ["brewtility.predicates.fermentables/extract?"
               "enrich-fermentable"
@@ -269,7 +263,6 @@
    The following keys are supported for controlling high-level behavior:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false.
      - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
@@ -328,7 +321,6 @@
    The following keys are supported for controlling high-level behavior:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false.
      - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
@@ -378,7 +370,6 @@
    The following keys are supported for controlling high-level behavior:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false.
      - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.
@@ -428,7 +419,6 @@
    The following keys are supported for controlling high-level behavior:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false.
      - `:system-of-measure`: The unit system of measure to convert the amount into. Defaults to `:us`. Acceptable values are:
         - `:imperial`: The [British imperial](https://en.wikipedia.org/wiki/Imperial_units) system of measure.
         - `:metric`: The [metric system](https://en.wikipedia.org/wiki/Metric_system) of measure.

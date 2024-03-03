@@ -5,7 +5,8 @@
   {:no-doc              true
    :added               "2.1"
    :implementation-only true}
-  (:require [brewtility.units :as units]
+  (:require [brewtility.precision :as precision]
+            [brewtility.units :as units]
             [brewtility.units.color :as color]
             [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
@@ -23,32 +24,40 @@
 
 
 (def value-key
-  "The key to source data from in `->displayable` functions"
+  "The key to source data from in `enrich-displayable-*` functions"
   :value-key)
+
+(def low-value-key
+  "The key to source data from in `enrich-displayable-*` functions for the lower end of the range"
+  :low-value-key)
+
+(def high-value-key
+  "The key to source data from in `enrich-displayable-*` functions for the higher end of the range"
+  :high-value-key)
 
 
 (def display-key
-  "The key to store displayable data in in `->displayable` functions"
+  "The key to store displayable data in in `-enrich-displayable-*` functions"
   :display-key)
 
 
 (def fine-grain-target-units
-  "The target units to use for fine-grain toggling of displayable units in `->displayable` functions"
+  "The target units to use for fine-grain toggling of displayable units in `enrich-displayable-*` functions"
   :fine-grain-target-units)
 
 
 (def fine-grain-precision
-  "The suffix to use for fine-grain setting of precision in `->displayable` functions"
+  "The suffix to use for fine-grain setting of precision in `-enrich-displayable-*` functions"
   :fine-grain-precision)
 
 
 (def fine-grain-suffix
-  "The suffix to use for fine-grain setting of precision in `->displayable` functions"
+  "The suffix to use for fine-grain setting of precision in `enrich-displayable-*` functions"
   :fine-grain-suffix)
 
 
 (def default-color-by-system
-  "The default color to use for each system in `->displayable` functions."
+  "The default color to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/srm
    options/metric               options/srm
    options/us-customary         options/srm
@@ -56,7 +65,7 @@
 
 
 (def default-pressure-by-system
-  "The default pressure to use for each system in `->displayable` functions."
+  "The default pressure to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/psi
    options/metric               options/kilopascal
    options/us-customary         options/psi
@@ -64,7 +73,7 @@
 
 
 (def default-specific-gravity-by-system
-  "The default specific gravity to use for each system in `->displayable` functions."
+  "The default specific gravity to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/specific-gravity
    options/metric               options/specific-gravity
    options/us-customary         options/specific-gravity
@@ -72,7 +81,7 @@
 
 
 (def default-temperature-by-system
-  "The default temperature to use for each system in `->displayable` functions."
+  "The default temperature to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/fahrenheit
    options/metric               options/celsius
    options/us-customary         options/fahrenheit
@@ -80,7 +89,7 @@
 
 
 (def default-time-by-system
-  "The default time to use for each system in `->displayable` functions."
+  "The default time to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/minute
    options/metric               options/minute
    options/us-customary         options/minute
@@ -88,7 +97,7 @@
 
 
 (def default-volume-by-system
-  "The default volume to use for each system in `->displayable` functions."
+  "The default volume to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/imperial-gallon
    options/metric               options/litre
    options/us-customary         options/american-gallon
@@ -96,7 +105,7 @@
 
 
 (def default-weight-by-system
-  "The default weight to use for each system in `->displayable` functions."
+  "The default weight to use for each system in `enrich-displayable-*` functions."
   {options/imperial             options/pound
    options/metric               options/kilogram
    options/us-customary         options/pound
@@ -233,7 +242,8 @@
 ;; Enricher argument validation functions
 
 (defn valid-unit-for-measurement-type?
-  "TODO: Fill me in"
+  "A functions that confirms if a given `unit` is valid for a given `measurement-type`.
+   If the `unit` is not valid, a Java Exception or Javascript Error is thrown with information on the invalid options."
   {:added    "2.1"
    :no-doc   false}
   [measurement-type unit]
@@ -305,7 +315,21 @@
 
 
 (defn enrich-displayable-units
-  "TODO: Fill me in"
+  "A function to enrich a `source-data` map with a displayable value for a given `measurement-type`.
+   This function will convert the `source-value` from `source-units` to `target-units` and store the result in `display-key`.
+   If the `source-value` is not present, the `source-data` is returned unmodified.
+   The function will default to the following display options:
+
+   - `system-of-measure` : `:us-customary`
+   - `suffix` : `:short`
+   - `precision` : `3`
+   - `source-units` : The BeerXML default system of measure for the given `measurement-type` (e.g. `:kilogram` for `:weight`)
+
+   Customization of function behavior is handled by the following keys in the `opts` map, and will always take precedence over defaults:
+
+   - `fine-grain-precsion` : The precision to use for this displayable value. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
+   - `fine-grain-suffix` : The suffix to use for this displayable value. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
+   - `fine-grain-target-units` : The target units to use for this displayable value. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field"
   {:added "2.1"
    :no-doc true}
   [measurement-type
@@ -336,7 +360,21 @@
 
 
 (defn enrich-displayable-range
-  "TODO: Fill me in"
+  "A function to enrich a `source-data` map with a displayable range for a given `measurement-type`.
+     This function will convert the `low-source-value` and `high-source-value` from `source-units` to `target-units` and store the result in `display-key`.
+     If the `source-value` is not present, the `source-data` is returned unmodified.
+     The function will default to the following display options:
+
+     - `system-of-measure` : `:us-customary`
+     - `suffix` : `:short`
+     - `precision` : `3`
+     - `source-units` : The BeerXML default system of measure for the given `measurement-type` (e.g. `:kilogram` for `:weight`)
+
+     Customization of function behavior is handled by the following keys in the `opts` map, and will always take precedence over defaults:
+
+     - `fine-grain-precsion` : The precision to use for this displayable range. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
+     - `fine-grain-suffix` : The suffix to use for this displayable range. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
+     - `fine-grain-target-units` : The target units to use for this displayable range. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field"
   {:added    "2.1"
    :no-doc   true
    :see-also ["enrich-displayable-units"]}
@@ -356,13 +394,13 @@
             precision               (or fine-grain-precision precision)
             suffix                  (or fine-grain-suffix suffix)
             opts                    (parse-enrich-displayable-units-opts
-                                      measurement-type
-                                      {:target-units             target-units
-                                       :source-units             source-units
-                                       options/system-of-measure system-of-measure
-                                       options/precision         precision
-                                       options/suffix            suffix})
-            converted-low-value     (units/convert measurement-type low-source-value source-units target-units)
+                                     measurement-type
+                                     {:target-units             target-units
+                                      :source-units             source-units
+                                      options/system-of-measure system-of-measure
+                                      options/precision         precision
+                                      options/suffix            suffix})
+            converted-low-value     (units/convert measurement-type low-source-value source-units target-units {options/precision precision})
             displayable-high-value  (->displayable-units measurement-type high-source-value source-units target-units opts)
             displayable-range       (str converted-low-value " - " displayable-high-value)]
         (assoc source-data display-key displayable-range))
