@@ -23,6 +23,7 @@
   {:added   "1.0"
    :changed "2.0"}
   (:require [brewtility.precision :as precision]
+            [brewtility.units.bitterness :as bitterness]
             [brewtility.units.color :as color]
             [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
