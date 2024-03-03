@@ -3,6 +3,7 @@
             #? (:cljs [cljs.test :refer-macros [deftest is testing]])
             [brewtility.predicates.options :as sut]))
 
+
 (deftest type-test
   (testing "A sanity test for all option keywords"
     (is (keyword? sut/uppercase?))))
