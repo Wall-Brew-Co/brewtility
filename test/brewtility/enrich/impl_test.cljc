@@ -199,91 +199,91 @@
           new-error-map (sut/target-unit-error error-map options/color :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :target-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "color")
+      (is (str/includes? (:target-units new-error-map) "color")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:target-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "lovibond")
+      (is (str/includes? (:target-units new-error-map) "lovibond")
           "The valid units are included in the error message")))
   (testing "Ensure target-unit-error sets an appropriate error for pressure"
     (let [error-map     {:some "error"}
           new-error-map (sut/target-unit-error error-map options/pressure :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :target-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "pressure")
+      (is (str/includes? (:target-units new-error-map) "pressure")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:target-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "psi")
+      (is (str/includes? (:target-units new-error-map) "psi")
           "The valid units are included in the error message")))
   (testing "Ensure target-unit-error sets an appropriate error for specific-gravity"
     (let [error-map     {:some "error"}
           new-error-map (sut/target-unit-error error-map options/specific-gravity :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :target-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "specific-gravity")
+      (is (str/includes? (:target-units new-error-map) "specific-gravity")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:target-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "specific-gravity")
+      (is (str/includes? (:target-units new-error-map) "specific-gravity")
           "The valid units are included in the error message")))
   (testing "Ensure target-unit-error sets an appropriate error for temperature"
     (let [error-map     {:some "error"}
           new-error-map (sut/target-unit-error error-map options/temperature :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :target-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "temperature")
+      (is (str/includes? (:target-units new-error-map) "temperature")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:target-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "celsius")
+      (is (str/includes? (:target-units new-error-map) "celsius")
           "The valid units are included in the error message")))
   (testing "Ensure target-unit-error sets an appropriate error for time"
     (let [error-map     {:some "error"}
           new-error-map (sut/target-unit-error error-map options/time :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :target-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "time")
+      (is (str/includes? (:target-units new-error-map) "time")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:target-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "minute")
+      (is (str/includes? (:target-units new-error-map) "minute")
           "The valid units are included in the error message")))
   (testing "Ensure target-unit-error sets an appropriate error for volume"
     (let [error-map     {:some "error"}
           new-error-map (sut/target-unit-error error-map options/volume :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :target-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "volume")
+      (is (str/includes? (:target-units new-error-map) "volume")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:target-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "teaspoon")
+      (is (str/includes? (:target-units new-error-map) "teaspoon")
           "The valid units are included in the error message")))
   (testing "Ensure target-unit-error sets an appropriate error for weight"
     (let [error-map     {:some "error"}
           new-error-map (sut/target-unit-error error-map options/weight :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :target-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "weight")
+      (is (str/includes? (:target-units new-error-map) "weight")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:target-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "pound")
+      (is (str/includes? (:target-units new-error-map) "pound")
           "The valid units are included in the error message"))))
 
 
@@ -293,91 +293,91 @@
           new-error-map (sut/source-unit-error error-map options/color :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :source-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "color")
+      (is (str/includes? (:source-units new-error-map) "color")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:source-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "lovibond")
+      (is (str/includes? (:source-units new-error-map) "lovibond")
           "The valid units are included in the error message")))
   (testing "Ensure source-unit-error sets an appropriate error for pressure"
     (let [error-map     {:some "error"}
           new-error-map (sut/source-unit-error error-map options/pressure :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :source-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "pressure")
+      (is (str/includes? (:source-units new-error-map) "pressure")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:source-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "psi")
+      (is (str/includes? (:source-units new-error-map) "psi")
           "The valid units are included in the error message")))
   (testing "Ensure source-unit-error sets an appropriate error for specific-gravity"
     (let [error-map     {:some "error"}
           new-error-map (sut/source-unit-error error-map options/specific-gravity :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :source-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "specific-gravity")
+      (is (str/includes? (:source-units new-error-map) "specific-gravity")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:source-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "specific-gravity")
+      (is (str/includes? (:source-units new-error-map) "specific-gravity")
           "The valid units are included in the error message")))
   (testing "Ensure source-unit-error sets an appropriate error for temperature"
     (let [error-map     {:some "error"}
           new-error-map (sut/source-unit-error error-map options/temperature :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :source-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "temperature")
+      (is (str/includes? (:source-units new-error-map) "temperature")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:source-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "celsius")
+      (is (str/includes? (:source-units new-error-map) "celsius")
           "The valid units are included in the error message")))
   (testing "Ensure source-unit-error sets an appropriate error for time"
     (let [error-map     {:some "error"}
           new-error-map (sut/source-unit-error error-map options/time :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :source-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "time")
+      (is (str/includes? (:source-units new-error-map) "time")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:source-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "minute")
+      (is (str/includes? (:source-units new-error-map) "minute")
           "The valid units are included in the error message")))
   (testing "Ensure source-unit-error sets an appropriate error for volume"
     (let [error-map     {:some "error"}
           new-error-map (sut/source-unit-error error-map options/volume :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :source-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "volume")
+      (is (str/includes? (:source-units new-error-map) "volume")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:source-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "teaspoon")
+      (is (str/includes? (:source-units new-error-map) "teaspoon")
           "The valid units are included in the error message")))
   (testing "Ensure source-unit-error sets an appropriate error for weight"
     (let [error-map     {:some "error"}
           new-error-map (sut/source-unit-error error-map options/weight :fake)]
       (is (contains? new-error-map :some)
           "Previously recorded errors are preserved")
-      (is (contains? new-error-map :units)
+      (is (contains? new-error-map :source-units)
           "The new error is recorded")
-      (is (str/includes? (:units new-error-map) "weight")
+      (is (str/includes? (:source-units new-error-map) "weight")
           "The type of attempted conversion is included in the error message")
-      (is (str/includes? (:units new-error-map) "fake")
+      (is (str/includes? (:source-units new-error-map) "fake")
           "The invalid unit is included in the error message")
-      (is (str/includes? (:units new-error-map) "pound")
+      (is (str/includes? (:source-units new-error-map) "pound")
           "The valid units are included in the error message"))))
 
 
@@ -526,6 +526,8 @@
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :target-units)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :source-units)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :source-units)))))
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts options/precision)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts options/precision)))))
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts options/suffix)))))
@@ -533,6 +535,8 @@
     (testing "An invalid selection for any require value throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts :target-units :fake)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts :target-units :fake)))))
+      #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts :source-units :fake)))))
+      #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts :source-units :fake)))))
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts options/precision :fake)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts options/precision :fake)))))
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (assoc valid-opts options/suffix :fake)))))
@@ -541,6 +545,7 @@
 
 (deftest parse-enrich-displayable-pressure-opts-test
   (let [valid-opts  {:target-units             options/psi
+                     :source-units             options/kilopascal
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
@@ -550,6 +555,7 @@
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-pressure-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/psi
+                               :source-units             options/kilopascal
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
@@ -577,6 +583,7 @@
 
 (deftest parse-enrich-displayable-specific-gravity-opts-test
   (let [valid-opts  {:target-units             options/specific-gravity
+                     :source-units             options/specific-gravity
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
@@ -586,6 +593,7 @@
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-specific-gravity-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/specific-gravity
+                               :source-units             options/specific-gravity
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
@@ -613,6 +621,7 @@
 
 (deftest parse-enrich-displayable-temperature-opts-test
   (let [valid-opts  {:target-units             options/c
+                     :source-units             options/c
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
@@ -622,6 +631,7 @@
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/c
+                               :source-units             options/c
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
@@ -649,6 +659,7 @@
 
 (deftest parse-enrich-displayable-time-opts-test
   (let [valid-opts  {:target-units             options/minute
+                     :source-units             options/minute
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
@@ -658,6 +669,7 @@
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/minute
+                               :source-units             options/minute
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
@@ -685,6 +697,7 @@
 
 (deftest parse-enrich-displayable-volume-opts-test
   (let [valid-opts  {:target-units             options/teaspoon
+                     :source-units             options/litre
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
@@ -694,6 +707,7 @@
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/teaspoon
+                               :source-units             options/litre
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
@@ -721,6 +735,7 @@
 
 (deftest parse-enrich-displayable-weight-opts-test
   (let [valid-opts  {:target-units             options/pound
+                     :source-units             options/kilogram
                      options/system-of-measure options/metric
                      options/precision         2
                      options/suffix            options/full}
@@ -730,6 +745,7 @@
           "Valid opts are returned unchanged"))
     (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
       (let [valid-opts-w-keys {:target-units             options/pound
+                               :source-units             options/kilogram
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
