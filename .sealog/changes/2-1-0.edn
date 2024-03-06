@@ -2,8 +2,9 @@
                 :minor 1
                 :patch 0}
  :version-type :semver3
- :changes      {:added   ["`brewtility.units.bitterness` for rendering displayable IBU values"
-                          "`brewtility.units.carbonation` for rendering displayable carbonation values"
+ :changes      {:added   ["`brewtility.units.bitterness` for rendering displayable IBU values."
+                          "`brewtility.units.carbonation` for rendering displayable carbonation values."
+                          "`brewtility.units.specific-gravity` now supports measurements in degrees plato."
                           "`brewtility.predicates.options` for option map keys shared across predicate namespaces."]
                 :changed ["Functions in `brewtility.calculations` will throw targeted exceptions for invalid values instead of relying on the underlying Math implementation to do so."
                           "Functions in `brewtility.precision` will throw targeted exceptions for invalid values instead of relying on the underlying Math implementation to do so."
