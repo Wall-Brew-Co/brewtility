@@ -364,6 +364,14 @@
    Commonly used with `brewtility.units.color` and in argument/option maps."
   :rgba)
 
+;; Specific Gravity Units
+
+(def plato
+  "The [Degrees Plato](https://en.wikipedia.org/wiki/Plato_scale#Extract) system of measure.
+
+   Commonly used with `brewtility.units.specific-gravity` and in argument/option maps."
+  :plato)
+
 
 ;; Specific Gravity Units
 
