@@ -8,7 +8,7 @@
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/brewtility"}
   :dependencies [[com.wallbrew/spoon "1.2.1"]
-                 [org.clojure/clojure "1.11.1"]
+                 [org.clojure/clojure "1.11.2"]
                  [org.clojure/clojurescript "1.11.132" :scope "provided"]]
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2024.03.05"]
