@@ -23,11 +23,13 @@
    options/plato            {options/full  "degrees plato"
                              options/short "°P"}})
 
+
 (defn- plato->specific-gravity
   "Converts a `plato` value to a `specific-gravity` value."
   [plato]
   (let [denom (- 258.6 (* (/ plato 258.2) 227.1))]
     (+ 1 (/ plato denom))))
+
 
 (defn- specific-gravity->plato
   "Converts a `specific-gravity` value to a `plato` value."
