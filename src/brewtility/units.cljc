@@ -23,6 +23,7 @@
   {:added   "1.0"
    :changed "2.0"}
   (:require [brewtility.precision :as precision]
+            [brewtility.units.alcohol-content :as alcohol-content]
             [brewtility.units.bitterness :as bitterness]
             [brewtility.units.carbonation :as carbonation]
             [brewtility.units.color :as color]
