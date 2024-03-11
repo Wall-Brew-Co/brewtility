@@ -9,6 +9,7 @@
                 :changed ["Functions in `brewtility.calculations` will throw targeted exceptions for invalid values instead of relying on the underlying Math implementation to do so."
                           "Functions in `brewtility.precision` will throw targeted exceptions for invalid values instead of relying on the underlying Math implementation to do so."
                           "`brewtility.units` now supports a `:precision` option map key for all conversion functions. This key will round the converted value to the specified number of decimal places. Defaults to the precision of the converted value."
+                          "`brewtility.units.color` now supports a reverse-lookup for known RGBa values."
                           "All functions in `brewtility.predicates` now support an option map as a second argument to make their arities consistent."]
                 :removed ["`^:const` metadata has been removed from conversion maps"]}
  :timestamp    "2024-03-11T18:47:13.522931300Z"}
