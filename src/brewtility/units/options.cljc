@@ -121,20 +121,29 @@
   #{short full})
 
 
+(def alcohol-content
+  "The alcohol content systems used in the recipe.
+
+   Commonly used with `brewtility.units.alcohol-content` and in argument/option maps.
+   Currently, brewtility supports the following types of alcohol content measurements:
+     - [abv](https://en.wikipedia.org/wiki/Alcohol_by_volume)"
+  :alcohol-content)
+
+
 (def bitterness
-  "The bitterness systems used in the recipe or for a given unit.
+  "The bitterness systems used in the recipe.
 
    Commonly used with `brewtility.units.bitterness` and in argument/option maps.
-   Currently, brewtility supports the following types of bitterness:
+   Currently, brewtility supports the following types of bitterness measurements:
      - [international-bitterness-units](https://en.wikipedia.org/wiki/International_bitterness_units)"
   :bitterness)
 
 
 (def carbonation
-  "The carbonation systems used in the recipe or for a given unit.
+  "The carbonation systems used in the recipe.
 
    Commonly used with `brewtility.units.carbonation` and in argument/option maps.
-   Currently, brewtility supports the following types of carbonation:
+   Currently, brewtility supports the following types of carbonation measurements:
      - [volumes-of-co2](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)
      - [grams-per-liter](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)"
   :carbonation)
@@ -169,7 +178,7 @@
 
 
 (def color
-  "The color systems used in the recipe or for a given unit.
+  "The color systems used in the recipe.
 
    Commonly used with `brewtility.units.color` and in argument/option maps.
    Brewility supports the following color systems:
@@ -181,7 +190,7 @@
 
 
 (def pressure
-  "The pressure systems used in the recipe or for a given unit.
+  "The pressure systems used in the recipe.
 
    Commonly used with `brewtility.units.pressure` and in argument/option maps.
    Currently, brewtility supports the following types of pressure:
@@ -195,7 +204,7 @@
 
 
 (def specific-gravity
-  "The specific gravity systems used in the recipe or for a given unit.
+  "The specific gravity systems used in the recipe.
 
    Commonly used with `brewtility.units.specific-gravity` and in argument/option maps.
    Currently, brewtility supports the following types of specific gravity:
@@ -205,7 +214,7 @@
 
 
 (def temperature
-  "The temperature systems used in the recipe or for a given unit.
+  "The temperature systems used in the recipe.
 
    Commonly used with `brewtility.units.temperature` and in argument/option maps.
    Currently, brewtility supports the following types of temperature:
@@ -216,7 +225,7 @@
 
 
 (def time
-  "The time systems used in the recipe or for a given unit.
+  "The time systems used in the recipe.
 
    Commonly used with `brewtility.units.time` and in argument/option maps.
    Currently, brewtility supports the following types of time measurements:
@@ -232,7 +241,7 @@
 
 
 (def volume
-  "The volume systems used in the recipe or for a given unit.
+  "The volume systems used in the recipe.
 
    Commonly used with `brewtility.units.volume` and in argument/option maps.
    Currently, brewtility supports the following types of volume:
@@ -255,7 +264,7 @@
 
 
 (def weight
-  "The weight systems used in the recipe or for a given unit.
+  "The weight systems used in the recipe.
 
    Commonly used with `brewtility.units.weight` and in argument/option maps.
    Currently, brewtility supports the following types of weight:
@@ -279,6 +288,14 @@
     time
     volume
     weight})
+
+
+;; Alcohol Content Systems
+(def abv
+  "The [Alcohol by Volume](https://en.wikipedia.org/wiki/Alcohol_by_volume) system of measure.
+
+   Commonly used with `brewtility.units.alcohol-content` and in argument/option maps."
+  :abv)
 
 
 ;; Bitterness Systems
@@ -363,6 +380,7 @@
 
    Commonly used with `brewtility.units.color` and in argument/option maps."
   :rgba)
+
 
 ;; Specific Gravity Units
 
