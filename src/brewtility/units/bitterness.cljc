@@ -1,5 +1,5 @@
 (ns brewtility.units.bitterness
-  "A namespace for converting between different units of international bitterness units (IBU).
+  "A namespace for converting between different units of bitterness.
 
    In the BeerXML spec, IBU is a measure of the bitterness of beer, which is determined by the quantity, type, and timing of hops used in brewing.
    This namespace converts between that measure and other units.
@@ -12,7 +12,7 @@
 
 
 (def measurements
-  "The IBU systems available across brewtility."
+  "The bitterness measurement systems available across brewtility."
   #{options/ibu})
 
 

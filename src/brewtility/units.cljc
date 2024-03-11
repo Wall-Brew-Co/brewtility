@@ -22,6 +22,7 @@
   {:added   "1.0"
    :changed "2.0"}
   (:require [brewtility.precision :as precision]
+            [brewtility.units.alcohol-content :as alcohol-content]
             [brewtility.units.bitterness :as bitterness]
             [brewtility.units.carbonation :as carbonation]
             [brewtility.units.color :as color]
@@ -49,7 +50,8 @@
    This function accepts an option map as an optional fourth argument. The following options are available:
      - `precision`: The number of decimal places to round to. Defaults to the precision of the converted value."
   {:added    "2.0"
-   :see-also ["brewtility.units.bitterness/convert"
+   :see-also ["brewtility.units.alcohol-content/convert"
+              "brewtility.units.bitterness/convert"
               "brewtility.units.carbonation/convert"
               "brewtility.units.color/convert"
               "brewtility.units.pressure/convert"
@@ -62,6 +64,7 @@
    (convert measurement-type measurement source-units target-units {}))
   ([measurement-type measurement source-units target-units {:keys [precision]}]
    (let [converted-value (case measurement-type
+                           :alcohol-content (alcohol-content/convert measurement source-units target-units)
                            :bitterness       (bitterness/convert measurement source-units target-units)
                            :carbonation      (carbonation/convert measurement source-units target-units)
                            :color            (color/convert measurement source-units target-units)
@@ -93,7 +96,8 @@
         - `:short`: A customary abbreviation for the selected unit. For example, `\"gal\"` for `\" US gallons\"`.
         - `:full`: The full name of the selected unit. For example, `\"teaspoon\"` for `\"teaspoon\"`."
   {:added    "2.0"
-   :see-also ["brewtility.units.bitterness/display"
+   :see-also ["brewtility.units.alcohol-content/display"
+              "brewtility.units.bitterness/display"
               "brewtility.units.carbonation/display"
               "brewtility.units.color/display"
               "brewtility.units.pressure/display"
@@ -109,6 +113,7 @@
    (let [options (merge {options/precision options/default-precision
                          options/suffix    options/short} opts)]
      (case measurement-type
+       :alcohol-content  (alcohol-content/display measurement source-units options)
        :bitterness       (bitterness/display measurement source-units options)
        :carbonation      (carbonation/display measurement source-units options)
        :color            (color/display measurement source-units options)

@@ -19,6 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ## 2.1.0 - 2024-03-11
 
 * Added
+  * `brewtility.units.alcohol-content` for converting and displaying alcohol content.
   * `brewtility.units.bitterness` for rendering displayable IBU values.
   * `brewtility.units.carbonation` for rendering displayable carbonation values.
   * `brewtility.units.specific-gravity` now supports measurements in degrees plato.

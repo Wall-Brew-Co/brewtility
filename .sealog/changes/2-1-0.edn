@@ -2,7 +2,8 @@
                 :minor 1
                 :patch 0}
  :version-type :semver3
- :changes      {:added   ["`brewtility.units.bitterness` for rendering displayable IBU values."
+ :changes      {:added   ["`brewtility.units.alcohol-content` for converting and displaying alcohol content."
+                          "`brewtility.units.bitterness` for rendering displayable IBU values."
                           "`brewtility.units.carbonation` for rendering displayable carbonation values."
                           "`brewtility.units.specific-gravity` now supports measurements in degrees plato."
                           "`brewtility.predicates.options` for option map keys shared across predicate namespaces."]

@@ -6,6 +6,7 @@
    :added               "2.1"
    :implementation-only true}
   (:require [brewtility.units :as units]
+            [brewtility.units.alcohol-content :as alcohol-content]
             [brewtility.units.bitterness :as bitterness]
             [brewtility.units.carbonation :as carbonation]
             [brewtility.units.color :as color]
@@ -57,6 +58,14 @@
 (def fine-grain-suffix
   "The suffix to use for fine-grain setting of precision in `enrich-displayable-*` functions"
   :fine-grain-suffix)
+
+
+(def default-alcohol-content-by-system
+  "The default alcohol content system to use for each system in `enrich-displayable-*` functions."
+  {options/imperial             options/abv
+   options/metric               options/abv
+   options/us-customary         options/abv
+   options/international-system options/abv})
 
 
 (def default-bitterness-by-system
@@ -133,7 +142,8 @@
 
 (def beer-xml-standard-units
   "The standard units for each measurement type in BeerXML."
-  {options/bitterness       options/ibu
+  {options/alcohol-content  options/abv
+   options/bitterness       options/ibu
    options/carbonation      options/volumes-of-co2
    options/color            options/srm
    options/pressure         options/kilopascal
@@ -165,6 +175,7 @@
               "suffix-error"]}
   [error-map conversion-type target-units]
   (let [allowed-values (case conversion-type
+                         :alcohol-content  alcohol-content/measurements
                          :bitterness       bitterness/measurements
                          :carbonation      carbonation/measurements
                          :color            color/measurements
@@ -196,6 +207,7 @@
               "target-unit-error"]}
   [error-map conversion-type source-units]
   (let [allowed-values (case conversion-type
+                         :alcohol-content  alcohol-content/measurements
                          :bitterness       bitterness/measurements
                          :carbonation      carbonation/measurements
                          :color            color/measurements
@@ -273,6 +285,7 @@
    :no-doc   false}
   [measurement-type unit]
   (case measurement-type
+    :alcohol-content  (contains? alcohol-content/measurements unit)
     :bitterness       (contains? bitterness/measurements unit)
     :carbonation      (contains? carbonation/measurements unit)
     :color            (contains? color/measurements unit)
@@ -322,6 +335,7 @@
               "enrich-displayable-range"]}
   [measurement-type system-of-measure]
   (case measurement-type
+    :alcohol-content  (get default-alcohol-content-by-system system-of-measure)
     :bitterness       (get default-bitterness-by-system system-of-measure)
     :carbonation      (get default-carbonation-by-system system-of-measure)
     :color            (get default-color-by-system system-of-measure)

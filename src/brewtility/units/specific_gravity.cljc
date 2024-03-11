@@ -26,6 +26,8 @@
 
 (defn- plato->specific-gravity
   "Converts a `plato` value to a `specific-gravity` value."
+  {:added  "2.1"
+   :no-doc true}
   [plato]
   (let [denom (- 258.6 (* (/ plato 258.2) 227.1))]
     (+ 1 (/ plato denom))))
@@ -33,6 +35,8 @@
 
 (defn- specific-gravity->plato
   "Converts a `specific-gravity` value to a `plato` value."
+  {:added  "2.1"
+   :no-doc true}
   [gravity]
   (let [g1 (* 1111.14 gravity)
         g2 (* 630.272 (Math/pow gravity 2))
