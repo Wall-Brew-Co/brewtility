@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [2.1.0 - 2024-03-11](#210---2024-03-11)
 * [2.0.1 - 2024-03-11](#201---2024-03-11)
 * [2.0.0 - 2023-06-11](#200---2023-06-11)
 * [1.5.0 - 2023-02-13](#150---2023-02-13)
@@ -14,6 +15,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.2.0 - 2022-07-10](#120---2022-07-10)
 * [1.1.0 - 2020-08-15](#110---2020-08-15)
 * [1.0.0 - 2020-07-19](#100---2020-07-19)
+
+## 2.1.0 - 2024-03-11
+
+* Added
+  * `brewtility.units.alcohol-content` for converting and displaying alcohol content.
+  * `brewtility.units.bitterness` for rendering displayable IBU values.
+  * `brewtility.units.carbonation` for rendering displayable carbonation values.
+  * `brewtility.units.specific-gravity` now supports measurements in degrees plato.
+  * `brewtility.predicates.options` for option map keys shared across predicate namespaces.
+* Changed
+  * Functions in `brewtility.calculations` will throw targeted exceptions for invalid values instead of relying on the underlying Math implementation to do so.
+  * Functions in `brewtility.precision` will throw targeted exceptions for invalid values instead of relying on the underlying Math implementation to do so.
+  * `brewtility.units` now supports a `:precision` option map key for all conversion functions. This key will round the converted value to the specified number of decimal places. Defaults to the precision of the converted value.
+  * `brewtility.units.color` now supports a reverse-lookup for known RGBa values.
+  * All functions in `brewtility.predicates` now support an option map as a second argument to make their arities consistent.
+* Removed
+  * `^:const` metadata has been removed from conversion maps
 
 ## 2.0.1 - 2024-03-11
 
@@ -35,7 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * Changed
   * Internal functions that convert between unit systems now use `brewtility.units`
 * Removed
-  * `brewility.color` has been removed in favor of `brewtility.units.color`
+  * `brewtility.color` has been removed in favor of `brewtility.units.color`
   * `brewtility.units/convert-weight` has been removed in favor of `brewtility.units/convert` and `brewtility.units.weight/convert`
   * `brewtility.units/convert-volume` has been removed in favor of `brewtility.units/convert` and `brewtility.units.volume/convert`
   * `brewtility.units/convert-temperature` has been removed in favor of `brewtility.units/convert` and `brewtility.units.temperature/convert`

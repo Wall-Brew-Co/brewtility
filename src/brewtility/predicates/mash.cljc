@@ -18,10 +18,13 @@
    In the BeerXML spec, this behavior is implicitly falsey.
    Therefore, if the `:equip-adjust` field is not present, this function will return false."
   {:added "1.5"}
-  [mash]
-  (if (contains? mash :equip-adjust)
-    (:equip-adjust mash)
-    false))
+  ([mash] (adjust-for-equipment? mash {}))
+  ;; Added to match the arity of the other predicate functions
+
+  ([mash _opts]
+   (if (contains? mash :equip-adjust)
+     (:equip-adjust mash)
+     false)))
 
 
 (defn infusion?

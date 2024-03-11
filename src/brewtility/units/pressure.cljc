@@ -16,7 +16,7 @@
             [brewtility.units.options :as options]))
 
 
-(def ^:const measurements
+(def measurements
   "The pressure measurements supported by brewtility."
   #{options/pascal
     options/kilopascal
@@ -26,7 +26,7 @@
     options/psi})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map of pressure measurements to their display names."
   {options/pascal     {options/full  "pascal"
                        options/short "pa"}
@@ -122,7 +122,7 @@
   (/ pressure 6.894757))
 
 
-(def ^:const measurement->kilopascal
+(def measurement->kilopascal
   "A map of pressure measurements to functions that convert to kilopascals."
   {options/pascal     pascal->kilopascal
    options/kilopascal identity
@@ -132,7 +132,7 @@
    options/psi        psi->kilopascal})
 
 
-(def ^:const kilopascal->measurement
+(def kilopascal->measurement
   "A map of pressure measurements to functions that convert from kilopascals."
   {options/pascal     kilopascal->pascal
    options/kilopascal identity

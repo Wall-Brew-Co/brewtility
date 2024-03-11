@@ -17,9 +17,12 @@
   {:added    "1.5"
    :see-also ["alkaline?"
               "neutral?"]}
-  [water]
-  (let [ph (impl/fetch-or-throw! water :ph "Water `:ph` is required to determine acidity.")]
-    (> 7 ph)))
+  ([water] (acidic? water {}))
+  ;; Added to match the arity of the other predicate functions
+
+  ([water _opts]
+   (let [ph (impl/fetch-or-throw! water :ph "Water `:ph` is required to determine acidity.")]
+     (> 7 ph))))
 
 
 (defn alkaline?
@@ -27,9 +30,12 @@
   {:added    "1.5"
    :see-also ["acidic?"
               "neutral?"]}
-  [water]
-  (let [ph (impl/fetch-or-throw! water :ph "Water `:ph` is required to determine alkalinity.")]
-    (< 7 ph)))
+  ([water] (alkaline? water {}))
+  ;; Added to match the arity of the other predicate functions
+
+  ([water _opts]
+   (let [ph (impl/fetch-or-throw! water :ph "Water `:ph` is required to determine alkalinity.")]
+     (< 7 ph))))
 
 
 (defn neutral?
@@ -37,6 +43,9 @@
   {:added    "1.5"
    :see-also ["acidic?"
               "alkaline?"]}
-  [water]
-  (let [ph (impl/fetch-or-throw! water :ph "Water `:ph` is required to determine ph neutrality.")]
-    (== 7 ph)))
+  ([water] (neutral? water {}))
+  ;; Added to match the arity of the other predicate functions
+
+  ([water _opts]
+   (let [ph (impl/fetch-or-throw! water :ph "Water `:ph` is required to determine ph neutrality.")]
+     (== 7 ph))))

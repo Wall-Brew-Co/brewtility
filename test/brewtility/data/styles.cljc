@@ -1,40 +1,40 @@
 (ns brewtility.data.styles
-  "Namespace for static and generative test data for `common-beer-format.styles/*` specs."
+  "Namespace for static and generative test data for `common-beer-format.stylespec/*` specs."
   (:require [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.styles :as style.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            [common-beer-format.styles :as styles.format]
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (def sample-style
   "A hard-coded sample style for static unit tests"
-  {:abv-max         5.5
-   :abv-min         3.2
-   :carb-max        2.1
-   :carb-min        1.6
-   :category        "Stout"
-   :category-number "16"
-   :color-max       200.0
-   :color-min       35.0
-   :fg-max          1.011
-   :fg-min          1.007
-   :ibu-max         50.0
-   :ibu-min         30.0
-   :name            "Dry Stout"
-   :notes           "Famous Irish Stout. Dry, roasted, almost coffee like flavor."
-   :og-max          1.050
-   :og-min          1.035
-   :style-guide     "BJCP"
-   :style-letter    "A"
-   :type            "Ale"
-   :version         1})
+  {styles.format/abv-max         5.5
+   styles.format/abv-min         3.2
+   styles.format/carb-max        2.1
+   styles.format/carb-min        1.6
+   styles.format/category        "Stout"
+   styles.format/category-number "16"
+   styles.format/color-max       200.0
+   styles.format/color-min       35.0
+   styles.format/fg-max          1.011
+   styles.format/fg-min          1.007
+   styles.format/ibu-max         50.0
+   styles.format/ibu-min         30.0
+   styles.format/name            "Dry Stout"
+   styles.format/notes           "Famous Irish Stout. Dry, roasted, almost coffee like flavor."
+   styles.format/og-max          1.050
+   styles.format/og-min          1.035
+   styles.format/style-guide     "BJCP"
+   styles.format/style-letter    "A"
+   styles.format/type            "Ale"
+   styles.format/version         1})
 
 
 (def sample-style-wrapper
   "A hard-coded sample style-wrapper for static unit tests"
-  {:style sample-style})
+  {styles.format/style sample-style})
 
 
 (def sample-styles
@@ -44,7 +44,7 @@
 
 (def sample-styles-wrapper
   "A hard-coded sample styles-wrapper for static unit tests"
-  {:styles sample-styles})
+  {styles.format/styles sample-styles})
 
 
 (defn generate-style
@@ -52,7 +52,7 @@
   {:added  "1.4"
    :no-doc true}
   []
-  (gen/generate (spec/gen ::style.format/style)))
+  (gen/generate (spec/gen ::styles.format/style)))
 
 
 (defn generate-style-wrapper
@@ -60,7 +60,7 @@
   {:added "1.4"
    :no-doc true}
   []
-  (gen/generate (spec/gen ::style.format/style-wrapper)))
+  (gen/generate (spec/gen ::styles.format/style-wrapper)))
 
 
 (defn generate-styles
@@ -68,7 +68,7 @@
   {:added  "1.4"
    :no-doc true}
   []
-  (gen/generate (spec/gen ::style.format/styles)))
+  (gen/generate (spec/gen ::styles.format/styles)))
 
 
 (defn generate-styles-wrapper
@@ -76,28 +76,28 @@
   {:added "1.4"
    :no-doc true}
   []
-  (gen/generate (spec/gen ::style.format/styles-wrapper)))
+  (gen/generate (spec/gen ::styles.format/styles-wrapper)))
 
 
 (deftest static-test-data-check
   (testing "Since this library assumes common-beer-format data is utilized, make sure static test data conforms"
-    (is (spoon.spec/test-valid? ::style.format/style sample-style)
+    (is (spoon.spec/test-valid? ::styles.format/style sample-style)
         "Static test data should conform to common-beer-format.style/style")
-    (is (spoon.spec/test-valid? ::style.format/style-wrapper sample-style-wrapper)
+    (is (spoon.spec/test-valid? ::styles.format/style-wrapper sample-style-wrapper)
         "Static test data should conform to common-beer-format.style/style-wrapper")
-    (is (spoon.spec/test-valid? ::style.format/styles sample-styles)
+    (is (spoon.spec/test-valid? ::styles.format/styles sample-styles)
         "Static test data should conform to common-beer-format.style/style")
-    (is (spoon.spec/test-valid? ::style.format/styles-wrapper sample-styles-wrapper)
+    (is (spoon.spec/test-valid? ::styles.format/styles-wrapper sample-styles-wrapper)
         "Static test data should conform to common-beer-format.style/style-wrapper")))
 
 
 (deftest generative-test-data-check
   (testing "Since this library assumes common-beer-format data is utilized, make sure generative test data conforms"
-    (is (spoon.spec/test-valid? ::style.format/style (generate-style))
+    (is (spoon.spec/test-valid? ::styles.format/style (generate-style))
         "Generative test data should conform to common-beer-format.style/style")
-    (is (spoon.spec/test-valid? ::style.format/style-wrapper (generate-style-wrapper))
+    (is (spoon.spec/test-valid? ::styles.format/style-wrapper (generate-style-wrapper))
         "Generative test data should conform to common-beer-format.style/style-wrapper")
-    (is (spoon.spec/test-valid? ::style.format/styles (generate-styles))
+    (is (spoon.spec/test-valid? ::styles.format/styles (generate-styles))
         "Generative test data should conform to common-beer-format.style/style")
-    (is (spoon.spec/test-valid? ::style.format/styles-wrapper (generate-styles-wrapper))
+    (is (spoon.spec/test-valid? ::styles.format/styles-wrapper (generate-styles-wrapper))
         "Generative test data should conform to common-beer-format.style/style-wrapper")))

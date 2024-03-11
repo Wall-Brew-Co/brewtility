@@ -4,13 +4,13 @@
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.waters :as waters.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (defn random-ph
   "Generate a random `:ph` value."
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (rand 14))
@@ -23,22 +23,22 @@
 
 (def sample-water
   "A hard-coded sample water for static unit tests"
-  {:amount      20.0
-   :bicarbonate 300.0
-   :calcium     295.0
-   :chloride    25.0
-   :magnesium   45.0
-   :name        "Chicago"
-   :notes       "The best there is"
-   :ph          8.0
-   :sodium      55.0
-   :sulfate     725.0
-   :version     1})
+  {waters.format/amount      20.0
+   waters.format/bicarbonate 300.0
+   waters.format/calcium     295.0
+   waters.format/chloride    25.0
+   waters.format/magnesium   45.0
+   waters.format/name        "Chicago"
+   waters.format/notes       "The best there is"
+   waters.format/ph          8.0
+   waters.format/sodium      55.0
+   waters.format/sulfate     725.0
+   waters.format/version     1})
 
 
 (def sample-water-wrapper
   "A hard-coded sample water-wrapper for static unit tests"
-  {:water sample-water})
+  {waters.format/water sample-water})
 
 
 (def sample-waters
@@ -48,12 +48,12 @@
 
 (def sample-waters-wrapper
   "A hard-coded sample waters-wrapper for static unit tests"
-  {:waters sample-waters})
+  {waters.format/waters sample-waters})
 
 
 (defn generate-water
   "Generate a random water object"
-  {:added  "1.4"
+  {:added  "2.0"
    :no-doc true}
   []
   (gen/generate (spec/gen ::waters.format/water)))
@@ -86,6 +86,8 @@
 (deftest static-test-data-check
   (testing "Since this library assumes common-beer-format data is utilized, make sure static test data conforms"
     (is (spoon.spec/test-valid? ::waters.format/water sample-water)
+        "Static test data should conform to common-beer-format.water/water")
+    (is (spoon.spec/test-valid? ::waters.format/water (assoc sample-water waters.format/ph (random-ph)))
         "Static test data should conform to common-beer-format.water/water")
     (is (spoon.spec/test-valid? ::waters.format/water-wrapper sample-water-wrapper)
         "Static test data should conform to common-beer-format.water/water-wrapper")

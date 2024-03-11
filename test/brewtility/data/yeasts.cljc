@@ -5,8 +5,8 @@
             [com.wallbrew.spoon.spec :as spoon.spec]
             [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.yeasts :as yeasts.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            #? (:clj [clojure.test :refer [deftest is testing]])
+            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
 
 
 (defn random-flocculation
@@ -27,24 +27,24 @@
 
 (def sample-yeast
   "A hard-coded sample yeast for static unit tests"
-  {:amount          0.250
-   :attenuation     73.0
-   :best-for        "Irish Dry Stouts"
-   :flocculation    "Medium"
-   :form            "Liquid"
-   :laboratory      "Wyeast Labs"
-   :max-temperature 22.2
-   :min-temperature 16.7
-   :name            "Irish Ale"
-   :notes           "Dry, fruity flavor characteristic of stouts.  Full bodied, dry, clean flavor."
-   :product-id      "1084"
-   :type            "Ale"
-   :version         1})
+  {yeasts.format/amount          0.250
+   yeasts.format/attenuation     73.0
+   yeasts.format/best-for        "Irish Dry Stouts"
+   yeasts.format/flocculation    "Medium"
+   yeasts.format/form            "Liquid"
+   yeasts.format/laboratory      "Wyeast Labs"
+   yeasts.format/max-temperature 22.2
+   yeasts.format/min-temperature 16.7
+   yeasts.format/name            "Irish Ale"
+   yeasts.format/notes           "Dry, fruity flavor characteristic of stouts.  Full bodied, dry, clean flavor."
+   yeasts.format/product-id      "1084"
+   yeasts.format/type            "Ale"
+   yeasts.format/version         1})
 
 
 (def sample-yeast-wrapper
   "A hard-coded sample yeast-wrapper for static unit tests"
-  {:yeast sample-yeast})
+  {yeasts.format/yeast sample-yeast})
 
 
 (def sample-yeasts
@@ -54,7 +54,7 @@
 
 (def sample-yeasts-wrapper
   "A hard-coded sample yeasts-wrapper for static unit tests"
-  {:yeasts sample-yeasts})
+  {yeasts.format/yeasts sample-yeasts})
 
 
 (defn generate-yeast
@@ -93,7 +93,7 @@
   (testing "Since this library assumes common-beer-format data is utilized, make sure static test data conforms"
     (is (spoon.spec/test-valid? ::yeasts.format/yeast sample-yeast)
         "Static test data should conform to common-beer-format.yeast/yeast")
-    (is (spoon.spec/test-valid? ::yeasts.format/yeast (assoc sample-yeast :flocculation (random-flocculation)))
+    (is (spoon.spec/test-valid? ::yeasts.format/yeast (assoc sample-yeast yeasts.format/flocculation (random-flocculation)))
         "Static test data should conform to common-beer-format.yeast/yeast, even with random flocculation")
     (is (spoon.spec/test-valid? ::yeasts.format/yeast-wrapper sample-yeast-wrapper)
         "Static test data should conform to common-beer-format.yeast/yeast-wrapper")
@@ -107,7 +107,7 @@
   (testing "Since this library assumes common-beer-format data is utilized, make sure generative test data conforms"
     (is (spoon.spec/test-valid? ::yeasts.format/yeast (generate-yeast))
         "Generative test data should conform to common-beer-format.yeast/yeast")
-    (is (spoon.spec/test-valid? ::yeasts.format/yeast (assoc (generate-yeast) :flocculation (random-flocculation)))
+    (is (spoon.spec/test-valid? ::yeasts.format/yeast (assoc (generate-yeast) yeasts.format/flocculation (random-flocculation)))
         "Generative test data should conform to common-beer-format.yeast/yeast, even with random flocculation")
     (is (spoon.spec/test-valid? ::yeasts.format/yeast-wrapper (generate-yeast-wrapper))
         "Generative test data should conform to common-beer-format.yeast/yeast-wrapper")

@@ -58,8 +58,7 @@
              (precision/->2dp (sut/convert options/color 7.94 options/lovibond options/srm))
              (precision/->2dp (sut/convert options/color 19.69 options/ebc options/srm))))
       (is (= 10.0
-             (precision/->2dp (sut/convert options/color 7.94 :lovibond :srm))
-             (precision/->2dp (sut/convert options/color 19.69 :ebc :srm))))
+             (precision/->2dp (sut/convert options/color 7.94 :lovibond :srm))))
       (is (= 23.2
              (precision/->2dp (sut/convert options/color 30.66 options/srm options/lovibond))
              (precision/->2dp (sut/convert options/color 60.38 options/ebc options/lovibond))))
