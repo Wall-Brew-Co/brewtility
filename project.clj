@@ -7,7 +7,7 @@
             :comments     "Same-as all Wall-Brew projects."}
   :scm {:name "git"
         :url  "https://github.com/Wall-Brew-Co/brewtility"}
-  :dependencies [[com.wallbrew/spoon "1.2.2"]
+  :dependencies [[com.wallbrew/spoon "1.2.3"]
                  [org.clojure/clojure "1.11.3"]
                  [org.clojure/clojurescript "1.11.132" :scope "provided"]]
 
