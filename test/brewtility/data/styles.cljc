@@ -27,7 +27,7 @@
    styles.format/og-min          1.035
    styles.format/style-guide     "BJCP"
    styles.format/style-letter    "A"
-   styles.format/type            "Ale"
+   styles.format/type            styles.format/ale
    styles.format/version         1})
 
 

@@ -15,8 +15,7 @@
   []
   (-> hops.format/hop-types
       vec
-      rand-nth
-      spoon.str/->sporadic-case))
+      rand-nth))
 
 
 (deftest hop-type-test
@@ -31,8 +30,7 @@
   []
   (-> hops.format/hop-forms
       vec
-      rand-nth
-      spoon.str/->sporadic-case))
+      rand-nth))
 
 
 (deftest hop-form-test
@@ -47,7 +45,7 @@
    hops.format/name    "Goldings, East Kent"
    hops.format/notes   "Great all purpose UK hop for ales, stouts, porters"
    hops.format/time    60.1
-   hops.format/use     "Boil"
+   hops.format/use     hops.format/boil
    hops.format/version 1})
 
 

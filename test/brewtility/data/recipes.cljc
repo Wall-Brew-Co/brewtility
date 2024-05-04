@@ -23,8 +23,7 @@
   []
   (-> recipes.format/ibu-method-types
       vec
-      rand-nth
-      spoon.str/->sporadic-case))
+      rand-nth))
 
 
 (deftest ibu-method-test
@@ -50,7 +49,7 @@
           recipes.format/og                  1.036
           recipes.format/taste-rating        "41"
           recipes.format/taste-notes         "Nice dry Irish stout with a warm body but low starting gravity much like the famous drafts."
-          recipes.format/type                "All Grain"
+          recipes.format/type                recipes.format/all-grain
           recipes.format/version             1}
          equipment/sample-equipment-wrapper
          fermentables/sample-fermentables-wrapper

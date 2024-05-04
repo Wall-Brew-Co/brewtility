@@ -20,7 +20,7 @@
    fermentables.format/origin           "United States"
    fermentables.format/protein          13.2
    fermentables.format/supplier         "Gnome Brew"
-   fermentables.format/type             "Grain"
+   fermentables.format/type             fermentables.format/grain
    fermentables.format/version          1
    fermentables.format/yield            78.0})
 

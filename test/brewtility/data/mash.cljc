@@ -13,7 +13,7 @@
    mash.format/name          "Conversion Step, 68C"
    mash.format/step-temp     68.0
    mash.format/step-time     60.0
-   mash.format/type          "Infusion"
+   mash.format/type          mash.format/infusion
    mash.format/version       1})
 
 

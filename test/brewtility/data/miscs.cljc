@@ -13,8 +13,8 @@
    miscs.format/name    "Irish Moss"
    miscs.format/notes   "Used as a clarifying agent during the last few minutes of the boil"
    miscs.format/time    15.1
-   miscs.format/type    "Fining"
-   miscs.format/use     "Boil"
+   miscs.format/type    miscs.format/fining
+   miscs.format/use     miscs.format/boil
    miscs.format/version 1})
 
 
