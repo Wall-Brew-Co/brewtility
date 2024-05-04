@@ -3,7 +3,6 @@
   (:require [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.yeasts :as yeasts.format]
             #? (:clj [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
@@ -16,8 +15,7 @@
   []
   (-> yeasts.format/yeast-flocculation-types
       vec
-      rand-nth
-      spoon.str/->sporadic-case))
+      rand-nth))
 
 
 (deftest flocculation-test
@@ -30,8 +28,8 @@
   {yeasts.format/amount          0.250
    yeasts.format/attenuation     73.0
    yeasts.format/best-for        "Irish Dry Stouts"
-   yeasts.format/flocculation    "Medium"
-   yeasts.format/form            "Liquid"
+   yeasts.format/flocculation    yeasts.format/medium
+   yeasts.format/form            yeasts.format/liquid
    yeasts.format/laboratory      "Wyeast Labs"
    yeasts.format/max-temperature 22.2
    yeasts.format/min-temperature 16.7

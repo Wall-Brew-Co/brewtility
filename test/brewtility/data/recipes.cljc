@@ -11,7 +11,6 @@
             [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.recipes :as recipes.format]
             #? (:clj [clojure.test :refer [deftest is testing]])
             #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
@@ -24,8 +23,7 @@
   []
   (-> recipes.format/ibu-method-types
       vec
-      rand-nth
-      spoon.str/->sporadic-case))
+      rand-nth))
 
 
 (deftest ibu-method-test
@@ -51,7 +49,7 @@
           recipes.format/og                  1.036
           recipes.format/taste-rating        "41"
           recipes.format/taste-notes         "Nice dry Irish stout with a warm body but low starting gravity much like the famous drafts."
-          recipes.format/type                "All Grain"
+          recipes.format/type                recipes.format/all-grain
           recipes.format/version             1}
          equipment/sample-equipment-wrapper
          fermentables/sample-fermentables-wrapper
