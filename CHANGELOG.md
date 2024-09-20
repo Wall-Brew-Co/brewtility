@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [2.1.0 - 2024-09-20](#210---2024-09-20)
 * [2.0.1 - 2024-03-11](#201---2024-03-11)
 * [2.0.0 - 2023-06-11](#200---2023-06-11)
 * [1.5.0 - 2023-02-13](#150---2023-02-13)
@@ -14,6 +15,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.2.0 - 2022-07-10](#120---2022-07-10)
 * [1.1.0 - 2020-08-15](#110---2020-08-15)
 * [1.0.0 - 2020-07-19](#100---2020-07-19)
+
+## 2.1.0 - 2024-09-20
+
+* Fixed
+  * Added the `<orgnization>` tag to the pom.xml file.
 
 ## 2.0.1 - 2024-03-11
 
