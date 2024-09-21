@@ -1,6 +1,6 @@
 (ns brewtility.enrich.fermentables
   "Enricher-pattern functions for [fermentables](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/fermentables.cljc) maps"
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.hops"
               "brewtility.enrich.mash"
@@ -18,7 +18,7 @@
   "An enricher pattern function to determine if a [fermentable](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/fermentables.cljc) was added after the boil.
    In the BeerXML spec, this behavior is implicitly falsey.
    Therefore, if the :add-after-boil field is not present, this function will explicitly set it to false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-fermentable"
               "enrich-fermentable-wrapper"
               "enrich-fermentables"
@@ -39,7 +39,7 @@
    Supported keys include:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -63,7 +63,7 @@
    Supported keys include:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -87,7 +87,7 @@
    Supported keys include:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -111,7 +111,7 @@
    Supported keys include:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -135,7 +135,7 @@
    Supported keys include:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.predicates.fermentables/grain?"
               "brewtility.predicates.fermentables/adjunct?"
               "enrich-fermentable"
@@ -159,7 +159,7 @@
    Supported keys include:
 
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.predicates.fermentables/extract?"
               "enrich-fermentable"
               "enrich-fermentable-wrapper"
@@ -193,7 +193,7 @@
     - `:fermentable-color-target-units`: The unit to convert the color into. Supersedes `:color-system`.
     - `:fermentable-color-precision`: The number of significant decimal places to display. Supersedes `:color`.
     - `:fermentable-color-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-fermentable"
               "enrich-fermentable-wrapper"
               "enrich-fermentables"
@@ -238,7 +238,7 @@
     - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-fermentable"
               "enrich-fermentable-wrapper"
               "enrich-fermentables"
@@ -287,7 +287,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"
@@ -345,7 +345,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"
@@ -394,7 +394,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"
@@ -443,7 +443,7 @@
         - `:fermentable-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:fermentable-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:fermentable-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-add-after-boil"
               "enrich-coarse-fine-diff"
               "enrich-moisture"

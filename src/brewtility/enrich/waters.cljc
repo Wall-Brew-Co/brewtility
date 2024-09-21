@@ -1,6 +1,6 @@
 (ns brewtility.enrich.waters
   "Enricher-pattern functions for [waters](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/waters.cljc) maps"
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.fermentables"
               "brewtility.enrich.hops"
@@ -33,7 +33,7 @@
     - `:water-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:water-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:water-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-water"
               "enrich-water-wrapper"
               "enrich-waters"
@@ -72,7 +72,7 @@
         - `:water-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:water-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:water-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-water-wrapper"
               "enrich-waters"
@@ -104,7 +104,7 @@
         - `:water-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:water-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:water-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-water"
               "enrich-waters"
@@ -135,7 +135,7 @@
         - `:water-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:water-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:water-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-water"
               "enrich-water-wrapper"
@@ -166,7 +166,7 @@
         - `:water-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:water-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:water-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-water"
               "enrich-water-wrapper"
