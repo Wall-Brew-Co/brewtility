@@ -1,6 +1,6 @@
 (ns brewtility.enrich.styles
   "Enricher-pattern functions for [styles](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/styles.cljc) maps"
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.fermentables"
               "brewtility.enrich.hops"
@@ -33,7 +33,7 @@
     - `:style-display-og-min-target-units`: The unit to convert the minimum gravity into. Supersedes `:system-of-measure`.
     - `:style-display-og-min-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-og-min-suffix`: The suffix type to append to the minimum gravity. Supersedes `:suffix`."
-  {:added "2.1"
+  {:added "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"
@@ -71,7 +71,7 @@
     - `:style-display-og-max-target-units`: The unit to convert the maximum gravity into. Supersedes `:system-of-measure`.
     - `:style-display-og-max-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-og-max-suffix`: The suffix type to append to the maximum gravity. Supersedes `:suffix`."
-  {:added "2.1"
+  {:added "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"
@@ -110,7 +110,7 @@
     - `:style-display-fg-min-target-units`: The unit to convert the minimum gravity into. Supersedes `:system-of-measure`.
     - `:style-display-fg-min-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-fg-min-suffix`: The suffix type to append to the minimum gravity. Supersedes `:suffix`."
-  {:added "2.1"
+  {:added "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"
@@ -149,7 +149,7 @@
     - `:style-display-fg-max-target-units`: The unit to convert the maximum gravity into. Supersedes `:system-of-measure`.
     - `:style-display-fg-max-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-fg-max-suffix`: The suffix type to append to the maximum gravity. Supersedes `:suffix`."
-  {:added "2.1"
+  {:added "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"
@@ -188,7 +188,7 @@
     - `:style-display-color-min-target-units`: The unit to convert the minimum color into. Supersedes `:system-of-measure`.
     - `:style-display-color-min-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-color-min-suffix`: The suffix type to append to the minimum color. Supersedes `:suffix`."
-  {:added "2.1"
+  {:added "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"
@@ -228,7 +228,7 @@
     - `:style-display-color-max-target-units`: The unit to convert the maximum color into. Supersedes `:system-of-measure`.
     - `:style-display-color-max-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-color-max-suffix`: The suffix type to append to the maximum color. Supersedes `:suffix`."
-  {:added "2.1"
+  {:added "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"
@@ -267,7 +267,7 @@
     - `:style-display-og-range-target-units`: The unit to convert the gravity range into. Supersedes `:system-of-measure`.
     - `:style-display-og-range-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-og-range-suffix`: The suffix type to append to the gravity range. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"
@@ -306,7 +306,7 @@
     - `:style-display-fg-range-target-units`: The unit to convert the gravity range into. Supersedes `:system-of-measure`.
     - `:style-display-fg-range-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:style-display-fg-range-suffix`: The suffix type to append to the gravity range. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-style"
               "enrich-style-wrapper"
               "enrich-styles"

@@ -1,6 +1,6 @@
 (ns brewtility.enrich.hops
   "Enricher-pattern functions for [hops](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) maps"
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.fermentables"
               "brewtility.enrich.mash"
@@ -33,7 +33,7 @@
     - `:hop-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:hop-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:hop-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.string/same?"
               "enrich-hop"
               "enrich-hop-wrapper"
@@ -72,7 +72,7 @@
     - `:hop-time-target-units`: The unit to convert the time into. Supersedes `:system-of-measure`.
     - `:hop-time-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:hop-time-suffix`: The suffix type to append to the time. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-hop"
               "enrich-hop-wrapper"
               "enrich-hops"
@@ -115,7 +115,7 @@
         - `:hop-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:hop-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:hop-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-hop-wrapper"
@@ -153,7 +153,7 @@
         - `:hop-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:hop-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:hop-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-hop"
@@ -189,7 +189,7 @@
         - `:hop-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:hop-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:hop-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-hop-wrapper"
@@ -225,7 +225,7 @@
         - `:hop-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:hop-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:hop-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-amount"
               "enrich-display-time"
               "enrich-hop-wrapper"

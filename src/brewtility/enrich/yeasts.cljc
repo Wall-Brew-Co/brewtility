@@ -1,6 +1,6 @@
 (ns brewtility.enrich.yeasts
   "Enricher-pattern functions for [yeasts](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) maps"
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.fermentables"
               "brewtility.enrich.hops"
@@ -16,7 +16,7 @@
 (defn enrich-amount-is-weight
   "An enricher pattern function to determine if a [yeast](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/yeasts.cljc) should be measured by weight/volume.
    When this feild is not present, it is assumed to be false."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-yeast"
               "enrich-yeast-wrapper"
               "enrich-yeasts"
@@ -50,7 +50,7 @@
     - `:yeast-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:yeast-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:yeast-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-yeast"
               "enrich-yeast-wrapper"
               "enrich-yeasts"
@@ -91,7 +91,7 @@
     - `:yeast-min-temperature-target-units`: The unit to convert the min-temperature into. Supersedes `:system-of-measure`.
     - `:yeast-min-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:yeast-min-temperature-suffix`: The suffix type to append to the min-temperature. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-yeast"
               "enrich-yeast-wrapper"
               "enrich-yeasts"
@@ -132,7 +132,7 @@
     - `:yeast-max-temperature-target-units`: The unit to convert the max-temperature into. Supersedes `:system-of-measure`.
     - `:yeast-max-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:yeast-max-temperature-suffix`: The suffix type to append to the max-temperature. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-yeast"
               "enrich-yeast-wrapper"
               "enrich-yeasts"
@@ -182,7 +182,7 @@
        - `:yeast-max-temperature-target-units`: The unit to convert the max-temperature into. Supersedes `:system-of-measure`.
        - `:yeast-max-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
        - `:yeast-max-temperature-suffix`: The suffix type to append to the max-temperature. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-amount-is-weight"
               "enrich-display-amount"
               "enrich-display-min-temperature"
@@ -229,7 +229,7 @@
        - `:yeast-max-temperature-target-units`: The unit to convert the max-temperature into. Supersedes `:system-of-measure`.
        - `:yeast-max-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
        - `:yeast-max-temperature-suffix`: The suffix type to append to the max-temperature. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-amount-is-weight"
               "enrich-display-amount"
               "enrich-display-min-temperature"
@@ -272,7 +272,7 @@
        - `:yeast-max-temperature-target-units`: The unit to convert the max-temperature into. Supersedes `:system-of-measure`.
        - `:yeast-max-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
        - `:yeast-max-temperature-suffix`: The suffix type to append to the max-temperature. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-amount-is-weight"
               "enrich-display-amount"
               "enrich-display-min-temperature"
@@ -315,7 +315,7 @@
        - `:yeast-max-temperature-target-units`: The unit to convert the max-temperature into. Supersedes `:system-of-measure`.
        - `:yeast-max-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
        - `:yeast-max-temperature-suffix`: The suffix type to append to the max-temperature. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-amount-is-weight"
               "enrich-display-amount"
               "enrich-display-min-temperature"

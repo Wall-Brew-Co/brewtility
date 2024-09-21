@@ -1,6 +1,6 @@
 (ns brewtility.enrich.mash
   "Enricher-pattern functions for [mashes and mash steps](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/mash.cljc) maps"
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.equipment"
               "brewtility.enrich.mash-steps"
               "brewtility.enrich.fermentables"
@@ -33,7 +33,7 @@
     - `:display-temperature-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:display-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:display-temperature-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.impl/->displayable-temperature"
               "enrich-mash-step"
               "enrich-mash-step-wrapper"
@@ -74,7 +74,7 @@
     - `:display-infuse-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:display-infuse-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:display-infuse-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.string/same?"
               "enrich-mash-step"
               "enrich-mash-step-wrapper"
@@ -120,7 +120,7 @@
         - `:display-infuse-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:display-infuse-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:display-infuse-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-step-temperature"
               "enrich-display-infuse-amount"
               "enrich-mash-step-wrapper"
@@ -160,7 +160,7 @@
         - `:display-infuse-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:display-infuse-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:display-infuse-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-step-temperature"
               "enrich-display-infuse-amount"
               "enrich-mash-step"
@@ -198,7 +198,7 @@
         - `:display-infuse-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:display-infuse-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:display-infuse-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-step-temperature"
               "enrich-display-infuse-amount"
               "enrich-mash-step"
@@ -236,7 +236,7 @@
         - `:display-infuse-amount-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:display-infuse-amount-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:display-infuse-amount-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-step-temperature"
               "enrich-display-infuse-amount"
               "enrich-mash-step"
@@ -269,7 +269,7 @@
     - `:display-grain-temperature-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:display-grain-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:display-grain-temperature-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.impl/->displayable-temperature"
               "enrich-mash"
               "enrich-mash-wrapper"]}
@@ -306,7 +306,7 @@
     - `:display-tun-temperature-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:display-tun-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:display-tun-temperature-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.impl/->displayable-temperature"
               "enrich-mash"
               "enrich-mash-wrapper"]}
@@ -343,7 +343,7 @@
     - `:display-sparge-temperature-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:display-sparge-temperature-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:display-sparge-temperature-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.impl/->displayable-temperature"
               "enrich-mash"
               "enrich-mash-wrapper"]}
@@ -380,7 +380,7 @@
     - `:display-tun-weight-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
     - `:display-tun-weight-precision`: The number of significant decimal places to display. Supersedes `:precision`.
     - `:display-tun-weight-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["brewtility.enrich.impl/->displayable-weight"
               "enrich-mash"
               "enrich-mash-wrapper"]}
@@ -438,7 +438,7 @@
         - `:display-tun-weight-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:display-tun-weight-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:display-tun-weight-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-step-temperature"
               "enrich-display-infuse-amount"
               "enrich-display-grain-temperature"
@@ -500,7 +500,7 @@
         - `:display-tun-weight-target-units`: The unit to convert the amount into. Supersedes `:system-of-measure`.
         - `:display-tun-weight-precision`: The number of significant decimal places to display. Supersedes `:precision`.
         - `:display-tun-weight-suffix`: The suffix type to append to the amount. Supersedes `:suffix`."
-  {:added    "2.1"
+  {:added    "2.3"
    :see-also ["enrich-display-step-temperature"
               "enrich-display-infuse-amount"
               "enrich-display-grain-temperature"

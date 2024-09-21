@@ -3,7 +3,7 @@
 
    Not intended for public consumption."
   {:no-doc              true
-   :added               "2.1"
+   :added               "2.3"
    :implementation-only true}
   (:require [brewtility.units :as units]
             [brewtility.units.alcohol-content :as alcohol-content]
@@ -157,7 +157,7 @@
 ;; TODO: Pluralize strings
 (defn ->displayable-units
   "Convert a unit then render it to a displayable value."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true}
   ([measurement-type source-value source-units target-units]
    (->displayable-units measurement-type source-value source-units target-units default-display-options))
@@ -168,7 +168,7 @@
 
 (defn target-unit-error
   "A function to accumulate error messages in `error-map` if `target-units` is not a valid unit for `conversion-type`"
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["systems-of-meaure-error"
               "precision-error"
@@ -199,7 +199,7 @@
 
    Note: This is only used for color conversion at this time.
          BeerXML prescribes the system of measure for all other units."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["systems-of-meaure-error"
               "precision-error"
@@ -228,7 +228,7 @@
 
 (defn systems-of-meaure-error
   "A function to accumulate error messages in `error-map` if `system-of-measure` is not valid for `conversion-type`."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["target-unit-error"
               "precision-error"
@@ -245,7 +245,7 @@
 
 (defn precision-error
   "A function to accumulate error messages in `error-map` if `precision` is not an integer."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["target-unit-error"
               "systems-of-meaure-error"
@@ -261,7 +261,7 @@
 
 (defn suffix-error
   "A function to accumulate error messages in `error-map` if `suffix` is not a valid choice."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["target-unit-error"
               "systems-of-meaure-error"
@@ -281,7 +281,7 @@
 (defn valid-unit-for-measurement-type?
   "A functions that confirms if a given `unit` is valid for a given `measurement-type`.
    If the `unit` is not valid, a Java Exception or Javascript Error is thrown with information on the invalid options."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   false}
   [measurement-type unit]
   (case measurement-type
@@ -304,7 +304,7 @@
   "A function to parse the options map passed to `->displayable-units`
    This requires the user to supply valid values for: `target-units`, `system-of-measure`, `precision`, and `suffix`.
    If any of these are invalid, a Java Exception or Javascript Error is thrown with information on the invalid options."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["enrich-displayable-units"]}
   [measurement-type
@@ -329,7 +329,7 @@
 (defn get-default-unit-by-measurement-type-and-system
   "A function to get the default unit for a given `measurement-type` and `system-of-measure`.
    If the measurement type is not supported, a Java Exception or Javascript Error is thrown with information on the invalid options."
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["enrich-displayable-units"
               "enrich-displayable-range"]}
@@ -369,7 +369,7 @@
    - `fine-grain-precsion` : The precision to use for this displayable value. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
    - `fine-grain-suffix` : The suffix to use for this displayable value. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
    - `fine-grain-target-units` : The target units to use for this displayable value. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field"
-  {:added "2.1"
+  {:added "2.3"
    :no-doc true}
   [measurement-type
    source-data
@@ -414,7 +414,7 @@
      - `fine-grain-precsion` : The precision to use for this displayable range. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
      - `fine-grain-suffix` : The suffix to use for this displayable range. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field
      - `fine-grain-target-units` : The target units to use for this displayable range. Enricher functions control their behavior off of uniquely named keys, so behavior can be customized per field"
-  {:added    "2.1"
+  {:added    "2.3"
    :no-doc   true
    :see-also ["enrich-displayable-units"]}
   [measurement-type
