@@ -75,9 +75,6 @@
   #{imperial international-system metric us-customary})
 
 
-(def systems-of-measure
-  "The set of supported measurement systems"
-  #{imperial international-system metric us-customary})
 
 
 ;; Enricher Setting Keys
@@ -149,32 +146,6 @@
   :carbonation)
 
 
-(def alcohol-content
-  "The alcohol content systems used in the recipe.
-
-   Commonly used with `brewtility.units.alcohol-content` and in argument/option maps.
-   Currently, brewtility supports the following types of alcohol content measurements:
-     - [abv](https://en.wikipedia.org/wiki/Alcohol_by_volume)"
-  :alcohol-content)
-
-
-(def bitterness
-  "The bitterness systems used in the recipe.
-
-   Commonly used with `brewtility.units.bitterness` and in argument/option maps.
-   Currently, brewtility supports the following types of bitterness measurements:
-     - [international-bitterness-units](https://en.wikipedia.org/wiki/International_bitterness_units)"
-  :bitterness)
-
-
-(def carbonation
-  "The carbonation systems used in the recipe.
-
-   Commonly used with `brewtility.units.carbonation` and in argument/option maps.
-   Currently, brewtility supports the following types of carbonation measurements:
-     - [volumes-of-co2](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)
-     - [grams-per-liter](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)"
-  :carbonation)
 
 
 (def color
@@ -321,35 +292,9 @@
   :grams-per-liter)
 
 
-;; Alcohol Content Systems
-(def abv
-  "The [Alcohol by Volume](https://en.wikipedia.org/wiki/Alcohol_by_volume) system of measure.
-
-   Commonly used with `brewtility.units.alcohol-content` and in argument/option maps."
-  :abv)
 
 
-;; Bitterness Systems
-(def ibu
-  "The [International Bitterness Units](https://en.wikipedia.org/wiki/International_bitterness_units) system of measure.
 
-   Commonly used with `brewtility.units.bitterness` and in argument/option maps."
-  :ibu)
-
-
-;; Carbonation Systems
-(def volumes-of-co2
-  "The [volumes of CO2](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages) system of measure.
-
-   Commonly used with `brewtility.units.carbonation` and in argument/option maps."
-  :volumes-of-co2)
-
-
-(def grams-per-liter
-  "The [grams per liter](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages) system of measure.
-
-   Commonly used with `brewtility.units.carbonation` and in argument/option maps."
-  :grams-per-liter)
 
 
 ;; Color Systems
@@ -390,14 +335,6 @@
    Commonly used with `brewtility.units.specific-gravity` and in argument/option maps."
   :plato)
 
-
-;; Specific Gravity Units
-
-(def plato
-  "The [Degrees Plato](https://en.wikipedia.org/wiki/Plato_scale#Extract) system of measure.
-
-   Commonly used with `brewtility.units.specific-gravity` and in argument/option maps."
-  :plato)
 
 
 ;; Volume Units
