@@ -55,6 +55,7 @@
     (is (= sut/srm-6  (sut/convert 6.8 options/srm options/rgba)))
     (is (= sut/srm-40 (sut/convert 41 options/srm options/rgba)))))
 
+
 (deftest rgba->srm-test
   (testing "RGBA lookup behaves as expected"
     (is (= 1 (sut/convert sut/srm-1 options/rgba options/srm)))
