@@ -41,7 +41,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * Changed
   * Internal functions that convert between unit systems now use `brewtility.units`
 * Removed
-  * `brewility.color` has been removed in favor of `brewtility.units.color`
+  * `brewtility.color` has been removed in favor of `brewtility.units.color`
   * `brewtility.units/convert-weight` has been removed in favor of `brewtility.units/convert` and `brewtility.units.weight/convert`
   * `brewtility.units/convert-volume` has been removed in favor of `brewtility.units/convert` and `brewtility.units.volume/convert`
   * `brewtility.units/convert-temperature` has been removed in favor of `brewtility.units/convert` and `brewtility.units.temperature/convert`

@@ -1,9 +1,9 @@
 (ns brewtility.units.weight
   "A namespace for converting between different units of weight.
-    
+
    By the BeerXML spec, weight is measured in kilograms.
    This namespace provides a way to convert between kilograms and other units of weight.
-    
+
     Currently, brewtility supports the following types of weight:
       - [gram](https://en.wikipedia.org/wiki/Gram)
       - [milligram](https://en.wikipedia.org/wiki/Milligram)
@@ -15,7 +15,7 @@
             [brewtility.units.options :as options]))
 
 
-(def ^:const measurements
+(def measurements
   "The weight measurements available across brewtility"
   #{options/gram
     options/kilogram
@@ -24,7 +24,7 @@
     options/pound})
 
 
-(def ^:const measurement->kilogram
+(def measurement->kilogram
   "A map from measurement names to doubles representing their fractional value to one kilogram"
   {options/gram      0.001
    options/kilogram  1.0
@@ -33,7 +33,7 @@
    options/pound     0.45359237})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from measurement names to their full name and abbreviation"
   {options/gram      {options/full  "gram"
                       options/short "g"}

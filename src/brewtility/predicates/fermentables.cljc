@@ -19,10 +19,13 @@
 
    Therefore, if the :add-after-boil field is not present, this function will explicitly return false."
   {:added "1.5"}
-  [fermentable]
-  (if (contains? fermentable :add-after-boil)
-    (:add-after-boil fermentable)
-    false))
+  ([fermentable] (add-after-boil? fermentable {}))
+  ;; Added to match the arity of the other predicate functions
+
+  ([fermentable _opts]
+   (if (contains? fermentable :add-after-boil)
+     (:add-after-boil fermentable)
+     false)))
 
 
 (defn grain?

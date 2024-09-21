@@ -1,9 +1,9 @@
 (ns brewtility.units.time
   "A namespace for converting between different units of time.
-   
+
    In the BeerXML spec, temperature is measured in minutes.
    This namespace converts between that and other units.
-   
+
    Currently, brewtility supports the following types of time measurements:
      - [microsecond](https://en.wikipedia.org/wiki/Microsecond)
      - [nanosecond](https://en.wikipedia.org/wiki/Nanosecond)
@@ -19,7 +19,7 @@
   (:refer-clojure :exclude [time]))
 
 
-(def ^:const measurements
+(def measurements
   "The time measurements available across brewtility"
   #{options/day
     options/hour
@@ -31,7 +31,7 @@
     options/week})
 
 
-(def ^:const measurement->minute
+(def measurement->minute
   "A map from measurement names to doubles representing their fractional value to one minute"
   {options/day         1440.0
    options/hour        60.0
@@ -43,7 +43,7 @@
    options/week        10080.0})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from measurement names to their full name and abbreviation"
   {options/day         {options/full  "days"
                         options/short "d"}

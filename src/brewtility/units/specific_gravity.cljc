@@ -1,9 +1,9 @@
 (ns brewtility.units.specific-gravity
   "A namespace for converting between different units of specific gravity.
-   
+
    In the BeerXML spec, specific gravity is measured in relative to the weight of the same size sample of water.
    This namespace converts between that ratio and other units.
-   
+
    Currently, brewtility supports the following types of specific gravity:
      - [specific-gravity](https://en.wikipedia.org/wiki/Specific_gravity)"
   {:added "2.0"}
@@ -11,25 +11,49 @@
             [brewtility.units.options :as options]))
 
 
-(def ^:const measurements
+(def measurements
   "The specific gravity systems available across brewtility."
-  #{options/specific-gravity})
+  #{options/specific-gravity options/plato})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from specific gravity system names to their full and short unit names."
   {options/specific-gravity {options/full  "specific gravity"
-                             options/short "sg"}})
+                             options/short "sg"}
+   options/plato            {options/full  "degrees plato"
+                             options/short "°P"}})
 
 
-(def ^:const measurement->specific-gravity
+(defn- plato->specific-gravity
+  "Converts a `plato` value to a `specific-gravity` value."
+  {:added  "2.2"
+   :no-doc true}
+  [plato]
+  (let [denom (- 258.6 (* (/ plato 258.2) 227.1))]
+    (+ 1 (/ plato denom))))
+
+
+(defn- specific-gravity->plato
+  "Converts a `specific-gravity` value to a `plato` value."
+  {:added  "2.2"
+   :no-doc true}
+  [gravity]
+  (let [g1 (* 1111.14 gravity)
+        g2 (* 630.272 (Math/pow gravity 2))
+        g3 (* 135.997 (Math/pow gravity 3))]
+    (- (- (+ g1 g3) g2) 616.868)))
+
+
+(def measurement->specific-gravity
   "A map from specific gravity system names to the conversion function to specific gravity."
-  {options/specific-gravity identity})
+  {options/specific-gravity identity
+   options/plato            plato->specific-gravity})
 
 
-(def ^:const specific-gravity->measurement
+(def specific-gravity->measurement
   "A map from specific gravity system names to the conversion function from specific gravity."
-  {options/specific-gravity identity})
+  {options/specific-gravity identity
+   options/plato            specific-gravity->plato})
 
 
 (defn convert

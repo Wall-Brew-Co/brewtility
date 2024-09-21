@@ -18,10 +18,13 @@
    In the BeerXML spec, this behavior is implicitly falsey.
    Therefore, if the :forced-carbonation field is not present, this function will explicitly return false."
   {:added "1.5"}
-  [recipe]
-  (if (contains? recipe :forced-carbonation)
-    (:forced-carbonation recipe)
-    false))
+  ([recipe] (forced-carbonation? recipe {}))
+  ;; Added to match the arity of the other predicate functions
+
+  ([recipe _opts]
+   (if (contains? recipe :forced-carbonation)
+     (:forced-carbonation recipe)
+     false)))
 
 
 (defn extract?
@@ -121,5 +124,3 @@
   ([recipe opts]
    (let [recipe-ibu-method (impl/fetch-or-throw! recipe :ibu-method "Recipe :ibu-method is required to determine if IBUs were calculated with the Garetz method")]
      (spoon.string/same-text? "garetz" recipe-ibu-method opts))))
-
-
