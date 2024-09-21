@@ -4,7 +4,7 @@
   <groupId>com.wallbrew</groupId>
   <artifactId>brewtility</artifactId>
   <packaging>jar</packaging>
-  <version>2.1.0</version>
+  <version>2.2.0</version>
   <name>brewtility</name>
   <description>Utility functions for all of your brewing needs.</description>
   <url>https://github.com/Wall-Brew-Co/brewtility</url>
@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/brewtility</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/brewtility.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/brewtility.git</developerConnection>
-    <tag>c4e866a2723bbbe3dff99ecf077590645a10cd83</tag>
+    <tag>6aac1a612bbf8a8840b360d3c117892b998b3b73</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>

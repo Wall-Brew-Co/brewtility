@@ -6,6 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Table of Contents
 
+* [2.2.0 - 2024-09-21](#220---2024-09-21)
 * [2.1.0 - 2024-09-20](#210---2024-09-20)
 * [2.0.1 - 2024-03-11](#201---2024-03-11)
 * [2.0.0 - 2023-06-11](#200---2023-06-11)
@@ -15,6 +16,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 * [1.2.0 - 2022-07-10](#120---2022-07-10)
 * [1.1.0 - 2020-08-15](#110---2020-08-15)
 * [1.0.0 - 2020-07-19](#100---2020-07-19)
+
+## 2.2.0 - 2024-09-21
+
+* Added
+  * `brewtility.units.alcohol-content` for converting and displaying alcohol content.
+  * `brewtility.units.bitterness` for rendering displayable IBU values.
+  * `brewtility.units.carbonation` for rendering displayable carbonation values.
+  * `brewtility.units.specific-gravity` now supports measurements in degrees plato.
+  * `brewtility.predicates.options` for option map keys shared across predicate namespaces.
+* Changed
+  * `brewtility.units` now supports a `:precision` option map key for all conversion functions. This key will round the converted value to the specified number of decimal places. Defaults to the precision of the converted value.
+  * `brewtility.units.color` now supports a reverse-lookup for known RGBa values.
+  * All functions in `brewtility.predicates` now support an option map as a second argument to make their arities consistent.
+* Removed
+  * `^:const` metadata has been removed from conversion maps
 
 ## 2.1.0 - 2024-09-20
 
