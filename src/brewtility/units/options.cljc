@@ -75,8 +75,6 @@
   #{imperial international-system metric us-customary})
 
 
-
-
 ;; Enricher Setting Keys
 
 
@@ -144,8 +142,6 @@
      - [volumes-of-co2](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)
      - [grams-per-liter](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)"
   :carbonation)
-
-
 
 
 (def color
@@ -292,11 +288,6 @@
   :grams-per-liter)
 
 
-
-
-
-
-
 ;; Color Systems
 
 (def srm
@@ -334,7 +325,6 @@
 
    Commonly used with `brewtility.units.specific-gravity` and in argument/option maps."
   :plato)
-
 
 
 ;; Volume Units
