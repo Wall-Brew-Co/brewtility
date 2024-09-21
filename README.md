@@ -3,6 +3,8 @@
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/brewtility.svg)](https://clojars.org/com.wallbrew/brewtility)
 ![Clojure and ClojureScript CI](https://github.com/Wall-Brew-Co/brewtility/workflows/Clojure%20and%20ClojureScript%20CI/badge.svg)
 [![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/brewtility)](https://cljdoc.org/d/com.wallbrew/brewtility/CURRENT)
+[![GitHub](https://img.shields.io/github/license/Wall-Brew-Co/brewtility)](https://github.com/Wall-Brew-Co/brewtility/blob/master/LICENSE)
+[![Twitter Follow](https://img.shields.io/twitter/follow/WallBrew?style=social)](https://twitter.com/WallBrew)
 
 A Clojure(Script) utility library for all of your brewing needs.
 
@@ -62,8 +64,12 @@ lein test-build
 
 The tests will also execute on the JVM, to ensure the library is compatible for apps in both deployment environments.
 
+## Contributors
+
+<a href="https://github.com/Wall-Brew-Co/brewtility/graphs/contributors"><img src="https://raw.githubusercontent.com/Wall-Brew-Co/brewtility/master/CONTRIBUTORS.svg" alt="The GitHub profile pictures of all current contributors. Clicking this image will lead you to the GitHub contribution graph." /></a>
+
 ## License
 
-Copyright © 2020-2023 - [Wall Brew Co](https://wallbrew.com/)
+Copyright © [Wall Brew Co](https://wallbrew.com/)
 
 This software is provided for free, public use as outlined in the [MIT License](https://github.com/Wall-Brew-Co/brewtility/blob/master/LICENSE)

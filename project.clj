@@ -1,4 +1,4 @@
-(defproject com.wallbrew/brewtility "2.1.0"
+(defproject com.wallbrew/brewtility "2.2.0"
   :description "Utility functions for all of your brewing needs."
   :url "https://github.com/Wall-Brew-Co/brewtility"
   :license {:name         "MIT"
@@ -19,7 +19,7 @@
             [com.wallbrew/bouncer "1.0.0"]
             [lein-cljsbuild/lein-cljsbuild "1.1.8"]
             [mvxcvi/cljstyle "0.16.630"]
-            [ns-sort "1.0.3"]]
+            [ns-sort/ns-sort "1.0.3"]]
 
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :username      :env/clojars_user
@@ -30,8 +30,8 @@
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[com.wallbrew/common-beer-data "1.6.0"]
                                       [com.wallbrew/common-beer-format "2.2.2"]
-                                      [doo "0.1.11"]]
-                       :plugins      [[lein-doo "0.1.11"]]}}
+                                      [doo/doo "0.1.11"]]
+                       :plugins      [[lein-doo/lein-doo "0.1.11"]]}}
 
   :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 

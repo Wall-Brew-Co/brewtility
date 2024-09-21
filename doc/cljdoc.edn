@@ -3,6 +3,7 @@
                    ["Community" {}
                     ["Contributing" {:file "CONTRIBUTING.md"}]
                     ["Code of Conduct" {:file "CODE_OF_CONDUCT.md"}]
+                    ["License" {:file "LICENSE.md"}]
                     ["Security Policy" {:file "SECURITY.md"}]]
                    ["Functionality" {}
                     ["Calculations" {:file "doc/api/calculations.md"}]

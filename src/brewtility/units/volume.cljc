@@ -1,9 +1,9 @@
 (ns brewtility.units.volume
   "A namespace for converting between different units of volume.
-    
+
    In the BeerXML spec, volume is measured in liters.
    This namespace provides a way to convert between liters and other units.
-    
+
     Currently, brewtility supports the following types of volume:
       - [american-fluid-ounce](https://en.wikipedia.org/wiki/Fluid_ounce)
       - [american-gallon](https://en.wikipedia.org/wiki/Gallon)
@@ -25,7 +25,7 @@
             [brewtility.units.options :as options]))
 
 
-(def ^:const measurements
+(def measurements
   "The volume measurements available across brewtility"
   #{options/american-gallon
     options/american-pint
@@ -44,7 +44,7 @@
     options/imperial-fluid-ounce})
 
 
-(def ^:const measurement->litre
+(def measurement->litre
   "A map from measurement names to doubles representing their fractional value to one liter"
   {options/american-fluid-ounce 0.0295735
    options/american-gallon      3.78541
@@ -63,7 +63,7 @@
    options/teaspoon             0.00492892})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from measurement names to their full name and abbreviation"
   {options/american-fluid-ounce {options/full  "fluid ounce"
                                  options/short "fl oz"}

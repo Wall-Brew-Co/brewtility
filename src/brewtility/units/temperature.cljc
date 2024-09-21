@@ -1,9 +1,9 @@
 (ns brewtility.units.temperature
   "A namespace for converting between different units of temperature
-   
+
    In the BeerXML spec, temperature is measured in degrees Celsius.
    This namespace converts between that and other units.
-   
+
    Currently, brewtility supports the following types of temperature measurements:
      - [celsius](https://en.wikipedia.org/wiki/Celsius)
      - [fahrenheit](https://en.wikipedia.org/wiki/Fahrenheit)
@@ -13,7 +13,7 @@
             [brewtility.units.options :as options]))
 
 
-(def ^:const measurements
+(def measurements
   "The temperature measurements supported by brewtility."
   #{options/c
     options/celsius
@@ -24,7 +24,7 @@
     options/kelvin})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "The temperature measurements supported by brewtility."
   {options/c          {options/full  "celsius"
                        options/short "c"}
@@ -74,7 +74,7 @@
   (- temp 273.15))
 
 
-(def ^:const measurement->celsius
+(def measurement->celsius
   "A map from measurement names to the implementation function which converts them to degrees celsius"
   {options/c          identity
    options/celsius    identity
@@ -85,7 +85,7 @@
    options/kelvin     kelvin->celsius})
 
 
-(def ^:const celsius->measurement
+(def celsius->measurement
   "A map from measurement names to the implementation function which converts them from degrees celsius"
   {options/celsius    identity
    options/c          identity

@@ -1,9 +1,9 @@
 (ns brewtility.units.color
   "A namespace for converting between different units of color.
-    
+
    In the BeerXML spec, color is measured in different units in different contexts.
    This namespace provides a way to convert between SRM and other units of color.
-   
+
    Currently, brewtility supports the following types of color:
      - [SRM](https://en.wikipedia.org/wiki/Standard_Reference_Method)
      - [EBC](https://en.wikipedia.org/wiki/European_Brewery_Convention)
@@ -11,10 +11,11 @@
      - [RGBa](https://en.wikipedia.org/wiki/RGBA_color_model)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
-            [brewtility.units.options :as options]))
+            [brewtility.units.options :as options]
+            [clojure.set :as set]))
 
 
-(def ^:const measurements
+(def measurements
   "The color systems available across brewtility."
   #{options/srm
     options/ebc
@@ -22,7 +23,7 @@
     options/rgba})
 
 
-(def ^:const measurements->display-name
+(def measurements->display-name
   "A map from color system names to their full and short unit names"
   {options/srm      {options/full  "standard reference method"
                      options/short "srm"}
@@ -284,6 +285,11 @@
    40	 srm-40})
 
 
+(def rgba-lookup-map
+  "A map of known RGBa color codes to their closest SRM value."
+  (set/map-invert srm-color-map))
+
+
 (defn- lovibond->srm
   "Convert the color described in degrees `lovibond` to the equivalent SRM color."
   {:added "2.0"}
@@ -322,13 +328,23 @@
     (get srm-color-map srm-color)))
 
 
+(defn- rgba->srm
+  "Given one of the known `rgba-string` color codes, return the closest SRM value."
+  {:added "2.2"}
+  [rgba-string]
+  (if-let [srm-value (get rgba-lookup-map rgba-string)]
+    srm-value
+    (throw (ex-info "Unsupported RGBa color value"
+                    {:allowed-values (-> rgba-lookup-map keys set)
+                     :color          rgba-string}))))
+
+
 (def measurement->srm
-  "A map from color systems to the implementation function that converts to SRM.
-   
-   Note: RGBa is not included because it is not a color system, but a color representation."
+  "A map from color systems to the implementation function that converts to SRM."
   {options/ebc      ebc->srm
    options/lovibond lovibond->srm
-   options/srm      identity})
+   options/srm      identity
+   options/rgba     rgba->srm})
 
 
 (def srm->measurement
@@ -348,7 +364,9 @@
   [color-val source-system target-system]
   (if (and (contains? measurement->srm source-system)
            (contains? measurements target-system)
-           (number? color-val))
+           (if (= source-system options/rgba)
+             (string? color-val)
+             (number? color-val)))
     (if (= source-system target-system)
       color-val
       (let [source->srm-fn (measurement->srm source-system)

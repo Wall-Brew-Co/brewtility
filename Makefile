@@ -14,6 +14,7 @@ version/major:
 	@ lein change version leiningen.release/bump-version release
 	@ lein sealog bump major
 	@ lein pom
+	@ npm version major --no-git-tag-version
 
 version/minor:
 	$(info Updating minor version and adding CHANGELOG entry...)
@@ -22,6 +23,7 @@ version/minor:
 	@ lein change version leiningen.release/bump-version release
 	@ lein sealog bump minor
 	@ lein pom
+	@ npm version minor --no-git-tag-version
 
 version/patch:
 	$(info Updating patch version and adding CHANGELOG entry...)
@@ -30,6 +32,7 @@ version/patch:
 	@ lein change version leiningen.release/bump-version release
 	@ lein sealog bump patch
 	@ lein pom
+	@ npm version patch --no-git-tag-version
 
 changelog/render:
 	$(info Rendering CHANGELOG...)

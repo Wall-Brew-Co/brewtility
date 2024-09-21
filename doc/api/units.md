@@ -30,6 +30,10 @@ This provides a consistent interface to every system of measure, unit type, and 
 (units/convert units/volume 20 :teaspoon :liter)
 ;; => 0.099
 
+;; You can also round the conversion to a specified precision
+(units/convert units/volume 20 :teaspoon :liter {:precision 1})
+;; => 0.1
+
 ;; If you only plan on dealing with volumes,
 ;;   then you can import the `brewtility.units.volume` namespace
 (volume/convert 9.99209 :imperial-pint :american-pint)
@@ -72,6 +76,8 @@ Brewtility supports four systems of measure:
 These are the most commonly seen systems in brewing.
 There are measurement functions for the most common types of measurements within these systems:
 
+- [Bitterness](##bitterness)
+- [Carbonation](##carbonation)
 - [Color](##color)
 - [Pressure](##pressure)
 - [Specific Gravity](##specific-gravity)
@@ -79,6 +85,22 @@ There are measurement functions for the most common types of measurements within
 - [Time](##time)
 - [Volume](##volume)
 - [Weight](##weight)
+
+### Bitterness
+
+Currently, brewtility supports the following bitterness measurements:
+
+- [IBU](https://en.wikipedia.org/wiki/International_bitterness_units)
+
+While there is currently only one system, the same namespace and functionality exists as the other measurement types.
+This allows for progressive evolution, and provides a consistent interface to every measurement type encoded in the BeerXML specification.
+
+### Carbonation
+
+Currently, brewtility supports the following carbonation measurements:
+
+- [Volumes of CO2](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)
+- [Grams per Liter](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)
 
 ### Color
 
@@ -89,9 +111,6 @@ Currently, brewtility supports the following types of color:
 - [Lovibond](https://en.wikipedia.org/wiki/Beer_measurement#Colour)
 - [RGBa](https://en.wikipedia.org/wiki/RGBA_color_model)
 
-The `RGBa` system is special, as it can only be used as an argument for the result of a unit conversion.
-Unfortunately, there is not a great deterministic way to cast the values back to the other systems.
-brewtility will thrown an exception in this case and explain the problem.
 
 ### Pressure
 
@@ -156,7 +175,7 @@ Currently, brewtility supports the following types of volume:
 - [tablespoon](https://en.wikipedia.org/wiki/Tablespoon)
 - [teaspoon](https://en.wikipedia.org/wiki/Teaspoon))
 
-Given the prevalence of the French spellings in English recipes, both `:litre` and `:liter` can be passed as options.
+Given the prevalence of the non-US spellings in English recipes, both `:litre` and `:liter` can be passed as options.
 
 ### Weight
 

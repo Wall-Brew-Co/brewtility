@@ -148,8 +148,7 @@
   "A predicate function to determine if a [hop](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) was added for both bittering and aroma.
    An option map can be passed to this function as an optional second parameter.
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:type` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :see-also ["aroma-type?"
               "bittering?"
@@ -169,8 +168,7 @@
   "A predicate function to determine if a [hop](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) was a compressed pellet.
    An option map can be passed to this function as an optional second parameter.
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:form` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :see-also ["plug?"
               "leaf?"
@@ -185,8 +183,7 @@
   "A predicate function to determine if a [hop](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) was a compressed whole-hop plug.
    An option map can be passed to this function as an optional second parameter.
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:form` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :see-also ["pellet?"
               "leaf?"
@@ -201,8 +198,7 @@
   "A predicate function to determine if a [hop](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/hops.cljc) was a whole hop cone.
    An option map can be passed to this function as an optional second parameter.
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false.
-     - `:coerce` - If the `:form` field should be coerced to a string for comparison. Default is false."
+     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :see-also ["pellet?"
               "plug?"
