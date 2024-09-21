@@ -28,7 +28,7 @@
   :deploy-branches ["master"]
 
   :profiles {:uberjar {:aot :all}
-             :dev     {:dependencies [[com.wallbrew/common-beer-data "1.5.0"]
+             :dev     {:dependencies [[com.wallbrew/common-beer-data "1.6.0"]
                                       [com.wallbrew/common-beer-format "2.2.2"]
                                       [doo/doo "0.1.11"]]
                        :plugins      [[lein-doo/lein-doo "0.1.11"]]}}
