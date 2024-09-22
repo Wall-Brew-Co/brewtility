@@ -47,14 +47,10 @@
        (let [derived-boil-size (precision/->precision (calc/calculate-equipment-boil-volume equipment) precision)]
          (assoc equipment :boil-size derived-boil-size))
        equipment)
-     #?(:clj (catch Exception e
-               (if safe-calculating-boil-size
-                 equipment
-                 (throw e))))
-     #?(:cljs (catch js/Error e
-                (if safe-calculating-boil-size
-                  equipment
-                  (throw e)))))))
+     (catch #?(:clj Exception :cljs js/Error) e
+       (if safe-calculating-boil-size
+         equipment
+         (throw e))))))
 
 
 (defn enrich-display-boil-size
