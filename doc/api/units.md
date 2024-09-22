@@ -111,7 +111,6 @@ Currently, brewtility supports the following types of color:
 - [Lovibond](https://en.wikipedia.org/wiki/Beer_measurement#Colour)
 - [RGBa](https://en.wikipedia.org/wiki/RGBA_color_model)
 
-
 ### Pressure
 
 Currently, brewtility supports the following types of pressure:
