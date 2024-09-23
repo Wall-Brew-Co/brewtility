@@ -7,7 +7,6 @@
                     ["Security Policy" {:file "SECURITY.md"}]]
                    ["Functionality" {}
                     ["Calculations" {:file "doc/api/calculations.md"}]
-                    ["Color" {:file "doc/api/color.md"}]
                     ["Precision" {:file "doc/api/precision.md"}]
                     ["Predicates" {:file "doc/api/predicates.md"}]
                     ["Units of Measure" {:file "doc/api/units.md"}]

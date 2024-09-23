@@ -20,7 +20,7 @@
     <url>https://github.com/Wall-Brew-Co/brewtility</url>
     <connection>scm:git:git://github.com/Wall-Brew-Co/brewtility.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/Wall-Brew-Co/brewtility.git</developerConnection>
-    <tag>6aac1a612bbf8a8840b360d3c117892b998b3b73</tag>
+    <tag>d9766931447f393e296a2467c8786cd972dd52f6</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -82,6 +82,12 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>cider</groupId>
+      <artifactId>cider-nrepl</artifactId>
+      <version>0.31.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.wallbrew</groupId>
       <artifactId>common-beer-data</artifactId>
       <version>1.6.0</version>
@@ -97,6 +103,12 @@
       <groupId>doo</groupId>
       <artifactId>doo</artifactId>
       <version>0.1.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>nrepl</groupId>
+      <artifactId>nrepl</artifactId>
+      <version>1.0.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
