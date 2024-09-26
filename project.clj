@@ -32,7 +32,7 @@
                                       [com.wallbrew/common-beer-data "1.6.0"]
                                       [com.wallbrew/common-beer-format "2.4.0"]
                                       [doo/doo "0.1.11"]
-                                      [nrepl/nrepl "1.0.0"]]
+                                      [nrepl/nrepl "1.3.0"]]
                        :plugins      [[lein-doo/lein-doo "0.1.11"]]}}
 
   :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
