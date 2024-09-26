@@ -11,23 +11,10 @@ jobs:
 
     steps:
       - name: git checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
         with:
           ref: ${{ github.head_ref }}
           token: ${{ secrets.WALL_BREW_BOT_PAT }}
-
-      - name: Cache maven dependencies
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-maven
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-clj-${{ hashFiles('**/project.clj') }}
-          restore-keys: |
-            ${{ runner.os }}-clj
-
-      - name: Install Clojure dependencies
-        run: lein deps
 
       - name: Install cljstyle
         uses: just-sultanov/setup-cljstyle@v1
@@ -37,10 +24,6 @@ jobs:
       - name: Format Clojure code
         run: |
           cljstyle fix --report --report-timing --verbose
-
-      - name: Render Changelog
-        run: |
-          lein sealog render
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5.0.1
