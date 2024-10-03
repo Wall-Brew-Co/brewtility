@@ -3,6 +3,7 @@
 
    Currently, brewtility supports the following types of measurements:
 
+     - [Alcohol Content](https://en.wikipedia.org/wiki/Alcohol_by_volume)
      - [Bitterness](https://en.wikipedia.org/wiki/Beer_measurement#Bitterness)
      - [Carbonation](https://en.wikipedia.org/wiki/Carbon_dioxide#Beverages)
      - [Color](https://en.wikipedia.org/wiki/Beer_measurement#Colour)
@@ -64,7 +65,7 @@
    (convert measurement-type measurement source-units target-units {}))
   ([measurement-type measurement source-units target-units {:keys [precision]}]
    (let [converted-value (case measurement-type
-                           :alcohol-content (alcohol-content/convert measurement source-units target-units)
+                           :alcohol-content  (alcohol-content/convert measurement source-units target-units)
                            :bitterness       (bitterness/convert measurement source-units target-units)
                            :carbonation      (carbonation/convert measurement source-units target-units)
                            :color            (color/convert measurement source-units target-units)

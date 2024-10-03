@@ -1,9 +1,8 @@
 (ns brewtility.calculations-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.calculations :as sut]
+  (:require [brewtility.calculations :as sut]
             [brewtility.precision :as bp]
             [brewtility.units.color :as color]
+            [clojure.test :refer [deftest is testing]]
             [common-beer-data.fermentables.adjuncts :as adjuncts]
             [common-beer-data.fermentables.grains :as grains]
             [common-beer-data.hops.both :as hops]))
@@ -19,11 +18,15 @@
       (is (= 22.046 (bp/->3dp (:amount normalized-grain))))
       (is (= (dissoc normalized-adjunct :amount :color) (dissoc (:grits adjuncts/adjuncts) :amount :color)))
       (is (= 11.023 (bp/->3dp (:amount normalized-adjunct))))
-      (is (= 1.299 (bp/->3dp (:color normalized-adjunct)))))))
+      (is (= 1.299 (bp/->3dp (:color normalized-adjunct))))))
+  (testing "An exception is thrown when data is missing"
+    (let [grain (dissoc (:rye-malt grains/grains) :amount)]
+      #?(:clj (is (thrown-with-msg? Exception #"Cannot calculate color with non-numeric values" (sut/normalize-fermentable grain))))
+      #?(:cljs (is (thrown-with-msg? js/Error #"Cannot calculate color with non-numeric values" (sut/normalize-fermentable grain)))))))
 
 
 (deftest calculate-malt-color-units-test
-  (testing "Colors can be correctly computer for recipes"
+  (testing "Colors can be correctly calculated for recipes"
     (let [grain-1      (assoc (:rye-malt grains/grains) :amount 7)
           grain-2      (assoc (:pale-malt-2-row-us grains/grains) :amount 3)
           adjunct-1    (assoc (:rice-hulls adjuncts/adjuncts) :amount 2)
@@ -38,15 +41,20 @@
 
 
 (deftest gravity-conversion-test
-  (testing "Potential gravity and gravity points can be computed correctly"
+  (testing "Potential gravity and gravity points can be calculated correctly"
     (is (= 264.555 (bp/->3dp (sut/potential-gravity->gravity-points 1.04 3))))
     (is (= 0.0 (bp/->3dp (sut/potential-gravity->gravity-points 1.0 5143))))
     (is (= 1.043 (bp/->3dp (sut/gravity-points->potential-gravity 40 3.5))))
-    (is (= 1.0 (bp/->3dp (sut/gravity-points->potential-gravity 0 3.5))))))
+    (is (= 1.0 (bp/->3dp (sut/gravity-points->potential-gravity 0 3.5)))))
+  (testing "An exception is thrown when data is missing"
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot calculate gravity points with non-numeric values" (sut/potential-gravity->gravity-points nil 3))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot calculate gravity points with non-numeric values" (sut/potential-gravity->gravity-points nil 3))))
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot calculate potential gravity with non-numeric values" (sut/gravity-points->potential-gravity 40 nil))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot calculate potential gravity with non-numeric values" (sut/gravity-points->potential-gravity 40 nil))))))
 
 
 (deftest calculate-potential-gravity-test
-  (testing "Gravity/ABV can be correctly computer for recipes"
+  (testing "Gravity/ABV can be correctly calculated for recipes"
     (let [grain-1      (assoc (:rye-malt grains/grains) :amount 7)
           grain-2      (assoc (:pale-malt-2-row-us grains/grains) :amount 3)
           adjunct-1    (assoc (:rice-hulls adjuncts/adjuncts) :amount 2)
@@ -79,7 +87,7 @@
 
 
 (deftest calculate-alpha-acid-units-test
-  (testing "The amount of alpha acids release by a known quantity of hops can be computed"
+  (testing "The amount of alpha acids release by a known quantity of hops can be calculated"
     (is (= 0.0 (bp/->3dp (sut/calculate-alpha-acid-units 0.0 0.5))))
     (is (= 0.0 (bp/->3dp (sut/calculate-alpha-acid-units 0.05 0.0))))
     (is (= 79.014 (bp/->3dp (sut/calculate-alpha-acid-units 0.14 (:alpha (:el-dorado hops/both))))))
@@ -94,7 +102,15 @@
       (is (= 29.448 (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 60) 15 1.03))))
       (is (= 32.12  (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 120) 15 1.03))))
       (is (= 16.06  (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 120) 30 1.03))))
-      (is (= 24.529 (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 120) 15 1.06)))))))
+      (is (= 24.529 (bp/->3dp (sut/calculate-ibu-per-hop (assoc hop :amount 0.01 :time 120) 15 1.06))))))
+  (testing "An exception is thrown when data required for the calculation is missing"
+    (let [hop (:el-dorado hops/both)]
+      #?(:clj (is (thrown-with-msg? Exception #"Cannot calculate IBUs with non-numeric values" (sut/calculate-ibu-per-hop {} 15 1.03))))
+      #?(:clj (is (thrown-with-msg? Exception #"Cannot calculate IBUs with non-numeric values" (sut/calculate-ibu-per-hop hop nil 1.03))))
+      #?(:clj (is (thrown-with-msg? Exception #"Cannot calculate IBUs with non-numeric values" (sut/calculate-ibu-per-hop hop 15 nil))))
+      #?(:cljs (is (thrown-with-msg? js/Error #"Cannot calculate IBUs with non-numeric values" (sut/calculate-ibu-per-hop {} 15 1.03))))
+      #?(:cljs (is (thrown-with-msg? js/Error #"Cannot calculate IBUs with non-numeric values" (sut/calculate-ibu-per-hop hop nil 1.03))))
+      #?(:cljs (is (thrown-with-msg? js/Error #"Cannot calculate IBUs with non-numeric values" (sut/calculate-ibu-per-hop hop 15 nil)))))))
 
 
 (deftest calculate-recipe-ibus-test
