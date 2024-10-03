@@ -22,7 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 * Fixed
   * `brewtility.precision/approximates?` now throws an explicit exception when passed non-numeric values.
-  * `brewtility.calculations` functions now thros an explicit exception when passed non-numeric values.
+  * `brewtility.calculations` functions now throws an explicit exception when passed non-numeric values.
 
 ## 2.2.0 - 2024-09-21
 
