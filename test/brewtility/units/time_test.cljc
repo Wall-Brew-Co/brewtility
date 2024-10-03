@@ -1,9 +1,8 @@
 (ns brewtility.units.time-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.precision :as precision]
+  (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]
-            [brewtility.units.time :as sut]))
+            [brewtility.units.time :as sut]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest code-type-tests

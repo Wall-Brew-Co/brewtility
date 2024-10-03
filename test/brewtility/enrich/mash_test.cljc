@@ -1,10 +1,9 @@
 (ns brewtility.enrich.mash-test
   (:require [brewtility.data.mash :as mash.data]
             [brewtility.enrich.mash :as mash.enrich]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.mash :as mash.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
+            [common-beer-format.mash :as mash.format]))
 
 
 (deftest static-enrichment-tests

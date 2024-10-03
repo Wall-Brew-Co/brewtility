@@ -1,7 +1,5 @@
 (ns brewtility.enrich.impl-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.enrich.impl :as sut]
+  (:require [brewtility.enrich.impl :as sut]
             [brewtility.units.color :as color]
             [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
@@ -11,7 +9,8 @@
             [brewtility.units.volume :as volume]
             [brewtility.units.weight :as weight]
             [clojure.set :as set]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest code-type-tests

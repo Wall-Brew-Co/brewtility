@@ -1,10 +1,9 @@
 (ns brewtility.enrich.hops-test
   (:require [brewtility.data.hops :as hop.data]
             [brewtility.enrich.hops :as hop.enrich]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.hops :as hop.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
+            [common-beer-format.hops :as hop.format]))
 
 
 ;;

@@ -1,10 +1,9 @@
 (ns brewtility.enrich.waters-test
   (:require [brewtility.data.waters :as waters.data]
             [brewtility.enrich.waters :as waters.enrich]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.waters :as waters.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
+            [common-beer-format.waters :as waters.format]))
 
 
 (deftest enrich-display-amount-test
