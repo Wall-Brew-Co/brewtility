@@ -1,0 +1,12 @@
+{:version      {:major 2
+                :minor 2
+                :patch 1}
+ :version-type :semver3
+ :changes      {:added      []
+                :changed    []
+                :deprecated []
+                :removed    []
+                :fixed      ["`brewtility.precision/approximates?` now throws an explicit exception when passed non-numeric values."
+                             "`brewtility.calculations` functions now throw an explicit exception when passed non-numeric values."]
+                :security   []}
+ :timestamp    "2024-10-03T01:33:51.309111782Z"}

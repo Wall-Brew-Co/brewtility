@@ -7,18 +7,26 @@
             [brewtility.units.options :as options]
             [brewtility.units.time :as time]
             [brewtility.units.volume :as volume]
-            [brewtility.units.weight :as weight]))
+            [brewtility.units.weight :as weight])
+  (:refer-clojure :exclude [time]))
 
 
 (defn normalize-fermentable
-  "Given a `common-beer-format` conforming `fermentable`, normalize it for color computation."
+  "Given a `common-beer-format` conforming `fermentable`, normalize it for color computation.
+   If insufficient data is provided, this function will throw an exception."
   {:added "1.0"}
-  [fermentable]
-  (let [is-not-grain? (not (fermentables/grain? fermentable))
-        kg->lbs       (fn [w] (weight/convert w options/kilogram options/pound))] ; MCU is calculated against pounds
-    (cond-> fermentable
-      true          (update :amount kg->lbs)
-      is-not-grain? (update :color #(color/convert % options/srm options/lovibond))))) ; Grain color is in Lovibond, all other fermentables use SRM
+  [{:keys [amount color] :as fermentable}]
+  (if (and (number? amount)
+           (number? color))
+    (let [is-not-grain? (not (fermentables/grain? fermentable))]
+      (cond-> fermentable
+        ;; MCU is calculated against pounds
+        true          (update :amount #(weight/convert % options/kilogram options/pound))
+        ;; Grain color is in Lovibond, all other fermentables use SRM
+        is-not-grain? (update :color #(color/convert % options/srm options/lovibond))))
+    (throw (ex-info "Cannot calculate color with non-numeric values" {:amount amount
+                                                                      :color  color}))))
+
 
 (defn calculate-malt-color-units
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the overall Malt Color Units for a recipe."
@@ -85,11 +93,15 @@
   {:added    "1.0"
    :see-also ["gravity-points->potential-gravity"]}
   [potential-gravity weight]
-  (let [weight-in-pounds (weight/convert weight options/kilogram options/pound)]
-    (-> potential-gravity
-        (* 1000)
-        (- 1000)
-        (* weight-in-pounds))))
+  (if (and (number? potential-gravity)
+           (number? weight))
+    (let [weight-in-pounds (weight/convert weight options/kilogram options/pound)]
+      (-> potential-gravity
+          (* 1000)
+          (- 1000)
+          (* weight-in-pounds)))
+    (throw (ex-info "Cannot calculate gravity points with non-numeric values" {:potential-gravity potential-gravity
+                                                                               :weight            weight}))))
 
 
 (defn gravity-points->potential-gravity
@@ -97,11 +109,15 @@
   {:added    "1.0"
    :see-also ["potential-gravity->gravity-points"]}
   [gravity-points volume]
-  (let [volume-in-gallons (volume/convert volume options/litre options/american-gallon)]
-    (-> gravity-points
-        (/ volume-in-gallons)
-        (+ 1000)
-        (/ 1000.0))))
+  (if (and (number? gravity-points)
+           (number? volume))
+    (let [volume-in-gallons (volume/convert volume options/litre options/american-gallon)]
+      (-> gravity-points
+          (/ volume-in-gallons)
+          (+ 1000)
+          (/ 1000.0)))
+    (throw (ex-info "Cannot calculate potential gravity with non-numeric values" {:gravity-points gravity-points
+                                                                                  :volume         volume}))))
 
 
 (defn calculate-potential-gravity
@@ -117,7 +133,7 @@
 
 
 (def gravity->abv-multiplier
-  "The multiplier used to convert gravity to ABV. 
+  "The multiplier used to convert gravity to ABV.
 
    This is a constant, and is not configurable."
   0.00135)
@@ -138,10 +154,10 @@
    (calculate-potential-final-gravity fermentables batch-size default-attenuation))
 
   ([fermentables batch-size attenuation]
-   (let [gravity (calculate-potential-gravity fermentables batch-size)
-         gravity-points (-> gravity
-                            (* 1000)
-                            (- 1000))
+   (let [gravity           (calculate-potential-gravity fermentables batch-size)
+         gravity-points    (-> gravity
+                               (* 1000)
+                               (- 1000))
          attenuated-points (* gravity-points attenuation)]
 
      (-> gravity-points
@@ -152,7 +168,8 @@
 
 (defn calculate-potential-abv
   "Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, estimate the ABV.
-   The primary fermentation yeast's `attenuation` may also be passed, otherwise 75% is assumed."
+   The primary fermentation yeast's `attenuation` may also be passed, otherwise 75% is assumed.
+   If insufficient data is provided, this function will throw an exception."
   {:added "1.0"}
   ([fermentables batch-size]
    (calculate-potential-abv fermentables batch-size default-attenuation))
@@ -169,6 +186,7 @@
 (defn calculate-hop-utilization
   "Calculate the percentage of alpha acid that a hop could release over `boil-duration` in a wort at a specific `gravity`.
    Based on: http://howtobrew.com/book/section-1/hops/hop-bittering-calculations"
+  {:added "1.0"}
   [gravity boil-duration]
   (let [gravity-factor (* 1.65 (Math/pow 0.000125 (- gravity 1)))
         time-factor    (/ (- 1 (Math/pow Math/E (* -0.04 boil-duration))) 4.15)]
@@ -179,7 +197,7 @@
   "Calculate the maximum amount of alpha acid released by `weight` ounce of a hop at `percent` alpha acid."
   {:added "1.0"}
   [weight alpha]
-  (let [weight-in-ounces (weight/convert weight options/kilogram options/ounce)
+  (let [weight-in-ounces         (weight/convert weight options/kilogram options/ounce)
         aau-normalization-factor 100]
     (* aau-normalization-factor weight-in-ounces alpha)))
 
@@ -187,16 +205,27 @@
 (defn calculate-ibu-per-hop
   "Given a `common-beer-format` conforming `hop`, `batch-size`, and `potential-gravity`, calculate the amount of IBUs generated."
   {:added "1.0"}
-  [hop batch-size potential-gravity]
-  (let [utilization       (calculate-hop-utilization potential-gravity (:time hop))
-        alpha-acid-units  (calculate-alpha-acid-units (:amount hop) (:alpha hop))
-        imperial-volume   (volume/convert batch-size options/litre options/american-gallon)
-        conversion-factor 74.89]
-    (/ (* alpha-acid-units utilization conversion-factor) imperial-volume)))
+  [{:keys [time amount alpha] :as _hop} batch-size potential-gravity]
+  (if (and (number? time)
+           (number? amount)
+           (number? alpha)
+           (number? batch-size)
+           (number? potential-gravity))
+    (let [utilization       (calculate-hop-utilization potential-gravity time)
+          alpha-acid-units  (calculate-alpha-acid-units amount alpha)
+          imperial-volume   (volume/convert batch-size options/litre options/american-gallon)
+          conversion-factor 74.89]
+      (/ (* alpha-acid-units utilization conversion-factor) imperial-volume))
+    (throw (ex-info "Cannot calculate IBUs with non-numeric values" {:amount            amount
+                                                                     :time              time
+                                                                     :alpha             alpha
+                                                                     :batch-size        batch-size
+                                                                     :potential-gravity potential-gravity}))))
 
 
 (defn calculate-recipe-ibus
-  "Given a collection of `common-beer-format` conforming `hops`, `batch-size`, and `potential-gravity` calculate the amount of IBUs generated."
+  "Given a collection of `common-beer-format` conforming `hops`, `batch-size`, and `potential-gravity` calculate the amount of IBUs generated.
+   If insufficient data is provided, this function will throw an exception."
   {:added "1.0"}
   [hops batch-size potential-gravity]
   (let [reducing-fn (fn [acc h] (+ acc (calculate-ibu-per-hop h batch-size potential-gravity)))]
@@ -206,7 +235,10 @@
 (defn calculate-equipment-boil-volume
   "Given a `common-beer-format` conforming `equipment`, calculate the volume of the wort at the start of the boil.
    If insufficient data is provided, this function will throw an exception."
-  {:added    "1.5"}
+  {:added    "1.5"
+   :see-also ["brewtility.enrich.equipment/enrich-calculated-boil-size"
+              "brewtility.enrich.equipment/enrich-equipment"
+              "brewtility.enrich.equipment/enrich-equipment-wrapper"]}
   [{:keys [batch-size top-up-water trub-chiller-loss boil-time evap-rate]}]
   (if (every? number? [batch-size top-up-water trub-chiller-loss boil-time evap-rate])
     (let [starting-water      (- batch-size top-up-water trub-chiller-loss)

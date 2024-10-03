@@ -40,19 +40,16 @@
 ;;
 (def srm-1
   "An SRM of 1 mapped to an RGBa color code."
-
   "rgba(255,230,153,1)")
 
 
 (def srm-2
   "An SRM of 2 mapped to an RGBa color code."
-
   "rgba(255,216,120,1)")
 
 
 (def srm-3
   "An SRM of 3 mapped to an RGBa color code."
-
   "rgba(255,202,90,1)")
 
 

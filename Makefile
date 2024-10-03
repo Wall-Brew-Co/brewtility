@@ -1,4 +1,4 @@
-
+.PHONY: version/major version/minor version/patch changelog/render tests/all tests/clojure tests/clojurescript
 MAKE = make
 
 # These are the locations of the directories we'll use
@@ -37,3 +37,15 @@ version/patch:
 changelog/render:
 	$(info Rendering CHANGELOG...)
 	@ lein sealog render
+
+tests/all: tests/clojure tests/clojurescript
+
+tests/clojure:
+	$(info Running Clojure tests...)
+	@ lein test
+
+tests/clojurescript:
+	$(info Running ClojureScript tests...)
+	@ lein clean
+	@ lein cljsbuild once test
+	@ lein doo once

@@ -1,14 +1,26 @@
 (ns brewtility.precision-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.precision :as sut]))
+  (:require [brewtility.precision :as sut]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest approximates?-test
   (testing "Ensure approximation works as expected"
-    (is (true? (sut/approximates? 100 100 0.00001)))
-    (is (true? (sut/approximates? 100 90 0.1)))
-    (is (false? (sut/approximates? 100 90 0.01)))))
+    (is (true? (sut/approximates? 100 100 0.00001))
+        "Equal numbers will always return true")
+    (is (let [r-int (rand-int 1000000)]
+          (true? (sut/approximates? r-int r-int 0.00001)))
+        "Equal integers will always return true")
+    (is (true? (sut/approximates? 100 90 0.1))
+        "90 is within 10% of 100")
+    (is (false? (sut/approximates? 100 90 0.01))
+        "90 is not within 1% of 100"))
+  (testing "Ensure that non-numeric values throw an exception"
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate using non-numeric values" (sut/approximates? nil 100 0.00001))))
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate using non-numeric values" (sut/approximates? 100 nil 0.00001))))
+    #?(:clj (is (thrown-with-msg? Exception #"Cannot approximate using non-numeric values" (sut/approximates? 100 100 nil))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate using non-numeric values" (sut/approximates? nil 100 0.00001))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate using non-numeric values" (sut/approximates? 100 nil 0.00001))))
+    #?(:cljs (is (thrown-with-msg? js/Error #"Cannot approximate using non-numeric values" (sut/approximates? 100 100 nil))))))
 
 
 (deftest ->1dp-test
