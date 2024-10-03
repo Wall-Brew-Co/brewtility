@@ -1,10 +1,9 @@
 (ns brewtility.enrich.yeasts-test
   (:require [brewtility.data.yeasts :as yeasts.data]
             [brewtility.enrich.yeasts :as yeasts.enrich]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.yeasts :as yeasts.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
+            [common-beer-format.yeasts :as yeasts.format]))
 
 
 (deftest enrich-amount-is-weight-test

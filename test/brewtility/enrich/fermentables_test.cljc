@@ -1,10 +1,9 @@
 (ns brewtility.enrich.fermentables-test
   (:require [brewtility.data.fermentables :as fermentable.data]
             [brewtility.enrich.fermentables :as fermentable.enrich]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.fermentables :as fermentable.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
+            [common-beer-format.fermentables :as fermentable.format]))
 
 
 (deftest enrich-add-after-boil-test

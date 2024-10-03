@@ -1,10 +1,9 @@
 (ns brewtility.enrich.equipment-test
   (:require [brewtility.data.equipment :as equipment.data]
             [brewtility.enrich.equipment :as equipment.enrich]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.equipment :as equipment.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
+            [common-beer-format.equipment :as equipment.format]))
 
 
 (deftest enrich-calculated-boil-size-tests
