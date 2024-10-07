@@ -10,7 +10,7 @@
   :pom-addition [:organization
                  [:name "Wall Brew Co."]
                  [:url "https://wallbrew.com"]]
-  :dependencies [[com.wallbrew/spoon "1.3.0"]
+  :dependencies [[com.wallbrew/spoon "1.4.0"]
                  [org.clojure/clojure "1.12.0"]
                  [org.clojure/clojurescript "1.11.132" :scope "provided"]]
 
