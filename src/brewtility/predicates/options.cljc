@@ -12,3 +12,4 @@
 
    This option is inherited from the functions in `com.wallbrew.spoon.string`"
   :uppercase?)
+

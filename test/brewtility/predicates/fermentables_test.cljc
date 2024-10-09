@@ -1,8 +1,8 @@
 (ns brewtility.predicates.fermentables-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
-            [brewtility.data.fermentables :as fermentables]
+  (:require [brewtility.data.fermentables :as fermentables]
             [brewtility.predicates.fermentables :as sut]
+            [brewtility.predicates.options :as options]
+            [clojure.test :refer [deftest is testing]]
             [common-beer-format.fermentables :as cbf-fermentables]))
 
 
@@ -20,7 +20,7 @@
 (deftest grain?-test
   (testing "A fermentable with a `:type` matching `\"grain\" returns true"
     (is (true? (sut/grain? (assoc fermentables/sample-fermentable :type "Grain"))))
-    (is (true? (sut/grain? (assoc fermentables/sample-fermentable :type cbf-fermentables/grain)))))
+    (is (true? (sut/grain? (assoc fermentables/sample-fermentable :type cbf-fermentables/grain) {options/uppercase? true}))))
   (testing "A fermentable with a `:type` not matching `\"grain\" returns false"
     (is (false? (sut/grain? (assoc fermentables/sample-fermentable :type "extract"))))
     (is (false? (sut/grain? (assoc fermentables/sample-fermentable :type cbf-fermentables/extract))))
@@ -78,7 +78,7 @@
     (is (false? (sut/extract? (assoc fermentables/sample-fermentable :type "Dry EXTract"))))
     (is (false? (sut/extract? (assoc fermentables/sample-fermentable :type "adJunct"))))
     (is (false? (sut/extract? (assoc fermentables/sample-fermentable :type cbf-fermentables/sugar))))
-    (is (false? (sut/extract? (assoc fermentables/sample-fermentable :type cbf-fermentables/grain))))
+    (is (false? (sut/extract? (assoc fermentables/sample-fermentable :type cbf-fermentables/grain) {options/uppercase? true})))
     (is (false? (sut/extract? (assoc fermentables/sample-fermentable :type cbf-fermentables/dry-extract))))
     (is (false? (sut/extract? (assoc fermentables/sample-fermentable :type cbf-fermentables/adjunct)))))
   (testing "This is a function from a fermentable to a boolean"
@@ -121,12 +121,13 @@
 (deftest adjunct?-test
   (testing "A fermentable with a `:type` matching `\"grain\" returns true"
     (is (true? (sut/adjunct? (assoc fermentables/sample-fermentable :type "adJunct"))))
+    (is (true? (sut/adjunct? (assoc fermentables/sample-fermentable :type "adJunct") {options/uppercase? true})))
     (is (true? (sut/adjunct? (assoc fermentables/sample-fermentable :type cbf-fermentables/adjunct)))))
   (testing "A fermentable with a `:type` not matching `\"grain\" returns false"
     (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type "sugar"))))
     (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type "GRAIN"))))
     (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type "EXTract"))))
-    (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type "DRY EXTRact"))))
+    (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type "DRY EXTRact") {options/uppercase? true})))
     (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type cbf-fermentables/sugar))))
     (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type cbf-fermentables/grain))))
     (is (false? (sut/adjunct? (assoc fermentables/sample-fermentable :type cbf-fermentables/extract))))
@@ -141,3 +142,4 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Fermentable :type"
                    (sut/adjunct? (dissoc fermentables/sample-fermentable :type)))))))
+

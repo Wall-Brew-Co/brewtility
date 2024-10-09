@@ -1,8 +1,7 @@
 (ns brewtility.predicates.yeasts-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
-            [brewtility.data.yeasts :as yeasts]
+  (:require [brewtility.data.yeasts :as yeasts]
             [brewtility.predicates.yeasts :as sut]
+            [clojure.test :refer [deftest is testing]]
             [common-beer-format.yeasts :as cbf-yeasts]))
 
 

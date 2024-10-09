@@ -13,6 +13,13 @@
             [brewtility.data.styles]
             [brewtility.data.waters]
             [brewtility.data.yeasts]
+            [brewtility.enrich.equipment-test]
+            [brewtility.enrich.fermentables-test]
+            [brewtility.enrich.hops-test]
+            [brewtility.enrich.mash-test]
+            [brewtility.enrich.miscs-test]
+            [brewtility.enrich.waters-test]
+            [brewtility.enrich.yeasts-test]
             [brewtility.precision-test]
             [brewtility.predicates.equipment-test]
             [brewtility.predicates.fermentables-test]
@@ -40,6 +47,7 @@
             [doo.runner :refer-macros [doo-tests]]))
 
 
+;; This should match the :require above (aside from doo itself)
 (doo-tests 'brewtility.calculations-test
            'brewtility.data.equipment
            'brewtility.data.fermentables
@@ -50,6 +58,13 @@
            'brewtility.data.styles
            'brewtility.data.waters
            'brewtility.data.yeasts
+           'brewtility.enrich.equipment-test
+           'brewtility.enrich.fermentables-test
+           'brewtility.enrich.hops-test
+           'brewtility.enrich.mash-test
+           'brewtility.enrich.miscs-test
+           'brewtility.enrich.waters-test
+           'brewtility.enrich.yeasts-test
            'brewtility.precision-test
            'brewtility.predicates.equipment-test
            'brewtility.predicates.fermentables-test
@@ -66,6 +81,8 @@
            'brewtility.units.bitterness-test
            'brewtility.units.carbonation-test
            'brewtility.units-test
+           'brewtility.units.bitterness-test
+           'brewtility.units.carbonation-test
            'brewtility.units.color-test
            'brewtility.units.pressure-test
            'brewtility.units.specific-gravity-test

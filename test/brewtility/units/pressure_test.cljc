@@ -1,9 +1,8 @@
 (ns brewtility.units.pressure-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.precision :as precision]
+  (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]
-            [brewtility.units.pressure :as sut]))
+            [brewtility.units.pressure :as sut]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest conversion-test

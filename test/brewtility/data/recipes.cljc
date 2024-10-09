@@ -10,11 +10,9 @@
             [brewtility.data.yeasts :as yeasts]
             [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [com.wallbrew.spoon.string :as spoon.str]
-            [common-beer-format.recipes :as recipes.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            [common-beer-format.recipes :as recipes.format]))
 
 
 (defn random-ibu-method
@@ -24,8 +22,7 @@
   []
   (-> recipes.format/ibu-method-types
       vec
-      rand-nth
-      spoon.str/->sporadic-case))
+      rand-nth))
 
 
 (deftest ibu-method-test
@@ -35,24 +32,24 @@
 
 (def sample-recipe
   "A hard-coded sample recipe for static unit tests"
-  (merge {:age                 24.0
-          :age-temp            17.0
-          :batch-size          18.93
-          :boil-size           20.82
-          :boil-time           60.0
-          :brewer              "Brad Smith"
-          :carbonation         2.1
-          :carbonation-used    "Kegged"
-          :date                "3 Jan 04"
-          :efficiency          72.0
-          :fermentation-stages 2
-          :fg                  1.012
-          :name                "Dry Stout"
-          :og                  1.036
-          :rating              "41"
-          :taste-notes         "Nice dry Irish stout with a warm body but low starting gravity much like the famous drafts."
-          :type                "All Grain"
-          :version             1}
+  (merge {recipes.format/age                 24.0
+          recipes.format/age-temp            17.0
+          recipes.format/batch-size          18.93
+          recipes.format/boil-size           20.82
+          recipes.format/boil-time           60.0
+          recipes.format/brewer              "Brad Smith"
+          recipes.format/carbonation         2.1
+          recipes.format/carbonation-used    "Kegged"
+          recipes.format/date                "3 Jan 04"
+          recipes.format/efficiency          72.0
+          recipes.format/fermentation-stages 2
+          recipes.format/fg                  1.012
+          recipes.format/name                "Dry Stout"
+          recipes.format/og                  1.036
+          recipes.format/taste-rating        "41"
+          recipes.format/taste-notes         "Nice dry Irish stout with a warm body but low starting gravity much like the famous drafts."
+          recipes.format/type                recipes.format/all-grain
+          recipes.format/version             1}
          equipment/sample-equipment-wrapper
          fermentables/sample-fermentables-wrapper
          hops/sample-hops-wrapper
@@ -65,7 +62,7 @@
 
 (def sample-recipe-wrapper
   "A hard-coded sample recipe-wrapper for static unit tests"
-  {:recipe sample-recipe})
+  {recipes.format/recipe sample-recipe})
 
 
 (def sample-recipes
@@ -75,7 +72,7 @@
 
 (def sample-recipes-wrapper
   "A hard-coded sample recipes-wrapper for static unit tests"
-  {:recipes sample-recipes})
+  {recipes.format/recipes sample-recipes})
 
 
 (defn generate-recipe
@@ -114,7 +111,7 @@
   (testing "Since this library assumes common-beer-format data is utilized, make sure static test data conforms"
     (is (spoon.spec/test-valid? ::recipes.format/recipe sample-recipe)
         "Static test data should conform to common-beer-format.recipe/recipe")
-    (is (spoon.spec/test-valid? ::recipes.format/recipe (assoc sample-recipe :ibu-method (random-ibu-method)))
+    (is (spoon.spec/test-valid? ::recipes.format/recipe (assoc sample-recipe recipes.format/ibu-method (random-ibu-method)))
         "Static test data should conform to common-beer-format.recipe/recipe, even with a random IBU method")
     (is (spoon.spec/test-valid? ::recipes.format/recipe-wrapper sample-recipe-wrapper)
         "Static test data should conform to common-beer-format.recipe/recipe-wrapper")
@@ -128,7 +125,7 @@
   (testing "Since this library assumes common-beer-format data is utilized, make sure generative test data conforms"
     (is (spoon.spec/test-valid? ::recipes.format/recipe (generate-recipe))
         "Generative test data should conform to common-beer-format.recipe/recipe")
-    (is (spoon.spec/test-valid? ::recipes.format/recipe (assoc (generate-recipe) :ibu-method (random-ibu-method)))
+    (is (spoon.spec/test-valid? ::recipes.format/recipe (assoc (generate-recipe) recipes.format/ibu-method (random-ibu-method)))
         "Generative test data should conform to common-beer-format.recipe/recipe, even with a random IBU method")
     (is (spoon.spec/test-valid? ::recipes.format/recipe-wrapper (generate-recipe-wrapper))
         "Generative test data should conform to common-beer-format.recipe/recipe-wrapper")

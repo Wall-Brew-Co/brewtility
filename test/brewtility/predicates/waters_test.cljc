@@ -1,8 +1,7 @@
 (ns brewtility.predicates.waters-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
-            [brewtility.data.waters :as waters]
+  (:require [brewtility.data.waters :as waters]
             [brewtility.predicates.waters :as sut]
+            [clojure.test :refer [deftest is testing]]
             [common-beer-format.waters :as cbf-waters]))
 
 
