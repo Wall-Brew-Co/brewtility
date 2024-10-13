@@ -1,10 +1,9 @@
 (ns brewtility.units-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.precision :as precision]
+  (:require [brewtility.precision :as precision]
             [brewtility.units :as sut]
             [brewtility.units.color :as color]
-            [brewtility.units.options :as options]))
+            [brewtility.units.options :as options]
+            [clojure.test :refer [deftest is testing]]))
 
 
 ;; These test cases existed prior to version 2.0.0 of brewtility.units

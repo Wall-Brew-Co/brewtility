@@ -19,7 +19,7 @@
       - [milliliter](https://en.wikipedia.org/wiki/Millilitre)
       - [millilitre](https://en.wikipedia.org/wiki/Millilitre)
       - [tablespoon](https://en.wikipedia.org/wiki/Tablespoon)
-      - [teaspoon](https://en.wikipedia.org/wiki/Teaspoon))"
+      - [teaspoon](https://en.wikipedia.org/wiki/Teaspoon)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]))

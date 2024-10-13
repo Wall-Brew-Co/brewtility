@@ -2,8 +2,7 @@
   (:require [brewtility.precision :as precision]
             [brewtility.units.color :as sut]
             [brewtility.units.options :as options]
-            #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])))
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest srm->rgba-test

@@ -1,8 +1,7 @@
 (ns brewtility.predicates.mash-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
-            [brewtility.data.mash :as mash]
+  (:require [brewtility.data.mash :as mash]
             [brewtility.predicates.mash :as sut]
+            [clojure.test :refer [deftest is testing]]
             [common-beer-format.mash :as cbf-mash]))
 
 

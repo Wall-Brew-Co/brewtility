@@ -2,10 +2,9 @@
   "Namespace for static and generative test data for `common-beer-format.equipment/equipment` and `common-beer-format.equipment/equipment-wrapper`"
   (:require [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.equipment :as equipment.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            [common-beer-format.equipment :as equipment.format]))
 
 
 (def sample-equipment

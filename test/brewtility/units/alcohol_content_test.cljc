@@ -1,9 +1,8 @@
 (ns brewtility.units.alcohol-content-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.precision :as precision]
+  (:require [brewtility.precision :as precision]
             [brewtility.units.alcohol-content :as sut]
-            [brewtility.units.options :as options]))
+            [brewtility.units.options :as options]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest conversion-test
