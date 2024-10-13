@@ -10,7 +10,7 @@
       - [bar](https://en.wikipedia.org/wiki/Bar_(unit))
       - [atmosphere](https://en.wikipedia.org/wiki/Atmosphere_(unit))
       - [torr](https://en.wikipedia.org/wiki/Torr)
-      - [psi](https://en.wikipedia.org/wiki/Pound-force_per_square_inch"
+      - [psi](https://en.wikipedia.org/wiki/Pound-force_per_square_inch)"
   {:added "2.0"}
   (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]))

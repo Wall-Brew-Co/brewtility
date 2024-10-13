@@ -1,7 +1,6 @@
 (ns brewtility.predicates.impl-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])
-            [brewtility.predicates.impl :as sut]))
+  (:require [brewtility.predicates.impl :as sut]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest fetch-or-throw!-test

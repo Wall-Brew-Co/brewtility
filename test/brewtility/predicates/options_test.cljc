@@ -1,7 +1,6 @@
 (ns brewtility.predicates.options-test
-  (:require #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.predicates.options :as sut]))
+  (:require [brewtility.predicates.options :as sut]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest type-test

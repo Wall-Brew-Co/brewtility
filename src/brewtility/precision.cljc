@@ -1,7 +1,6 @@
 (ns brewtility.precision
   "Namespace for handling numeric precision, rounding, and approximation."
-  {:added "1.0"}
-  #?(:clj (:import [java.math RoundingMode])))
+  {:added "1.0"})
 
 
 (defn approximates?
@@ -25,7 +24,7 @@
    :see-also ["->1dp" "->2dp" "->3dp"]}
   [^double x ^long num-decimals]
   (double
-    #?(:clj (.setScale (bigdec x) num-decimals RoundingMode/HALF_UP)
+    #?(:clj (.setScale (bigdec x) num-decimals java.math.RoundingMode/HALF_UP)
        :cljs (let [denominator (Math/pow 10.0 (double num-decimals))
                    numerator   (Math/round (* x denominator))]
                (/ numerator denominator)))))

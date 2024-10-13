@@ -1,9 +1,8 @@
 (ns brewtility.units.specific-gravity-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.precision :as precision]
+  (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]
-            [brewtility.units.specific-gravity :as sut]))
+            [brewtility.units.specific-gravity :as sut]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest conversion-test

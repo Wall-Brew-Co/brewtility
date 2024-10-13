@@ -1,9 +1,8 @@
 (ns brewtility.units.volume-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.precision :as precision]
+  (:require [brewtility.precision :as precision]
             [brewtility.units.options :as options]
-            [brewtility.units.volume :as sut]))
+            [brewtility.units.volume :as sut]
+            [clojure.test :refer [deftest is testing]]))
 
 
 (deftest code-type-tests

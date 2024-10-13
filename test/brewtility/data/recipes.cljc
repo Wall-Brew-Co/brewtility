@@ -10,11 +10,10 @@
             [brewtility.data.yeasts :as yeasts]
             [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [com.wallbrew.spoon.string :as spoon.str]
-            [common-beer-format.recipes :as recipes.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            [common-beer-format.recipes :as recipes.format]))
 
 
 (defn random-ibu-method

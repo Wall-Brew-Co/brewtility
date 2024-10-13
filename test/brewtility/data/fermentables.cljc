@@ -2,10 +2,9 @@
   "Namespace for static and generative test data for `common-beer-format.fermentables/*` specs."
   (:require [clojure.spec.alpha :as spec]
             [clojure.spec.gen.alpha :as gen]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.fermentables :as fermentables.format]
-            #? (:clj  [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test    :refer-macros [deftest is testing]])))
+            [common-beer-format.fermentables :as fermentables.format]))
 
 
 (def sample-fermentable

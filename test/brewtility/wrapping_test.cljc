@@ -1,7 +1,5 @@
 (ns brewtility.wrapping-test
-  (:require #? (:clj [clojure.test :refer [deftest is testing]])
-            #? (:cljs [cljs.test :refer-macros [deftest is testing]])
-            [brewtility.data.equipment :as equipment.data]
+  (:require [brewtility.data.equipment :as equipment.data]
             [brewtility.data.fermentables :as fermentables.data]
             [brewtility.data.hops :as hops.data]
             [brewtility.data.mash :as mash.data]
@@ -11,6 +9,7 @@
             [brewtility.data.waters :as waters.data]
             [brewtility.data.yeasts :as yeasts.data]
             [brewtility.wrapping :as sut]
+            [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
             [common-beer-format.equipment :as equipment.format]
             [common-beer-format.fermentables :as fermentables.format]
