@@ -1,7 +1,6 @@
 # brewtility
 
 [![Clojars Project](https://img.shields.io/clojars/v/com.wallbrew/brewtility.svg)](https://clojars.org/com.wallbrew/brewtility)
-![Clojure and ClojureScript CI](https://github.com/Wall-Brew-Co/brewtility/workflows/Clojure%20and%20ClojureScript%20CI/badge.svg)
 [![cljdoc badge](https://cljdoc.org/badge/com.wallbrew/brewtility)](https://cljdoc.org/d/com.wallbrew/brewtility/CURRENT)
 [![GitHub](https://img.shields.io/github/license/Wall-Brew-Co/brewtility)](https://github.com/Wall-Brew-Co/brewtility/blob/master/LICENSE)
 [![Twitter Follow](https://img.shields.io/twitter/follow/WallBrew?style=social)](https://twitter.com/WallBrew)
