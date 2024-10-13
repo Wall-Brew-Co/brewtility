@@ -4,7 +4,7 @@
             [clojure.spec.gen.alpha :as gen]
             [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [common-beer-format.styles :as style.format]))
+            [common-beer-format.styles :as styles.format]))
 
 
 (def sample-style

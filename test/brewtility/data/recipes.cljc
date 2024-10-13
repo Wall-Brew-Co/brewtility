@@ -12,7 +12,6 @@
             [clojure.spec.gen.alpha :as gen]
             [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-            [com.wallbrew.spoon.string :as spoon.str]
             [common-beer-format.recipes :as recipes.format]))
 
 

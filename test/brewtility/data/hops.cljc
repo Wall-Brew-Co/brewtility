@@ -4,10 +4,6 @@
             [clojure.spec.gen.alpha :as gen]
             [clojure.test :refer [deftest is testing]]
             [com.wallbrew.spoon.spec :as spoon.spec]
-<<<<<<< HEAD
-            [com.wallbrew.spoon.string :as spoon.str]
-=======
->>>>>>> 84be03d (Clean up old CLJS pattern)
             [common-beer-format.hops :as hops.format]))
 
 
