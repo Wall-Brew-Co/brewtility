@@ -1,7 +1,10 @@
 (ns brewtility.predicates.hops-test
   (:require [brewtility.data.hops :as hops]
             [brewtility.predicates.hops :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.hops :as cbf-hops]))
 
 
@@ -267,3 +270,93 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Hop :form"
                    (sut/leaf? (dissoc hops/sample-hop :form)))))))
+
+
+(declare boil?-boolean
+         dry-hop?-boolean
+         mash?-boolean
+         first-wort?-boolean
+         aroma-use?-boolean
+         aroma-type?-boolean
+         bittering?-boolean
+         both?-boolean
+         pellet?-boolean
+         plug?-boolean
+         leaf?-boolean)
+
+
+(check.test/defspec
+  boil?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/boil? hop))))
+
+
+(check.test/defspec
+  dry-hop?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/dry-hop? hop))))
+
+
+(check.test/defspec
+  mash?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/mash? hop))))
+
+
+(check.test/defspec
+  first-wort?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/first-wort? hop))))
+
+
+(check.test/defspec
+  aroma-use?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/aroma-use? hop))))
+
+
+(check.test/defspec
+  aroma-type?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/aroma-type? (assoc hop cbf-hops/type (hops/random-hop-type))))))
+
+
+(check.test/defspec
+  bittering?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/bittering? (assoc hop cbf-hops/type (hops/random-hop-type))))))
+
+
+(check.test/defspec
+  both?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/both? (assoc hop cbf-hops/type (hops/random-hop-type))))))
+
+
+(check.test/defspec
+  pellet?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/pellet? (assoc hop cbf-hops/form (hops/random-hop-form))))))
+
+
+(check.test/defspec
+  plug?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/plug? (assoc hop cbf-hops/form (hops/random-hop-form))))))
+
+
+(check.test/defspec
+  leaf?-boolean 100
+  (prop/for-all
+    [hop (spec/gen ::cbf-hops/hop)]
+    (boolean? (sut/leaf? (assoc hop cbf-hops/form (hops/random-hop-form))))))

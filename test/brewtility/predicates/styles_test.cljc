@@ -1,7 +1,10 @@
 (ns brewtility.predicates.styles-test
   (:require [brewtility.data.styles :as styles]
             [brewtility.predicates.styles :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.styles :as cbf-styles]))
 
 
@@ -169,3 +172,53 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Style :type"
                    (sut/cider? (dissoc styles/sample-style :type)))))))
+
+
+(declare lager?-boolean
+         ale?-boolean
+         mead?-boolean
+         wheat?-boolean
+         mixed?-boolean
+         cider?-boolean)
+
+
+(check.test/defspec
+  lager?-boolean 100
+  (prop/for-all
+    [style (spec/gen ::cbf-styles/style)]
+    (boolean? (sut/lager? style))))
+
+
+(check.test/defspec
+  ale?-boolean 100
+  (prop/for-all
+    [style (spec/gen ::cbf-styles/style)]
+    (boolean? (sut/ale? style))))
+
+
+(check.test/defspec
+  mead?-boolean 100
+  (prop/for-all
+    [style (spec/gen ::cbf-styles/style)]
+    (boolean? (sut/mead? style))))
+
+
+(check.test/defspec
+  wheat?-boolean 100
+  (prop/for-all
+    [style (spec/gen ::cbf-styles/style)]
+    (boolean? (sut/wheat? style))))
+
+
+(check.test/defspec
+  mixed?-boolean 100
+  (prop/for-all
+    [style (spec/gen ::cbf-styles/style)]
+    (boolean? (sut/mixed? style))))
+
+
+(check.test/defspec
+  cider?-boolean 100
+  (prop/for-all
+    [style (spec/gen ::cbf-styles/style)]
+    (boolean? (sut/cider? style))))

@@ -1,5 +1,8 @@
 (ns brewtility.enrich.impl-test
   (:require [brewtility.enrich.impl :as sut]
+            [brewtility.units.alcohol-content :as alcohol-content]
+            [brewtility.units.bitterness :as bitterness]
+            [brewtility.units.carbonation :as carbonation]
             [brewtility.units.color :as color]
             [brewtility.units.options :as options]
             [brewtility.units.pressure :as pressure]
@@ -16,7 +19,10 @@
 (deftest code-type-tests
   (testing "Ensure maps used for options are structurally correct"
     (testing "Defaults by System - These must be maps from Systems of Measure to their corresponding measurements."
-      (is (= (sort (keys sut/default-color-by-system))
+      (is (= (sort (keys sut/default-alcohol-content-by-system))
+             (sort (keys sut/default-bitterness-by-system))
+             (sort (keys sut/default-carbonation-by-system))
+             (sort (keys sut/default-color-by-system))
              (sort (keys sut/default-pressure-by-system))
              (sort (keys sut/default-specific-gravity-by-system))
              (sort (keys sut/default-temperature-by-system))
@@ -24,23 +30,51 @@
              (sort (keys sut/default-volume-by-system))
              (sort (keys sut/default-weight-by-system))
              (sort (vec options/systems-of-measure))))
-      (is (set/subset? (set (vals sut/default-color-by-system)) color/measurements))
-      (is (set/subset? (set (vals sut/default-pressure-by-system)) pressure/measurements))
-      (is (set/subset? (set (vals sut/default-specific-gravity-by-system)) specific-gravity/measurements))
-      (is (set/subset? (set (vals sut/default-temperature-by-system)) temperature/measurements))
-      (is (set/subset? (set (vals sut/default-time-by-system)) time/measurements))
-      (is (set/subset? (set (vals sut/default-volume-by-system)) volume/measurements))
-      (is (set/subset? (set (vals sut/default-weight-by-system)) weight/measurements))))
+      (is (set/subset? (set (vals sut/default-alcohol-content-by-system))
+                       alcohol-content/measurements))
+      (is (set/subset? (set (vals sut/default-bitterness-by-system))
+                       bitterness/measurements))
+      (is (set/subset? (set (vals sut/default-carbonation-by-system))
+                       carbonation/measurements))
+      (is (set/subset? (set (vals sut/default-color-by-system))
+                       color/measurements))
+      (is (set/subset? (set (vals sut/default-pressure-by-system))
+                       pressure/measurements))
+      (is (set/subset? (set (vals sut/default-specific-gravity-by-system))
+                       specific-gravity/measurements))
+      (is (set/subset? (set (vals sut/default-temperature-by-system))
+                       temperature/measurements))
+      (is (set/subset? (set (vals sut/default-time-by-system))
+                       time/measurements))
+      (is (set/subset? (set (vals sut/default-volume-by-system))
+                       volume/measurements))
+      (is (set/subset? (set (vals sut/default-weight-by-system))
+                       weight/measurements))))
   (testing "BeerXML Standard Units"
     (is (= (sort (keys sut/beer-xml-standard-units))
            (sort (vec options/measurement-types))))
-    (is (contains? color/measurements (get sut/beer-xml-standard-units options/color)))
-    (is (contains? pressure/measurements (get sut/beer-xml-standard-units options/pressure)))
-    (is (contains? specific-gravity/measurements (get sut/beer-xml-standard-units options/specific-gravity)))
-    (is (contains? temperature/measurements (get sut/beer-xml-standard-units options/temperature)))
-    (is (contains? time/measurements (get sut/beer-xml-standard-units options/time)))
-    (is (contains? volume/measurements (get sut/beer-xml-standard-units options/volume)))
-    (is (contains? weight/measurements (get sut/beer-xml-standard-units options/weight))))
+    (is (contains? alcohol-content/measurements
+                   (get sut/beer-xml-standard-units options/alcohol-content)))
+    (is (contains? bitterness/measurements
+                   (get sut/beer-xml-standard-units options/bitterness)))
+    (is (contains? carbonation/measurements
+                   (get sut/beer-xml-standard-units options/carbonation)))
+    (is (contains? color/measurements
+                   (get sut/beer-xml-standard-units options/color)))
+    (is (contains? color/measurements
+                   (get sut/beer-xml-standard-units options/color)))
+    (is (contains? pressure/measurements
+                   (get sut/beer-xml-standard-units options/pressure)))
+    (is (contains? specific-gravity/measurements
+                   (get sut/beer-xml-standard-units options/specific-gravity)))
+    (is (contains? temperature/measurements
+                   (get sut/beer-xml-standard-units options/temperature)))
+    (is (contains? time/measurements
+                   (get sut/beer-xml-standard-units options/time)))
+    (is (contains? volume/measurements
+                   (get sut/beer-xml-standard-units options/volume)))
+    (is (contains? weight/measurements
+                   (get sut/beer-xml-standard-units options/weight))))
   (testing "Option keys"
     (is (keyword? sut/value-key))
     (is (keyword? sut/low-value-key))

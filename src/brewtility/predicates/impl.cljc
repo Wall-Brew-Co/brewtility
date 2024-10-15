@@ -6,6 +6,10 @@
    :no-doc              true
    :implementation-only true})
 
+(def ^:private not-found
+  "A sentinel value to indicate that a key was not found in a map."
+  ::not-found)
+
 
 (defn fetch-or-throw!
   "A helper function to fetch a value from a map or throw an exception.
@@ -16,8 +20,8 @@
   {:added  "1.5"
    :no-doc true}
   [map' key' message]
-  (let [value (get map' key' ::not-found)]
-    (if (and (some? value) (not= value ::not-found))
+  (let [value (get map' key' not-found)]
+    (if (and (some? value) (not= value not-found))
       value
       (throw (ex-info message {:error-type     :missing-key
                                :missing-key    key'

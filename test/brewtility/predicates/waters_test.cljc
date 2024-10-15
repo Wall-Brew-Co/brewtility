@@ -1,7 +1,10 @@
 (ns brewtility.predicates.waters-test
   (:require [brewtility.data.waters :as waters]
             [brewtility.predicates.waters :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.waters :as cbf-waters]))
 
 
@@ -76,3 +79,29 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Water `:ph`"
                    (sut/neutral? (dissoc waters/sample-water :ph)))))))
+
+
+(declare acidic?-boolean
+         alkaline?-boolean
+         neutral?-boolean)
+
+
+(check.test/defspec
+  acidic?-boolean 100
+  (prop/for-all
+    [water (spec/gen ::cbf-waters/water)]
+    (boolean? (sut/acidic? (assoc water cbf-waters/ph (waters/random-ph))))))
+
+
+(check.test/defspec
+  alkaline?-boolean 100
+  (prop/for-all
+    [water (spec/gen ::cbf-waters/water)]
+    (boolean? (sut/alkaline? (assoc water cbf-waters/ph (waters/random-ph))))))
+
+
+(check.test/defspec
+  neutral?-boolean 100
+  (prop/for-all
+    [water (spec/gen ::cbf-waters/water)]
+    (boolean? (sut/neutral? (assoc water cbf-waters/ph (waters/random-ph))))))

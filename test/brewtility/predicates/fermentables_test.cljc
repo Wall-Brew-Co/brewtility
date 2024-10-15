@@ -1,7 +1,10 @@
 (ns brewtility.predicates.fermentables-test
   (:require [brewtility.data.fermentables :as fermentables]
             [brewtility.predicates.fermentables :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.fermentables :as cbf-fermentables]))
 
 
@@ -141,3 +144,52 @@
                                    #"Fermentable :type"
                    (sut/adjunct? (dissoc fermentables/sample-fermentable :type)))))))
 
+
+(declare add-after-boil?-boolean
+         grain?-boolean
+         sugar?-boolean
+         extract?-boolean
+         dry-extract?-boolean
+         adjunct?-boolean)
+
+
+(check.test/defspec
+  add-after-boil?-boolean 100
+  (prop/for-all
+    [fermentable (spec/gen ::cbf-fermentables/fermentable)]
+    (boolean? (sut/add-after-boil? fermentable))))
+
+
+(check.test/defspec
+  grain?-boolean 100
+  (prop/for-all
+    [fermentable (spec/gen ::cbf-fermentables/fermentable)]
+    (boolean? (sut/grain? fermentable))))
+
+
+(check.test/defspec
+  sugar?-boolean 100
+  (prop/for-all
+    [fermentable (spec/gen ::cbf-fermentables/fermentable)]
+    (boolean? (sut/sugar? fermentable))))
+
+
+(check.test/defspec
+  extract?-boolean 100
+  (prop/for-all
+    [fermentable (spec/gen ::cbf-fermentables/fermentable)]
+    (boolean? (sut/extract? fermentable))))
+
+
+(check.test/defspec
+  dry-extract?-boolean 100
+  (prop/for-all
+    [fermentable (spec/gen ::cbf-fermentables/fermentable)]
+    (boolean? (sut/dry-extract? fermentable))))
+
+
+(check.test/defspec
+  adjunct?-boolean 100
+  (prop/for-all
+    [fermentable (spec/gen ::cbf-fermentables/fermentable)]
+    (boolean? (sut/adjunct? fermentable))))

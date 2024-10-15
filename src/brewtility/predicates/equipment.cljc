@@ -12,10 +12,11 @@
 
 
 (defn calculated-boil-volume?
-  "A predicate function to determine if an [equipment](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/equipment.cljc) had its boil volume calculated.
+  "A predicate function to determine if an [equipment](https://github.com/Wall-Brew-Co/common-beer-format/blob/master/src/common_beer_format/equipment.cljc) had its boil volume calculated or explicitly set by the user.
    In the BeerXML spec, this behavior is implicitly falsey.
    Therefore, if the :calc-boil-volume field is not present, this function will explicitly return false."
-  {:added "1.5"}
+  {:added    "1.5"
+   :arglists '([equipment] [equipment opts])}
   ([equipment] (calculated-boil-volume? equipment {}))
   ;; Added to match the arity of the other predicate functions
 

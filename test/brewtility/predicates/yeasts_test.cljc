@@ -1,7 +1,10 @@
 (ns brewtility.predicates.yeasts-test
   (:require [brewtility.data.yeasts :as yeasts]
             [brewtility.predicates.yeasts :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.yeasts :as cbf-yeasts]))
 
 
@@ -324,3 +327,109 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Yeast :flocculation"
                    (sut/very-high-flocculation? (dissoc yeasts/sample-yeast :flocculation)))))))
+
+
+(declare lager?-boolean
+         ale?-boolean
+         wheat?-boolean
+         wine?-boolean
+         champagne?-boolean
+         liquid?-boolean
+         dry?-boolean
+         slant?-boolean
+         culture?-boolean
+         low-flocculation?-boolean
+         medium-flocculation?-boolean
+         high-flocculation?-boolean
+         very-high-flocculation?-boolean)
+
+
+(check.test/defspec
+  lager?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/lager? yeast))))
+
+
+(check.test/defspec
+  ale?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/ale? yeast))))
+
+
+(check.test/defspec
+  wheat?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/wheat? yeast))))
+
+
+(check.test/defspec
+  wine?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/wine? yeast))))
+
+
+(check.test/defspec
+  champagne?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/champagne? yeast))))
+
+
+(check.test/defspec
+  liquid?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/liquid? yeast))))
+
+
+(check.test/defspec
+  dry?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/dry? yeast))))
+
+
+(check.test/defspec
+  slant?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/slant? yeast))))
+
+
+(check.test/defspec
+  culture?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/culture? yeast))))
+
+
+(check.test/defspec
+  low-flocculation?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/low-flocculation? (assoc yeast cbf-yeasts/flocculation (yeasts/random-flocculation))))))
+
+
+(check.test/defspec
+  medium-flocculation?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/medium-flocculation? (assoc yeast cbf-yeasts/flocculation (yeasts/random-flocculation))))))
+
+
+(check.test/defspec
+  high-flocculation?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/high-flocculation? (assoc yeast cbf-yeasts/flocculation (yeasts/random-flocculation))))))
+
+
+(check.test/defspec
+  very-high-flocculation?-boolean 100
+  (prop/for-all
+    [yeast (spec/gen ::cbf-yeasts/yeast)]
+    (boolean? (sut/very-high-flocculation? (assoc yeast cbf-yeasts/flocculation (yeasts/random-flocculation))))))

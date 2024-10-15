@@ -12,7 +12,7 @@
                     ["Units of Measure" {:file "doc/api/units.md"}]
                     ["Wrapping" {:file "doc/api/wrapping.md"}]]
                    ["Adopted Patterns" {}
-                    ["Enricher Pattern" {:file "doc/clojure/patterns/enricher-pattern.md"}]
+                    ["Enricher Pattern" {:file "doc/clojure/patterns/enricher_pattern.md"}]
                     ["Symbolic Keywords" {:file "doc/clojure/patterns/symbolic_keywords.md"}]]
                    ["Developing" {}
                     ["Required Tooling" {:file "doc/developing/001_required_tooling.md"}]
