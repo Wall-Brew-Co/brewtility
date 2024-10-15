@@ -78,8 +78,8 @@
   ([equipment] (enrich-display-boil-size equipment {}))
   ([equipment
     {:keys [boil-size-target-units boil-size-precision boil-size-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :boil-size
                          impl/display-key             :display-boil-size
                          impl/fine-grain-target-units boil-size-target-units
@@ -113,8 +113,8 @@
   ([equipment] (enrich-display-batch-size equipment {}))
   ([equipment
     {:keys [batch-size-target-units batch-size-precision batch-size-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :batch-size
                          impl/display-key             :display-batch-size
                          impl/fine-grain-target-units batch-size-target-units
@@ -148,8 +148,8 @@
   ([equipment] (enrich-display-tun-volume equipment {}))
   ([equipment
     {:keys [tun-volume-target-units tun-volume-precision tun-volume-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :tun-volume
                          impl/display-key             :display-tun-volume
                          impl/fine-grain-target-units tun-volume-target-units
@@ -183,8 +183,8 @@
   ([equipment] (enrich-display-tun-weight equipment {}))
   ([equipment
     {:keys [tun-weight-target-units tun-weight-precision tun-weight-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :tun-weight
                          impl/display-key             :display-tun-weight
                          impl/fine-grain-target-units tun-weight-target-units
@@ -218,8 +218,8 @@
   ([equipment] (enrich-display-top-up-water equipment {}))
   ([equipment
     {:keys [top-up-water-target-units top-up-water-precision top-up-water-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :top-up-water
                          impl/display-key             :display-top-up-water
                          impl/fine-grain-target-units top-up-water-target-units
@@ -253,8 +253,8 @@
   ([equipment] (enrich-display-trub-chiller-loss equipment {}))
   ([equipment
     {:keys [trub-chiller-loss-target-units trub-chiller-loss-precision trub-chiller-loss-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :trub-chiller-loss
                          impl/display-key             :display-trub-chiller-loss
                          impl/fine-grain-target-units trub-chiller-loss-target-units
@@ -288,8 +288,8 @@
   ([equipment] (enrich-display-lauter-deadspace equipment {}))
   ([equipment
     {:keys [lauter-deadspace-target-units lauter-deadspace-precision lauter-deadspace-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :lauter-deadspace
                          impl/display-key             :display-lauter-deadspace
                          impl/fine-grain-target-units lauter-deadspace-target-units
@@ -323,8 +323,8 @@
   ([equipment] (enrich-display-top-up-kettle equipment {}))
   ([equipment
     {:keys [top-up-kettle-target-units top-up-kettle-precision top-up-kettle-suffix]
-     :as   opts}]
-   (let [options (merge opts
+     :as   options}]
+   (let [options (merge options
                         {impl/value-key               :top-up-kettle
                          impl/display-key             :display-top-up-kettle
                          impl/fine-grain-target-units top-up-kettle-target-units
@@ -399,17 +399,17 @@
   ([equipment]
    (enrich-equipment equipment {}))
 
-  ([equipment opts]
+  ([equipment options]
    (-> equipment
-       (enrich-calculated-boil-size opts)
-       (enrich-display-boil-size opts)
-       (enrich-display-batch-size opts)
-       (enrich-display-tun-volume opts)
-       (enrich-display-tun-weight opts)
-       (enrich-display-top-up-water opts)
-       (enrich-display-trub-chiller-loss opts)
-       (enrich-display-lauter-deadspace opts)
-       (enrich-display-top-up-kettle opts))))
+       (enrich-calculated-boil-size options)
+       (enrich-display-boil-size options)
+       (enrich-display-batch-size options)
+       (enrich-display-tun-volume options)
+       (enrich-display-tun-weight options)
+       (enrich-display-top-up-water options)
+       (enrich-display-trub-chiller-loss options)
+       (enrich-display-lauter-deadspace options)
+       (enrich-display-top-up-kettle options))))
 
 
 (defn enrich-equipment-wrapper
@@ -478,5 +478,5 @@
   ([equipment-wrapper]
    (enrich-equipment-wrapper equipment-wrapper {}))
 
-  ([equipment-wrapper opts]
-   (update equipment-wrapper :equipment enrich-equipment opts)))
+  ([equipment-wrapper options]
+   (update equipment-wrapper :equipment enrich-equipment options)))

@@ -57,12 +57,12 @@
   ([misc {:keys [misc-time-target-units
                  misc-time-precision
                  misc-time-suffix]
-          :as   opts}]
-   (let [options (merge opts {impl/value-key               :time
-                              impl/display-key             :display-time
-                              impl/fine-grain-target-units misc-time-target-units
-                              impl/fine-grain-precision    misc-time-precision
-                              impl/fine-grain-suffix       misc-time-suffix})]
+          :as   options}]
+   (let [options (merge options {impl/value-key               :time
+                                 impl/display-key             :display-time
+                                 impl/fine-grain-target-units misc-time-target-units
+                                 impl/fine-grain-precision    misc-time-precision
+                                 impl/fine-grain-suffix       misc-time-suffix})]
      (impl/enrich-displayable-units options/time misc options))))
 
 
@@ -97,12 +97,12 @@
   ([misc {:keys [misc-amount-target-units
                  misc-amount-precision
                  misc-amount-suffix]
-          :as   opts}]
-   (let [options (merge opts {impl/value-key               :amount
-                              impl/display-key             :display-amount
-                              impl/fine-grain-target-units misc-amount-target-units
-                              impl/fine-grain-precision    misc-amount-precision
-                              impl/fine-grain-suffix       misc-amount-suffix})]
+          :as   options}]
+   (let [options (merge options {impl/value-key               :amount
+                                 impl/display-key             :display-amount
+                                 impl/fine-grain-target-units misc-amount-target-units
+                                 impl/fine-grain-precision    misc-amount-precision
+                                 impl/fine-grain-suffix       misc-amount-suffix})]
      (if (:amount-is-weight misc)
        (impl/enrich-displayable-units options/weight misc options)
        (impl/enrich-displayable-units options/volume misc options)))))
@@ -141,11 +141,11 @@
               "enrich-miscs"
               "enrich-miscs-wrapper"]}
   ([misc] (enrich-misc misc {}))
-  ([misc opts]
+  ([misc options]
    (-> misc
-       (enrich-amount-is-weight opts)
-       (enrich-display-amount opts)
-       (enrich-display-time opts))))
+       (enrich-amount-is-weight options)
+       (enrich-display-amount options)
+       (enrich-display-time options))))
 
 
 (defn enrich-misc-wrapper
@@ -181,8 +181,8 @@
               "enrich-miscs"
               "enrich-miscs-wrapper"]}
   ([misc] (enrich-misc-wrapper misc {}))
-  ([misc opts]
-   (update misc :misc enrich-misc opts)))
+  ([misc options]
+   (update misc :misc enrich-misc options)))
 
 
 (defn enrich-miscs
@@ -218,8 +218,8 @@
               "enrich-misc"
               "enrich-miscs-wrapper"]}
   ([miscs] (enrich-miscs miscs {}))
-  ([miscs opts]
-   (map #(enrich-misc-wrapper % opts) miscs)))
+  ([miscs options]
+   (map #(enrich-misc-wrapper % options) miscs)))
 
 
 (defn enrich-miscs-wrapper
@@ -255,6 +255,5 @@
               "enrich-miscs"
               "enrich-misc"]}
   ([miscs] (enrich-miscs-wrapper miscs {}))
-  ([miscs opts]
-   (update miscs :miscs enrich-miscs opts)))
-
+  ([miscs options]
+   (update miscs :miscs enrich-miscs options)))

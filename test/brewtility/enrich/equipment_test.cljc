@@ -482,4 +482,3 @@
                                 (equipment.enrich/enrich-equipment-wrapper
                                   (assoc-in (equipment.data/generate-equipment-wrapper) [:equipment :calc-boil-volume] false)))
         "enrich-equipment-wrapper is a function to and from common-beer-format.equipment/equipment-wrapper")))
-

@@ -24,7 +24,7 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-add-after-boil fermentable {}))
-  ([fermentable _opts] ; Used to maintain signature parity with enricher pattern functions
+  ([fermentable _options] ; Used to maintain signature parity with enricher pattern functions
    (if (contains? fermentable :add-after-boil)
      fermentable
      (assoc fermentable :add-after-boil false))))
@@ -47,9 +47,9 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-coarse-fine-diff fermentable {}))
-  ([fermentable opts]
-   (if (or (fermentables.predicate/grain? fermentable opts)
-           (fermentables.predicate/adjunct? fermentable opts))
+  ([fermentable options]
+   (if (or (fermentables.predicate/grain? fermentable options)
+           (fermentables.predicate/adjunct? fermentable options))
      fermentable
      (dissoc fermentable :coarse-fine-diff))))
 
@@ -71,9 +71,9 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-moisture fermentable {}))
-  ([fermentable opts]
-   (if (or (fermentables.predicate/grain? fermentable opts)
-           (fermentables.predicate/adjunct? fermentable opts))
+  ([fermentable options]
+   (if (or (fermentables.predicate/grain? fermentable options)
+           (fermentables.predicate/adjunct? fermentable options))
      fermentable
      (dissoc fermentable :moisture))))
 
@@ -95,9 +95,9 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-diastatic-power fermentable {}))
-  ([fermentable opts]
-   (if (or (fermentables.predicate/grain? fermentable opts)
-           (fermentables.predicate/adjunct? fermentable opts))
+  ([fermentable options]
+   (if (or (fermentables.predicate/grain? fermentable options)
+           (fermentables.predicate/adjunct? fermentable options))
      fermentable
      (dissoc fermentable :diastatic-power))))
 
@@ -119,9 +119,9 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-protein fermentable {}))
-  ([fermentable opts]
-   (if (or (fermentables.predicate/grain? fermentable opts)
-           (fermentables.predicate/adjunct? fermentable opts))
+  ([fermentable options]
+   (if (or (fermentables.predicate/grain? fermentable options)
+           (fermentables.predicate/adjunct? fermentable options))
      fermentable
      (dissoc fermentable :protein))))
 
@@ -143,9 +143,9 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-recommend-mash fermentable {}))
-  ([fermentable opts]
-   (if (or (fermentables.predicate/grain? fermentable opts)
-           (fermentables.predicate/adjunct? fermentable opts))
+  ([fermentable options]
+   (if (or (fermentables.predicate/grain? fermentable options)
+           (fermentables.predicate/adjunct? fermentable options))
      (assoc fermentable :recommend-mash true)
      (assoc fermentable :recommend-mash false))))
 
@@ -166,8 +166,8 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-ibu-gallons-per-pound fermentable {}))
-  ([fermentable opts]
-   (if (fermentables.predicate/extract? fermentable opts)
+  ([fermentable options]
+   (if (fermentables.predicate/extract? fermentable options)
      fermentable
      (dissoc fermentable :ibu-gal-per-lb))))
 
@@ -203,18 +203,18 @@
                         fermentable-color-target-units
                         fermentable-color-precision
                         fermentable-color-suffix]
-                 :as   opts}]
-   (let [source-color-system (if (fermentables.predicate/grain? fermentable opts)
+                 :as   options}]
+   (let [source-color-system (if (fermentables.predicate/grain? fermentable options)
                                options/lovibond
                                options/srm)
          color-system        (or color-system source-color-system)
-         opts                (merge opts {:source-units                source-color-system
-                                          impl/value-key               :color
-                                          impl/display-key             :display-color
-                                          impl/fine-grain-target-units (or fermentable-color-target-units color-system)
-                                          impl/fine-grain-precision    fermentable-color-precision
-                                          impl/fine-grain-suffix       fermentable-color-suffix})]
-     (impl/enrich-displayable-units options/color fermentable opts))))
+         options                (merge options {:source-units                source-color-system
+                                                impl/value-key               :color
+                                                impl/display-key             :display-color
+                                                impl/fine-grain-target-units (or fermentable-color-target-units color-system)
+                                                impl/fine-grain-precision    fermentable-color-precision
+                                                impl/fine-grain-suffix       fermentable-color-suffix})]
+     (impl/enrich-displayable-units options/color fermentable options))))
 
 
 (defn enrich-display-amount
@@ -247,12 +247,12 @@
   ([fermentable {:keys [fermentable-amount-target-units
                         fermentable-amount-precision
                         fermentable-amount-suffix]
-                 :as   opts}]
-   (let [options (merge opts {impl/value-key               :amount
-                              impl/display-key             :display-amount
-                              impl/fine-grain-target-units fermentable-amount-target-units
-                              impl/fine-grain-precision    fermentable-amount-precision
-                              impl/fine-grain-suffix       fermentable-amount-suffix})]
+                 :as   options}]
+   (let [options (merge options {impl/value-key               :amount
+                                 impl/display-key             :display-amount
+                                 impl/fine-grain-target-units fermentable-amount-target-units
+                                 impl/fine-grain-precision    fermentable-amount-precision
+                                 impl/fine-grain-suffix       fermentable-amount-suffix})]
      (impl/enrich-displayable-units options/weight fermentable options))))
 
 
@@ -301,17 +301,17 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-fermentable fermentable {}))
-  ([fermentable opts]
+  ([fermentable options]
    (-> fermentable
-       (enrich-add-after-boil opts)
-       (enrich-coarse-fine-diff opts)
-       (enrich-moisture opts)
-       (enrich-diastatic-power opts)
-       (enrich-protein opts)
-       (enrich-recommend-mash opts)
-       (enrich-ibu-gallons-per-pound opts)
-       (enrich-display-color opts)
-       (enrich-display-amount opts))))
+       (enrich-add-after-boil options)
+       (enrich-coarse-fine-diff options)
+       (enrich-moisture options)
+       (enrich-diastatic-power options)
+       (enrich-protein options)
+       (enrich-recommend-mash options)
+       (enrich-ibu-gallons-per-pound options)
+       (enrich-display-color options)
+       (enrich-display-amount options))))
 
 
 (defn enrich-fermentable-wrapper
@@ -359,8 +359,8 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentable] (enrich-fermentable-wrapper fermentable {}))
-  ([fermentable opts]
-   (update fermentable :fermentable enrich-fermentable opts)))
+  ([fermentable options]
+   (update fermentable :fermentable enrich-fermentable options)))
 
 
 (defn enrich-fermentables
@@ -408,8 +408,8 @@
               "enrich-fermentable"
               "enrich-fermentables-wrapper"]}
   ([fermentables] (enrich-fermentables fermentables {}))
-  ([fermentables opts]
-   (map #(enrich-fermentable-wrapper % opts) fermentables)))
+  ([fermentables options]
+   (map #(enrich-fermentable-wrapper % options) fermentables)))
 
 
 (defn enrich-fermentables-wrapper
@@ -457,5 +457,5 @@
               "enrich-fermentables"
               "enrich-fermentables-wrapper"]}
   ([fermentables] (enrich-fermentables-wrapper fermentables {}))
-  ([fermentables opts]
-   (update fermentables :fermentables enrich-fermentables opts)))
+  ([fermentables options]
+   (update fermentables :fermentables enrich-fermentables options)))

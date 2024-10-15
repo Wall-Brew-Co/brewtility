@@ -11,6 +11,24 @@ Additionally, this namespace may be used to render common display formats.
 
 The names of these systems and units are frequently used in code, and shorthand symbolic references to these names may be found in `brewtility.units.options`
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Basic Use](#basic-use)
+- [Supported Systems](#supported-systems)
+  - [Alcohol Content](#alcohol-content)
+  - [Bitterness](#bitterness)
+  - [Carbonation](#carbonation)
+  - [Color](#color)
+  - [Pressure](#pressure)
+  - [Specific Gravity](#specific-gravity)
+  - [Temperature](#temperature)
+  - [Time](#time)
+  - [Volume](#volume)
+  - [Weight](#weight)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Basic Use
 
 The majority of the functionality belongs to the functions `convert` and `display`.

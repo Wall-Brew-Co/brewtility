@@ -42,12 +42,12 @@
   ([style {:keys [style-display-og-min-target-units
                   style-display-og-min-precision
                   style-display-og-min-suffix]
-           :as opts}]
-   (let [options (merge opts {impl/value-key               :og-min
-                              impl/display-key             :display-og-min
-                              impl/fine-grain-target-units style-display-og-min-target-units
-                              impl/fine-grain-precision    style-display-og-min-precision
-                              impl/fine-grain-suffix       style-display-og-min-suffix})]
+           :as options}]
+   (let [options (merge options {impl/value-key               :og-min
+                                 impl/display-key             :display-og-min
+                                 impl/fine-grain-target-units style-display-og-min-target-units
+                                 impl/fine-grain-precision    style-display-og-min-precision
+                                 impl/fine-grain-suffix       style-display-og-min-suffix})]
      (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
@@ -80,12 +80,12 @@
   ([style {:keys [style-display-og-max-target-units
                   style-display-og-max-precision
                   style-display-og-max-suffix]
-           :as opts}]
-   (let [options (merge opts {impl/value-key               :og-max
-                              impl/display-key             :display-og-max
-                              impl/fine-grain-target-units style-display-og-max-target-units
-                              impl/fine-grain-precision    style-display-og-max-precision
-                              impl/fine-grain-suffix       style-display-og-max-suffix})]
+           :as options}]
+   (let [options (merge options {impl/value-key               :og-max
+                                 impl/display-key             :display-og-max
+                                 impl/fine-grain-target-units style-display-og-max-target-units
+                                 impl/fine-grain-precision    style-display-og-max-precision
+                                 impl/fine-grain-suffix       style-display-og-max-suffix})]
      (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
@@ -119,12 +119,12 @@
   ([style {:keys [style-display-fg-min-target-units
                   style-display-fg-min-precision
                   style-display-fg-min-suffix]
-           :as opts}]
-   (let [options (merge opts {impl/value-key               :fg-min
-                              impl/display-key             :display-fg-min
-                              impl/fine-grain-target-units style-display-fg-min-target-units
-                              impl/fine-grain-precision    style-display-fg-min-precision
-                              impl/fine-grain-suffix       style-display-fg-min-suffix})]
+           :as options}]
+   (let [options (merge options {impl/value-key               :fg-min
+                                 impl/display-key             :display-fg-min
+                                 impl/fine-grain-target-units style-display-fg-min-target-units
+                                 impl/fine-grain-precision    style-display-fg-min-precision
+                                 impl/fine-grain-suffix       style-display-fg-min-suffix})]
      (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
@@ -158,12 +158,12 @@
   ([style {:keys [style-display-fg-max-target-units
                   style-display-fg-max-precision
                   style-display-fg-max-suffix]
-           :as opts}]
-   (let [options (merge opts {impl/value-key               :fg-max
-                              impl/display-key             :display-fg-max
-                              impl/fine-grain-target-units style-display-fg-max-target-units
-                              impl/fine-grain-precision    style-display-fg-max-precision
-                              impl/fine-grain-suffix       style-display-fg-max-suffix})]
+           :as options}]
+   (let [options (merge options {impl/value-key               :fg-max
+                                 impl/display-key             :display-fg-max
+                                 impl/fine-grain-target-units style-display-fg-max-target-units
+                                 impl/fine-grain-precision    style-display-fg-max-precision
+                                 impl/fine-grain-suffix       style-display-fg-max-suffix})]
      (impl/enrich-displayable-units options/specific-gravity style options))))
 
 
@@ -198,12 +198,12 @@
                   style-display-color-min-target-units
                   style-display-color-min-precision
                   style-display-color-min-suffix]
-           :as opts}]
-   (let [options (merge opts {impl/value-key               :color-min
-                              impl/display-key             :display-color-min
-                              impl/fine-grain-target-units (or style-display-color-min-target-units color-system)
-                              impl/fine-grain-precision    style-display-color-min-precision
-                              impl/fine-grain-suffix       style-display-color-min-suffix})]
+           :as options}]
+   (let [options (merge options {impl/value-key               :color-min
+                                 impl/display-key             :display-color-min
+                                 impl/fine-grain-target-units (or style-display-color-min-target-units color-system)
+                                 impl/fine-grain-precision    style-display-color-min-precision
+                                 impl/fine-grain-suffix       style-display-color-min-suffix})]
      (impl/enrich-displayable-units options/color style options))))
 
 
@@ -238,12 +238,12 @@
                   style-display-color-max-target-units
                   style-display-color-max-precision
                   style-display-color-max-suffix]
-           :as opts}]
-   (let [options (merge opts {impl/value-key               :color-max
-                              impl/display-key             :display-color-max
-                              impl/fine-grain-target-units (or style-display-color-max-target-units color-system)
-                              impl/fine-grain-precision    style-display-color-max-precision
-                              impl/fine-grain-suffix       style-display-color-max-suffix})]
+           :as options}]
+   (let [options (merge options {impl/value-key               :color-max
+                                 impl/display-key             :display-color-max
+                                 impl/fine-grain-target-units (or style-display-color-max-target-units color-system)
+                                 impl/fine-grain-precision    style-display-color-max-precision
+                                 impl/fine-grain-suffix       style-display-color-max-suffix})]
      (impl/enrich-displayable-units options/color style options))))
 
 
@@ -276,13 +276,13 @@
   ([style {:keys [style-display-og-range-target-units
                   style-display-og-range-precision
                   style-display-og-range-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/low-value-key           :og-min
-                              impl/high-value-key          :og-max
-                              impl/display-key             :og-range
-                              impl/fine-grain-target-units style-display-og-range-target-units
-                              impl/fine-grain-precision    style-display-og-range-precision
-                              impl/fine-grain-suffix       style-display-og-range-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/low-value-key           :og-min
+                                 impl/high-value-key          :og-max
+                                 impl/display-key             :og-range
+                                 impl/fine-grain-target-units style-display-og-range-target-units
+                                 impl/fine-grain-precision    style-display-og-range-precision
+                                 impl/fine-grain-suffix       style-display-og-range-suffix})]
      (impl/enrich-displayable-range options/specific-gravity style options))))
 
 
@@ -315,13 +315,13 @@
   ([style {:keys [style-display-fg-range-target-units
                   style-display-fg-range-precision
                   style-display-fg-range-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/low-value-key           :fg-min
-                              impl/high-value-key          :fg-max
-                              impl/display-key             :fg-range
-                              impl/fine-grain-target-units style-display-fg-range-target-units
-                              impl/fine-grain-precision    style-display-fg-range-precision
-                              impl/fine-grain-suffix       style-display-fg-range-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/low-value-key           :fg-min
+                                 impl/high-value-key          :fg-max
+                                 impl/display-key             :fg-range
+                                 impl/fine-grain-target-units style-display-fg-range-target-units
+                                 impl/fine-grain-precision    style-display-fg-range-precision
+                                 impl/fine-grain-suffix       style-display-fg-range-suffix})]
      (impl/enrich-displayable-range options/specific-gravity style options))))
 
 
@@ -354,13 +354,13 @@
   ([style {:keys [style-display-ibu-range-target-units
                   style-display-ibu-range-precision
                   style-display-ibu-range-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/low-value-key           :ibu-min
-                              impl/high-value-key          :ibu-max
-                              impl/display-key             :ibu-range
-                              impl/fine-grain-target-units style-display-ibu-range-target-units
-                              impl/fine-grain-precision    style-display-ibu-range-precision
-                              impl/fine-grain-suffix       style-display-ibu-range-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/low-value-key           :ibu-min
+                                 impl/high-value-key          :ibu-max
+                                 impl/display-key             :ibu-range
+                                 impl/fine-grain-target-units style-display-ibu-range-target-units
+                                 impl/fine-grain-precision    style-display-ibu-range-precision
+                                 impl/fine-grain-suffix       style-display-ibu-range-suffix})]
      (impl/enrich-displayable-range options/bitterness style options))))
 
 
@@ -394,13 +394,13 @@
   ([style {:keys [style-display-color-range-target-units
                   style-display-color-range-precision
                   style-display-color-range-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/low-value-key           :color-min
-                              impl/high-value-key          :color-max
-                              impl/display-key             :color-range
-                              impl/fine-grain-target-units style-display-color-range-target-units
-                              impl/fine-grain-precision    style-display-color-range-precision
-                              impl/fine-grain-suffix       style-display-color-range-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/low-value-key           :color-min
+                                 impl/high-value-key          :color-max
+                                 impl/display-key             :color-range
+                                 impl/fine-grain-target-units style-display-color-range-target-units
+                                 impl/fine-grain-precision    style-display-color-range-precision
+                                 impl/fine-grain-suffix       style-display-color-range-suffix})]
      (impl/enrich-displayable-range options/color style options))))
 
 
@@ -436,13 +436,13 @@
   ([style {:keys [style-display-carbonation-range-target-units
                   style-display-carbonation-range-precision
                   style-display-carbonation-range-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/low-value-key           :carb-min
-                              impl/high-value-key          :carb-max
-                              impl/display-key             :carb-range
-                              impl/fine-grain-target-units style-display-carbonation-range-target-units
-                              impl/fine-grain-precision    style-display-carbonation-range-precision
-                              impl/fine-grain-suffix       style-display-carbonation-range-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/low-value-key           :carb-min
+                                 impl/high-value-key          :carb-max
+                                 impl/display-key             :carb-range
+                                 impl/fine-grain-target-units style-display-carbonation-range-target-units
+                                 impl/fine-grain-precision    style-display-carbonation-range-precision
+                                 impl/fine-grain-suffix       style-display-carbonation-range-suffix})]
      (if (and (:carb-min style) (:carb-max style))
        (impl/enrich-displayable-range options/carbonation style options)
        style))))
@@ -479,13 +479,13 @@
   ([style {:keys [style-display-abv-range-target-units
                   style-display-abv-range-precision
                   style-display-abv-range-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/low-value-key           :abv-min
-                              impl/high-value-key          :abv-max
-                              impl/display-key             :abv-range
-                              impl/fine-grain-target-units style-display-abv-range-target-units
-                              impl/fine-grain-precision    style-display-abv-range-precision
-                              impl/fine-grain-suffix       style-display-abv-range-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/low-value-key           :abv-min
+                                 impl/high-value-key          :abv-max
+                                 impl/display-key             :abv-range
+                                 impl/fine-grain-target-units style-display-abv-range-target-units
+                                 impl/fine-grain-precision    style-display-abv-range-precision
+                                 impl/fine-grain-suffix       style-display-abv-range-suffix})]
      (if (and (:abv-min style) (:abv-max style))
        (impl/enrich-displayable-range options/abv style options)
        style))))

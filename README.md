@@ -9,6 +9,19 @@ A Clojure(Script) utility library for all of your brewing needs.
 
 This repository follows the guidelines and standards of the [Wall Brew Open Source Policy.](https://github.com/Wall-Brew-Co/open-source "Our open source guidelines")
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Installation](#installation)
+- [Expectations](#expectations)
+- [Provided Functionality](#provided-functionality)
+- [Common Patterns](#common-patterns)
+- [Testing](#testing)
+- [Contributors](#contributors)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Installation
 
 A deployed copy of the most recent version of [brewtility can be found on clojars.](https://clojars.org/com.wallbrew/brewtility)

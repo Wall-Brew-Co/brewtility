@@ -17,4 +17,4 @@
                    ["Developing" {}
                     ["Required Tooling" {:file "doc/developing/001_required_tooling.md"}]
                     ["Managed Tooling" {:file "doc/developing/002_managed_tooling.md"}]
-                    ["Required Tooling" {:file "doc/developing/003_contribution_guidelines.md"}]]]}
+                    ["Contribution Guidelines" {:file "doc/developing/003_contribution_guidelines.md"}]]]}

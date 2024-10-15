@@ -109,10 +109,10 @@
               "brewtility.units.weight/display"]}
   ([measurement-type measurement source-units]
    (display measurement-type measurement source-units {}))
-  ([measurement-type measurement source-units opts]
+  ([measurement-type measurement source-units options]
 
    (let [options (merge {options/precision options/default-precision
-                         options/suffix    options/short} opts)]
+                         options/suffix    options/short} options)]
      (case measurement-type
        :alcohol-content  (alcohol-content/display measurement source-units options)
        :bitterness       (bitterness/display measurement source-units options)

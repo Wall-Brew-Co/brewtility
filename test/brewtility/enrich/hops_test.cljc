@@ -56,4 +56,3 @@
     (is (spoon.spec/test-valid? ::hop.format/hops-wrapper
                                 (hop.enrich/enrich-hops-wrapper (hop.data/generate-hops-wrapper)))
         "enrich-hops-wrapper is a function to and from common-beer-format.hopspec/hops-wrapper")))
-

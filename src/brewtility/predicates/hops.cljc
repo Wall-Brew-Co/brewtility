@@ -25,15 +25,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["dry-hop?"
               "mash?"
               "first-wort?"
               "aroma?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (boil? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-use (impl/fetch-or-throw! hop :use "Hop :use is required to determine if it is added during the boil.")]
-     (spoon.string/same-text? "boil" hop-use opts))))
+     (spoon.string/same-text? "boil" hop-use options))))
 
 
 (defn dry-hop?
@@ -43,15 +44,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["boil?"
               "mash?"
               "first-wort?"
               "aroma?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (dry-hop? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-use (impl/fetch-or-throw! hop :use "Hop :use is required to determine if it is added as a dry hop.")]
-     (spoon.string/same-text? "dry hop" hop-use opts))))
+     (spoon.string/same-text? "dry hop" hop-use options))))
 
 
 (defn mash?
@@ -61,15 +63,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["boil?"
               "dry-hop?"
               "first-wort?"
               "aroma?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (mash? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-use (impl/fetch-or-throw! hop :use "Hop :use is required to determine if it is added in the mash.")]
-     (spoon.string/same-text? "mash" hop-use opts))))
+     (spoon.string/same-text? "mash" hop-use options))))
 
 
 (defn first-wort?
@@ -79,15 +82,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["boil?"
               "dry-hop?"
               "mash?"
               "aroma?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (first-wort? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-use (impl/fetch-or-throw! hop :use "Hop :use is required to determine if it is added to the wort")]
-     (spoon.string/same-text? "first wort" hop-use opts))))
+     (spoon.string/same-text? "first wort" hop-use options))))
 
 
 (defn aroma-use?
@@ -97,15 +101,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["boil?"
               "dry-hop?"
               "mash?"
               "first-wort?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (aroma-use? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-use (impl/fetch-or-throw! hop :use "Hop :use is required to determine if it is added at the end of the boil.")]
-     (spoon.string/same-text? "aroma" hop-use opts))))
+     (spoon.string/same-text? "aroma" hop-use options))))
 
 
 ;;
@@ -119,13 +124,14 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["bittering?"
               "both?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (aroma-type? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-type (impl/fetch-or-throw! hop :type "Hop :type is required to determine if it is added for aroma.")]
-     (spoon.string/same-text? "aroma" hop-type opts))))
+     (spoon.string/same-text? "aroma" hop-type options))))
 
 
 (defn bittering?
@@ -135,13 +141,14 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["aroma-type?"
               "both?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (bittering? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-type (impl/fetch-or-throw! hop :type "Hop :type is required to determine if it is added for bitterness.")]
-     (spoon.string/same-text? "bittering" hop-type opts))))
+     (spoon.string/same-text? "bittering" hop-type options))))
 
 
 (defn both?
@@ -150,13 +157,14 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["aroma-type?"
               "bittering?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (both? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-type (impl/fetch-or-throw! hop :type "Hop :type is required to determine if it is added for both bitterness and aroma.")]
-     (spoon.string/same-text? "both" hop-type opts))))
+     (spoon.string/same-text? "both" hop-type options))))
 
 
 ;;
@@ -170,13 +178,14 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["plug?"
               "leaf?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (pellet? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-form (impl/fetch-or-throw! hop :form "Hop :form is required to determine if it is a compressed pellet.")]
-     (spoon.string/same-text? "pellet" hop-form opts))))
+     (spoon.string/same-text? "pellet" hop-form options))))
 
 
 (defn plug?
@@ -185,13 +194,14 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["pellet?"
               "leaf?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (plug? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-form (impl/fetch-or-throw! hop :form "Hop :form is required to determine if it is a compressed whole hop.")]
-     (spoon.string/same-text? "plug" hop-form opts))))
+     (spoon.string/same-text? "plug" hop-form options))))
 
 
 (defn leaf?
@@ -200,10 +210,11 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([hop] [hop {:keys [uppercase?]}])
    :see-also ["pellet?"
               "plug?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([hop] (leaf? hop {}))
-  ([hop opts]
+  ([hop options]
    (let [hop-form (impl/fetch-or-throw! hop :form "Hop :form is required to determine if it is a whole hop cone.")]
-     (spoon.string/same-text? "leaf" hop-form opts))))
+     (spoon.string/same-text? "leaf" hop-form options))))

@@ -45,12 +45,12 @@
   ([mash-step {:keys [display-temperature-target-units
                       display-temperature-precision
                       display-temperature-suffix]
-               :as   opts}]
-   (let [options (merge opts {impl/value-key               :step-temp
-                              impl/display-key             :display-step-temp
-                              impl/fine-grain-target-units display-temperature-target-units
-                              impl/fine-grain-precision    display-temperature-precision
-                              impl/fine-grain-suffix       display-temperature-suffix})]
+               :as   options}]
+   (let [options (merge options {impl/value-key               :step-temp
+                                 impl/display-key             :display-step-temp
+                                 impl/fine-grain-target-units display-temperature-target-units
+                                 impl/fine-grain-precision    display-temperature-precision
+                                 impl/fine-grain-suffix       display-temperature-suffix})]
      (impl/enrich-displayable-units options/temperature mash-step options))))
 
 
@@ -86,12 +86,12 @@
   ([mash-step {:keys [display-infuse-amount-target-units
                       display-infuse-amount-precision
                       display-infuse-amount-suffix]
-               :as   opts}]
-   (let [options (merge opts {impl/value-key               :infuse-amount
-                              impl/display-key             :display-infuse-amt
-                              impl/fine-grain-target-units display-infuse-amount-target-units
-                              impl/fine-grain-precision    display-infuse-amount-precision
-                              impl/fine-grain-suffix       display-infuse-amount-suffix})]
+               :as   options}]
+   (let [options (merge options {impl/value-key               :infuse-amount
+                                 impl/display-key             :display-infuse-amt
+                                 impl/fine-grain-target-units display-infuse-amount-target-units
+                                 impl/fine-grain-precision    display-infuse-amount-precision
+                                 impl/fine-grain-suffix       display-infuse-amount-suffix})]
      (impl/enrich-displayable-units options/volume mash-step options))))
 
 
@@ -129,10 +129,10 @@
               "enrich-mash"
               "enrich-mash-wrapper"]}
   ([mash-step] (enrich-mash-step mash-step {}))
-  ([mash-step opts]
+  ([mash-step options]
    (-> mash-step
-       (enrich-display-step-temperature opts)
-       (enrich-display-infuse-amount opts))))
+       (enrich-display-step-temperature options)
+       (enrich-display-infuse-amount options))))
 
 
 (defn enrich-mash-step-wrapper
@@ -169,8 +169,8 @@
               "enrich-mash"
               "enrich-mash-wrapper"]}
   ([mash-step] (enrich-mash-step-wrapper mash-step {}))
-  ([mash-step opts]
-   (update mash-step :mash-step enrich-mash-step opts)))
+  ([mash-step options]
+   (update mash-step :mash-step enrich-mash-step options)))
 
 
 (defn enrich-mash-steps
@@ -207,8 +207,8 @@
               "enrich-mash"
               "enrich-mash-wrapper"]}
   ([mash-steps] (enrich-mash-steps mash-steps {}))
-  ([mash-steps opts]
-   (map #(enrich-mash-step-wrapper % opts) mash-steps)))
+  ([mash-steps options]
+   (map #(enrich-mash-step-wrapper % options) mash-steps)))
 
 
 (defn enrich-mash-steps-wrapper
@@ -245,8 +245,8 @@
               "enrich-mash"
               "enrich-mash-wrapper"]}
   ([mash] (enrich-mash-steps-wrapper mash {}))
-  ([mash opts]
-   (update mash :mash-steps enrich-mash-steps opts)))
+  ([mash options]
+   (update mash :mash-steps enrich-mash-steps options)))
 
 
 (defn enrich-display-grain-temperature
@@ -277,12 +277,12 @@
   ([mash {:keys [display-grain-temperature-target-units
                  display-grain-temperature-precision
                  display-grain-temperature-suffix]
-          :as   opts}]
-   (let [options (merge opts {impl/value-key               :grain-temp
-                              impl/display-key             :display-grain-temp
-                              impl/fine-grain-target-units display-grain-temperature-target-units
-                              impl/fine-grain-precision    display-grain-temperature-precision
-                              impl/fine-grain-suffix       display-grain-temperature-suffix})]
+          :as   options}]
+   (let [options (merge options {impl/value-key               :grain-temp
+                                 impl/display-key             :display-grain-temp
+                                 impl/fine-grain-target-units display-grain-temperature-target-units
+                                 impl/fine-grain-precision    display-grain-temperature-precision
+                                 impl/fine-grain-suffix       display-grain-temperature-suffix})]
      (impl/enrich-displayable-units options/temperature mash options))))
 
 
@@ -314,12 +314,12 @@
   ([mash {:keys [display-tun-temperature-target-units
                  display-tun-temperature-precision
                  display-tun-temperature-suffix]
-          :as   opts}]
-   (let [options (merge opts {impl/value-key               :tun-temp
-                              impl/display-key             :display-tun-temp
-                              impl/fine-grain-target-units display-tun-temperature-target-units
-                              impl/fine-grain-precision    display-tun-temperature-precision
-                              impl/fine-grain-suffix       display-tun-temperature-suffix})]
+          :as   options}]
+   (let [options (merge options {impl/value-key               :tun-temp
+                                 impl/display-key             :display-tun-temp
+                                 impl/fine-grain-target-units display-tun-temperature-target-units
+                                 impl/fine-grain-precision    display-tun-temperature-precision
+                                 impl/fine-grain-suffix       display-tun-temperature-suffix})]
      (impl/enrich-displayable-units options/temperature mash options))))
 
 
@@ -351,12 +351,12 @@
   ([mash {:keys [display-sparge-temperature-target-units
                  display-sparge-temperature-precision
                  display-sparge-temperature-suffix]
-          :as   opts}]
-   (let [options (merge opts {impl/value-key               :sparge-temp
-                              impl/display-key             :display-sparge-temp
-                              impl/fine-grain-target-units display-sparge-temperature-target-units
-                              impl/fine-grain-precision    display-sparge-temperature-precision
-                              impl/fine-grain-suffix       display-sparge-temperature-suffix})]
+          :as   options}]
+   (let [options (merge options {impl/value-key               :sparge-temp
+                                 impl/display-key             :display-sparge-temp
+                                 impl/fine-grain-target-units display-sparge-temperature-target-units
+                                 impl/fine-grain-precision    display-sparge-temperature-precision
+                                 impl/fine-grain-suffix       display-sparge-temperature-suffix})]
      (impl/enrich-displayable-units options/temperature mash options))))
 
 
@@ -388,12 +388,12 @@
   ([mash {:keys [display-tun-weight-target-units
                  display-tun-weight-precision
                  display-tun-weight-suffix]
-          :as   opts}]
-   (let [options (merge opts {impl/value-key               :tun-weight
-                              impl/display-key             :display-tun-weight
-                              impl/fine-grain-target-units display-tun-weight-target-units
-                              impl/fine-grain-precision    display-tun-weight-precision
-                              impl/fine-grain-suffix       display-tun-weight-suffix})]
+          :as   options}]
+   (let [options (merge options {impl/value-key               :tun-weight
+                                 impl/display-key             :display-tun-weight
+                                 impl/fine-grain-target-units display-tun-weight-target-units
+                                 impl/fine-grain-precision    display-tun-weight-precision
+                                 impl/fine-grain-suffix       display-tun-weight-suffix})]
      (impl/enrich-displayable-units options/weight mash options))))
 
 
@@ -450,13 +450,13 @@
               "enrich-mash"
               "enrich-mash-wrapper"]}
   ([mash] (enrich-mash mash {}))
-  ([mash opts]
+  ([mash options]
    (-> mash
-       (enrich-mash-steps-wrapper opts)
-       (enrich-display-grain-temperature opts)
-       (enrich-display-tun-temperature opts)
-       (enrich-display-sparge-temperature opts)
-       (enrich-display-tun-weight opts))))
+       (enrich-mash-steps-wrapper options)
+       (enrich-display-grain-temperature options)
+       (enrich-display-tun-temperature options)
+       (enrich-display-sparge-temperature options)
+       (enrich-display-tun-weight options))))
 
 
 (defn enrich-mash-wrapper
@@ -512,5 +512,5 @@
               "enrich-mash"
               "enrich-mash-wrapper"]}
   ([mash] (enrich-mash-wrapper mash {}))
-  ([mash opts]
-   (update mash :mash enrich-mash opts)))
+  ([mash options]
+   (update mash :mash enrich-mash options)))

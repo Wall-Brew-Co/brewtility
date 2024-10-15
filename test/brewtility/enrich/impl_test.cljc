@@ -545,17 +545,17 @@
                      options/precision         2
                      options/suffix            options/full}
         error-regex #"Invalid enrichment options for ->displayable-units:"]
-    (testing "Ensure parse-enrich-displayable-color-opts returns valid opts"
+    (testing "Ensure parse-enrich-displayable-color-opts returns valid options"
       (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/color valid-opts))
-          "Valid opts are returned unchanged"))
-    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
+          "Valid options are returned unchanged"))
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid options with static keys"
       (let [valid-opts-w-keys {:target-units             options/lovibond
                                :source-units             options/srm
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/color valid-opts-w-keys))
-            "Valid opts are returned unchanged with static keys")))
+            "Valid options are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/color (dissoc valid-opts :target-units)))))
@@ -583,17 +583,17 @@
                      options/precision         2
                      options/suffix            options/full}
         error-regex #"Invalid enrichment options for ->displayable-units:"]
-    (testing "Ensure parse-enrich-displayable-pressure-opts returns valid opts"
+    (testing "Ensure parse-enrich-displayable-pressure-opts returns valid options"
       (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/pressure valid-opts))
-          "Valid opts are returned unchanged"))
-    (testing "Ensure parse-enrich-displayable-pressure-opts returns valid opts with static keys"
+          "Valid options are returned unchanged"))
+    (testing "Ensure parse-enrich-displayable-pressure-opts returns valid options with static keys"
       (let [valid-opts-w-keys {:target-units             options/psi
                                :source-units             options/kilopascal
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/pressure valid-opts-w-keys))
-            "Valid opts are returned unchanged with static keys")))
+            "Valid options are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/pressure (dissoc valid-opts :target-units)))))
@@ -621,17 +621,17 @@
                      options/precision         2
                      options/suffix            options/full}
         error-regex #"Invalid enrichment options for ->displayable-units:"]
-    (testing "Ensure parse-enrich-displayable-specific-gravity-opts returns valid opts"
+    (testing "Ensure parse-enrich-displayable-specific-gravity-opts returns valid options"
       (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/specific-gravity valid-opts))
-          "Valid opts are returned unchanged"))
-    (testing "Ensure parse-enrich-displayable-specific-gravity-opts returns valid opts with static keys"
+          "Valid options are returned unchanged"))
+    (testing "Ensure parse-enrich-displayable-specific-gravity-opts returns valid options with static keys"
       (let [valid-opts-w-keys {:target-units             options/specific-gravity
                                :source-units             options/specific-gravity
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/specific-gravity valid-opts-w-keys))
-            "Valid opts are returned unchanged with static keys")))
+            "Valid options are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/specific-gravity (dissoc valid-opts :target-units)))))
@@ -659,17 +659,17 @@
                      options/precision         2
                      options/suffix            options/full}
         error-regex #"Invalid enrichment options for ->displayable-units:"]
-    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts"
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid options"
       (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/temperature valid-opts))
-          "Valid opts are returned unchanged"))
-    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
+          "Valid options are returned unchanged"))
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid options with static keys"
       (let [valid-opts-w-keys {:target-units             options/c
                                :source-units             options/c
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/temperature valid-opts-w-keys))
-            "Valid opts are returned unchanged with static keys")))
+            "Valid options are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/temperature (dissoc valid-opts :target-units)))))
@@ -697,17 +697,17 @@
                      options/precision         2
                      options/suffix            options/full}
         error-regex #"Invalid enrichment options for ->displayable-units:"]
-    (testing "Ensure parse-enrich-displayable-time-opts returns valid opts"
+    (testing "Ensure parse-enrich-displayable-time-opts returns valid options"
       (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/time valid-opts))
-          "Valid opts are returned unchanged"))
-    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
+          "Valid options are returned unchanged"))
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid options with static keys"
       (let [valid-opts-w-keys {:target-units             options/minute
                                :source-units             options/minute
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/time valid-opts-w-keys))
-            "Valid opts are returned unchanged with static keys")))
+            "Valid options are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/time (dissoc valid-opts :target-units)))))
@@ -735,17 +735,17 @@
                      options/precision         2
                      options/suffix            options/full}
         error-regex #"Invalid enrichment options for ->displayable-units:"]
-    (testing "Ensure parse-enrich-displayable-volume-opts returns valid opts"
+    (testing "Ensure parse-enrich-displayable-volume-opts returns valid options"
       (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/volume valid-opts))
-          "Valid opts are returned unchanged"))
-    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
+          "Valid options are returned unchanged"))
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid options with static keys"
       (let [valid-opts-w-keys {:target-units             options/teaspoon
                                :source-units             options/litre
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/volume valid-opts-w-keys))
-            "Valid opts are returned unchanged with static keys")))
+            "Valid options are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/volume (dissoc valid-opts :target-units)))))
@@ -773,17 +773,17 @@
                      options/precision         2
                      options/suffix            options/full}
         error-regex #"Invalid enrichment options for ->displayable-units:"]
-    (testing "Ensure parse-enrich-displayable-weight-opts returns valid opts"
+    (testing "Ensure parse-enrich-displayable-weight-opts returns valid options"
       (is (= valid-opts (sut/parse-enrich-displayable-units-opts options/weight valid-opts))
-          "Valid opts are returned unchanged"))
-    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid opts with static keys"
+          "Valid options are returned unchanged"))
+    (testing "Ensure parse-enrich-displayable-temperature-opts returns valid options with static keys"
       (let [valid-opts-w-keys {:target-units             options/pound
                                :source-units             options/kilogram
                                options/system-of-measure options/metric
                                options/precision         2
                                options/suffix            options/full}]
         (is (= valid-opts-w-keys (sut/parse-enrich-displayable-units-opts options/weight valid-opts-w-keys))
-            "Valid opts are returned unchanged with static keys")))
+            "Valid options are returned unchanged with static keys")))
     (testing "Missing any option throws an error"
       #?(:clj (is (thrown-with-msg? Exception error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts :target-units)))))
       #?(:cljs (is (thrown-with-msg? js/Error error-regex (sut/parse-enrich-displayable-units-opts options/weight (dissoc valid-opts :target-units)))))

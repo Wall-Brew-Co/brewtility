@@ -31,10 +31,12 @@
                                       [com.wallbrew/common-beer-data "1.6.0"]
                                       [com.wallbrew/common-beer-format "2.4.0"]
                                       [doo/doo "0.1.11"]
+                                      [mvxcvi/cljstyle "0.16.630"]
                                       [nrepl/nrepl "1.3.0"]]
                        :plugins      [[lein-doo/lein-doo "0.1.11"]]}}
 
-  :aliases {"test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
+  :aliases {"cljstyle"   ["run" "-m" "cljstyle.main" "fix"]
+            "test-build" ["do" "clean" ["cljsbuild" "once" "test"] ["doo" "once"] ["test"]]}
 
   :cljsbuild {:builds [{:id           "test"
                         :source-paths ["src" "test"]

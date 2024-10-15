@@ -161,9 +161,9 @@
    :no-doc   true}
   ([measurement-type source-value source-units target-units]
    (->displayable-units measurement-type source-value source-units target-units default-display-options))
-  ([measurement-type source-value source-units target-units opts]
+  ([measurement-type source-value source-units target-units options]
    (let [converted-value (units/convert measurement-type source-value source-units target-units)]
-     (units/display measurement-type converted-value target-units opts))))
+     (units/display measurement-type converted-value target-units options))))
 
 
 (defn target-unit-error
@@ -309,7 +309,7 @@
    :see-also ["enrich-displayable-units"]}
   [measurement-type
    {:keys [target-units source-units system-of-measure precision suffix]
-    :as   opts}]
+    :as   options}]
   (let [valid-source?    (valid-unit-for-measurement-type? measurement-type source-units)
         valid-target?    (valid-unit-for-measurement-type? measurement-type target-units)
         valid-system?    (contains? options/systems-of-measure system-of-measure)
@@ -322,7 +322,7 @@
                            (not valid-precision?) (precision-error measurement-type precision)
                            (not valid-suffix?)    (suffix-error measurement-type suffix))]
     (if (empty? errors)
-      opts
+      options
       (throw (ex-info "Invalid enrichment options for ->displayable-units: " errors)))))
 
 
@@ -384,14 +384,14 @@
           target-units            (or fine-grain-target-units system-of-measure-units)
           precision               (or fine-grain-precision precision)
           suffix                  (or fine-grain-suffix suffix)
-          opts                    (parse-enrich-displayable-units-opts
-                                    measurement-type
-                                    {:target-units             target-units
-                                     :source-units             source-units
-                                     options/system-of-measure system-of-measure
-                                     options/precision         precision
-                                     options/suffix            suffix})]
-      (assoc source-data display-key (->displayable-units measurement-type source-value source-units target-units opts)))
+          options                    (parse-enrich-displayable-units-opts
+                                       measurement-type
+                                       {:target-units             target-units
+                                        :source-units             source-units
+                                        options/system-of-measure system-of-measure
+                                        options/precision         precision
+                                        options/suffix            suffix})]
+      (assoc source-data display-key (->displayable-units measurement-type source-value source-units target-units options)))
     source-data))
 
 
@@ -432,15 +432,15 @@
             target-units            (or fine-grain-target-units system-of-measure-units)
             precision               (or fine-grain-precision precision)
             suffix                  (or fine-grain-suffix suffix)
-            opts                    (parse-enrich-displayable-units-opts
-                                      measurement-type
-                                      {:target-units             target-units
-                                       :source-units             source-units
-                                       options/system-of-measure system-of-measure
-                                       options/precision         precision
-                                       options/suffix            suffix})
+            options                    (parse-enrich-displayable-units-opts
+                                         measurement-type
+                                         {:target-units             target-units
+                                          :source-units             source-units
+                                          options/system-of-measure system-of-measure
+                                          options/precision         precision
+                                          options/suffix            suffix})
             converted-low-value     (units/convert measurement-type low-source-value source-units target-units {options/precision precision})
-            displayable-high-value  (->displayable-units measurement-type high-source-value source-units target-units opts)
+            displayable-high-value  (->displayable-units measurement-type high-source-value source-units target-units options)
             displayable-range       (str converted-low-value " - " displayable-high-value)]
         (assoc source-data display-key displayable-range))
       source-data)))

@@ -42,12 +42,12 @@
   ([water {:keys [water-amount-target-units
                   water-amount-precision
                   water-amount-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/value-key               :amount
-                              impl/display-key             :display-amount
-                              impl/fine-grain-target-units water-amount-target-units
-                              impl/fine-grain-precision    water-amount-precision
-                              impl/fine-grain-suffix       water-amount-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/value-key               :amount
+                                 impl/display-key             :display-amount
+                                 impl/fine-grain-target-units water-amount-target-units
+                                 impl/fine-grain-precision    water-amount-precision
+                                 impl/fine-grain-suffix       water-amount-suffix})]
      (impl/enrich-displayable-units options/volume water options))))
 
 
@@ -78,9 +78,9 @@
               "enrich-waters"
               "enrich-waters-wrapper"]}
   ([water] (enrich-water water {}))
-  ([water opts]
+  ([water options]
    (-> water
-       (enrich-display-amount opts))))
+       (enrich-display-amount options))))
 
 
 (defn enrich-water-wrapper
@@ -110,8 +110,8 @@
               "enrich-waters"
               "enrich-waters-wrapper"]}
   ([water] (enrich-water-wrapper water {}))
-  ([water opts]
-   (update water :water enrich-water opts)))
+  ([water options]
+   (update water :water enrich-water options)))
 
 
 (defn enrich-waters
@@ -141,8 +141,8 @@
               "enrich-water-wrapper"
               "enrich-waters-wrapper"]}
   ([waters] (enrich-waters waters {}))
-  ([waters opts]
-   (map #(enrich-water % opts) waters)))
+  ([waters options]
+   (map #(enrich-water % options) waters)))
 
 
 (defn enrich-waters-wrapper
@@ -173,5 +173,5 @@
               "enrich-waters"
               "enrich-waters-wrapper"]}
   ([waters] (enrich-waters waters {}))
-  ([waters opts]
-   (update waters :waters enrich-waters opts)))
+  ([waters options]
+   (update waters :waters enrich-waters options)))

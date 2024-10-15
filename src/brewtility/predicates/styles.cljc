@@ -20,6 +20,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([style] [style {:keys [uppercase?]}])
    :see-also ["ale?"
               "mead?"
               "wheat?"
@@ -27,9 +28,9 @@
               "cider?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([style] (lager? style {}))
-  ([style opts]
+  ([style options]
    (let [style-type (impl/fetch-or-throw! style :type "Style :type is required to determine if it's for lagers")]
-     (spoon.string/same-text? "lager" style-type opts))))
+     (spoon.string/same-text? "lager" style-type options))))
 
 
 (defn ale?
@@ -39,6 +40,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([style] [style {:keys [uppercase?]}])
    :see-also ["lager?"
               "mead?"
               "wheat?"
@@ -46,9 +48,9 @@
               "cider?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([style] (ale? style {}))
-  ([style opts]
+  ([style options]
    (let [style-type (impl/fetch-or-throw! style :type "Style :type is required to determine if it's for ales")]
-     (spoon.string/same-text? "ale" style-type opts))))
+     (spoon.string/same-text? "ale" style-type options))))
 
 
 (defn mead?
@@ -58,6 +60,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([style] [style {:keys [uppercase?]}])
    :see-also ["lager?"
               "ale?"
               "wheat?"
@@ -65,9 +68,9 @@
               "cider?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([style] (mead? style {}))
-  ([style opts]
+  ([style options]
    (let [style-type (impl/fetch-or-throw! style :type "Style :type is required to determine if it's for meads")]
-     (spoon.string/same-text? "mead" style-type opts))))
+     (spoon.string/same-text? "mead" style-type options))))
 
 
 (defn wheat?
@@ -77,6 +80,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([style] [style {:keys [uppercase?]}])
    :see-also ["lager?"
               "ale?"
               "mead?"
@@ -84,9 +88,9 @@
               "cider?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([style] (wheat? style {}))
-  ([style opts]
+  ([style options]
    (let [style-type (impl/fetch-or-throw! style :type "Style :type is required to determine if it's for wheat beers")]
-     (spoon.string/same-text? "wheat" style-type opts))))
+     (spoon.string/same-text? "wheat" style-type options))))
 
 
 (defn mixed?
@@ -96,6 +100,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([style] [style {:keys [uppercase?]}])
    :see-also ["lager?"
               "ale?"
               "mead?"
@@ -103,9 +108,9 @@
               "cider?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([style] (mixed? style {}))
-  ([style opts]
+  ([style options]
    (let [style-type (impl/fetch-or-throw! style :type "Style :type is required to determine if it's for mixed styles or blends")]
-     (spoon.string/same-text? "mixed" style-type opts))))
+     (spoon.string/same-text? "mixed" style-type options))))
 
 
 (defn cider?
@@ -115,6 +120,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([style] [style {:keys [uppercase?]}])
    :see-also ["lager?"
               "ale?"
               "mead?"
@@ -122,6 +128,6 @@
               "mixed?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([style] (cider? style {}))
-  ([style opts]
+  ([style options]
    (let [style-type (impl/fetch-or-throw! style :type "Style :type is required to determine if it's for ciders")]
-     (spoon.string/same-text? "cider" style-type opts))))
+     (spoon.string/same-text? "cider" style-type options))))

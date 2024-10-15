@@ -59,12 +59,12 @@
   ([yeast {:keys [yeast-amount-target-units
                   yeast-amount-precision
                   yeast-amount-suffix]
-           :as   opts}]
-   (let [options (merge opts {impl/value-key               :amount
-                              impl/display-key             :display-amount
-                              impl/fine-grain-target-units yeast-amount-target-units
-                              impl/fine-grain-precision    yeast-amount-precision
-                              impl/fine-grain-suffix       yeast-amount-suffix})]
+           :as   options}]
+   (let [options (merge options {impl/value-key               :amount
+                                 impl/display-key             :display-amount
+                                 impl/fine-grain-target-units yeast-amount-target-units
+                                 impl/fine-grain-precision    yeast-amount-precision
+                                 impl/fine-grain-suffix       yeast-amount-suffix})]
      (if (:amount-is-weight yeast)
        (impl/enrich-displayable-units options/weight yeast options)
        (impl/enrich-displayable-units options/volume yeast options)))))
@@ -100,13 +100,13 @@
   ([yeast {:keys [yeast-min-temperature-target-units
                   yeast-min-temperature-precision
                   yeast-min-temperature-suffix]
-           :as   opts}]
+           :as   options}]
    (if (:min-temperature yeast)
-     (let [options (merge opts {impl/value-key               :min-temperature
-                                impl/display-key             :disp-min-temp
-                                impl/fine-grain-target-units yeast-min-temperature-target-units
-                                impl/fine-grain-precision    yeast-min-temperature-precision
-                                impl/fine-grain-suffix       yeast-min-temperature-suffix})]
+     (let [options (merge options {impl/value-key               :min-temperature
+                                   impl/display-key             :disp-min-temp
+                                   impl/fine-grain-target-units yeast-min-temperature-target-units
+                                   impl/fine-grain-precision    yeast-min-temperature-precision
+                                   impl/fine-grain-suffix       yeast-min-temperature-suffix})]
        (impl/enrich-displayable-units options/temperature yeast options))
      yeast)))
 
@@ -141,13 +141,13 @@
   ([yeast {:keys [yeast-max-temperature-target-units
                   yeast-max-temperature-precision
                   yeast-max-temperature-suffix]
-           :as   opts}]
+           :as   options}]
    (if (:max-temperature yeast)
-     (let [options (merge opts {impl/value-key               :max-temperature
-                                impl/display-key             :disp-max-temp
-                                impl/fine-grain-target-units yeast-max-temperature-target-units
-                                impl/fine-grain-precision    yeast-max-temperature-precision
-                                impl/fine-grain-suffix       yeast-max-temperature-suffix})]
+     (let [options (merge options {impl/value-key               :max-temperature
+                                   impl/display-key             :disp-max-temp
+                                   impl/fine-grain-target-units yeast-max-temperature-target-units
+                                   impl/fine-grain-precision    yeast-max-temperature-precision
+                                   impl/fine-grain-suffix       yeast-max-temperature-suffix})]
        (impl/enrich-displayable-units options/temperature yeast options))
      yeast)))
 
@@ -191,12 +191,12 @@
               "enrich-yeasts"
               "enrich-yeasts-wrapper"]}
   ([yeast] (enrich-yeast yeast {}))
-  ([yeast opts]
+  ([yeast options]
    (-> yeast
-       (enrich-amount-is-weight opts)
-       (enrich-display-amount opts)
-       (enrich-display-min-temperature opts)
-       (enrich-display-max-temperature opts))))
+       (enrich-amount-is-weight options)
+       (enrich-display-amount options)
+       (enrich-display-min-temperature options)
+       (enrich-display-max-temperature options))))
 
 
 (defn enrich-yeast-wrapper
@@ -238,8 +238,8 @@
               "enrich-yeasts"
               "enrich-yeasts-wrapper"]}
   ([yeast-wrapper] (enrich-yeast-wrapper yeast-wrapper {}))
-  ([yeast-wrapper opts]
-   (update yeast-wrapper :yeast enrich-yeast opts)))
+  ([yeast-wrapper options]
+   (update yeast-wrapper :yeast enrich-yeast options)))
 
 
 (defn enrich-yeasts
@@ -281,8 +281,8 @@
               "enrich-yeasts"
               "enrich-yeasts-wrapper"]}
   ([yeasts] (enrich-yeasts yeasts {}))
-  ([yeasts opts]
-   (map #(enrich-yeast-wrapper % opts) yeasts)))
+  ([yeasts options]
+   (map #(enrich-yeast-wrapper % options) yeasts)))
 
 
 (defn enrich-yeasts-wrapper
@@ -324,5 +324,5 @@
               "enrich-yeasts"
               "enrich-yeasts-wrapper"]}
   ([yeasts-wrapper] (enrich-yeasts-wrapper yeasts-wrapper {}))
-  ([yeasts-wrapper opts]
-   (update yeasts-wrapper :yeasts enrich-yeasts opts)))
+  ([yeasts-wrapper options]
+   (update yeasts-wrapper :yeasts enrich-yeasts options)))

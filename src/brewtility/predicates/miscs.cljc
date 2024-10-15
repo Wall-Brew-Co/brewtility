@@ -20,6 +20,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["fining?"
               "water-agent?"
               "herb?"
@@ -27,9 +28,9 @@
               "other?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (spice? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-type (impl/fetch-or-throw! misc :type "Misc :type is required to determine if it's a spice")]
-     (spoon.string/same-text? "spice" misc-type opts))))
+     (spoon.string/same-text? "spice" misc-type options))))
 
 
 (defn fining?
@@ -39,6 +40,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["spice?"
               "water-agent?"
               "herb?"
@@ -46,9 +48,9 @@
               "other?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (fining? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-type (impl/fetch-or-throw! misc :type "Misc :type is required to determine if it's used for fining")]
-     (spoon.string/same-text? "fining" misc-type opts))))
+     (spoon.string/same-text? "fining" misc-type options))))
 
 
 (defn water-agent?
@@ -58,6 +60,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["spice?"
               "other?"
               "fining?"
@@ -65,9 +68,9 @@
               "flavor?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (water-agent? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-type (impl/fetch-or-throw! misc :type "Misc :type is required to determine if it a water agent")]
-     (spoon.string/same-text? "water agent" misc-type opts))))
+     (spoon.string/same-text? "water agent" misc-type options))))
 
 
 (defn herb?
@@ -77,6 +80,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["spice?"
               "water-agent?"
               "fining?"
@@ -84,9 +88,9 @@
               "other?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (herb? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-type (impl/fetch-or-throw! misc :type "Misc :type is required to determine if it an herb")]
-     (spoon.string/same-text? "herb" misc-type opts))))
+     (spoon.string/same-text? "herb" misc-type options))))
 
 
 (defn flavor?
@@ -96,6 +100,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["spice?"
               "water-agent?"
               "fining?"
@@ -103,9 +108,9 @@
               "other?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (flavor? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-type (impl/fetch-or-throw! misc :type "Misc :type is required to determine if it was added for flavor")]
-     (spoon.string/same-text? "flavor" misc-type opts))))
+     (spoon.string/same-text? "flavor" misc-type options))))
 
 
 (defn other?
@@ -115,6 +120,7 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["spice?"
               "water-agent?"
               "fining?"
@@ -122,9 +128,9 @@
               "flavor?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (other? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-type (impl/fetch-or-throw! misc :type "Misc :type is required to determine if it doesn't fit any other category")]
-     (spoon.string/same-text? "other" misc-type opts))))
+     (spoon.string/same-text? "other" misc-type options))))
 
 
 (defn boil?
@@ -134,15 +140,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["mash?"
               "primary?"
               "secondary?"
               "bottling?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (boil? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-use (impl/fetch-or-throw! misc :use "Misc :use is required to determine if it was added during the boil")]
-     (spoon.string/same-text? "boil" misc-use opts))))
+     (spoon.string/same-text? "boil" misc-use options))))
 
 
 (defn mash?
@@ -152,15 +159,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["boil?"
               "primary?"
               "secondary?"
               "bottling?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (mash? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-use (impl/fetch-or-throw! misc :use "Misc :use is required to determine if it was added during the mash")]
-     (spoon.string/same-text? "mash" misc-use opts))))
+     (spoon.string/same-text? "mash" misc-use options))))
 
 
 (defn primary?
@@ -170,15 +178,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["boil?"
               "mash?"
               "secondary?"
               "bottling?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (primary? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-use (impl/fetch-or-throw! misc :use "Misc :use is required to determine if it was added during primary fermentation")]
-     (spoon.string/same-text? "primary" misc-use opts))))
+     (spoon.string/same-text? "primary" misc-use options))))
 
 
 (defn secondary?
@@ -188,15 +197,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["boil?"
               "mash?"
               "primary?"
               "bottling?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (secondary? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-use (impl/fetch-or-throw! misc :use "Misc :use is required to determine if it was added during secondary fermentation")]
-     (spoon.string/same-text? "secondary" misc-use opts))))
+     (spoon.string/same-text? "secondary" misc-use options))))
 
 
 (defn bottling?
@@ -206,12 +216,13 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:use` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([misc] [misc {:keys [uppercase?]}])
    :see-also ["boil?"
               "mash?"
               "primary?"
               "secondary?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([misc] (bottling? misc {}))
-  ([misc opts]
+  ([misc options]
    (let [misc-use (impl/fetch-or-throw! misc :use "Misc :use is required to determine if it was added during bottle conditioning")]
-     (spoon.string/same-text? "bottling" misc-use opts))))
+     (spoon.string/same-text? "bottling" misc-use options))))

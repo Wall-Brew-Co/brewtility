@@ -202,4 +202,3 @@
     (is (spoon.spec/test-valid? ::fermentable.format/fermentables-wrapper
                                 (fermentable.enrich/enrich-fermentables-wrapper (fermentable.data/generate-fermentables-wrapper)))
         "enrich-fermentables-wrapper is a function to and from common-beer-format.fermentable/fermentables-wrapper")))
-

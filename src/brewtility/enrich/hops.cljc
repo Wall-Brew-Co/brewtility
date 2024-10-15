@@ -43,12 +43,12 @@
   ([hop {:keys [hop-amount-target-units
                 hop-amount-precision
                 hop-amount-suffix]
-         :as   opts}]
-   (let [options (merge opts {impl/value-key               :amount
-                              impl/display-key             :display-amount
-                              impl/fine-grain-target-units hop-amount-target-units
-                              impl/fine-grain-precision    hop-amount-precision
-                              impl/fine-grain-suffix       hop-amount-suffix})]
+         :as   options}]
+   (let [options (merge options {impl/value-key               :amount
+                                 impl/display-key             :display-amount
+                                 impl/fine-grain-target-units hop-amount-target-units
+                                 impl/fine-grain-precision    hop-amount-precision
+                                 impl/fine-grain-suffix       hop-amount-suffix})]
      (impl/enrich-displayable-units options/weight hop options))))
 
 
@@ -81,12 +81,12 @@
   ([hop {:keys [hop-time-target-units
                 hop-time-precision
                 hop-time-suffix]
-         :as   opts}]
-   (let [options (merge opts {impl/value-key               :time
-                              impl/display-key             :display-time
-                              impl/fine-grain-target-units hop-time-target-units
-                              impl/fine-grain-precision    hop-time-precision
-                              impl/fine-grain-suffix       hop-time-suffix})]
+         :as   options}]
+   (let [options (merge options {impl/value-key               :time
+                                 impl/display-key             :display-time
+                                 impl/fine-grain-target-units hop-time-target-units
+                                 impl/fine-grain-precision    hop-time-precision
+                                 impl/fine-grain-suffix       hop-time-suffix})]
      (impl/enrich-displayable-units options/time hop options))))
 
 
@@ -122,10 +122,10 @@
               "enrich-hops"
               "enrich-hops-wrapper"]}
   ([hop] (enrich-hop hop {}))
-  ([hop opts]
+  ([hop options]
    (-> hop
-       (enrich-display-amount opts)
-       (enrich-display-time opts))))
+       (enrich-display-amount options)
+       (enrich-display-time options))))
 
 
 (defn enrich-hop-wrapper
@@ -160,8 +160,8 @@
               "enrich-hops"
               "enrich-hops-wrapper"]}
   ([hop] (enrich-hop-wrapper hop {}))
-  ([hop opts]
-   (update hop :hop enrich-hop opts)))
+  ([hop options]
+   (update hop :hop enrich-hop options)))
 
 
 (defn enrich-hops
@@ -196,8 +196,8 @@
               "enrich-hop"
               "enrich-hops-wrapper"]}
   ([hops] (enrich-hops hops {}))
-  ([hops opts]
-   (map #(enrich-hop-wrapper % opts) hops)))
+  ([hops options]
+   (map #(enrich-hop-wrapper % options) hops)))
 
 
 (defn enrich-hops-wrapper
@@ -232,6 +232,5 @@
               "enrich-hops"
               "enrich-hop"]}
   ([hops] (enrich-hops-wrapper hops {}))
-  ([hops opts]
-   (update hops :hops enrich-hops opts)))
-
+  ([hops options]
+   (update hops :hops enrich-hops options)))

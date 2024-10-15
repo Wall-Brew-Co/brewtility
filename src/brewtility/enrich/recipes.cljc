@@ -10,4 +10,3 @@
               "brewtility.enrich.waters"
               "brewtility.enrich.yeast"]}
   (:require [brewtility.enrich.impl :as impl]))
-

@@ -18,11 +18,12 @@
    In the BeerXML spec, this behavior is implicitly falsey.
 
    Therefore, if the :add-after-boil field is not present, this function will explicitly return false."
-  {:added "1.5"}
+  {:added    "1.5"
+   :arglists '([fermentable] [fermentable _options])}
   ([fermentable] (add-after-boil? fermentable {}))
   ;; Added to match the arity of the other predicate functions
 
-  ([fermentable _opts]
+  ([fermentable _options]
    (if (contains? fermentable :add-after-boil)
      (:add-after-boil fermentable)
      false)))
@@ -36,15 +37,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([fermentable] [fermentable {:keys [uppercase?]}])
    :see-also ["sugar?"
               "extract?"
               "dry-extract?"
               "adjunct?"
               "com.wallbrew.spoon.string/same-text?"]}
   ([fermentable] (grain? fermentable {}))
-  ([fermentable opts]
+  ([fermentable options]
    (let [fermentable-type (impl/fetch-or-throw! fermentable :type "Fermentable :type is required to determine if it is a grain.")]
-     (spoon.string/same-text? "grain" fermentable-type opts))))
+     (spoon.string/same-text? "grain" fermentable-type options))))
 
 
 (defn sugar?
@@ -55,15 +57,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([fermentable] [fermentable {:keys [uppercase?]}])
    :see-also ["grain?"
               "extract?"
               "dry-extract?"
               "adjunct?"
               "spoon.string/same-text?"]}
   ([fermentable] (sugar? fermentable {}))
-  ([fermentable opts]
+  ([fermentable options]
    (let [fermentable-type (impl/fetch-or-throw! fermentable :type "Fermentable :type is required to determine if it is a sugar")]
-     (spoon.string/same-text? "sugar" fermentable-type opts))))
+     (spoon.string/same-text? "sugar" fermentable-type options))))
 
 
 (defn extract?
@@ -74,15 +77,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([fermentable] [fermentable {:keys [uppercase?]}])
    :see-also ["grain?"
               "sugar?"
               "dry-extract?"
               "adjunct?"
               "spoon.string/same-text?"]}
   ([fermentable] (extract? fermentable {}))
-  ([fermentable opts]
+  ([fermentable options]
    (let [fermentable-type (impl/fetch-or-throw! fermentable :type "Fermentable :type is required to determine if it is a extract.")]
-     (spoon.string/same-text? "extract" fermentable-type opts))))
+     (spoon.string/same-text? "extract" fermentable-type options))))
 
 
 (defn dry-extract?
@@ -93,15 +97,16 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([fermentable] [fermentable {:keys [uppercase?]}])
    :see-also ["grain?"
               "sugar?"
               "extract?"
               "adjunct?"
               "spoon.string/same-text?"]}
   ([fermentable] (dry-extract? fermentable {}))
-  ([fermentable opts]
+  ([fermentable options]
    (let [fermentable-type (impl/fetch-or-throw! fermentable :type "Fermentable :type is required to determine if it is a dry extract.")]
-     (spoon.string/same-text? "dry extract" fermentable-type opts))))
+     (spoon.string/same-text? "dry extract" fermentable-type options))))
 
 
 (defn adjunct?
@@ -112,12 +117,13 @@
    Supported keys are:
      - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
+   :arglists '([fermentable] [fermentable {:keys [uppercase?]}])
    :see-also ["grain?"
               "sugar?"
               "extract?"
               "dry-extract?"
               "spoon.string/same-text?"]}
   ([fermentable] (adjunct? fermentable {}))
-  ([fermentable opts]
+  ([fermentable options]
    (let [fermentable-type (impl/fetch-or-throw! fermentable :type "Fermentable :type is required to determine if it is an adjunct.")]
-     (spoon.string/same-text? "adjunct" fermentable-type opts))))
+     (spoon.string/same-text? "adjunct" fermentable-type options))))
