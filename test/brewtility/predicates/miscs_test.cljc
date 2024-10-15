@@ -1,7 +1,10 @@
 (ns brewtility.predicates.miscs-test
   (:require [brewtility.data.miscs :as miscs]
             [brewtility.predicates.miscs :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.miscs :as cbf-miscs]))
 
 
@@ -298,3 +301,93 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Misc :use"
                    (sut/bottling? (dissoc miscs/sample-misc :use)))))))
+
+
+(declare spice?-boolean
+         fining?-boolean
+         water-agent?-boolean
+         herb?-boolean
+         flavor?-boolean
+         other?-boolean
+         boil?-boolean
+         mash?-boolean
+         primary?-boolean
+         secondary?-boolean
+         bottling?-boolean)
+
+
+(check.test/defspec
+  spice?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/spice? mash))))
+
+
+(check.test/defspec
+  fining?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/fining? mash))))
+
+
+(check.test/defspec
+  water-agent?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/water-agent? mash))))
+
+
+(check.test/defspec
+  herb?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/herb? mash))))
+
+
+(check.test/defspec
+  flavor?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/flavor? mash))))
+
+
+(check.test/defspec
+  other?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/other? mash))))
+
+
+(check.test/defspec
+  boil?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/boil? mash))))
+
+
+(check.test/defspec
+  mash?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/mash? mash))))
+
+
+(check.test/defspec
+  primary?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/primary? mash))))
+
+
+(check.test/defspec
+  secondary?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/secondary? mash))))
+
+
+(check.test/defspec
+  bottling?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-miscs/misc)]
+    (boolean? (sut/bottling? mash))))
