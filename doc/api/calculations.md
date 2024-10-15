@@ -18,11 +18,11 @@ The following is a list of supported functions:
 
 Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the projected color of the beer in one of the following color scales:
 
-* Malt Color Units (MCU)
-* Standard Reference Method (SRM)
-* European Brewery Convention (EBC)
-* Lovibond
-* Red/Green/Blue/Alpha (RGBA)
+- Malt Color Units (MCU)
+- Standard Reference Method (SRM)
+- European Brewery Convention (EBC)
+- Lovibond
+- Red/Green/Blue/Alpha (RGBA)
 
 ```clj
 (:require [brewtility.calculations :refer :all]

@@ -77,9 +77,17 @@ format/clojure:
 #
 # Code Linting
 #
+.PHONY: lint/all
+lint/all: lint/clojure lint/markdown
+
 .PHONY: lint/clojure
 lint/clojure:
 	$(info Linting Clojure...)
 	@ lein clj-kondo
 	@ lein bouncer check
 	@ lein sealog check
+
+.PHONY: lint/markdown
+lint/markdown:
+	$(info Linting Markdown...)
+	@ npm run markdownlint

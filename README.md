@@ -55,17 +55,18 @@ The library does provide access to other functions, but those primarily exist in
 Brewtility follows several conventions and design patterns that result in artifacts available to library consumers.
 These are not strictly required for use; however, they provide additional documentation and ease-of-use to those who adopt them.
 
-- [Symbolic Keywords](doc/patterns/symbolic_keywords.md)
+- [Symbolic Keywords](doc/clojure/patterns/symbolic_keywords.md)
+- [Enricher Functions](doc/clojure/patterns/enricher_pattern.md)
 
 ## Testing
 
 [doo](https://github.com/bensu/doo), a Leiningen plugin used to run ClojureScript tests in many JS environments, is already in `project.clj`.
 [Karma](https://karma-runner.github.io/latest/index.html) is used as the test runner, and is included in `package.json`.
 
-To install Karma, simply install the Node package:
+To install Karma, install the Node package:
 
 ```bash
-npm install
+npm ci
 ```
 
 Then build the application and run the tests:
@@ -78,7 +79,7 @@ The tests will also execute on the JVM, to ensure the library is compatible for 
 
 ## Contributors
 
-<a href="https://github.com/Wall-Brew-Co/brewtility/graphs/contributors"><img src="https://raw.githubusercontent.com/Wall-Brew-Co/brewtility/master/CONTRIBUTORS.svg" alt="The GitHub profile pictures of all current contributors. Clicking this image will lead you to the GitHub contribution graph." /></a>
+[![The GitHub profile pictures of all current contributors. Clicking this image will lead you to the GitHub contribution graph.](https://raw.githubusercontent.com/Wall-Brew-Co/brewtility/master/CONTRIBUTORS.svg)](https://github.com/Wall-Brew-Co/brewtility/graphs/contributors)
 
 ## License
 

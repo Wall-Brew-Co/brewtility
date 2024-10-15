@@ -7,6 +7,7 @@ For that reason, we would need a function to be able to determine if a `common-b
 
 These functions are unique to each `common-beer-format` type, which are individual namespaces in the `brewtility.predicates.*` set.
 Each function expects a record of the appropriate type, and returns a boolean value.
+In the case no conclusion can be drawn (for example, determining if a water profile is acidic without a pH value), the function will throw an Exception indicating the missing data.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -106,6 +107,42 @@ Recipe records currently have seven predicates in three categories:
 
 ## Styles
 
+Style records currently support six predicates in one category:
+
+- Predicates against the `:type` field:
+  - `ale?`: Returns true if the style's `:type` is "ale".
+  - `lager?`: Returns true if the style's `:type` is "lager".
+  - `mead?`: Returns true if the style's `:type` is "mead".
+  - `cider?`: Returns true if the style's `:type` is "cider".
+  - `wine?`: Returns true if the style's `:type` is "wine".
+  - `mixed?`: Returns true if the style's `:type` is "mixed".
+
 ## Waters
 
+Water records currently support three predicates in one category:
+
+- Predicates against the `:ph` field:
+  - `acidic?`: Returns true if the water's `:ph` is less than 7.
+  - `neutral?`: Returns true if the water's `:ph` is equal to 7.
+  - `alkaline?`: Returns true if the water's `:ph` is greater than 7.
+
 ## Yeasts
+
+Yeast records currently support thirteen predicates in three categories:
+
+- Predicates against the `:type` field:
+  - `ale?`: Returns true if the yeast's `:type` is "ale".
+  - `lager?`: Returns true if the yeast's `:type` is "lager".
+  - `wheat?`: Returns true if the yeast's `:type` is "wheat".
+  - `wine?`: Returns true if the yeast's `:type` is "wine".
+  - `champagne?`: Returns true if the yeast's `:type` is "champagne".
+- Predicates against the `:form` field:
+  - `liquid?`: Returns true if the yeast's `:form` is "liquid".
+  - `dry?`: Returns true if the yeast's `:form` is "dry".
+  - `slant?`: Returns true if the yeast's `:form` is "slant".
+  - `culture?`: Returns true if the yeast's `:form` is "culture".
+- Predicates against the `:flocculation` field:
+  - `low-flocculation?`: Returns true if the yeast's `:flocculation` is "low".
+  - `medium-flocculation?`: Returns true if the yeast's `:flocculation` is "medium".
+  - `high-flocculation?`: Returns true if the yeast's `:flocculation` is "high".
+  -` very-high-flocculation?`: Returns true if the yeast's `:flocculation` is "very high".

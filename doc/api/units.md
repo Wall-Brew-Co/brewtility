@@ -94,16 +94,16 @@ Brewtility supports four systems of measure:
 These are the most commonly seen systems in brewing.
 There are measurement functions for the most common types of measurements within these systems:
 
-- [Alcohol Content](##alcohol-content)
-- [Bitterness](##bitterness)
-- [Carbonation](##carbonation)
-- [Color](##color)
-- [Pressure](##pressure)
-- [Specific Gravity](##specific-gravity)
-- [Temperature](##temperature)
-- [Time](##time)
-- [Volume](##volume)
-- [Weight](##weight)
+- [Alcohol Content](#alcohol-content)
+- [Bitterness](#bitterness)
+- [Carbonation](#carbonation)
+- [Color](#color)
+- [Pressure](#pressure)
+- [Specific Gravity](#specific-gravity)
+- [Temperature](#temperature)
+- [Time](#time)
+- [Volume](#volume)
+- [Weight](#weight)
 
 ### Alcohol Content
 

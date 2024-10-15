@@ -122,7 +122,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["dry?"
@@ -140,7 +140,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["liquid?"
@@ -159,7 +159,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["liquid?"
@@ -177,7 +177,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:form` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["liquid?"
@@ -199,7 +199,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:flocculation` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["medium-flocculation?"
@@ -217,7 +217,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:flocculation` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["low-flocculation?"
@@ -235,7 +235,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:flocculation` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["low-flocculation?"
@@ -253,7 +253,7 @@
    An option map can be passed to this function as an optional second parameter.
 
    Supported keys are:
-     - `:uppercase?` - If the string comparison for the `:type` should be cast to UPPERCASE instead of lowercase. Default is false."
+     - `:uppercase?` - If the string comparison for the `:flocculation` should be cast to UPPERCASE instead of lowercase. Default is false."
   {:added    "1.5"
    :arglists '([yeast] [yeast {:keys [uppercase?]}])
    :see-also ["low-flocculation?"
