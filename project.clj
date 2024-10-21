@@ -29,7 +29,7 @@
   :profiles {:uberjar {:aot :all}
              :dev     {:dependencies [[cider/cider-nrepl "0.50.2"]
                                       [com.wallbrew/common-beer-data "1.6.0"]
-                                      [com.wallbrew/common-beer-format "2.4.1"]
+                                      [com.wallbrew/common-beer-format "2.6.0"]
                                       [doo/doo "0.1.11"]
                                       [nrepl/nrepl "1.3.0"]]
                        :plugins      [[lein-doo/lein-doo "0.1.11"]]}}
