@@ -9,6 +9,19 @@ A Clojure(Script) utility library for all of your brewing needs.
 
 This repository follows the guidelines and standards of the [Wall Brew Open Source Policy.](https://github.com/Wall-Brew-Co/open-source "Our open source guidelines")
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Installation](#installation)
+- [Expectations](#expectations)
+- [Provided Functionality](#provided-functionality)
+- [Common Patterns](#common-patterns)
+- [Testing](#testing)
+- [Contributors](#contributors)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Installation
 
 A deployed copy of the most recent version of [brewtility can be found on clojars.](https://clojars.org/com.wallbrew/brewtility)
@@ -42,17 +55,18 @@ The library does provide access to other functions, but those primarily exist in
 Brewtility follows several conventions and design patterns that result in artifacts available to library consumers.
 These are not strictly required for use; however, they provide additional documentation and ease-of-use to those who adopt them.
 
-- [Symbolic Keywords](doc/patterns/symbolic_keywords.md)
+- [Symbolic Keywords](doc/clojure/patterns/symbolic_keywords.md)
+- [Enricher Functions](doc/clojure/patterns/enricher_pattern.md)
 
 ## Testing
 
 [doo](https://github.com/bensu/doo), a Leiningen plugin used to run ClojureScript tests in many JS environments, is already in `project.clj`.
 [Karma](https://karma-runner.github.io/latest/index.html) is used as the test runner, and is included in `package.json`.
 
-To install Karma, simply install the Node package:
+To install Karma, install the Node package:
 
 ```bash
-npm install
+npm ci
 ```
 
 Then build the application and run the tests:
@@ -65,7 +79,7 @@ The tests will also execute on the JVM, to ensure the library is compatible for 
 
 ## Contributors
 
-<a href="https://github.com/Wall-Brew-Co/brewtility/graphs/contributors"><img src="https://raw.githubusercontent.com/Wall-Brew-Co/brewtility/master/CONTRIBUTORS.svg" alt="The GitHub profile pictures of all current contributors. Clicking this image will lead you to the GitHub contribution graph." /></a>
+[![The GitHub profile pictures of all current contributors. Clicking this image will lead you to the GitHub contribution graph.](https://raw.githubusercontent.com/Wall-Brew-Co/brewtility/master/CONTRIBUTORS.svg)](https://github.com/Wall-Brew-Co/brewtility/graphs/contributors)
 
 ## License
 

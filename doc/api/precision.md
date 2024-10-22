@@ -3,6 +3,14 @@
 Since the BeerXML spec relies on double-precisions floating point numbers, the results of calculations lack absolute precisions.
 Writing equality or boundary checks in these cases can be difficult, so functionality to approximate and round values was introduced into `brewtility.precision`
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Approximation](#approximation)
+- [Decimal Place Rounding](#decimal-place-rounding)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Approximation
 
 Returns true iff `n2` approximates `n1` within `variance` percent.

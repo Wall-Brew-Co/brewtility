@@ -2,17 +2,27 @@
 
 Many attributes of a beer, like the alcohol content and bitterness, can be calculated from the source ingredients.
 Brewtility has many of the calculations required by the BeerXML specification, and other convenience functions packaged under `brewtility.calculations`.
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Beer Color Calculation](#beer-color-calculation)
+- [Gravity and ABV Calculation](#gravity-and-abv-calculation)
+- [IBU Calculation](#ibu-calculation)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 The following is a list of supported functions:
 
 ## Beer Color Calculation
 
 Given a collection of `common-beer-format` conforming `fermentables`, and a conformed `batch-size` in liters, return the projected color of the beer in one of the following color scales:
 
-* Malt Color Units (MCU)
-* Standard Reference Method (SRM)
-* European Brewery Convention (EBC)
-* Lovibond
-* Red/Green/Blue/Alpha (RGBA)
+- Malt Color Units (MCU)
+- Standard Reference Method (SRM)
+- European Brewery Convention (EBC)
+- Lovibond
+- Red/Green/Blue/Alpha (RGBA)
 
 ```clj
 (:require [brewtility.calculations :refer :all]

@@ -1,7 +1,10 @@
 (ns brewtility.predicates.recipes-test
   (:require [brewtility.data.recipes :as recipes]
             [brewtility.predicates.recipes :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.recipes :as cbf-recipes]))
 
 
@@ -156,3 +159,59 @@
                    (sut/garetz? (dissoc recipes/sample-recipe :ibu-method)))))))
 
 
+(declare forced-carbonation?-boolean
+         extract?-boolean
+         all-grain?-boolean
+         partial-mash?-boolean
+         rager?-boolean
+         tinseth?-boolean
+         garetz?-boolean)
+
+
+(check.test/defspec
+  forced-carbonation?-boolean 10
+  (prop/for-all
+    [recipe (spec/gen ::cbf-recipes/recipe)]
+    (boolean? (sut/forced-carbonation? recipe))))
+
+
+(check.test/defspec
+  extract?-boolean 10
+  (prop/for-all
+    [recipe (spec/gen ::cbf-recipes/recipe)]
+    (boolean? (sut/extract? recipe))))
+
+
+(check.test/defspec
+  all-grain?-boolean 10
+  (prop/for-all
+    [recipe (spec/gen ::cbf-recipes/recipe)]
+    (boolean? (sut/all-grain? recipe))))
+
+
+(check.test/defspec
+  partial-mash?-boolean 10
+  (prop/for-all
+    [recipe (spec/gen ::cbf-recipes/recipe)]
+    (boolean? (sut/partial-mash? recipe))))
+
+
+(check.test/defspec
+  rager?-boolean 10
+  (prop/for-all
+    [recipe (spec/gen ::cbf-recipes/recipe)]
+    (boolean? (sut/rager? (assoc recipe cbf-recipes/ibu-method (recipes/random-ibu-method))))))
+
+
+(check.test/defspec
+  tinseth?-boolean 10
+  (prop/for-all
+    [recipe (spec/gen ::cbf-recipes/recipe)]
+    (boolean? (sut/tinseth? (assoc recipe cbf-recipes/ibu-method (recipes/random-ibu-method))))))
+
+
+(check.test/defspec
+  garetz?-boolean 10
+  (prop/for-all
+    [recipe (spec/gen ::cbf-recipes/recipe)]
+    (boolean? (sut/garetz? (assoc recipe cbf-recipes/ibu-method (recipes/random-ibu-method))))))
