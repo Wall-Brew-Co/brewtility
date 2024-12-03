@@ -84,7 +84,7 @@
     <dependency>
       <groupId>cider</groupId>
       <artifactId>cider-nrepl</artifactId>
-      <version>0.50.2</version>
+      <version>0.50.3</version>
       <scope>test</scope>
     </dependency>
     <dependency>
