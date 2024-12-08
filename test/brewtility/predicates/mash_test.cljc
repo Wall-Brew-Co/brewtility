@@ -1,7 +1,10 @@
 (ns brewtility.predicates.mash-test
   (:require [brewtility.data.mash :as mash]
             [brewtility.predicates.mash :as sut]
+            [clojure.spec.alpha :as spec]
             [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
             [common-beer-format.mash :as cbf-mash]))
 
 
@@ -77,3 +80,37 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Mash step :type"
                    (sut/decoction? (dissoc mash/sample-mash-step :type)))))))
+
+
+(declare adjust-for-equipment?-boolean
+         infusion?-boolean
+         temperature?-boolean
+         decoction?-boolean)
+
+
+(check.test/defspec
+  adjust-for-equipment?-boolean 100
+  (prop/for-all
+    [mash (spec/gen ::cbf-mash/mash)]
+    (boolean? (sut/adjust-for-equipment? mash))))
+
+
+(check.test/defspec
+  infusion?-boolean 100
+  (prop/for-all
+    [mash-step (spec/gen ::cbf-mash/mash-step)]
+    (boolean? (sut/infusion? mash-step))))
+
+
+(check.test/defspec
+  temperature?-boolean 100
+  (prop/for-all
+    [mash-step (spec/gen ::cbf-mash/mash-step)]
+    (boolean? (sut/temperature? mash-step))))
+
+
+(check.test/defspec
+  decoction?-boolean 100
+  (prop/for-all
+    [mash-step (spec/gen ::cbf-mash/mash-step)]
+    (boolean? (sut/decoction? mash-step))))

@@ -1,6 +1,10 @@
 (ns brewtility.precision-test
   (:require [brewtility.precision :as sut]
-            [clojure.test :refer [deftest is testing]]))
+            [clojure.spec.alpha :as spec]
+            [clojure.test :refer [deftest is testing]]
+            [clojure.test.check.clojure-test :as check.test]
+            [clojure.test.check.properties :as prop]
+            [common-beer-format.primitives :as cbf-primitives]))
 
 
 (deftest approximates?-test
@@ -53,3 +57,59 @@
     (is (= -12.300 (sut/->3dp -12.3)))
     (is (= 100.005 (sut/->3dp 100.005)))
     (is (= 404.001 (sut/->3dp 404.0009654)))))
+
+
+(declare ->1dp-number
+         ->2dp-number
+         ->3dp-number)
+
+
+#?(:clj
+   (check.test/defspec
+     ->1dp-number 1000
+     (prop/for-all
+       [generated-number (spec/gen ::cbf-primitives/percent)]
+       (<= (abs (- generated-number (sut/->1dp generated-number)))
+           0.1))))
+
+
+#?(:clj
+   (check.test/defspec
+     ->2dp-number 1000
+     (prop/for-all
+       [generated-number (spec/gen ::cbf-primitives/percent)]
+       (<= (abs (- generated-number (sut/->2dp generated-number)))
+           0.01))))
+
+
+#?(:clj
+   (check.test/defspec
+     ->3dp-number 1000
+     (prop/for-all
+       [generated-number (spec/gen ::cbf-primitives/percent)]
+       (<= (abs (- generated-number (sut/->3dp generated-number)))
+           0.001))))
+
+
+#?(:cljs
+   (check.test/defspec
+     ->1dp-number 1000
+     (prop/for-all
+       [generated-number (spec/gen ::cbf-primitives/percent)]
+       (number? (sut/->1dp generated-number)))))
+
+
+#?(:cljs
+   (check.test/defspec
+     ->2dp-number 1000
+     (prop/for-all
+       [generated-number (spec/gen ::cbf-primitives/percent)]
+       (number? (sut/->2dp generated-number)))))
+
+
+#?(:cljs
+   (check.test/defspec
+     ->3dp-number 1000
+     (prop/for-all
+       [generated-number (spec/gen ::cbf-primitives/percent)]
+       (number? (sut/->3dp generated-number)))))
