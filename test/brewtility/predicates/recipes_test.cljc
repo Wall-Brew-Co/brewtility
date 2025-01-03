@@ -154,5 +154,3 @@
     #?(:cljs (is (thrown-with-msg? js/Error
                                    #"Recipe :ibu-method"
                    (sut/garetz? (dissoc recipes/sample-recipe :ibu-method)))))))
-
-
