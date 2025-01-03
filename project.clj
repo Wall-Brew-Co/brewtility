@@ -27,7 +27,7 @@
   :deploy-branches ["master"]
 
   :profiles {:uberjar {:aot :all}
-             :dev     {:dependencies [[cider/cider-nrepl "0.51.0"]
+             :dev     {:dependencies [[cider/cider-nrepl "0.51.1"]
                                       [com.wallbrew/common-beer-data "1.6.0"]
                                       [com.wallbrew/common-beer-format "2.6.0"]
                                       [doo/doo "0.1.11"]
