@@ -18,6 +18,22 @@ jobs:
         id: checkout
         uses: actions/checkout@v4.2.2
 
+      - name: Setup Java
+        id: install-java
+        uses: actions/setup-java@v4.6.0
+        with:
+          distribution: 'adopt'
+          java-version: '21'
+          # This should match system.properties
+
+      - name: Install Leiningen
+        id: install-leiningen
+        uses: DeLaGuardo/setup-clojure@13.1
+        with:
+          lein: 'latest'
+          clj-kondo: 'latest'
+          cljstyle: 'latest'
+
       - name: Cache Maven Dependencies
         id: cache-maven
         uses: actions/cache@v4
@@ -39,6 +55,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node
+
+      - name: Echo Leiningen Version
+        id: lein-version
+        run: lein -v
 
       - name: Install Clojure/ClojureScript Dependencies
         id: install-clojure-deps
