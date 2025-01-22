@@ -90,7 +90,7 @@
     <dependency>
       <groupId>com.wallbrew</groupId>
       <artifactId>common-beer-data</artifactId>
-      <version>1.6.0</version>
+      <version>1.6.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
