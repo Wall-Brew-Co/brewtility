@@ -17,7 +17,7 @@
 (def measurements->display-name
   "A map from IBU system names to their full and short unit names."
   {options/ibu {options/full  "international bitterness units"
-                options/short "ibu"}})
+                options/short (str "ibu")}})
 
 
 (def measurement->ibu
