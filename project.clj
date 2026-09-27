@@ -12,7 +12,7 @@
                  [:name "Wall Brew Co."]
                  [:url "https://wallbrew.com"]]
   :dependencies [[com.wallbrew/spoon "1.5.0"]
-                 [org.clojure/clojure "1.12.5"]
+                 [org.clojure/clojure "1.12.6"]
                  [org.clojure/clojurescript "1.12.145" :scope "provided"]]
 
   :plugins [[com.github.clj-kondo/lein-clj-kondo "2026.08.04"]
